@@ -148,6 +148,42 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+## Todos
+
+### Listing all Todos : `list`
+
+Shows a list of all Todos.
+
+Format: `list`
+
+* The list is sorted in chronological order, according to the time at which the Todo was created.
+* By default, the list of all Todos will be shown upon navigating to the Todos tab.
+
+### Adding a Todo while on the Todo tab : `add`
+
+Adds a Todo that will be displayed on the Dashboard and the Todos tabs.
+
+Format: `add d/DESCRIPTION`
+
+Examples:
+* `add d/read book`
+* `add d/buy new jeans`
+
+### Deleting a Todo while on the Todo tab : `delete`
+
+Deletes a specified Todo.
+
+Format: `delete INDEX`
+
+* Deletes the Todo at the specified `INDEX`.
+* The index refers to the index number shown in the displayed Todos list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 3` deletes the 3rd Todo in the displayed Todos list.
+
+## General
+
 ### Exiting the program : `exit`
 
 Exits the program.
