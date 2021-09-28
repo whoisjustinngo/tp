@@ -257,71 +257,157 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Students working part-time as financial advisors
+  * Have a need to manage a significant number of contacts
+  * Have a need to manage a busy schedule (both school and work)
+  * Have a need to segregate work contacts and tasks from that of school when necessary
+* Prefer desktop apps over other types and is reasonably comfortable using CLI apps
+* Can type fast and prefers typing to mouse interactions
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* Helps target user keep track of their contacts
+  * Includes contact's profile in addition to basic contact information – useful for managing client relationships
+* Helps target user keep track of their schedule
+  * Facilitates target user in de-conflicting potential client meetings with school timetable 
+* Helps target user keep track of any ad-hoc tasks that can be completed anytime (ToDos) 
+* Enables target user to rank and hence prioritise clients based on potential commissions
+* Allows target user to set their personal KPI and subsequently monitor their progress
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                 | I want to …​                                       | So that …​                                                          |
+| -------- | ------------------------------------------ | ----------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | student working as a financial advisor      | add new event to schedule                             | I can keep track of my client meetings, school commitments and other time-sensitive activities |
+| `* * *`  | student working as a financial advisor      | view events in schedule                               | I can have a better understanding of my schedule |
+| `* *`    | student working as a financial advisor      | edit an event in schedule                             | I can edit details of a previously added event |
+| `* * *`  | student working as a financial advisor      | delete an event in schedule                           | I can delete a previously added event |
+| `* * *`  | student working as a financial advisor      | add a new ToDo                                        | I can keep track of my things to do (i.e. tasks that can be completed any time) |
+| `* * *`  | student working as a financial advisor      | view current ToDos                                    | I can see what I have left to do |
+| `* *`    | student working as a financial advisor      | edit a previously added ToDo                          | I can edit details of a previously added todo |
+| `* * *`  | student working as a financial advisor      | delete a previously added ToDo                        |  |
+| `* * *`  | person juggling multiple responsibilities	| be able to sort my tasks based on how soon they are due | I know how I should assign my time |
+| `*`      | student working as a financial advisor	    | toggle the schedule to show only either school or work related events | I can see how events in each category |
+| `* *`    | user with a busy schedule	                | be able to set recurring tasks                        | I do not need to explicitly enter the same tasks one by one |
+| `* *`    | user	                                    | easily re-add previously completed tasks	            | I do not need to type out all the details again | 
+| `*`      | financial Advisor	                        | keep track of state of claims of clients and relevant tasks | I can manage claims of all clients effectively|
+| `*`      | financial Advisor who wants to build a personal connection with my clients | I can see all upcoming important client-related events (such as birthdays) | remember to send greetings and congratulations to them |
+| `*`      | user	                                    | set reminders for myself	                            | whenever I use the application I will be reminded on the important things which I need to do today |
+| `* *`    | user who needs to schedule events          | view public holidays	                                | I am aware when I can/can't schedule a time to meet clients, as well as know when are the relevant school off-days |
+| `*`      | expert user	                            | import school calendar automatically	                | I can schedule my school timetable automatically |
+| `* * *`  | person juggling multiple responsibilities  | view dashboard to see events occurring today          | I have an idea of what my day would be like |
+| `* * *`  | student working as a financial advisor      | add a new contact                                     | I can keep track of all my contacts |
+| `* * *`  | student working as a financial advisor      | view all contacts                                     |  |
+| `* *`    | student working as a financial advisor      | update details of a previously added contact          |  | 
+| `* * *`  | student working as a financial advisor      | delete an existing contact                            |  |
+| `* * *`  | financial Advisor who wants to build a personal connection with my clients | maintain a detailed profile of the client which includes their birthday, email, current financial plans, job, age, monthly income etc. | I can understand my clients on a more personal level |
+| `* * *`  | financial Advisor who wants to decide which client to meet next | be able to tag clients based on their status (fresh, closing, closed)	| I can make informed decisions about when prioritising clients in order to maximize my earnings |
+| `* *`    | financial advisor	                        | delete multiple clients from my contact book in a single command | it is more convenient |
+| `* *`    | user                                       | filter based on attributes of each contact	            | I can view different groups of contacts separately |
+| `* *`    | financial advisor	                        | keep track of the minutes of the meetings with each client | I have a record of what was discussed |
+| `* *`    | financial advisor	                        | sort potential leads by probability of conversion	    | I can prioritise which clients to meet |
+| `* *`    | expert user	                            | sort clients based on value of lead or urgency	    | I can effectively prioritise work schedule to maximise performance |
+| `*`      | user 	                                    | be able to see how much time I have spent in each category of my responsibilities (e.g. work, school, personal) | I can try to have a better work-school-life balance |
+| `* *`    | user                                       | set my targets and goals                              | I know what I am working towards |
+| `* *`    | user                                       | view my targets and goals                             | | 
+| `* *`    | user                                       | edit my current targets and goals                     | I can update my progress or change my previously set goals / targets |
+| `* *`    | user                                       | delete a previously set target                        | |
+| `* * *`  | user	                                    | import / export all of my data	                    | I am able to transfer my data to another device / back up my data |
+| `* * *`  | financial advisor getting ready to add new client data from an Excel file to what I currently have | import data from an Excel spreadsheet | I can add all current clients I have without spending time to input the data row-by-row |
+| `* * *`  | careful user who is afraid of all my data being locked in the app | export all data onto an Excel spreadsheet or pdf | I can have access to my data in a familiar format that I can read and edit |
+| `*`      | potential user exploring Advyze	        | link Advyze to third party email applications interfaces | I can seamlessly send and/or receive emails through Advyze |
+| `*`      | financial advisor	                        | hide student features                                 | I will not mixed up between features for students and financial advisor when I do not need them |
+| `* * *`  | student working as a financial advisor      | add tags to data                                      | I can see which contacts / tasks are school related and which are work related |
+| `* *`    | user                                       | delete data according to tags	                        | I can clear all data in a category easily |
+| `*`      | user	                                    | have a quick reference available on my mobile phone	| I do not need to keep referring to my computer or carry my computer everywhere |
+| `* *`    | user                                       | set item priority	                                    | I will know which actions, tasks, or clients I need to prioritise |
+| `* *`    | potential user exploring Advyze            | see the app populated with sample data	            | I can see how the app will look like when it is in use |
+| `* *`    | beginner user	                            | be introduced to key features of Advyze	            | I can start to maximise the potential of Advyze |
+| `* * *`  | user	                                    | have keyboard commands to switch tabs	                | I can see different tabs |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+> **Use case 01: Adding a new contact**
 
-**Use case: Delete a person**
+**Actor**: User
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+1. User specifies details of the contact to add
+2. Advyze adds the contact  
+Use case ends
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The given details of the contact is a duplicate (same name and phone number)
+  * 2a1. Advyze prompts the user for a confirmation to overwrite the existing contact
+    * 2a1a. User accepts confirmation to overwrite
+    * 2a1b. User declines confirmation to overwrite
+  * Use case ends
+* 3a. The given details are invalid (e.g. missing details, invalid format)
+  * 3a1. Advyze shows an error message
+  * Use case ends
+ 
+> **Use case 02: Deleting an event**
 
-  Use case ends.
+**Actor**: User
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1. User requests to list all events
+2. Advyze shows a list of events
+3. User requests to delete a specific event in the list
+4. Advyze deletes the event  
+   Use case ends
 
-      Use case resumes at step 2.
 
-*{More to be added}*
+**Extensions**
+
+* 2a. The list of events is empty
+    * Use case ends
+* 3a. The given index of the event to delete is invalid (e.g. index specified doesn't exist or no index specified)
+    * 3a1. Advyze shows an error message
+    * Use case ends
+
+> **Use case 03: Switching between tabs**
+ 
+**Actor**: User
+
+**MSS**
+
+1. User specifies tab to switch to
+2. Advyze switches to the specified tab  
+   Use case ends
+
+**Extensions**
+
+* 1a. Tab specified by the user does not exist
+  * Advyze displays an error message
+  * Use case ends
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any mainstream OS that has Java 11 or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance with typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to make use of the app faster by typing the commands than using the mouse.
+4. Should work without internet connection.
+5. The application should not take more than 200 man-hours to develop.
+6. Should be usable by a novice without any programming experience after they read the User Guide.
+7. The project is expected to adhere to a schedule that delivers feature sets in two iterations.
 
-*{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tab:** Refers to a logical section of the app which provides certain functionalities. For example, the Dashboard tab contains all functionalities for the dashboard.
+* **Dashboard:** a tab that aggregates relevant information for convenient and quick viewing
+* **Contacts:** a tab where information on the user’s contacts are displayed
+* **Schedule:** a tab where the user’s events are displayed
+  * **Event:** a task that is tied to a timeline, for example Lessons, Deadlines or Meetings.
+* **Todos (tab):** a tab where the user’s todos are displayed
+  * **Todo (task):** a task that does not have a time
 
 --------------------------------------------------------------------------------------------------------------------
 
