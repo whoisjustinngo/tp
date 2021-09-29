@@ -179,7 +179,7 @@ Allows users to input commands meant for a specific tab regardless of which tab 
 Format: [commands listed by other functionalities]
 
 Examples:
-* When in Todos tab, input `/schedule add event des/CS2103 meeting from/1300 to/1500` will add a event in schedult instead of adding it in Todos.
+* When in Todos tab, input `/schedule add event des/CS2103 meeting from/1300 to/1500` will add an event in Schedule tab instead of adding it in Todos tab.
 * When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` under the Schedule tab.
 * When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` under the Schedule tab.
 
