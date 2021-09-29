@@ -19,6 +19,32 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Debugging and Testing of Code
 
+### Darren Mok
+
+<img src="images/dmok.jpeg" width="200px">
+
+[[github](https://github.com/mokdarren)]
+[[portfolio](team/mokdarren.md)]
+
+* Role: Developer
+* Responsibilities: Task scheduling, Contacts feature
+
+### Jane Doe
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Team Lead
+* Responsibilities: UI
+
+### Johnny Doe
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+
 ### Kai Siang
 
 <img src="images/kslui99.png" width="200px">
