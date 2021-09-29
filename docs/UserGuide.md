@@ -78,6 +78,7 @@ Format: `type n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 Examples:  
 * Adding a friend: `add friend n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 * Adding a client: `add client n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS]`
+
 ### Deleting a contact: `delete`
 Format: `delete INDEX`  
 Deletes the contact at the specified INDEX.  
