@@ -123,8 +123,6 @@ Format: `delete [INDEX]`
 
 ![Ui](images/Schedule.png)
 
-
-
 ## Todos
 
 ### Listing all Todos : `list`
@@ -163,7 +161,7 @@ Examples:
 
 ### Switching between Tabs: `tab`
 
-Format: tab /TAB NAME
+Format: `tab /TAB NAME`
 * Switches between different tabs. Tab names are as follows:
     * dashboard
     * contacts
@@ -174,16 +172,16 @@ Examples:
 * `tab dashboard` while in the Contacts tab changes to the Dashboard tab
 * `tab contacts` in the Contacts tab just jumps to the top of the page (returns the tab to the original landing page view)
 
-### Adding context to commands
+### Convenience Commands
 
-Adds a prefix to the commands (if applicable)
+Allows users to input commands meant for a specific tab regardless of which tab they are currently viewing.
 
 Format: [commands listed by other functionalities]
 
 Examples:
-* `add` in Schedule tab will add a prefix to the command, and becomes `/schedule add`
-* `/schedule add` in Schedule tab will not add a prefix to the command
-* `/schedule add` in Todos tab will not add a prefix to the command, and navigates to the schedule page to execute add command
+* When in Todos tab, input `/schedule add event des/CS2103 meeting from/1300 to/1500` will add a event in schedult instead of adding it in Todos.
+* When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` under the Schedule tab.
+* When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` under the Schedule tab.
 
 ### Exiting Application: `exit`
 
@@ -194,7 +192,7 @@ Format: `exit`
 Example:
 * exit in any tabs terminates the application.
 
-### Handling invalid commands and displays error message to user
+### Handling invalid commands
 
 Handles error messages thrown by tabs (in the case of invalid commands passed to said pages control), and displays a user friendly message.
 
