@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/kaisiang.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Logic, Code Quality
 
 ### Bryan Tee Pak Hong
 
