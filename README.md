@@ -1,7 +1,7 @@
 ![Ui](docs/images/Ui.png)
 
 # Advyze
-This is **our project for Software Engineering (SE) students**.<br>
+This is **a project for Software Engineering (SE) students**, where it is designed for tech savvy student or financial advisors who prefer CLI over GUI, and have a lot of clients and a busy school schedule to keep track of.<br>
 ## Example usages:
   * Keeps track and manages of all client details
   * Keeps track of all Tasks in a Todo List
@@ -11,7 +11,6 @@ This is **our project for Software Engineering (SE) students**.<br>
 
 ## About
 The project simulates an ongoing software project for a desktop application (called _Advyze_) used for managing contact details.
-  * This product is for tech savvy student financial advisors who prefer CLI over GUI and have a lot of clients and a busy school schedule to keep track of.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.
 ## Project page site
