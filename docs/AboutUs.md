@@ -16,7 +16,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/rickyaandrew)]
 [[portfolio](team/ricky.md)]
 
-* Role: Testing In-Charge
-
-* Role: Code Testing
+* Role: Developer
 * Responsibilities: Debugging and Testing of Code
+
+### Kai Siang
+
+<img src="images/kslui99.png" width="200px">
+
+[[github](https://github.com/kslui99)]
+[[portfolio](team/kaisiang.md)]
+
+* Role: Developer
+* Responsibilities: Logic, Code Quality
+
