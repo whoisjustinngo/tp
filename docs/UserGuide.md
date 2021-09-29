@@ -66,7 +66,31 @@ This is a mockup of how the dashboard will look like (to be updated in v1.2):
 Allows the user to customise what to display on the dashboard. More details coming soon.
 
 
-## darren your work here (contacts)
+## Contacts
+
+
+### Viewing all contacts: `list`  
+Format: `list`  
+* Restores the contacts tab to its default view
+* Contacts are listed in alphabetical order of their names
+
+### Adding a contact: `add`
+Format: `type n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`  
+Examples:  
+* Adding a friend: `add friend n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS]`
+* Adding a client: `add client n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS]`
+
+### Deleting a contact: `delete`
+Format: `delete INDEX`  
+Deletes the contact at the specified INDEX.  
+* The index refers to the index number shown in the Contact list.
+* The index must be a positive integer 1, 2, 3, … and a valid index in the contact list
+
+Example:  
+`delete 2`  
+
+![contacts_mockup](images/contacts_mockup.png)
+
 
 ## Scheduling an Event
 
