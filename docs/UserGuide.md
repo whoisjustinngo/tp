@@ -135,4 +135,49 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 3` deletes the 3rd Todo in the displayed Todos list.
 
-## bryan your work here (general)
+## General
+
+### Switching between Tabs: `tab`
+
+Format: tab /TAB NAME
+* Switches between different tabs. Tab names are as follows:
+    * dashboard
+    * contacts
+    * schedule
+    * todos
+
+Examples:
+* `tab dashboard` while in the Contacts tab changes to the Dashboard tab
+* `tab contacts` in the Contacts tab just jumps to the top of the page (returns the tab to the original landing page view)
+
+### Adding context to commands
+
+Adds a prefix to the commands (if applicable)
+
+Format: [commands listed by other functionalities]
+
+Examples:
+* `add` in Schedule tab will add a prefix to the command, and becomes `/schedule add`
+* `/schedule add` in Schedule tab will not add a prefix to the command
+* `/schedule add` in Todos tab will not add a prefix to the command, and navigates to the schedule page to execute add command
+
+### Exiting Application: `exit`
+
+Terminates the application
+
+Format: `exit`
+
+Example:
+* exit in any tabs terminates the application.
+
+### Handling invalid commands and displays error message to user
+
+Handles error messages thrown by tabs (in the case of invalid commands passed to said pages control), and displays a user friendly message.
+
+Examples:
+* `/schedule create` will print the error message as such:
+```
+“Looks like ‘Schedule’ does not have any commands called ‘create’. Below are the available commands:
+<!--error message that schedule returns-->
+```
+
