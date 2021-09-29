@@ -49,3 +49,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Logic, Code Quality
 
+### Bryan Tee Pak Hong
+
+<img src="images/bryantee.png" width="200px">
+
+[[github](https://github.com/SpdPnd98)]
+[[portfolio](team/bryantee.md)]
+
+* Role: Developer
+* Responsibilities: Merge PRs
+
