@@ -123,8 +123,6 @@ Format: `delete [INDEX]`
 
 ![Ui](images/Schedule.png)
 
-
-
 ## Todos
 
 ### Listing all Todos : `list`
@@ -159,4 +157,49 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 3` deletes the 3rd Todo in the displayed Todos list.
 
-## bryan your work here (general)
+## General
+
+### Switching between Tabs: `tab`
+
+Format: `tab /TAB NAME`
+* Switches between different tabs. Tab names are as follows:
+    * dashboard
+    * contacts
+    * schedule
+    * todos
+
+Examples:
+* `tab dashboard` while in the Contacts tab changes to the Dashboard tab
+* `tab contacts` in the Contacts tab just jumps to the top of the page (returns the tab to the original landing page view)
+
+### Convenience Commands
+
+Allows users to input commands meant for a specific tab regardless of which tab they are currently viewing.
+
+Format: [commands listed by other functionalities]
+
+Examples:
+* When in Todos tab, input `/schedule add event des/CS2103 meeting from/1300 to/1500` will add an event in Schedule tab instead of adding it in Todos tab.
+* When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` under the Schedule tab.
+* When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` under the Schedule tab.
+
+### Exiting Application: `exit`
+
+Terminates the application
+
+Format: `exit`
+
+Example:
+* exit in any tabs terminates the application.
+
+### Handling invalid commands
+
+Handles error messages thrown by tabs (in the case of invalid commands passed to said pages control), and displays a user friendly message.
+
+Examples:
+* `/schedule create` will print the error message as such:
+```
+“Looks like ‘Schedule’ does not have any commands called ‘create’. Below are the available commands:
+<!--error message that schedule returns-->
+```
+
