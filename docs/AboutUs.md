@@ -9,15 +9,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Kai Siang
+### Ricky Andrew
 
-<img src="images/kslui99.png" width="200px">
+<img src="images/ricky.png" width="200px">
 
-[[github](https://github.com/kslui99)]
-[[portfolio](team/kaisiang.md)]
+[[github](https://github.com/rickyaandrew)]
+[[portfolio](team/ricky.md)]
 
 * Role: Developer
-* Responsibilities: Logic, Code Quality
+* Responsibilities: Debugging and Testing of Code
 
 ### Darren Mok
 
@@ -45,15 +45,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+### Kai Siang
 
-### Jean Doe
+<img src="images/kslui99.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/kslui99)]
+[[portfolio](team/kaisiang.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
@@ -66,4 +63,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/bryantee.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Merge PRs
+

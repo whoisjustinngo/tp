@@ -5,10 +5,10 @@ title: User Guide
 
 Advyze is a desktop app for tech-savvy student financial advisors to keep track of their clients and their busy school schedule, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-* Table of Contents
-{:toc}
+-   Table of Contents
+    {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Quick start
 
@@ -24,7 +24,7 @@ Advyze is a desktop app for tech-savvy student financial advisors to keep track 
 
 Refer to the [Features](#Features) below for more details on what Advyze can do.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
@@ -32,23 +32,23 @@ Refer to the [Features](#Features) below for more details on what Advyze can do.
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+-   Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+    e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+-   Items in square brackets are optional.<br>
+    e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+-   Items with `…`​ after them can be used multiple times including zero times.<br>
+    e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+-   Parameters can be in any order.<br>
+    e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+-   If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+    e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+-   Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+    e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -68,8 +68,36 @@ Allows the user to customise what to display on the dashboard. More details comi
 
 ## darren your work here (contacts)
 
+## Scheduling an Event
 
-## ricky your work here (schedule)
+### View all events: `list`
+
+Shows all the added Events
+
+-   Events are first ordered by date, then the order of time on that day itself
+
+### Add Event command: `add`
+
+Format: `[type] [des/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] OR [due/DUE DATE]`
+
+Here are some of the examples to use the command lines.
+
+-   `Adding a schedule: add event des/CS2103 meeting from/1300 to/1500`
+-   `Adding a deadline: add event des/sign contract (Bob) due/21-09-2021`
+
+Note: While adding an Event, it will check if the Event given has any clashes with other Events which have already been added. The Event will be added only if there is no clash in timing with other Events which are already in the list.
+
+### Delete Event command: `delete`
+
+Deletes the Event which has the respective INDEX given by the user.
+
+Format: `delete [INDEX]`
+
+-   Deletes an event at the specified INDEX.
+-   The index refers to the index number shown in the Event list.
+-   The index must be a positive integer 1, 2, 3, ...
+
+![Ui](images/Schedule.png)
 
 
 
