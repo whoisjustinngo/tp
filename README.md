@@ -19,5 +19,5 @@ For the detailed documentation of this project, please visit **[here](https://ay
 ## Acknowledgement
 This project is a **part of the se-education.org** initiative. Please do look at thee code in [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
 
-[About us](/docs/AboutUs.html#quick-start)
+[About us](docs/AboutUs.md)
 
