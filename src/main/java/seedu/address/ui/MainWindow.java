@@ -41,6 +41,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+    
+    @FXML
+    private StackPane dashboardPanelPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -112,8 +115,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         
-               
-        
+        dashboardPanel = new DashboardPanel();
+        dashboardPanelPlaceholder.getChildren().add(dashboardPanel.getRoot());
         
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());

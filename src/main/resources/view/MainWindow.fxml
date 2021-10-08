@@ -39,7 +39,10 @@
               <tabs>
                 <Tab id="dashboardButton" fx:id="dashboardTab" closable="false" styleClass="label" text="Dashboard">
                   <content>
-                    <AnchorPane />
+                    <AnchorPane>
+                           <children>
+                              <StackPane fx:id="dashboardPanelPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="200.0" />
+                           </children></AnchorPane>
                   </content>
                 </Tab>
                 <Tab fx:id="contactsTab" closable="false" styleClass="label" text="Contacts">
