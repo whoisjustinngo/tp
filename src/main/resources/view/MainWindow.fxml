@@ -49,7 +49,7 @@
                 <Tab id="contactsTab" fx:id="contactsTab" closable="false" styleClass="label" text="Contacts">
                   <content>
                     <AnchorPane>
-                           <children> 
+                           <children>
                          <StackPane fx:id="personListPanelPlaceholder" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>

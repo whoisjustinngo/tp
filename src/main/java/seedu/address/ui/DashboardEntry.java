@@ -32,7 +32,7 @@ public class DashboardEntry extends UiPart<Region> {
      */
     public DashboardEntry(String label) {
         super(FXML);
-        entry.setText(label);      
+        entry.setText(label);
     }
 
     @Override

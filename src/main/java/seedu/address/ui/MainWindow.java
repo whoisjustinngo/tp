@@ -38,7 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    
+
     @FXML
     private TabPane tabs;
 
@@ -47,14 +47,14 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
-    
+
     @FXML
     private ScrollPane dashboardPanelPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
 
-    @FXML 
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
@@ -120,10 +120,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        
+
         dashboardPanel = new DashboardPanel();
         dashboardPanelPlaceholder.setContent(dashboardPanel.getRoot());
-        
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -208,7 +208,7 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
-    
+
     public String getSelectedPane() {
         return tabs.getSelectionModel().getSelectedItem().getId();
     }

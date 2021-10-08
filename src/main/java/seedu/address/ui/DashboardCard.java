@@ -31,7 +31,7 @@ public class DashboardCard extends UiPart<Region> {
 
     @FXML
     private Label sectionLabel;
-    
+
     @FXML
     private VBox contents;
 
@@ -47,7 +47,7 @@ public class DashboardCard extends UiPart<Region> {
             contents.getChildren().add(new DashboardEntry(entry).getRoot());
             i++;
         }
-        
+  
     }
 
     @Override

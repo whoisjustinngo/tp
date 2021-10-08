@@ -29,7 +29,7 @@ public class DashboardPanel extends UiPart<Region> {
      */
     public DashboardPanel() {
         super(FXML);
-        
+
         // stub just for testing purposes
         List<String> temp1 = new ArrayList<String>();
         List<String> temp2 = new ArrayList<String>();
@@ -43,7 +43,7 @@ public class DashboardPanel extends UiPart<Region> {
         temp2.add("mopinubyvtcy8u9hi0jokojih7g6f7879y809-nbvtcrfty7u8i90oijuhgytfy78u9iokijbvcft67y8u9iu8y76tfr0");
         temp2.add("jbvgrtcytuyiuhoinuytrfyg7h89konbyg7y8uijnbhvyghujinbhyhujpok[pl][;");
         temp2.add("miubyvtcrtf68g79h809oinbyvg7y8hubhvgcfrftg6hybgvfcdrdpoiolkjiokjkjhgyujbvftyhftyufgy");
-        
+
         sections.getChildren().add(new DashboardCard("Here is your schedule for today:", temp1).getRoot());
         sections.getChildren().add(new DashboardCard("Here are some of your uncompleted ToDos:", temp2).getRoot());
     }
