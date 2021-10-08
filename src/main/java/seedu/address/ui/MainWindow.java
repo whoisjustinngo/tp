@@ -22,6 +22,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
+    public static final String DASHBOARD_TAB = "dashboard";
+    public static final String CONTACTS_TAB = "contacts";
+    public static final String EVENTS_TAB = "events";
+    public static final String TODOS_TAB = "todos";
+
+    private static String tab = TODOS_TAB; // TODO by KS: Get rid of this placeholder value
 
     private static final String FXML = "MainWindow.fxml";
 
@@ -192,5 +198,14 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Returns the current tab the user is on.
+     *
+     * @return A string representing the current tab the user is on.
+     */
+    public static String getTab() {
+        return tab;
     }
 }
