@@ -1,18 +1,15 @@
 package seedu.address.ui;
 
-import javafx.collections.ObservableList;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
-
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Panel displaying the dashboard sections.

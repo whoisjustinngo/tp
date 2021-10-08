@@ -1,18 +1,11 @@
 package seedu.address.ui;
 
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import seedu.address.model.person.Person;
-
-import java.util.Comparator;
-import java.util.List;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -46,7 +39,7 @@ public class DashboardCard extends UiPart<Region> {
             String entry = i + ": " + s + "\n";
             contents.getChildren().add(new DashboardEntry(entry).getRoot());
             i++;
-        }  
+        }
     }
 
     @Override

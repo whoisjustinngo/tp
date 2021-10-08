@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Stack;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
