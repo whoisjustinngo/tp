@@ -9,7 +9,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -64,7 +63,7 @@ public class AddressBookParser {
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND); // Placeholder for now, please replace this in v1.2
 
             case MainWindow.TODOS_TAB:
-                return new AddTodoCommand();
+                return new AddTodoCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
