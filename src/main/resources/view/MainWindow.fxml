@@ -35,13 +35,13 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pane-with-border" stylesheets="@Fonts.css" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
               <tabs>
                 <Tab id="dashboardButton" fx:id="dashboardTab" closable="false" styleClass="label" text="Dashboard">
                   <content>
                     <AnchorPane>
                            <children>
-                              <StackPane fx:id="dashboardPanelPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0" prefWidth="200.0" />
+                              <StackPane fx:id="dashboardPanelPlaceholder" />
                            </children></AnchorPane>
                   </content>
                 </Tab>
@@ -65,6 +65,10 @@
                     </content>
                   </Tab>
               </tabs>
+               <stylesheets>
+                  <URL value="@Fonts.css" />
+                  <URL value="@DarkTheme.css" />
+               </stylesheets>
             </TabPane>
 
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">

@@ -2,24 +2,19 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import seedu.address.model.person.Person;
 
-import java.util.Comparator;
 import java.util.List;
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class DashboardCard extends UiPart<Region> {
+public class DashboardEntry extends UiPart<Region> {
 
-    private static final String FXML = "DashboardCard.fxml";
+    private static final String FXML = "DashboardEntry.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -30,24 +25,14 @@ public class DashboardCard extends UiPart<Region> {
      */
 
     @FXML
-    private Label sectionLabel;
-    
-    @FXML
-    private VBox contents;
+    private Label entry;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public DashboardCard(String label, List<String> entries) {
+    public DashboardEntry(String label) {
         super(FXML);
-        sectionLabel.setText(label);
-        int i = 1;
-        for (String s: entries) {
-            String entry = i + ": " + s + "\n";
-            contents.getChildren().add(new DashboardEntry(entry).getRoot());
-            i++;
-        }
-        
+        entry.setText(label);      
     }
 
     @Override
@@ -58,12 +43,12 @@ public class DashboardCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DashboardCard)) {
+        if (!(other instanceof DashboardEntry)) {
             return false;
         }
 
         // state check
-        DashboardCard card = (DashboardCard) other;
+        DashboardEntry card = (DashboardEntry) other;
         return false;
     }
 }

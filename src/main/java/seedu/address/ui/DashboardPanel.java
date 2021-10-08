@@ -33,16 +33,16 @@ public class DashboardPanel extends UiPart<Region> {
         // stub just for testing purposes
         List<String> temp1 = new ArrayList<String>();
         List<String> temp2 = new ArrayList<String>();
-        temp1.add("hello 1");
-        temp1.add("hello 2");
-        temp1.add("hello 3");
-        temp1.add("hello 4");
-        temp1.add("hello 5");
-        temp2.add("hello 1");
-        temp2.add("hello 2");
-        temp2.add("hello 3");
-        temp2.add("hello 4");
-        temp2.add("hello 5");
+        temp1.add("gf dxcfvgbuhinjomidpov,bpnmojgnbdruyefvtcrtfgy8huijpoxerctyhujgvcrdftgyhbvgfcrftgyhubfcdrftkn");
+        temp1.add("kmnjbhgvcrxtf78g79h80j9kopojihugytrtyghj90koiggvhb gvyhjbhgvyhujnhyhunbvtcf67ty8jinbuy");
+        temp1.add("klj hgvyguhijpok[pojihuy ceuvyfbihojpek[fojidafsghfjgkhljjhftgdrfesrgdhtfjygeh");
+        temp1.add("jnbhsvyburhej9k0flpkirnubyfv0g89[eh09]j-0k-]lv=[[3456789uytrfghjuytrfdfgtrdflpk");
+        temp1.add("njbhgvtyuybiunoimpo,poiuytfgy7h8j9k0sfgdhfjygytrgfdvfbgnhuk76y5etrewfadsvfdbgyho");
+        temp2.add("crxtf78g79h80j9kopojihugytrtyghj90komknjbhgfcrdfgyvgcfrfthubgfcrtgyhubgvt");
+        temp2.add("crxtf78g79h80j9kopojihugytrtyghj90korgehrtggfcrtfg7nbhgvcfft6y7hubgvftgyhur");
+        temp2.add("mopinubyvtcy8u9hi0jokojih7g6f7879y809-nbvtcrfty7u8i90oijuhgytfy78u9iokijbvcft67y8u9iu8y76tfr0");
+        temp2.add("jbvgrtcytuyiuhoinuytrfyg7h89konbyg7y8uijnbhvyghujinbhyhujpok[pl][;");
+        temp2.add("miubyvtcrtf68g79h809oinbyvg7y8hubhvgcfrftg6hybgvfcdrdpoiolkjiokjkjhgyujbvftyhftyufgy");
         
         sections.getChildren().add(new DashboardCard("Here is your schedule for today:", temp1).getRoot());
         sections.getChildren().add(new DashboardCard("Here are some of your uncompleted ToDos:", temp2).getRoot());
