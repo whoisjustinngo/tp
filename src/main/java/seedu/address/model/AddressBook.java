@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.todo.Todo;
+import seedu.address.model.todo.UniqueTodoList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueTodoList todos;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        todos = new UniqueTodoList();
     }
 
     public AddressBook() {}
@@ -91,6 +95,24 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    //// todo-level operations
+
+    /**
+     * Returns true if a todo with the same description as {@code todo} exists in the list of todos.
+     */
+    public boolean hasTodo(Todo todo) {
+        requireNonNull(todo);
+        return todos.contains(todo);
+    }
+
+    /**
+     * Adds a todo to the list of todos.
+     * The todo must not already exist in the list of todos.
+     */
+    public void addTodo(Todo t) {
+        todos.add(t);
     }
 
     //// util methods
