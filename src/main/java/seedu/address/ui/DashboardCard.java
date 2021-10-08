@@ -46,8 +46,7 @@ public class DashboardCard extends UiPart<Region> {
             String entry = i + ": " + s + "\n";
             contents.getChildren().add(new DashboardEntry(entry).getRoot());
             i++;
-        }
-  
+        }  
     }
 
     @Override
