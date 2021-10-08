@@ -36,9 +36,9 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <TabPane id="tabs" fx:id="tabs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
               <tabs>
-                <Tab id="dashboardButton" fx:id="dashboardTab" closable="false" styleClass="label" text="Dashboard">
+                <Tab id="dahsboardTab" fx:id="dashboardTab" closable="false" styleClass="label" text="Dashboard">
                   <content>
                     <AnchorPane>
                            <children>
@@ -46,7 +46,7 @@
                            </children></AnchorPane>
                   </content>
                 </Tab>
-                <Tab fx:id="contactsTab" closable="false" styleClass="label" text="Contacts">
+                <Tab id="contactsTab" fx:id="contactsTab" closable="false" styleClass="label" text="Contacts">
                   <content>
                     <AnchorPane>
                            <children> 
@@ -55,12 +55,12 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab fx:id="scheduleTab" closable="false" styleClass="label" text="Schedule">
+                  <Tab id="scheduleTab" fx:id="scheduleTab" closable="false" styleClass="label" text="Schedule">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                   </Tab>
-                  <Tab fx:id="todosTab" closable="false" styleClass="label" text="Todos">
+                  <Tab id="todosTab" fx:id="todosTab" closable="false" styleClass="label" text="Todos">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
