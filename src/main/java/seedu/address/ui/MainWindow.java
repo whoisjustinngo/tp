@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -37,15 +39,26 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private DashboardPanel dashboardPanel;
+    private PersonListPanel personListPanel;
     private TodoListPanel todoListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    @FXML
+    private TabPane tabs;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private ScrollPane dashboardPanelPlaceholder;
+
+    @FXML
+    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane todoListPanelPlaceholder;
@@ -116,6 +129,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        dashboardPanel = new DashboardPanel();
+        dashboardPanelPlaceholder.setContent(dashboardPanel.getRoot());
+
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
         todoListPanelPlaceholder.getChildren().add(todoListPanel.getRoot());
 
@@ -180,7 +199,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            String currentTab = this.getSelectedPane();
+            CommandResult commandResult = logic.execute(currentTab + "|" + commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -207,5 +227,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     public static String getTab() {
         return tab;
+    }
+
+    public String getSelectedPane() {
+        return tabs.getSelectionModel().getSelectedItem().getId();
     }
 }
