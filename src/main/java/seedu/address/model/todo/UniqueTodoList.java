@@ -1,12 +1,16 @@
 package seedu.address.model.todo;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.todo.exceptions.DuplicateTodoException;
 
 /**
@@ -46,6 +50,24 @@ public class UniqueTodoList implements Iterable<Todo> {
         internalList.add(toAdd);
     }
 
+    public void setTodos(UniqueTodoList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code todos}.
+     * {@code todos} must not contain duplicate todos.
+     */
+    public void setTodos(List<Todo> todos) {
+        requireAllNonNull(todos);
+        if (!todosAreUnique(todos)) {
+            throw new DuplicateTodoException();
+        }
+
+        internalList.setAll(todos);
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -68,5 +90,19 @@ public class UniqueTodoList implements Iterable<Todo> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    /**
+     * Returns true if {@code todos} contains only unique todos.
+     */
+    private boolean todosAreUnique(List<Todo> todos) {
+        for (int i = 0; i < todos.size() - 1; i++) {
+            for (int j = i + 1; j < todos.size(); j++) {
+                if (todos.get(i).equals(todos.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

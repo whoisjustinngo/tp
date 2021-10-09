@@ -52,12 +52,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the todo list with {@code todos}.
+     * {@code todos} must not contain duplicate todos.
+     */
+    public void setTodos(List<Todo> todos) {
+        this.todos.setTodos(todos);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setTodos(newData.getTodoList());
     }
 
     //// person-level operations
