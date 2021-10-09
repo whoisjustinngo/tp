@@ -1,0 +1,56 @@
+package seedu.address.model.person;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
+/**
+ * Represents a contact type in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidType(String)}
+ */
+public class Type {
+
+    public static final String MESSAGE_CONSTRAINTS = "Type should either be friend or client";
+
+    /*
+     * Either friend or client
+     */
+    public static final String VALIDATION_REGEX = "^(friend|client)$";
+
+    public final String value;
+
+    /**
+     * Constructs an {@code Address}.
+     *
+     * @param address A valid contact type.
+     */
+    public Type(String address) {
+        requireNonNull(address);
+        checkArgument(isValidType(address), MESSAGE_CONSTRAINTS);
+        value = address;
+    }
+
+    /**
+     * Returns true if a given string is a valid contact typeß.
+     */
+    public static boolean isValidType(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Type // instanceof handles nulls
+                && value.equals(((Type) other).value)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
+
+}
