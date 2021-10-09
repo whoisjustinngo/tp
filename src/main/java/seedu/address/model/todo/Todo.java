@@ -9,6 +9,11 @@ import static java.util.Objects.requireNonNull;
 public class Todo {
     private final String description;
 
+    /**
+     * Constructs a Todo.
+     *
+     * @param description The description of this todo.
+     */
     public Todo(String description) {
         requireNonNull(description);
         this.description = description;

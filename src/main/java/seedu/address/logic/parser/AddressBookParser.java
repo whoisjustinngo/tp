@@ -18,17 +18,22 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.MainWindow;
 
 /**
  * Parses user input.
  */
 public class AddressBookParser {
 
+    private static final String DASHBOARD_TAB_ID = "dashboardTab";
+    private static final String CONTACTS_TAB_ID = "contactsTab";
+    private static final String SCHEDULE_TAB_ID = "scheduleTab";
+    private static final String TODOS_TAB_ID = "todosTab";
+
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<tab>\\S+) (?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT =
+            Pattern.compile("(?<tab>\\S+) (?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -46,11 +51,6 @@ public class AddressBookParser {
         final String tab = matcher.group("tab");
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-
-        final String DASHBOARD_TAB_ID = "dashboardTab";
-        final String CONTACTS_TAB_ID = "contactsTab";
-        final String SCHEDULE_TAB_ID = "scheduleTab";
-        final String TODOS_TAB_ID = "todosTab";
 
         switch (commandWord) {
 

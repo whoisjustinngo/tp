@@ -31,13 +31,13 @@ import seedu.address.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
-
     private static final String DUMMY_TAB_ID = "dummyTab ";
     private static final String DASHBOARD_TAB_ID = "dashboardTab ";
     private static final String CONTACTS_TAB_ID = "contactsTab ";
     private static final String SCHEDULE_TAB_ID = "scheduleTab ";
     private static final String TODOS_TAB_ID = "todosTab ";
+
+    private final AddressBookParser parser = new AddressBookParser();
 
     @Test
     public void parseCommand_addContact() throws Exception {
@@ -55,8 +55,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deleteContact() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(CONTACTS_TAB_ID +
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(CONTACTS_TAB_ID
+                + DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
@@ -78,8 +78,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_findContact() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(CONTACTS_TAB_ID +
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        FindCommand command = (FindCommand) parser.parseCommand(CONTACTS_TAB_ID
+                + FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
