@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.todo.exceptions.DuplicateTodoException;
 
 /**
@@ -22,6 +23,8 @@ import seedu.address.model.todo.exceptions.DuplicateTodoException;
 public class UniqueTodoList implements Iterable<Todo> {
 
     private final ObservableList<Todo> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Todo> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent todo as the given argument.
@@ -41,6 +44,13 @@ public class UniqueTodoList implements Iterable<Todo> {
             throw new DuplicateTodoException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<Todo> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
     }
 
     @Override

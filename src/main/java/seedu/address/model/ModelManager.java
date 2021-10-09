@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Todo> filteredTodos;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTodos = new FilteredList<>(this.addressBook.getTodoList());
     }
 
     public ModelManager() {
@@ -139,6 +141,16 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Filtered Todo List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Todo} backed by the internal list
+     */
+    @Override
+    public ObservableList<Todo> getFilteredTodoList() {
+        return filteredTodos;
     }
 
     @Override
