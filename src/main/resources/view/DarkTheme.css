@@ -146,6 +146,10 @@
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Open Sans Light";
