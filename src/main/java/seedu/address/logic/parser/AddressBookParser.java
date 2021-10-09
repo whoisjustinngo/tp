@@ -28,7 +28,7 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<tab>\\S+) (?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -43,26 +43,31 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String tab = MainWindow.getTab();
+        final String tab = matcher.group("tab");
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
+        final String DASHBOARD_TAB_ID = "dashboardTab";
+        final String CONTACTS_TAB_ID = "contactsTab";
+        final String SCHEDULE_TAB_ID = "scheduleTab";
+        final String TODOS_TAB_ID = "todosTab";
 
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
             switch (tab) {
 
-            case MainWindow.DASHBOARD_TAB:
+            case DASHBOARD_TAB_ID:
                 throw new ParseException(MESSAGE_INVALID_TAB);
 
-            case MainWindow.CONTACTS_TAB:
+            case CONTACTS_TAB_ID:
                 return new AddCommandParser().parse(arguments);
 
-            case MainWindow.EVENTS_TAB:
+            case SCHEDULE_TAB_ID:
                 // TODO by Ricky
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND); // Placeholder for now, please replace this in v1.2
 
-            case MainWindow.TODOS_TAB:
+            case TODOS_TAB_ID:
                 return new AddTodoCommandParser().parse(arguments);
 
             default:
@@ -72,7 +77,7 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             switch (tab) {
 
-            case MainWindow.CONTACTS_TAB:
+            case CONTACTS_TAB_ID:
                 return new EditCommandParser().parse(arguments);
 
             default:
@@ -82,17 +87,17 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             switch (tab) {
 
-            case MainWindow.DASHBOARD_TAB:
+            case DASHBOARD_TAB_ID:
                 throw new ParseException(MESSAGE_INVALID_TAB);
 
-            case MainWindow.CONTACTS_TAB:
+            case CONTACTS_TAB_ID:
                 return new DeleteCommandParser().parse(arguments);
 
-            case MainWindow.EVENTS_TAB:
+            case SCHEDULE_TAB_ID:
                 // TODO by Ricky
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND); // Placeholder for now, please replace this in v1.2
 
-            case MainWindow.TODOS_TAB:
+            case TODOS_TAB_ID:
                 // TODO by KS
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND); // Placeholder for now, please replace this in v1.2
 
@@ -103,7 +108,7 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             switch (tab) {
 
-            case MainWindow.CONTACTS_TAB:
+            case CONTACTS_TAB_ID:
                 return new ClearCommand();
 
             default:
@@ -113,7 +118,7 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             switch (tab) {
 
-            case MainWindow.CONTACTS_TAB:
+            case CONTACTS_TAB_ID:
                 return new FindCommandParser().parse(arguments);
 
             default:
@@ -124,17 +129,17 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             switch (tab) {
 
-            case MainWindow.DASHBOARD_TAB:
+            case DASHBOARD_TAB_ID:
                 throw new ParseException(MESSAGE_INVALID_TAB);
 
-            case MainWindow.CONTACTS_TAB:
+            case CONTACTS_TAB_ID:
                 return new ListCommand();
 
-            case MainWindow.EVENTS_TAB:
+            case SCHEDULE_TAB_ID:
                 // TODO by Ricky
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND); // Placeholder for now, please replace this in v1.2
 
-            case MainWindow.TODOS_TAB:
+            case TODOS_TAB_ID:
                 // TODO by KS
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND); // Placeholder for now, please replace this in v1.2
 
