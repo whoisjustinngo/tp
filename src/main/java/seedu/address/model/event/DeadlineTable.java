@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
+import seedu.address.model.event.exceptions.EmptyEventException;
+
 public class DeadlineTable {
     private final HashMap<String, DayDeadline> deadlineTableHash;
 
@@ -33,7 +35,7 @@ public class DeadlineTable {
 
     public String view() {
         if (this.deadlineTableHash.size() == 0) {
-            return "No deadlines found";
+            throw new EmptyEventException();
         }
         Map<String, DayDeadline> sortedMap = new TreeMap<>(this.getComparator());
         sortedMap.putAll(this.deadlineTableHash);

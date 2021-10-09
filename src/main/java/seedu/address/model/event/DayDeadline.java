@@ -2,6 +2,9 @@ package seedu.address.model.event;
 
 import java.util.ArrayList;
 
+import seedu.address.model.event.exceptions.EmptyEventException;
+import seedu.address.model.event.exceptions.EventNotFoundException;
+
 public class DayDeadline {
     private final ArrayList<Deadline> dailyDeadline;
 
@@ -23,12 +26,15 @@ public class DayDeadline {
 
         boolean isRemoved = this.dailyDeadline
                 .removeIf(currDeadline -> (currDeadline.getDescription().equals(deadlineDescription)));
-        return isRemoved ? deadline.toString() + " is removed." : deadline.toString() + " is not found.";
+        if (!isRemoved) {
+            throw new EventNotFoundException();
+        }
+        return deadline.toString() + " is removed.";
     }
 
     public String viewDeadlines() {
         if (this.dailyDeadline.size() == 0) {
-            return "You have no scheduled tasks today!";
+            throw new EmptyEventException();
         }
         String dayPlans = "";
         for (int i = 0; i < this.dailyDeadline.size(); i++) {

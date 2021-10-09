@@ -3,6 +3,10 @@ package seedu.address.model.event;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import seedu.address.model.event.exceptions.EmptyEventException;
+import seedu.address.model.event.exceptions.EventClashException;
+import seedu.address.model.event.exceptions.EventNotFoundException;
+
 public class DayPlan {
     private final ArrayList<Schedule> scheduledTasks;
 
@@ -16,7 +20,7 @@ public class DayPlan {
 
     public String addSchedule(Schedule currTask) {
         if (this.isClash(currTask)) {
-            return "Timetable clash, unable to add " + currTask.toString();
+            throw new EventClashException();
         }
         this.scheduledTasks.add(currTask);
         return currTask.toString() + " is added into the timetable";
@@ -28,13 +32,15 @@ public class DayPlan {
 
         boolean isRemoved = scheduledTasks
                 .removeIf(task -> (task.getTimeFrom() == currTimeFrom && task.getTimeTo() == currTimeTo));
-        return isRemoved ? currTask.toString() + " is removed from timetable."
-                : currTask.toString() + " is not found in timetable.";
+        if (!isRemoved) {
+            throw new EventNotFoundException();
+        }
+        return currTask.toString() + " is removed from timetable.";
     }
 
     public String viewDayPlan() {
         if (this.scheduledTasks.size() == 0) {
-            return "You have no scheduled tasks today!";
+            throw new EmptyEventException();
         }
         this.scheduledTasks.sort(getComparatorEarlyToLate());
         String dayPlans = "";

@@ -1,10 +1,13 @@
 package seedu.address.model.event;
 
-public class Event {
+import static java.util.Objects.requireNonNull;
+
+abstract class Event {
     private final String description;
     private final boolean isDone;
 
-    public Event(String description, boolean isDone) {
+    protected Event(String description, boolean isDone) {
+        requireNonNull(description);
         this.description = description;
         this.isDone = isDone;
     }
@@ -17,7 +20,5 @@ public class Event {
         return this.isDone;
     }
 
-    public Event markAsDone() {
-        return new Event(this.getDescription(), true);
-    }
+    abstract Event markAsDone();
 }

@@ -1,5 +1,7 @@
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 
 public class Schedule extends Event {
@@ -10,6 +12,7 @@ public class Schedule extends Event {
 
     public Schedule(String description, String date, int timeFrom, int timeTo, boolean isDone) {
         super(description, isDone);
+        requireNonNull(date);
         this.taskDate = LocalDate.of(Integer.parseInt(date.split("-")[2]), Integer.parseInt(date.split("-")[1]),
                 Integer.parseInt(date.split("-")[0]));
         this.date = date;
@@ -40,6 +43,7 @@ public class Schedule extends Event {
 
     @Override
     public String toString() {
-        return String.format("%s on %s from %d to %d", this.getDescription(), this.getDate(), this.timeFrom, this.timeTo);
+        return String.format("%s on %s from %d to %d", this.getDescription(), this.getDate(), this.timeFrom,
+                this.timeTo);
     }
 }

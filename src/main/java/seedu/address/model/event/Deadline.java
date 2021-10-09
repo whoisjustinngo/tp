@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 
 public class Deadline extends Event {
@@ -8,6 +9,7 @@ public class Deadline extends Event {
 
     public Deadline(String description, String date, boolean isDone) {
         super(description, isDone);
+        requireNonNull(date);
         this.taskDate = LocalDate.of(Integer.parseInt(date.split("-")[2]), Integer.parseInt(date.split("-")[1]),
                 Integer.parseInt(date.split("-")[0]));
         this.date = date;

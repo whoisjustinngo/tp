@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
+import seedu.address.model.event.exceptions.EmptyEventException;
+
 public class Timetable {
     private final HashMap<String, DayPlan> timetable;
 
@@ -33,7 +35,7 @@ public class Timetable {
 
     public String view() {
         if (this.timetable.size() == 0) {
-            return "No schedule found";
+            throw new EmptyEventException();
         }
         Map<String, DayPlan> sortedMap = new TreeMap<>(this.getComparator());
         sortedMap.putAll(this.timetable);
