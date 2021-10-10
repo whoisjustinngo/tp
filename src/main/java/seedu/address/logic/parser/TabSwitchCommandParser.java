@@ -1,13 +1,13 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TAB_NAME;
+
 import seedu.address.logic.commands.TabSwitchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.TabSwitch;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TAB_NAME;
-
-public class TabSwitchCommandParser implements Parser<TabSwitchCommand>{
+public class TabSwitchCommandParser implements Parser<TabSwitchCommand> {
     /**
      * Parses {@code userInput} into a command and returns it.
      *
