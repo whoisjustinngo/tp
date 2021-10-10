@@ -26,6 +26,8 @@ public class TypicalTodos {
 
     public static final Todo READ = new TodoBuilder().withDescription("read").build();
     public static final Todo TRAVEL = new TodoBuilder().withDescription("travel").build();
+    public static final Todo SHOP = new TodoBuilder().withDescription("shop").build();
+    public static final Todo EAT = new TodoBuilder().withDescription("eat").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
