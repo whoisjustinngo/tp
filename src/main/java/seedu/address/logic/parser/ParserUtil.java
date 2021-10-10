@@ -61,7 +61,7 @@ public class ParserUtil {
         requireNonNull(relationship);
         String trimmedRelationship = relationship.trim();
         if (!Relationship.isValidRelationship(trimmedRelationship)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Relationship.MESSAGE_CONSTRAINTS);
         }
         return new Relationship(trimmedRelationship);
     }
