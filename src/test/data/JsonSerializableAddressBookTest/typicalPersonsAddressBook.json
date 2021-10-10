@@ -16,7 +16,7 @@
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
-    "relationship": "client",
+    "relationship": "friend",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",

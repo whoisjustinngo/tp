@@ -16,6 +16,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Relationship;
+
+import javax.management.relation.Relation;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -56,7 +59,22 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
+    @Test
+    public void toModelType_invalidRelationship_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, INVALID_RELATIONSHIP, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS
+                        , VALID_TAGS);
+        String expectedMessage = Relationship.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
 
+    @Test
+    public void toModelType_nullRelationship_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Relationship.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedPerson person =
@@ -117,5 +135,5 @@ public class JsonAdaptedPersonTest {
                         , VALID_ADDRESS, invalidTags);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
-    //todo add model tests for valid and invalid type
+
 }
