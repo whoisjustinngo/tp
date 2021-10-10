@@ -35,7 +35,7 @@
       </HBox>
       <FlowPane fx:id="tags" />
     </VBox>
-   <Label fx:id="type" styleClass="cell_small_label" text="\$type" wrapText="true" GridPane.columnIndex="1" />
+   <Label fx:id="relationship" styleClass="cell_small_label" text="\$relationship" wrapText="true" GridPane.columnIndex="1" />
    <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" GridPane.columnIndex="2" />
    <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" GridPane.columnIndex="3" />
    <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" GridPane.columnIndex="4" />

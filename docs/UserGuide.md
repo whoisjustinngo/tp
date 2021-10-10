@@ -75,10 +75,14 @@ Format: `list`
 * Contacts are listed in alphabetical order of their names
 
 ### Adding a contact: `add`
-Format: `type n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`  
+Format: `add n/NAME [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
+
+Note:  
+Only supports adding relationships "friend" and "client" in v1.2  
+
 Examples:  
-* Adding a friend: `add friend n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS]`
-* Adding a client: `add client n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS]`
+* Adding a friend: `add n/bobby r/friend p/12345678 e/example@gmail.com a/NUS`
+* Adding a client: `add n/bob r/client p/12345678 e/example@gmail.com a/Heng Mui Kiat Street 32`
 
 ### Deleting a contact: `delete`
 Format: `delete INDEX`  

@@ -24,7 +24,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Type;
+import seedu.address.model.person.Relationship;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,7 +33,7 @@ import seedu.address.model.tag.Tag;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
-    //todo change message usage after completion of contact type
+    //todo change message usage after completion of contact relationship
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -95,13 +95,14 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Type updatedType = editPersonDescriptor.getType().orElse(personToEdit.getType());
+        Relationship updatedRelationship = editPersonDescriptor.getRelationship()
+                .orElse(personToEdit.getRelationship());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedType, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedRelationship, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -128,7 +129,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Type type;
+        private Relationship relationship;
         private Phone phone;
         private Email email;
         private Address address;
@@ -142,7 +143,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setType(toCopy.type);
+            setRelationship(toCopy.relationship);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -153,7 +154,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, type, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, relationship, phone, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -164,11 +165,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setType(Type type) {
-            this.type = type;
+        public void setRelationship(Relationship relationship) {
+            this.relationship = relationship;
         }
-        public Optional<Type> getType() {
-            return Optional.ofNullable(type);
+        public Optional<Relationship> getRelationship() {
+            return Optional.ofNullable(relationship);
         }
 
         public void setPhone(Phone phone) {
@@ -228,7 +229,7 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getType().equals(e.getType())
+                    && getRelationship().equals(e.getRelationship())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
