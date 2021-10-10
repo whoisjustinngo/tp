@@ -75,7 +75,7 @@ Format: `list`
 * Contacts are listed in alphabetical order of their names
 
 ### Adding a contact: `add`
-Format: `add n/NAME [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
+Format: `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]`
 
 Note:  
 Only supports adding relationships "friend" and "client" in v1.2  
