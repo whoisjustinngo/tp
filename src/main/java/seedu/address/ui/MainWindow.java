@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private DashboardPanel dashboardPanel;
     private PersonListPanel personListPanel;
+    private TodoListPanel todoListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -53,6 +54,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane todoListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -120,12 +124,14 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-
         dashboardPanel = new DashboardPanel();
         dashboardPanelPlaceholder.setContent(dashboardPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
+        todoListPanelPlaceholder.getChildren().add(todoListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -181,9 +187,14 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+
     @FXML
     private void handleSwitchTab(TabSwitch.Tab tabId) {
         tabs.getSelectionModel().select(tabId.getIndex());
+    }
+
+    public TodoListPanel getTodoListPanel() {
+        return todoListPanel;
     }
 
     /**
@@ -194,7 +205,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             String currentTab = this.getSelectedPane();
-            CommandResult commandResult = logic.execute(currentTab + " | " + commandText);
+            CommandResult commandResult = logic.execute(currentTab + " " + commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
