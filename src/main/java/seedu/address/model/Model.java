@@ -70,6 +70,12 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
+     * Deletes the given todo.
+     * The todo must exist in the address book.
+     */
+    void deleteTodo(Todo target);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
