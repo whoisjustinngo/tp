@@ -126,7 +126,6 @@ public class AddressBookParser {
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
 
-
         case TabSwitchCommand.COMMAND_WORD:
             return new TabSwitchCommandParser().parse(arguments);
 
