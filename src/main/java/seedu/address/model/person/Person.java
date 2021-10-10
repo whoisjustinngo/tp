@@ -95,6 +95,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
+                && otherPerson.getRelationship().equals(getRelationship())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
@@ -111,6 +112,8 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Relationship: ")
+                .append(getRelationship())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
