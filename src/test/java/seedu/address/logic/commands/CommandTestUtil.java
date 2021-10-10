@@ -62,6 +62,7 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     public static final String VALID_DESCRIPTION_READ = "read";
+    public static final String VALID_DESCRIPTION_TRAVEL = "travel";
 
     public static final String DESCRIPTION_READ = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_READ;
 
