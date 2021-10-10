@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ricky Andrew
 
-<img src="images/ricky.png" width="200px">
+<img src="images/rickyaandrew.png" width="200px">
 
 [[github](https://github.com/rickyaandrew)]
 [[portfolio](team/ricky.md)]
@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Darren Mok
 
-<img src="images/dmok.jpeg" width="200px">
+<img src="images/mokdarren.png" width="200px">
 
 [[github](https://github.com/mokdarren)]
 [[portfolio](team/mokdarren.md)]
@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Bryan Tee Pak Hong
 
-<img src="images/bryantee.png" width="200px">
+<img src="images/spdpnd98.png" width="200px">
 
 [[github](https://github.com/SpdPnd98)]
 [[portfolio](team/bryantee.md)]

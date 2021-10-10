@@ -146,6 +146,10 @@
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Open Sans Light";
@@ -155,6 +159,12 @@
 
 .result-display .label {
     -fx-text-fill: black !important;
+}
+
+.table-header {
+    -fx-font-family: "Open Sans Semibold";
+    -fx-text-fill: white;
+    -fx-font-size: 16pt;
 }
 
 .status-bar .label {
