@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import seedu.address.model.TabSwitch;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
@@ -17,13 +19,20 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application should switch to a new tab */
+    private final boolean switchTab;
+
+    private final TabSwitch.Tab tabId;
+
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResandult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.switchTab = false;
+        this.tabId = null;
     }
 
     /**
@@ -34,8 +43,25 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * {@code switchTab}, and {@code tabId}, and other fields set to their default
+     * value.
+     */
+    public CommandResult(String feedbackToUser, boolean switchTab, TabSwitch.Tab tabId) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.switchTab = switchTab;
+        this.tabId = tabId;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public TabSwitch.Tab getTabId() {
+        return tabId;
     }
 
     public boolean isShowHelp() {
@@ -44,6 +70,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isSwitchTab() {
+        return switchTab;
     }
 
     @Override

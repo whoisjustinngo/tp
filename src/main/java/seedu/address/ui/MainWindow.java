@@ -4,10 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextInputControl;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -18,6 +15,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.TabSwitch;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -180,6 +178,11 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    @FXML
+    private void handleSwitchTab(TabSwitch.Tab tabId) {
+        tabs.getSelectionModel().select(tabId.getIndex());
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -188,7 +191,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             String currentTab = this.getSelectedPane();
-            CommandResult commandResult = logic.execute(currentTab + "|" + commandText);
+            CommandResult commandResult = logic.execute(currentTab + " | " + commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -198,6 +201,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isSwitchTab()) {
+                handleSwitchTab(commandResult.getTabId());
             }
 
             return commandResult;
