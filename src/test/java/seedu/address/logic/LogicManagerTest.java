@@ -34,6 +34,11 @@ import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
+    private static final String DUMMY_TAB_ID = "dummyTab ";
+    private static final String DASHBOARD_TAB_ID = "dashboardTab ";
+    private static final String CONTACTS_TAB_ID = "contactsTab ";
+    private static final String SCHEDULE_TAB_ID = "scheduleTab ";
+    private static final String TODOS_TAB_ID = "todosTab ";
 
     @TempDir
     public Path temporaryFolder;
@@ -59,13 +64,13 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(CONTACTS_TAB_ID, deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_validCommand_success() throws Exception {
+    public void execute_validListContactsCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(CONTACTS_TAB_ID, listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -85,7 +90,7 @@ public class LogicManagerTest {
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(CONTACTS_TAB_ID, addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
@@ -98,17 +103,33 @@ public class LogicManagerTest {
      * - no exceptions are thrown <br>
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     * Assumes that the command is not tab-specific. <br>
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
             Model expectedModel) throws CommandException, ParseException {
-        CommandResult result = logic.execute(inputCommand);
+        CommandResult result = logic.execute(DUMMY_TAB_ID + inputCommand);
+        assertEquals(expectedMessage, result.getFeedbackToUser());
+        assertEquals(expectedModel, model);
+    }
+
+    /**
+     * Executes the command and confirms that
+     * - no exceptions are thrown <br>
+     * - the feedback message is equal to {@code expectedMessage} <br>
+     * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     * @see #assertCommandFailure(String, Class, String, Model)
+     */
+    private void assertCommandSuccess(String tabId, String inputCommand, String expectedMessage,
+                                      Model expectedModel) throws CommandException, ParseException {
+        CommandResult result = logic.execute(tabId + inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
 
     /**
      * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
+     * Assumes that the command is not tab-specific.
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
@@ -116,7 +137,16 @@ public class LogicManagerTest {
     }
 
     /**
+     * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
+     * @see #assertCommandFailure(String, String, Class, String, Model)
+     */
+    private void assertParseException(String tabId, String inputCommand, String expectedMessage) {
+        assertCommandFailure(tabId, ParseException.class, expectedMessage);
+    }
+
+    /**
      * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
+     * Assumes that the command is not tab-specific.
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandException(String inputCommand, String expectedMessage) {
@@ -124,7 +154,16 @@ public class LogicManagerTest {
     }
 
     /**
+     * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
+     * @see #assertCommandFailure(String, String, Class, String, Model)
+     */
+    private void assertCommandException(String tabId, String inputCommand, String expectedMessage) {
+        assertCommandFailure(tabId, inputCommand, CommandException.class, expectedMessage);
+    }
+
+    /**
      * Executes the command, confirms that the exception is thrown and that the result message is correct.
+     * Assumes that the command is not tab-specific.
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
@@ -134,15 +173,39 @@ public class LogicManagerTest {
     }
 
     /**
+     * Executes the command, confirms that the exception is thrown and that the result message is correct.
+     * @see #assertCommandFailure(String, String, Class, String, Model)
+     */
+    private void assertCommandFailure(String tabId, String inputCommand, Class<? extends Throwable> expectedException,
+                                      String expectedMessage) {
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        assertCommandFailure(tabId, inputCommand, expectedException, expectedMessage, expectedModel);
+    }
+
+    /**
      * Executes the command and confirms that
      * - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     * Assumes that the command is not tab-specific. <br>
      * @see #assertCommandSuccess(String, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage, Model expectedModel) {
-        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
+        assertThrows(expectedException, expectedMessage, () -> logic.execute(DUMMY_TAB_ID + inputCommand));
+        assertEquals(expectedModel, model);
+    }
+
+    /**
+     * Executes the command and confirms that
+     * - the {@code expectedException} is thrown <br>
+     * - the resulting error message is equal to {@code expectedMessage} <br>
+     * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     * @see #assertCommandSuccess(String, String, String, Model)
+     */
+    private void assertCommandFailure(String tabId, String inputCommand, Class<? extends Throwable> expectedException,
+                                      String expectedMessage, Model expectedModel) {
+        assertThrows(expectedException, expectedMessage, () -> logic.execute(tabId + inputCommand));
         assertEquals(expectedModel, model);
     }
 
