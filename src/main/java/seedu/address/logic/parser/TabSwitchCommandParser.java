@@ -1,12 +1,11 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.TabSwitchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.TabSwitch;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_TAB_INDEX_ERROR;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TAB_NAME;
 
 public class TabSwitchCommandParser implements Parser<TabSwitchCommand>{
     /**
@@ -18,12 +17,11 @@ public class TabSwitchCommandParser implements Parser<TabSwitchCommand>{
     @Override
     public TabSwitchCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        Index index = ParserUtil.parseIndex(args);
         try {
-            return new TabSwitchCommand(TabSwitch.Tab.toEnum(index));
+            return new TabSwitchCommand(TabSwitch.Tab.toEnum(args.trim()));
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_TAB_INDEX_ERROR, index.getOneBased()),
+                    String.format(MESSAGE_INVALID_TAB_NAME, args),
                     pe
             );
         }

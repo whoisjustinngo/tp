@@ -35,7 +35,7 @@ public class TabSwitchCommand extends Command{
     }
 
     private String generateSuccessMessage() {
-        String message = String.format("Switched to %s", tabId.getLabel());
+        String message = String.format("Switched to %s", tabId);
         return message;
     }
 }
