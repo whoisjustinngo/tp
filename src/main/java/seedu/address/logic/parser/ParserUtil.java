@@ -119,18 +119,4 @@ public class ParserUtil {
         return tagSet;
     }
 
-//    /**
-//     * Parses a {@code String Remark} into an {@code Remark}.
-//     * Leading and trailing whitespaces will be trimmed.
-//     *
-//     * @throws ParseException if the given {@code Remark} is invalid.
-//     */
-//    public static Remark parseRemark(Remark remark) throws ParseException {
-//        requireNonNull(remark);
-//        String trimmedRemark = remark.trim();
-//        if (!Remark.isValidRemark(remark)) {
-//            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-//        }
-//        return new Remark(trimmedRemark);
-//    }
 }
