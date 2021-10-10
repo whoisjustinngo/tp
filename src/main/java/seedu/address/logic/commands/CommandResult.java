@@ -25,7 +25,7 @@ public class CommandResult {
     private final TabSwitch.Tab tabId;
 
     /**
-     * Constructs a {@code CommandResandult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
