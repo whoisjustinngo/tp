@@ -7,8 +7,8 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.HOON;
 import static seedu.address.testutil.TypicalPersons.IDA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalTodos.SHOP;
 import static seedu.address.testutil.TypicalTodos.EAT;
+import static seedu.address.testutil.TypicalTodos.SHOP;
 
 import java.io.IOException;
 import java.nio.file.Path;

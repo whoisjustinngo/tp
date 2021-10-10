@@ -19,6 +19,13 @@ public class TodoBuilder {
     }
 
     /**
+     * Initializes the TodoBuilder with the data of {@code todoToCopy}.
+     */
+    public TodoBuilder(Todo todoToCopy) {
+        description = todoToCopy.getDescription();
+    }
+
+    /**
      * Sets the description of the {@code Todo} that we are building.
      */
     public TodoBuilder withDescription(String description) {
@@ -26,12 +33,6 @@ public class TodoBuilder {
         return this;
     }
 
-    /**
-     * Initializes the TodoBuilder with the data of {@code todoToCopy}.
-     */
-    public TodoBuilder(Todo todoToCopy) {
-        description = todoToCopy.getDescription();
-    }
 
     public Todo build() {
         return new Todo(description);

@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -46,7 +48,8 @@ class AddTodoCommandTest {
         AddTodoCommand addTodoCommand = new AddTodoCommand(validTodo);
         AddTodoCommandTest.ModelStub modelStub = new AddTodoCommandTest.ModelStubWithTodo(validTodo);
 
-        assertThrows(CommandException.class, AddTodoCommand.MESSAGE_DUPLICATE_TODO, () -> addTodoCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddTodoCommand.MESSAGE_DUPLICATE_TODO, () -> addTodoCommand.execute(modelStub));
     }
 
     @Test
