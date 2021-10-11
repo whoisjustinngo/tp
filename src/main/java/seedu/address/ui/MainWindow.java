@@ -18,6 +18,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.TabSwitch;
 
 /**
  * The Main Window. Provides the basic application layout containing a menu bar
@@ -194,6 +195,12 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+
+    @FXML
+    private void handleSwitchTab(TabSwitch.Tab tabId) {
+        tabs.getSelectionModel().select(tabId.getIndex());
+    }
+
     public TodoListPanel getTodoListPanel() {
         return todoListPanel;
     }
@@ -220,6 +227,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isSwitchTab()) {
+                handleSwitchTab(commandResult.getTabId());
             }
 
             return commandResult;

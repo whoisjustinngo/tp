@@ -144,6 +144,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         return schedule.contains(s);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTodo(Todo key) {
+        todos.remove(key);
+    }
+
     //// util methods
 
     @Override
