@@ -1,0 +1,9 @@
+{
+  "_comment": "AddressBook save file which contains the same Todo values as in TypicalTodos#getTypicalAddressBook()",
+  "persons" : [ ],
+  "todos" : [ {
+    "description" : "read"
+  }, {
+    "description" : "travel"
+  } ]
+}
