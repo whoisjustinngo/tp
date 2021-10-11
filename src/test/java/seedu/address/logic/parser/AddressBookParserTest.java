@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -27,9 +28,12 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.todo.Todo;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.TodoBuilder;
+import seedu.address.testutil.TodoUtil;
 
 public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
@@ -40,6 +44,14 @@ public class AddressBookParserTest {
         AddCommand command = (AddCommand) parser.parseCommand(CONTACTS.getLabel()
                 + PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addTodo() throws Exception {
+        Todo todo = new TodoBuilder().build();
+        AddTodoCommand command = (AddTodoCommand) parser.parseCommand(TODOS_TAB_ID
+                + TodoUtil.getAddTodoCommand(todo));
+        assertEquals(new AddTodoCommand(todo), command);
     }
 
     @Test
