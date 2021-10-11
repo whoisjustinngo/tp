@@ -33,11 +33,11 @@ public class DeadlineTable extends Timeable<Deadline> {
 
     @Override
     public String delete(Deadline deadline) {
-        String UIMessage = this.deadlineTableHash.get(deadline.getDate()).deleteDeadline(deadline);
+        String UiMessage = this.deadlineTableHash.get(deadline.getDate()).deleteDeadline(deadline);
         if (!this.deadlineTableHash.get(deadline.getDate()).hasDeadline()) {
             this.deadlineTableHash.remove(deadline.getDate());
         }
-        return UIMessage;
+        return UiMessage;
     }
 
     @Override

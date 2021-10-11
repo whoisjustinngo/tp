@@ -14,10 +14,8 @@ abstract class Timeable<T> {
     /**
      * Deletes an {@code Event} from the Timetable.
      *
-     * @param currTask is the current {@code Event}.
+     * @param currTask is the current {@code Event} to be deleted.
      * @return a {@code String} message if the {@code Event} is deleted.
-     * @param currTask
-     * @return
      */
     abstract String delete(T currTask);
 
@@ -28,6 +26,11 @@ abstract class Timeable<T> {
      */
     abstract String view();
 
+    /**
+     * Gets a {@code Comparator} for the Timetable.
+     *
+     * @return a {@code Comparator}
+     */
     protected Comparator<String> getComparator() {
         return new Comparator<String>() {
             @Override

@@ -7,6 +7,15 @@ public class Schedule extends Event<Schedule> {
     private final int timeFrom;
     private final int timeTo;
 
+    /**
+     * Priamry Constructor
+     *
+     * @param description description for this {@code Schedule}.
+     * @param date date for this {@code Schedule}.
+     * @param timeFrom start time for this {@code Schedule}.
+     * @param timeTo end time for this {@code Schedule}.
+     * @param isDone if this {@code Schedule} is completed.
+     */
     public Schedule(String description, String date, int timeFrom, int timeTo, boolean isDone) {
         super(description, date, isDone);
         this.taskDate = LocalDate.of(Integer.parseInt(date.split("-")[2]), Integer.parseInt(date.split("-")[1]),

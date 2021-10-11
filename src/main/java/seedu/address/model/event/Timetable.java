@@ -27,11 +27,11 @@ public class Timetable extends Timeable<Schedule> {
 
     @Override
     public String delete(Schedule currTask) {
-        String UIMessage = this.timetable.get(currTask.getDate()).deleteSchedule(currTask);
+        String UiMessage = this.timetable.get(currTask.getDate()).deleteSchedule(currTask);
         if (!this.timetable.get(currTask.getDate()).hasSchedule()) {
             this.timetable.remove(currTask.getDate());
         }
-        return UIMessage;
+        return UiMessage;
     }
 
     @Override
