@@ -115,8 +115,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_listTodos() throws Exception {
-        assertTrue(parser.parseCommand(TODOS_TAB_ID + ListTodosCommand.COMMAND_WORD) instanceof ListTodosCommand);
-        assertTrue(parser.parseCommand(TODOS_TAB_ID + ListTodosCommand.COMMAND_WORD + " 3")
+        assertTrue(parser.parseCommand(
+                TODOS.getLabel() + " " + ListTodosCommand.COMMAND_WORD) instanceof ListTodosCommand);
+        assertTrue(parser.parseCommand(TODOS.getLabel() + " " + ListTodosCommand.COMMAND_WORD + " 3")
                 instanceof ListTodosCommand);
     }
 
