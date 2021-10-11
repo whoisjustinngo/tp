@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.todo.exceptions.DuplicateTodoException;
+import seedu.address.model.todo.exceptions.TodoNotFoundException;
 
 /**
  * A list of todos that enforces uniqueness between its elements and does not allow nulls.
@@ -45,6 +46,17 @@ public class UniqueTodoList implements Iterable<Todo> {
             throw new DuplicateTodoException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Removes the equivalent todo from the list.
+     * The todo must exist in the list.
+     */
+    public void remove(Todo toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new TodoNotFoundException();
+        }
     }
 
     public void setTodos(UniqueTodoList replacement) {

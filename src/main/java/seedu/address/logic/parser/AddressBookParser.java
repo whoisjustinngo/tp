@@ -100,8 +100,7 @@ public class AddressBookParser {
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND); // Placeholder for now, please replace this in v1.2
 
             case TODOS_TAB_ID:
-                // TODO by KS
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND); // Placeholder for now, please replace this in v1.2
+                return new DeleteTodoCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(MESSAGE_ERROR_PARSING_TAB);

@@ -8,7 +8,7 @@ import static seedu.address.model.TabSwitch.Tab.CONTACTS;
 import static seedu.address.model.TabSwitch.Tab.DASHBOARD;
 import static seedu.address.model.TabSwitch.Tab.TODOS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +20,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteTodoCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -65,10 +66,17 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_deleteCOntact() throws Exception {
+    public void parseCommand_deleteContact() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(CONTACTS.getLabel() + " "
-                + DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                + DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseCommand_deleteTodo() throws Exception {
+        DeleteTodoCommand command = (DeleteTodoCommand) parser.parseCommand(TODOS.getLabel() + " "
+                + DeleteTodoCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteTodoCommand(INDEX_FIRST), command);
     }
 
     @Test
@@ -76,9 +84,10 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(CONTACTS.getLabel() + " "
-                + EditCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + EditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST.getOneBased() + " "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test
