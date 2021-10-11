@@ -36,11 +36,6 @@ import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
-    private static final String DUMMY_TAB_ID = "dummyTab ";
-    private static final String DASHBOARD_TAB_ID = "dashboardTab ";
-    private static final String CONTACTS_TAB_ID = "contactsTab ";
-    private static final String SCHEDULE_TAB_ID = "scheduleTab ";
-    private static final String TODOS_TAB_ID = "todosTab ";
 
     @TempDir
     public Path temporaryFolder;

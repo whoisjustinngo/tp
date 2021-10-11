@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.todo.Todo;
 
@@ -14,6 +15,9 @@ import seedu.address.model.todo.Todo;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Todo> PREDICATE_SHOW_ALL_TODOS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -54,37 +58,67 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
     boolean hasPerson(Person person);
 
     /**
-     * Returns true if a Todo with the same description as {@code todo} exists in the list of todos.
+     * Returns true if a Todo with the same description as {@code todo} exists in
+     * the list of todos.
      */
     boolean hasTodo(Todo todo);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given person. The person must exist in the address book.
      */
     void deletePerson(Person target);
 
     /**
+<<<<<<< HEAD
+     * <<<<<<< HEAD Adds the given person. {@code person} must not already exist in
+     * the address book. ======= Deletes the given todo. The todo must exist in the
+     * address book.
+=======
+<<<<<<< HEAD
+     * Adds the given person. {@code person} must not already exist in the address
+     * book.
+=======
+     * Deletes the given todo.
+     * The todo must exist in the address book.
+>>>>>>> pull-branch
+     */
+    void deleteTodo(Todo target);
+
+    /**
+<<<<<<< HEAD
+     * Adds the given person. {@code person} must not already exist in the address
+     * book. >>>>>>> daa6be7ae935578f12644fb9f4e25b3f003a5cd0
+=======
      * Adds the given person.
      * {@code person} must not already exist in the address book.
+>>>>>>> daa6be7ae935578f12644fb9f4e25b3f003a5cd0
+>>>>>>> pull-branch
      */
     void addPerson(Person person);
 
     /**
-     * Adds the given Todo.
-     * {@code todo} must not already exist in the list of todos.
+     * Adds the given Todo. {@code todo} must not already exist in the list of
+     * todos.
      */
     void addTodo(Todo todo);
 
     /**
+     * Adds the given Schedule. {@code schedule} must not already exist in the list
+     * of schedules.
+     */
+    void addSchedule(Schedule schedule);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the address book. The person identity of
+     * {@code editedPerson} must not be the same as another existing person in the
+     * address book.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -92,11 +126,25 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered person list to filter by the given
+     * {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /** Returns an unmodifiable view of the filtered todo list */
     ObservableList<Todo> getFilteredTodoList();
+
+    /** Returns an unmodifiable view of the filtered schedule list */
+    ObservableList<Schedule> getFilteredScheduleList();
+
+    /**
+     * Updates the filter of the filtered todo list to filter by the given
+     * {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+
+    void updateFilteredTodoList(Predicate<Todo> predicate);
 }

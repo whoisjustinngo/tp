@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.todo.Todo;
 
@@ -22,18 +23,22 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_TODO = "Todos list contains duplicate todo(s).";
+    public static final String MESSAGE_DUPLICATE_SCHEDULE = "Schedule list contains duplicate schedule(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedTodo> todos = new ArrayList<>();
+    private final List<JsonAdaptedSchedule> schedules = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons and todos.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("todos") List<JsonAdaptedTodo> todos) {
+                                       @JsonProperty("todos") List<JsonAdaptedTodo> todos,
+                                       @JsonProperty("schedules") List<JsonAdaptedSchedule> schedules) {
         this.persons.addAll(persons);
         this.todos.addAll(todos);
+        this.schedules.addAll(schedules);
     }
 
     /**
@@ -44,6 +49,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         todos.addAll(source.getTodoList().stream().map(JsonAdaptedTodo::new).collect(Collectors.toList()));
+        schedules.addAll(source.getScheduleList().stream().map(JsonAdaptedSchedule::new).collect(Collectors.toList()));
     }
 
     /**
@@ -60,6 +66,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+
         for (JsonAdaptedTodo jsonAdaptedTodo : todos) {
             Todo todo = jsonAdaptedTodo.toModelType();
             if (addressBook.hasTodo(todo)) {
@@ -67,6 +74,15 @@ class JsonSerializableAddressBook {
             }
             addressBook.addTodo(todo);
         }
+
+        for (JsonAdaptedSchedule jsonAdaptedSchedule : schedules) {
+            Schedule schedule = jsonAdaptedSchedule.toModelType();
+            if (addressBook.hasSchedule(schedule)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_SCHEDULE);
+            }
+            addressBook.addSchedule(schedule);
+        }
+
         return addressBook;
     }
 
