@@ -14,7 +14,7 @@ public class TodoUtil {
      * Returns an add command string for adding the {@code todo}.
      */
     public static String getAddTodoCommand(Todo todo) {
-        return AddTodoCommand.COMMAND_WORD + " " + getTodoDetails(todo);
+        return " " + AddTodoCommand.COMMAND_WORD + " " + getTodoDetails(todo);
     }
 
     /**
