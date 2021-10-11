@@ -134,8 +134,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+<<<<<<< HEAD
      * Adds a schedule to the list of schedules. The schedule must not already exist
      * in the list of schedules.
+=======
+     * Adds a schedule to the list of schedules.
+     * The schedule must not already exist in the list of schedules.
+>>>>>>> pull-branch
      */
     public void addSchedule(Schedule s) {
         schedule.add(s);
@@ -150,8 +155,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+<<<<<<< HEAD
      * Removes {@code key} from this {@code AddressBook}. {@code key} must exist in
      * the address book.
+=======
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+>>>>>>> pull-branch
      */
     public void removeTodo(Todo key) {
         todos.remove(key);
