@@ -5,7 +5,7 @@ import java.util.Comparator;
 abstract class Timeable<T> {
     /**
      * Adds an {@code Event} to the Timetable.
-     * 
+     *
      * @param currTask is the current {@code Event}.
      * @return a {@code String} message if the {@code Event} is added.
      */
@@ -13,7 +13,7 @@ abstract class Timeable<T> {
 
     /**
      * Deletes an {@code Event} from the Timetable.
-     * 
+     *
      * @param currTask is the current {@code Event}.
      * @return a {@code String} message if the {@code Event} is deleted.
      * @param currTask
@@ -23,7 +23,7 @@ abstract class Timeable<T> {
 
     /**
      * Views the timetable.
-     * 
+     *
      * @return {@code String} which contains information from the timetable.
      */
     abstract String view();
