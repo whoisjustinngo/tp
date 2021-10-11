@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import seedu.address.model.event.exceptions.EmptyEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
+/**
+ * Daily Deadlines.
+ */
 public class DayDeadline {
     private final ArrayList<Deadline> dailyDeadline;
 
@@ -16,11 +19,23 @@ public class DayDeadline {
         this.dailyDeadline = dailyDeadline;
     }
 
+    /**
+     * Adds a deadline to the current day.
+     * 
+     * @param deadline {@code Deadline} to be added
+     * @return {@code String} message stating that deadline is added.
+     */
     public String addDeadline(Deadline deadline) {
         this.dailyDeadline.add(deadline);
         return "Deadline added.";
     }
 
+    /**
+     * Deletes {@code Deadline} from the current day
+     * 
+     * @param deadline the {@code Deadline} to be deleted
+     * @return {@code String} message stating if the deadline is removed.
+     */
     public String deleteDeadline(Deadline deadline) {
         String deadlineDescription = deadline.getDescription();
 
@@ -32,6 +47,11 @@ public class DayDeadline {
         return deadline.toString() + " is removed.";
     }
 
+    /**
+     * Views the {@code Deadline} for the current day.
+     * 
+     * @return {@code String} of all the {@code Deadline} for the current day.
+     */
     public String viewDeadlines() {
         if (this.dailyDeadline.size() == 0) {
             throw new EmptyEventException();
@@ -43,6 +63,11 @@ public class DayDeadline {
         return dayPlans;
     }
 
+    /**
+     * Marks {@code Deadline} as done.
+     * 
+     * @param deadline is the {@code Deadline} to be marked as done.
+     */
     public void markDone(Deadline deadline) {
         int index = checkExist(deadline);
         if (index < 0) {
@@ -51,6 +76,11 @@ public class DayDeadline {
         this.dailyDeadline.set(index, deadline.markAsDone());
     }
 
+    /**
+     * Checks if there is any {@code Deadline} on the current day.
+     * 
+     * @return boolean if there is a {@code Deadline}.
+     */
     public boolean hasDeadline() {
         return this.dailyDeadline.size() != 0;
     }

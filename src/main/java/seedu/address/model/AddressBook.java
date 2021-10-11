@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.event.Schedule;
+import seedu.address.model.event.UniqueScheduleList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.todo.Todo;
@@ -18,6 +20,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueTodoList todos;
+    private final UniqueScheduleList schedule;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,6 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         todos = new UniqueTodoList();
+        schedule = new UniqueScheduleList();
     }
 
     public AddressBook() {}
@@ -124,12 +128,27 @@ public class AddressBook implements ReadOnlyAddressBook {
         todos.add(t);
     }
 
+    /**
+     * Adds a schedule to the list of schedules.
+     * The schedule must not already exist in the list of schedules.
+     */
+    public void addSchedule(Schedule s) {
+        schedule.add(s);
+    }
+
+    /**
+     * Returns true if a schedule with the same description as {@code schedule} exists in the list of schedules.
+     */
+    public boolean hasSchedule(Schedule s) {
+        requireNonNull(schedule);
+        return schedule.contains(s);
+    } 
+
     //// util methods
 
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
     }
 
     @Override
@@ -140,6 +159,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Todo> getTodoList() {
         return todos.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Schedule> getScheduleList() {
+        return schedule.asUnmodifiableObservableList();
     }
 
     @Override

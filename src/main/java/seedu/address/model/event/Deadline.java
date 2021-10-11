@@ -3,24 +3,29 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 
-public class Deadline extends Event {
+/**
+ * A Deadline Event
+ */
+public class Deadline extends Event<Deadline> {
     private final LocalDate taskDate;
-    private final String date;
 
+    /**
+     * Primary Constructor for Deadline.
+     * 
+     * @param description is the description for this {@code Deadline}.
+     * @param date        is this {@code Deadline}'s date.
+     * @param isDone      determine whether this {@code Deadline} is completed or
+     *                    not.
+     */
     public Deadline(String description, String date, boolean isDone) {
-        super(description, isDone);
+        super(description, date, isDone);
         requireNonNull(date);
         this.taskDate = LocalDate.of(Integer.parseInt(date.split("-")[2]), Integer.parseInt(date.split("-")[1]),
                 Integer.parseInt(date.split("-")[0]));
-        this.date = date;
     }
 
     public LocalDate getTaskDate() {
         return this.taskDate;
-    }
-
-    public String getDate() {
-        return this.date;
     }
 
     @Override

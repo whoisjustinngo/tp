@@ -1,6 +1,5 @@
 package seedu.address.model.event;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -8,13 +7,14 @@ import java.util.TreeMap;
 
 import seedu.address.model.event.exceptions.EmptyEventException;
 
-public class Timetable {
+public class Timetable extends Timeable<Schedule> {
     private final HashMap<String, DayPlan> timetable;
 
     public Timetable() {
         this.timetable = new HashMap<String, DayPlan>();
     }
 
+    @Override
     public String add(Schedule currTask) {
         if (this.timetable.get(currTask.getDate()) == null) {
             DayPlan dayPlan = new DayPlan();
@@ -25,6 +25,7 @@ public class Timetable {
         return this.timetable.get(currTask.getDate()).addSchedule(currTask);
     }
 
+    @Override
     public String delete(Schedule currTask) {
         String UIMessage = this.timetable.get(currTask.getDate()).deleteSchedule(currTask);
         if (!this.timetable.get(currTask.getDate()).hasSchedule()) {
@@ -33,6 +34,7 @@ public class Timetable {
         return UIMessage;
     }
 
+    @Override
     public String view() {
         if (this.timetable.size() == 0) {
             throw new EmptyEventException();
@@ -53,11 +55,23 @@ public class Timetable {
         return this.timetable.get(date);
     }
 
+    /**
+     * Clears the {@code Schedule} for this day.
+     * 
+     * @param date the date which {@code Schedule} will be cleared.
+     * @return a message if the {@code Schedule} is cleared.
+     */
     public String clearDayPlan(String date) {
         this.timetable.remove(date);
         return "Plans for the day has cleared.";
     }
 
+    /**
+     * Checks of the added {@code Schedule} clashes with the added {@code Schedule}.
+     * 
+     * @param currTask the {@code Schedule} to be added.
+     * @return boolean if the {@code Schedule} clashes.
+     */
     public boolean isClash(Schedule currTask) {
         try {
             return this.timetable.get(currTask.getDate()).isClash(currTask);
@@ -65,18 +79,4 @@ public class Timetable {
             return false;
         }
     }
-
-    private Comparator<String> getComparator() {
-        return new Comparator<String>() {
-            @Override
-            public int compare(String firstDate, String secondDate) {
-                String[] firstDateArr = firstDate.split("-");
-                String[] secondDateArr = secondDate.split("-");
-                int firstIntDate = Integer.parseInt(firstDateArr[2] + firstDateArr[1] + firstDateArr[1]);
-                int secondIntDate = Integer.parseInt(secondDateArr[2] + secondDateArr[1] + secondDateArr[1]);
-                return (firstIntDate > secondIntDate) ? -1 : 1;
-            }
-        };
-    }
-
 }

@@ -1,6 +1,5 @@
 package seedu.address.model.event;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -8,13 +7,20 @@ import java.util.TreeMap;
 
 import seedu.address.model.event.exceptions.EmptyEventException;
 
-public class DeadlineTable {
+/**
+ * A table for the {@code Deadline}.
+ */
+public class DeadlineTable extends Timeable<Deadline> {
     private final HashMap<String, DayDeadline> deadlineTableHash;
 
+    /**
+     * Primary Constructor.
+     */
     public DeadlineTable() {
         this.deadlineTableHash = new HashMap<String, DayDeadline>();
     }
 
+    @Override
     public String add(Deadline deadline) {
         if (this.deadlineTableHash.get(deadline.getDate()) == null) {
             DayDeadline dayDeadline = new DayDeadline();
@@ -25,6 +31,7 @@ public class DeadlineTable {
         return this.deadlineTableHash.get(deadline.getDate()).addDeadline(deadline);
     }
 
+    @Override
     public String delete(Deadline deadline) {
         String UIMessage = this.deadlineTableHash.get(deadline.getDate()).deleteDeadline(deadline);
         if (!this.deadlineTableHash.get(deadline.getDate()).hasDeadline()) {
@@ -33,6 +40,7 @@ public class DeadlineTable {
         return UIMessage;
     }
 
+    @Override
     public String view() {
         if (this.deadlineTableHash.size() == 0) {
             throw new EmptyEventException();
@@ -47,18 +55,5 @@ public class DeadlineTable {
             allScheduledTasks += currDate + "\n" + this.deadlineTableHash.get(currDate).viewDeadlines();
         }
         return allScheduledTasks;
-    }
-
-    private Comparator<String> getComparator() {
-        return new Comparator<String>() {
-            @Override
-            public int compare(String firstDate, String secondDate) {
-                String[] firstDateArr = firstDate.split("-");
-                String[] secondDateArr = secondDate.split("-");
-                int firstIntDate = Integer.parseInt(firstDateArr[2] + firstDateArr[1] + firstDateArr[1]);
-                int secondIntDate = Integer.parseInt(secondDateArr[2] + secondDateArr[1] + secondDateArr[1]);
-                return (firstIntDate > secondIntDate) ? -1 : 1;
-            }
-        };
     }
 }
