@@ -146,6 +146,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteTodo(Todo target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -175,6 +180,9 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        public void updateFilteredTodoList(Predicate<Todo> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

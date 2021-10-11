@@ -114,6 +114,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteTodo(Todo target) {
+        addressBook.removeTodo(target);
+    }
+
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -173,6 +179,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
         return filteredSchedule;
+    }
+
+    @Override
+    public void updateFilteredTodoList(Predicate<Todo> predicate) {
+        requireNonNull(predicate);
+        filteredTodos.setPredicate(predicate);
     }
 
     @Override

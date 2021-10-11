@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.RELATIONSHIP_DESC_AMY;
+import static seedu.address.model.TabSwitch.Tab.CONTACTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -34,11 +36,6 @@ import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
-    private static final String DUMMY_TAB_ID = "dummyTab ";
-    private static final String DASHBOARD_TAB_ID = "dashboardTab ";
-    private static final String CONTACTS_TAB_ID = "contactsTab ";
-    private static final String SCHEDULE_TAB_ID = "scheduleTab ";
-    private static final String TODOS_TAB_ID = "todosTab ";
 
     @TempDir
     public Path temporaryFolder;
@@ -64,13 +61,13 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(CONTACTS_TAB_ID, deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(CONTACTS.getLabel() + " ", deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validListContactsCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(CONTACTS_TAB_ID, listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(CONTACTS.getLabel() + " ", listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -84,13 +81,14 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + RELATIONSHIP_DESC_AMY
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(CONTACTS_TAB_ID, addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(CONTACTS.getLabel() + " ", addCommand, CommandException.class,
+            expectedMessage, expectedModel);
     }
 
     @Test
@@ -108,7 +106,7 @@ public class LogicManagerTest {
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
             Model expectedModel) throws CommandException, ParseException {
-        CommandResult result = logic.execute(DUMMY_TAB_ID + inputCommand);
+        CommandResult result = logic.execute(CONTACTS.getLabel() + " " + inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
@@ -167,7 +165,7 @@ public class LogicManagerTest {
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage) {
+                                      String expectedMessage) {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
@@ -192,7 +190,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage, Model expectedModel) {
-        assertThrows(expectedException, expectedMessage, () -> logic.execute(DUMMY_TAB_ID + inputCommand));
+        assertThrows(expectedException, expectedMessage, () -> logic.execute(CONTACTS.getLabel()
+                + " " + inputCommand));
         assertEquals(expectedModel, model);
     }
 

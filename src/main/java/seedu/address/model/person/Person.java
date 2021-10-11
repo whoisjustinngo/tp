@@ -22,14 +22,16 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Relationship relationship;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Relationship relationship, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
+        this.relationship = relationship;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -50,6 +52,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Relationship getRelationship() {
+        return relationship;
     }
 
     /**
@@ -89,6 +95,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
+                && otherPerson.getRelationship().equals(getRelationship())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
@@ -105,6 +112,8 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Relationship: ")
+                .append(getRelationship())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
