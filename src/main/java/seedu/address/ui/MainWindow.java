@@ -11,6 +11,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -34,7 +35,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private DashboardPanel dashboardPanel;
+    private ScheduleListPanel dashboardScheduleSection;
+    private TodoListPanel dashboardTodoSection;
     private PersonListPanel personListPanel;
     private TodoListPanel todoListPanel;
     private ScheduleListPanel scheduleListPanel;
@@ -51,7 +53,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private ScrollPane dashboardPanelPlaceholder;
+    private VBox dashboardTopPanelPlaceholder;
+
+    @FXML
+    private VBox dashboardBottomPanelPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -129,9 +134,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        dashboardPanel = new DashboardPanel();
-        dashboardPanelPlaceholder.setContent(dashboardPanel.getRoot());
-
+        
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -140,6 +143,11 @@ public class MainWindow extends UiPart<Stage> {
 
         scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+
+        dashboardScheduleSection = new ScheduleListPanel(logic.getFilteredScheduleList());
+        dashboardTodoSection = new TodoListPanel(logic.getFilteredTodoList());
+        dashboardTopPanelPlaceholder.getChildren().add(dashboardScheduleSection.getRoot());
+        dashboardBottomPanelPlaceholder.getChildren().add(dashboardTodoSection.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
