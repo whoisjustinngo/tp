@@ -3,10 +3,12 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
@@ -15,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Advyze" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Advyze" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -39,12 +41,35 @@
             <TabPane id="tabs" fx:id="tabs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
               <tabs>
                 <Tab id="dashboardTab" fx:id="dashboardTab" closable="false" styleClass="label" text="Dashboard">
-                  <content>
-                    <AnchorPane>
-                           <children>
-                              <ScrollPane fx:id="dashboardPanelPlaceholder" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children></AnchorPane>
-                  </content>
+                     <content>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" styleClass="pane-with-border" stylesheets="@DarkTheme.css">
+                           <items>
+                              <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                                 <content>
+                                    <VBox fx:id="dashboardTopPanelPlaceholder" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: LIGHTSTEELBLUE;" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Here is your upcoming schedule:" VBox.vgrow="NEVER">
+                                             <padding>
+                                                <Insets bottom="5.0" left="20.0" top="5.0" />
+                                             </padding></Label>
+                                       </children>
+                                    </VBox>
+                                 </content></ScrollPane>
+                              <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                                 <content>
+                                    <VBox fx:id="dashboardBottomPanelPlaceholder" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: LIGHTSTEELBLUE;" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Here are some things you need to do:">
+                                             <padding>
+                                                <Insets bottom="5.0" left="20.0" top="5.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </content></ScrollPane>
+                           </items>
+                        </SplitPane>
+                     </content>
                 </Tab>
                 <Tab id="contactsTab" fx:id="contactsTab" closable="false" styleClass="label" text="Contacts">
                   <content>
