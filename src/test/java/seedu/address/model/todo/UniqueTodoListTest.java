@@ -14,6 +14,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.todo.exceptions.DuplicateTodoException;
+import seedu.address.model.todo.exceptions.TodoNotFoundException;
 
 public class UniqueTodoListTest {
 
@@ -44,6 +45,24 @@ public class UniqueTodoListTest {
     public void add_duplicateTodo_throwsDuplicateTodoException() {
         uniqueTodoList.add(READ);
         assertThrows(DuplicateTodoException.class, () -> uniqueTodoList.add(READ));
+    }
+
+    @Test
+    public void remove_nullTodo_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTodoList.remove(null));
+    }
+
+    @Test
+    public void remove_todoDoesNotExist_throwsTodoNotFoundException() {
+        assertThrows(TodoNotFoundException.class, () -> uniqueTodoList.remove(READ));
+    }
+
+    @Test
+    public void remove_existingTodo_removesTodo() {
+        uniqueTodoList.add(READ);
+        uniqueTodoList.remove(READ);
+        UniqueTodoList expectedUniqueTodoList = new UniqueTodoList();
+        assertEquals(expectedUniqueTodoList, uniqueTodoList);
     }
 
     @Test
