@@ -167,14 +167,14 @@ public class AddCommandTest {
 
         @Override
         public void addSchedule(Schedule schedule) {
-            // TODO Auto-generated method stub
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Schedule> getFilteredScheduleList() {
-            // TODO Auto-generated method stub
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**

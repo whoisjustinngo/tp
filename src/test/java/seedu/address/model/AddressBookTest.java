@@ -91,6 +91,7 @@ public class AddressBookTest {
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Todo> todos = FXCollections.observableArrayList();
+        private final ObservableList<Schedule> schedules = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -108,8 +109,7 @@ public class AddressBookTest {
 
         @Override
         public ObservableList<Schedule> getScheduleList() {
-            // TODO Auto-generated method stub
-            return null;
+            return schedules;
         }
     }
 
