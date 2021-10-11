@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.todo.Todo;
@@ -103,6 +104,12 @@ public class AddressBookTest {
         @Override
         public ObservableList<Todo> getTodoList() {
             return todos;
+        }
+
+        @Override
+        public ObservableList<Schedule> getScheduleList() {
+            // TODO Auto-generated method stub
+            return null;
         }
     }
 
