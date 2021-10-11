@@ -17,7 +17,7 @@ abstract class Event<T> {
 
     /**
      * Marks this {@code Event} as done.
-     * 
+     *
      * @return the {@code Event} that is marked as done.
      */
     abstract T markAsDone();

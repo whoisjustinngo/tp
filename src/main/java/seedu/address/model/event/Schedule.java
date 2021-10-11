@@ -29,7 +29,7 @@ public class Schedule extends Event<Schedule> {
 
     /**
      * Gets the formatted time and date in a proper {@code String}.
-     * 
+     *
      * @return formatteed time and date.
      */
     public String getDateTime() {

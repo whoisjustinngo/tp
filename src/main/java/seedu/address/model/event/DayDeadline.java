@@ -21,7 +21,7 @@ public class DayDeadline {
 
     /**
      * Adds a deadline to the current day.
-     * 
+     *
      * @param deadline {@code Deadline} to be added
      * @return {@code String} message stating that deadline is added.
      */
@@ -32,7 +32,7 @@ public class DayDeadline {
 
     /**
      * Deletes {@code Deadline} from the current day
-     * 
+     *
      * @param deadline the {@code Deadline} to be deleted
      * @return {@code String} message stating if the deadline is removed.
      */
@@ -49,7 +49,7 @@ public class DayDeadline {
 
     /**
      * Views the {@code Deadline} for the current day.
-     * 
+     *
      * @return {@code String} of all the {@code Deadline} for the current day.
      */
     public String viewDeadlines() {
@@ -65,7 +65,7 @@ public class DayDeadline {
 
     /**
      * Marks {@code Deadline} as done.
-     * 
+     *
      * @param deadline is the {@code Deadline} to be marked as done.
      */
     public void markDone(Deadline deadline) {
@@ -78,7 +78,7 @@ public class DayDeadline {
 
     /**
      * Checks if there is any {@code Deadline} on the current day.
-     * 
+     *
      * @return boolean if there is a {@code Deadline}.
      */
     public boolean hasDeadline() {

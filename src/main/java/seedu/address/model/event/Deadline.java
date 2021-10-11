@@ -11,7 +11,7 @@ public class Deadline extends Event<Deadline> {
 
     /**
      * Primary Constructor for Deadline.
-     * 
+     *
      * @param description is the description for this {@code Deadline}.
      * @param date        is this {@code Deadline}'s date.
      * @param isDone      determine whether this {@code Deadline} is completed or

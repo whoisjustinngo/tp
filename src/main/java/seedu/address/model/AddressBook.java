@@ -142,7 +142,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasSchedule(Schedule s) {
         requireNonNull(schedule);
         return schedule.contains(s);
-    } 
+    }
 
     //// util methods
 

@@ -57,7 +57,7 @@ public class Timetable extends Timeable<Schedule> {
 
     /**
      * Clears the {@code Schedule} for this day.
-     * 
+     *
      * @param date the date which {@code Schedule} will be cleared.
      * @return a message if the {@code Schedule} is cleared.
      */
@@ -68,7 +68,7 @@ public class Timetable extends Timeable<Schedule> {
 
     /**
      * Checks of the added {@code Schedule} clashes with the added {@code Schedule}.
-     * 
+     *
      * @param currTask the {@code Schedule} to be added.
      * @return boolean if the {@code Schedule} clashes.
      */

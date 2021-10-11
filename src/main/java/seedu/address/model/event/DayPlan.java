@@ -24,7 +24,7 @@ public class DayPlan {
 
     /**
      * Adds the current {@code Schedule} into the {@code DayPlan}.
-     * 
+     *
      * @param currTask the {@code Schedule} which will be added into this
      *                 {@code DayPlan}.
      * @return a message stating if the {@code Schedule} is added into this
@@ -40,7 +40,7 @@ public class DayPlan {
 
     /**
      * Deletes the current {@code Schedule} from the {@code DayPlan}.
-     * 
+     *
      * @param currTask the {@code Schedule} which will be deleted from this
      *                 {@code DayPlan}.
      * @return a message stating if the {@code Schedule} is deleted from this
@@ -61,7 +61,7 @@ public class DayPlan {
     /**
      * Views all the {@code Schedule} which are already added into this
      * {@code DayPlan}.
-     * 
+     *
      * @return all the {@code Schedule} which are already in this {@code DayPlan}.
      */
     public String viewDayPlan() {
@@ -79,7 +79,7 @@ public class DayPlan {
     /**
      * Checks if the current {@code Schedule} clashes with any {@code Schedule}
      * which are already added in the {@code DayPlan}.
-     * 
+     *
      * @param currTask is the {@code Schedule} which will be checked if clash
      *                 happens.
      * @return boolean, true if there is a clash in {@code Timetable}.
@@ -100,7 +100,7 @@ public class DayPlan {
 
     /**
      * Marks the given {@code Schedule} as done.
-     * 
+     *
      * @param currTask is the {@code Schedule} which will be marked as done.
      */
     public void markDone(Schedule currTask) {
@@ -113,7 +113,7 @@ public class DayPlan {
 
     /**
      * Checks if there is any {@code Schedule} in this {@code DayPlan}.
-     * 
+     *
      * @return true is there is a {@code Schedule} in this {@code DayPlan}.
      */
     public boolean hasSchedule() {

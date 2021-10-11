@@ -168,7 +168,6 @@ public class AddCommandTest {
         @Override
         public void addSchedule(Schedule schedule) {
             // TODO Auto-generated method stub
-            
         }
 
         @Override
