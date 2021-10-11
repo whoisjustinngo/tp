@@ -7,6 +7,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalTodos.READ;
+import static seedu.address.testutil.TypicalTodos.TRAVEL;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -89,13 +91,35 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasTodo_nullTodo_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTodo(null));
+    }
+
+    @Test
+    public void hasTodo_todoNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasTodo(READ));
+    }
+
+    @Test
+    public void hasTodo_todoInAddressBook_returnsTrue() {
+        modelManager.addTodo(READ);
+        assertTrue(modelManager.hasTodo(READ));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
 
     @Test
+    public void getFilteredTodoList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTodoList().remove(0));
+    }
+
+    @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON)
+                .withTodo(READ).withTodo(TRAVEL).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 

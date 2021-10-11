@@ -18,6 +18,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTodosCommand;
+import seedu.address.logic.commands.TabSwitchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -126,6 +127,8 @@ public class AddressBookParser {
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
 
+        case TabSwitchCommand.COMMAND_WORD:
+            return new TabSwitchCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             switch (tab) {
