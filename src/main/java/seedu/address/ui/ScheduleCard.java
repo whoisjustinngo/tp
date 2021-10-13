@@ -30,7 +30,9 @@ public class ScheduleCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private Label dateTime;
+    private Label date;
+    @FXML
+    private Label time;
 
     /**
      * Creates a {@code ScheduleCard} with the given {@code Schedule} and index to
@@ -41,7 +43,8 @@ public class ScheduleCard extends UiPart<Region> {
         this.schedule = schedule;
         id.setText(displayedIndex + ". ");
         description.setText(schedule.getDescription());
-        dateTime.setText(schedule.getDateTime());
+        date.setText(schedule.getDate());
+        time.setText(schedule.getTimeFrom() + " - " + schedule.getTimeTo());
     }
 
     @Override

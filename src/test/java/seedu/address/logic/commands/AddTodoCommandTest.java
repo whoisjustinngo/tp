@@ -49,8 +49,8 @@ class AddTodoCommandTest {
         AddTodoCommand addTodoCommand = new AddTodoCommand(validTodo);
         AddTodoCommandTest.ModelStub modelStub = new AddTodoCommandTest.ModelStubWithTodo(validTodo);
 
-        assertThrows(CommandException.class,
-                AddTodoCommand.MESSAGE_DUPLICATE_TODO, () -> addTodoCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddTodoCommand.MESSAGE_DUPLICATE_TODO, () ->
+                addTodoCommand.execute(modelStub));
     }
 
     @Test
@@ -183,6 +183,26 @@ class AddTodoCommandTest {
 
         @Override
         public ObservableList<Schedule> getFilteredScheduleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteSchedule(Schedule target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSchedule(Schedule schedule) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasScheduleClash(Schedule schedule) {
             throw new AssertionError("This method should not be called.");
         }
     }
