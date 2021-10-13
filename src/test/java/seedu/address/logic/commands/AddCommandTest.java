@@ -183,6 +183,11 @@ public class AddCommandTest {
         public void updateFilteredTodoList(Predicate<Todo> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteSchedule(Schedule target) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

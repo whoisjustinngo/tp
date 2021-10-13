@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.exceptions.DuplicateScheduleException;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 
 public class UniqueScheduleList implements Iterable<Schedule> {
     private final ObservableList<Schedule> internalList = FXCollections.observableArrayList();
@@ -58,6 +59,17 @@ public class UniqueScheduleList implements Iterable<Schedule> {
      */
     public ObservableList<Schedule> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Removes the equivalent schedule from the list.
+     * The todo must exist in the list.
+     */
+    public void remove(Schedule toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new EventNotFoundException();
+        }
     }
 
     @Override

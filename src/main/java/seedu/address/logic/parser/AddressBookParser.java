@@ -95,8 +95,7 @@ public class AddressBookParser {
                 return new DeleteCommandParser().parse(arguments);
 
             case SCHEDULE_TAB_ID:
-                // TODO by Ricky
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND); // Placeholder for now, please replace this in v1.2
+                return new DeleteScheduleCommandParser().parse(arguments);
 
             case TODOS_TAB_ID:
                 return new DeleteTodoCommandParser().parse(arguments);

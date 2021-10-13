@@ -185,6 +185,11 @@ class AddTodoCommandTest {
         public ObservableList<Schedule> getFilteredScheduleList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteSchedule(Schedule target) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -75,30 +75,20 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
-<<<<<<< HEAD
-     * <<<<<<< HEAD Adds the given person. {@code person} must not already exist in
-     * the address book. ======= Deletes the given todo. The todo must exist in the
-     * address book.
-=======
-<<<<<<< HEAD
-     * Adds the given person. {@code person} must not already exist in the address
-     * book.
-=======
      * Deletes the given todo.
      * The todo must exist in the address book.
->>>>>>> pull-branch
      */
     void deleteTodo(Todo target);
 
     /**
-<<<<<<< HEAD
-     * Adds the given person. {@code person} must not already exist in the address
-     * book. >>>>>>> daa6be7ae935578f12644fb9f4e25b3f003a5cd0
-=======
+     * Deletes the given todo.
+     * The todo must exist in the address book.
+     */
+    void deleteSchedule(Schedule target);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
->>>>>>> daa6be7ae935578f12644fb9f4e25b3f003a5cd0
->>>>>>> pull-branch
      */
     void addPerson(Person person);
 

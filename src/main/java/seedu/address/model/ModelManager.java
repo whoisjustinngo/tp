@@ -118,6 +118,10 @@ public class ModelManager implements Model {
         addressBook.removeTodo(target);
     }
 
+    @Override
+    public void deleteSchedule(Schedule target) {
+        addressBook.removeSchedule(target);
+    }
 
     @Override
     public void addPerson(Person person) {
