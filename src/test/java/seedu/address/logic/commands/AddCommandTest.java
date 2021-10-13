@@ -188,6 +188,11 @@ public class AddCommandTest {
         public void deleteSchedule(Schedule target) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -19,6 +19,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Todo> PREDICATE_SHOW_ALL_TODOS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULE = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -75,20 +78,18 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
-     * Deletes the given todo.
-     * The todo must exist in the address book.
+     * Deletes the given todo. The todo must exist in the address book.
      */
     void deleteTodo(Todo target);
 
     /**
-     * Deletes the given todo.
-     * The todo must exist in the address book.
+     * Deletes the given todo. The todo must exist in the address book.
      */
     void deleteSchedule(Schedule target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given person. {@code person} must not already exist in the address
+     * book.
      */
     void addPerson(Person person);
 
@@ -137,4 +138,13 @@ public interface Model {
      */
 
     void updateFilteredTodoList(Predicate<Todo> predicate);
+
+    /**
+     * Updates the filter of the filtered schedule list to filter by the given
+     * {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+
+    void updateFilteredScheduleList(Predicate<Schedule> predicate);
 }

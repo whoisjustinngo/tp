@@ -66,6 +66,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the todo list with {@code todos}. {@code todos} must
+     * not contain duplicate todos.
+     */
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedule.setSchedules(schedules);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -73,6 +81,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setTodos(newData.getTodoList());
+        setSchedules(newData.getScheduleList());
     }
 
     //// person-level operations

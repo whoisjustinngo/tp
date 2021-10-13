@@ -10,8 +10,12 @@ abstract class Event<T> {
     protected Event(String description, String date, boolean isDone) {
         requireNonNull(description);
         requireNonNull(date);
+        String dateCopy = date;
+        if (dateCopy.contains("/")) {
+            dateCopy = dateCopy.replace("/", "-");
+        }
         this.description = description;
-        this.date = date;
+        this.date = dateCopy;
         this.isDone = isDone;
     }
 
