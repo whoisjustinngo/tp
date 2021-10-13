@@ -14,11 +14,11 @@ Advyze is a desktop app for tech-savvy student financial advisors to keep track 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `advyze.jar` from `<coming soon>` 
+2. Download the latest `advyze.jar` release from [this link](https://github.com/AY2122S1-CS2103-T14-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Advyze.
 
-4. Double-click the file to start the app. You should see the `dashbaord` tab displayed (refer to the [Dashboard](#dashboard) to see how it is supposed to look like)
+4. Double-click the file to start the app. You should see the `dashboard` tab displayed (refer to the [Dashboard](#dashboard) to see how it is supposed to look like)
 
 **More details coming soon**
 
@@ -44,7 +44,7 @@ Refer to the [Features](#Features) below for more details on what Advyze can do.
 -   Parameters can be in any order.<br>
     e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
--   If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+-   If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
     e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 -   Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -55,12 +55,14 @@ Refer to the [Features](#Features) below for more details on what Advyze can do.
 ## Dashboard
 The dashboard is the default landing page of the app and displays a summary of relevant information from the other sections of the app.
 * The dashboard by default shows:
-  * A list of the user’s todos which are not completed (earliest added, up to 5)
-  * The user’s schedule for the day, or the next 5 entries in the schedule
+  * The user's schedule in chronological order
+  * The user's todos, with the earliest added at the top
+* These sections are automatically updated as the data in the respective tabs are changed.
+* The user can adjust how much of each section is to be displayed by sliding the white horizontal bar up and down.
 * In future versions, the user will be able to customise what they wish to see on the dashboard.
 
-This is a mockup of how the dashboard will look like (to be updated in v1.2): 
-![dashboard_mockup](images/dashboard_mockup.png)
+This is how the dashboard looks like as of v1.2: 
+![dashboard_tab](images/dashboard-tab-v1.2.png)
 
 ### Customising the dashboard
 Allows the user to customise what to display on the dashboard. More details coming soon.
@@ -93,7 +95,7 @@ Deletes the contact at the specified INDEX.
 Example:  
 `delete 2`  
 
-![contacts_mockup](images/contacts_mockup.png)
+![contacts_tab](images/contacts-tab-v1.2.png)
 
 
 ## Scheduling an Event
@@ -106,12 +108,12 @@ Shows all the added Events
 
 ### Add Event command: `add`
 
-Format: `[type] [des/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] OR [due/DUE DATE]`
+Format: `[type] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] OR [due/DUE DATE]`
 
 Here are some of the examples to use the command lines.
 
--   `Adding a schedule: add event des/CS2103 meeting from/1300 to/1500`
--   `Adding a deadline: add event des/sign contract (Bob) due/21-09-2021`
+-   `Adding a schedule: add event d/CS2103 meeting from/1300 to/1500`
+-   `Adding a deadline: add event d/sign contract (Bob) due/21-09-2021`
 
 Note: While adding an Event, it will check if the Event given has any clashes with other Events which have already been added. The Event will be added only if there is no clash in timing with other Events which are already in the list.
 
@@ -125,7 +127,7 @@ Format: `delete [INDEX]`
 -   The index refers to the index number shown in the Event list.
 -   The index must be a positive integer 1, 2, 3, ...
 
-![Ui](images/Schedule.png)
+![schedule_tab](images/schedule-tab-v1.2.png)
 
 ## Todos
 
@@ -176,7 +178,7 @@ Examples:
 * `tab dashboard` while in the Contacts tab changes to the Dashboard tab
 * `tab contacts` in the Contacts tab just jumps to the top of the page (returns the tab to the original landing page view)
 
-### Convenience Commands
+### Convenience Commands (not supported yet as of v1.2)
 
 Allows users to input commands meant for a specific tab regardless of which tab they are currently viewing.
 
