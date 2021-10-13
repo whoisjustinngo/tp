@@ -1,14 +1,14 @@
 [![CI Status](https://github.com/AY2122S1-CS2103-T14-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2122S1-CS2103-T14-4/tp/actions)
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/dashboard-tab-v1.2.png)
 
 # Advyze
-This is **a project for Software Engineering (SE) students**, where it is designed for tech savvy student or financial advisors who prefer CLI over GUI, and have a lot of clients and a busy school schedule to keep track of.<br>
+This is **a project by Software Engineering (SE) students** which is designed for tech-savvy student or financial advisors who prefer CLI over GUI, and have a lot of clients and a busy school schedule to keep track of.<br>
 ## Example usages:
-  * Keeps track and manages of all client details
-  * Keeps track of all Tasks in a Todo List
-  * Keeps track of all Scheduled Events such as meeting and lessons
-  * Allows individual to priorities work
-  * Monitors individual goals and KPIs
+  * Keep track and manage client details
+  * Keep track of all their tasks in a Todo List
+  * Keep track of Scheduled Events like meetings and lessons
+  * Manage priorities
+  * Monitor individual goals and KPIs
 
 ## About
 The project simulates an ongoing software project for a desktop application (called _Advyze_) used for managing contact details.
