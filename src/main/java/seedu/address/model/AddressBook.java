@@ -148,6 +148,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addSchedule(Schedule s) {
         schedule.add(s);
+        schedule.sort();
     }
 
     /**
@@ -168,11 +169,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}. {@code key} must exist in
+     * Removes {@code schedule} from this {@code AddressBook}. {@code schedule} must exist in
      * the address book.
      */
     public void removeSchedule(Schedule key) {
         schedule.remove(key);
+    }
+
+    /**
+     * Checks if {@code schedule} clashes from this {@code AddressBook}.
+     */
+    public boolean hasScheduleClash(Schedule key) {
+        return schedule.isClash(key);
     }
 
     //// util methods

@@ -3,12 +3,16 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.exceptions.DuplicateScheduleException;
+import seedu.address.model.event.exceptions.EventClashException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
 public class UniqueScheduleList implements Iterable<Schedule> {
@@ -32,6 +36,9 @@ public class UniqueScheduleList implements Iterable<Schedule> {
         requireNonNull(schedule);
         if (contains(schedule)) {
             throw new DuplicateScheduleException();
+        }
+        if (isClash(schedule)) {
+            throw new EventClashException();
         }
         internalList.add(schedule);
     }
@@ -62,8 +69,8 @@ public class UniqueScheduleList implements Iterable<Schedule> {
     }
 
     /**
-     * Removes the equivalent schedule from the list.
-     * The todo must exist in the list.
+     * Removes the equivalent schedule from the list. The todo must exist in the
+     * list.
      */
     public void remove(Schedule toRemove) {
         requireNonNull(toRemove);
@@ -101,5 +108,51 @@ public class UniqueScheduleList implements Iterable<Schedule> {
             }
         }
         return true;
+    }
+
+    /**
+     * Checks if there is any clashes in the given {@code Schedule}.
+     *
+     * @param currTask is the {@code Schedule} which will be added into the list of
+     *                 {@code Schedule}.
+     * @return boolean if the {@code Schedule} has a lash with the list of
+     *         {@code Schedule}.
+     */
+    public boolean isClash(Schedule currTask) {
+        int currTimeFrom = currTask.getTimeFrom();
+        int currTimeTo = currTask.getTimeTo();
+        LocalDate currDate = currTask.getTaskDate();
+
+        ArrayList<Schedule> clashList = new ArrayList<Schedule>();
+
+        this.internalList.stream()
+                .filter(task -> currDate.equals(task.getTaskDate())
+                        && ((currTimeFrom > task.getTimeFrom() && currTimeFrom < task.getTimeTo())
+                                || (currTimeTo > task.getTimeFrom() && currTimeTo < task.getTimeTo())
+                                || (task.getTimeFrom() == currTimeFrom) || (task.getTimeTo() == currTimeTo)))
+                .forEach(task -> clashList.add(task));
+        return clashList.size() != 0;
+    }
+
+    /**
+     * Sorts the {@code List} from the ealiest to the latest order.
+     */
+    public void sort() {
+        this.internalList.sort(getScheduleComparator());
+    }
+
+    private Comparator<Schedule> getScheduleComparator() {
+        return new Comparator<Schedule>() {
+            @Override
+            public int compare(Schedule firstTask, Schedule secondTask) {
+                if (firstTask.getTaskDate().compareTo(secondTask.getTaskDate()) > 0) {
+                    return 1;
+                } else if (firstTask.getTaskDate().compareTo(secondTask.getTaskDate()) < 0) {
+                    return -1;
+                } else {
+                    return (firstTask.getTimeFrom() > secondTask.getTimeFrom()) ? 1 : -1;
+                }
+            }
+        };
     }
 }
