@@ -66,8 +66,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the todo list with {@code todos}. {@code todos} must
-     * not contain duplicate todos.
+     * Replaces the contents of the Schedules list with {@code Schedules}.
+     * {@code Schedules} must not contain duplicate Schedules.
      */
     public void setSchedules(List<Schedule> schedules) {
         this.schedule.setSchedules(schedules);
