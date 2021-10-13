@@ -73,6 +73,18 @@ public interface Model {
     boolean hasTodo(Todo todo);
 
     /**
+     * Returns true if a Schedule with the same description, date and time as
+     * {@code schedule} exists in the list of Schedule.
+     */
+    boolean hasSchedule(Schedule schedule);
+
+    /**
+     * Returns true if a Schedule clashes with {@code schedule} exists in
+     * the list of schedules.
+     */
+    boolean hasScheduleClash(Schedule schedule);
+
+    /**
      * Deletes the given person. The person must exist in the address book.
      */
     void deletePerson(Person target);
