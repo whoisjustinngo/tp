@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -131,5 +132,27 @@ public class UniqueScheduleList implements Iterable<Schedule> {
                                 || (task.getTimeFrom() == currTimeFrom) || (task.getTimeTo() == currTimeTo)))
                 .forEach(task -> clashList.add(task));
         return clashList.size() != 0;
+    }
+
+    /**
+     * Sorts the {@code List} from the ealiest to the latest order.
+     */
+    public void sort() {
+        this.internalList.sort(getScheduleComparator());
+    }
+
+    private Comparator<Schedule> getScheduleComparator() {
+        return new Comparator<Schedule>() {
+            @Override
+            public int compare(Schedule firstTask, Schedule secondTask) {
+                if (firstTask.getTaskDate().compareTo(secondTask.getTaskDate()) > 0) {
+                    return 1;
+                } else if (firstTask.getTaskDate().compareTo(secondTask.getTaskDate()) < 0) {
+                    return -1;
+                } else {
+                    return (firstTask.getTimeFrom() > secondTask.getTimeFrom()) ? 1 : -1;
+                }
+            }
+        };
     }
 }
