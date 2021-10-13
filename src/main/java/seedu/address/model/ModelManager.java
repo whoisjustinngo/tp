@@ -118,6 +118,10 @@ public class ModelManager implements Model {
         addressBook.removeTodo(target);
     }
 
+    @Override
+    public void deleteSchedule(Schedule target) {
+        addressBook.removeSchedule(target);
+    }
 
     @Override
     public void addPerson(Person person) {
@@ -188,6 +192,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
+        requireNonNull(predicate);
+        filteredSchedule.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -204,5 +214,4 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook) && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

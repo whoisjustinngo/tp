@@ -17,6 +17,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListSchedulesCommand;
 import seedu.address.logic.commands.ListTodosCommand;
 import seedu.address.logic.commands.TabSwitchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -95,8 +96,7 @@ public class AddressBookParser {
                 return new DeleteCommandParser().parse(arguments);
 
             case SCHEDULE_TAB_ID:
-                // TODO by Ricky
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND); // Placeholder for now, please replace this in v1.2
+                return new DeleteScheduleCommandParser().parse(arguments);
 
             case TODOS_TAB_ID:
                 return new DeleteTodoCommandParser().parse(arguments);
@@ -138,8 +138,7 @@ public class AddressBookParser {
                 return new ListCommand();
 
             case SCHEDULE_TAB_ID:
-                // TODO by Ricky
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND); // Placeholder for now, please replace this in v1.2
+                return new ListSchedulesCommand();
 
             case TODOS_TAB_ID:
                 return new ListTodosCommand();

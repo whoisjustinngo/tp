@@ -66,6 +66,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the Schedules list with {@code Schedules}.
+     * {@code Schedules} must not contain duplicate Schedules.
+     */
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedule.setSchedules(schedules);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -73,6 +81,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setTodos(newData.getTodoList());
+        setSchedules(newData.getScheduleList());
     }
 
     //// person-level operations
@@ -134,20 +143,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-<<<<<<< HEAD
      * Adds a schedule to the list of schedules. The schedule must not already exist
      * in the list of schedules.
-=======
-     * Adds a schedule to the list of schedules.
-     * The schedule must not already exist in the list of schedules.
->>>>>>> pull-branch
      */
     public void addSchedule(Schedule s) {
         schedule.add(s);
     }
 
     /**
-     * Returns true if a schedule with the same description as {@code schedule} exists in the list of schedules.
+     * Returns true if a schedule with the same description as {@code schedule}
+     * exists in the list of schedules.
      */
     public boolean hasSchedule(Schedule s) {
         requireNonNull(schedule);
@@ -155,16 +160,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-<<<<<<< HEAD
      * Removes {@code key} from this {@code AddressBook}. {@code key} must exist in
      * the address book.
-=======
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
->>>>>>> pull-branch
      */
     public void removeTodo(Todo key) {
         todos.remove(key);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}. {@code key} must exist in
+     * the address book.
+     */
+    public void removeSchedule(Schedule key) {
+        schedule.remove(key);
     }
 
     //// util methods
