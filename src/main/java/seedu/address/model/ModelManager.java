@@ -214,4 +214,16 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook) && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
+
+    @Override
+    public boolean hasSchedule(Schedule schedule) {
+        requireNonNull(schedule);
+        return addressBook.hasSchedule(schedule);
+    }
+
+    @Override
+    public boolean hasScheduleClash(Schedule schedule) {
+        requireNonNull(schedule);
+        return addressBook.hasScheduleClash(schedule);
+    }
 }

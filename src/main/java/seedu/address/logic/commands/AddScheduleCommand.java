@@ -23,6 +23,8 @@ public class AddScheduleCommand extends Command {
             + "16-05-2021 " + PREFIX_FROM + "1400 " + PREFIX_TO + "1600";
 
     public static final String MESSAGE_SUCCESS = "New Schedule added: %1$s";
+    public static final String MESSAGE_DUPLICATE_SCHEDULE = "This schedule clashes with"
+            + " your existing list of Schedules";
 
     private final Schedule schedule;
 
@@ -36,6 +38,15 @@ public class AddScheduleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.hasScheduleClash(this.schedule)) {
+            throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);
+        }
+
+        if (model.hasSchedule(this.schedule)) {
+            throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);
+        }
+
         model.addSchedule(schedule);
         return new CommandResult(String.format(MESSAGE_SUCCESS, schedule));
     }
