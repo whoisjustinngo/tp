@@ -18,14 +18,20 @@ public class TagsContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        for (Tag tag : person.getTags()) {
-            for (String keyword : keywords) {
-                if (tag.getTagName().equals(keyword)) {
-                    return true;
+        // all keywords must be present in tag
+        for (String keyword : keywords) {
+            boolean match = false;
+            for (Tag tag : person.getTags()) {
+                if (tag.getTagName().toLowerCase().equals(keyword.toLowerCase())) {
+                    match = true;
+                    break;
                 }
             }
+            if (!match) {
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 
     @Override
