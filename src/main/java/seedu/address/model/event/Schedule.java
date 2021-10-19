@@ -18,8 +18,12 @@ public class Schedule extends Event<Schedule> {
      */
     public Schedule(String description, String date, int timeFrom, int timeTo, boolean isDone) {
         super(description, date, isDone);
-        this.taskDate = LocalDate.of(Integer.parseInt(date.split("-")[2]), Integer.parseInt(date.split("-")[1]),
-                Integer.parseInt(date.split("-")[0]));
+        String dateCopy = date;
+        if (dateCopy.contains("/")) {
+            dateCopy = dateCopy.replace("/", "-");
+        }
+        this.taskDate = LocalDate.of(Integer.parseInt(dateCopy.split("-")[2]), Integer.parseInt(dateCopy.split("-")[1]),
+                Integer.parseInt(dateCopy.split("-")[0]));
         this.timeFrom = timeFrom;
         this.timeTo = timeTo;
     }
