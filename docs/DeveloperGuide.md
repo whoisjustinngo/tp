@@ -238,6 +238,25 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed for v1.3\] Mark `Todo` as done
+
+#### Proposed Implementation
+
+The proposed feature of marking a `Todo` as done will be implemented as a `DoneCommand`, which will be similar in many ways with an `EditCommand`. This similarity lies in the fact that both commands alter an attribute of the `Todo` model: the `EditCommand` alters the description attribute of the `Todo`, while the `DoneCommand` alters the `isDone` attribute of the `Todo`.
+
+Since `Todos` are guaranteed to be immutable in the current implementation of the `Todo` model, the `DoneCommand` applied to a `Todo` will not edit the `Todo`. Instead, a new `Todo` will be created with the same `description` but with the `isDone` attribute toggled to `true`.
+
+#### Design considerations:
+
+**Aspect: How mark as done executes:**
+
+* **Alternative 1 (current choice):** Replaces the current Todo with a new instance of Todo.
+    * Pros: Consistent with the current implementation of `EditCommand` for a `Person`, and thus increases consistency across the entire codebase.
+    * Cons: May have performance issues since a new Todo is created every time it is marked as done. Nevertheless, the impact of this implementation on performance is expected to be negligible.
+
+* **Alternative 2:** Edits the current instance of Todo.
+    * Pros: Might be faster, since there is no need to create a new Todo instance.
+    * Cons: Decreased consistency across the codebase, and no longer guarantees that Todos are immutable.
 
 --------------------------------------------------------------------------------------------------------------------
 
