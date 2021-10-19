@@ -183,6 +183,26 @@ public class AddCommandTest {
         public void updateFilteredTodoList(Predicate<Todo> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteSchedule(Schedule target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSchedule(Schedule schedule) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasScheduleClash(Schedule schedule) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
