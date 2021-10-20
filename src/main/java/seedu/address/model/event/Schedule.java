@@ -1,9 +1,10 @@
 package seedu.address.model.event;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Schedule extends Event<Schedule> {
-    private final LocalDate taskDate;
+    private final LocalDateTime taskDateTimeFrom;
+    private final LocalDateTime taskDateTimeTo;
     private final int timeFrom;
     private final int timeTo;
 
@@ -11,25 +12,33 @@ public class Schedule extends Event<Schedule> {
      * Priamry Constructor
      *
      * @param description description for this {@code Schedule}.
-     * @param date date for this {@code Schedule}.
-     * @param timeFrom start time for this {@code Schedule}.
-     * @param timeTo end time for this {@code Schedule}.
-     * @param isDone if this {@code Schedule} is completed.
+     * @param date        date for this {@code Schedule}.
+     * @param timeFrom    start time for this {@code Schedule}.
+     * @param timeTo      end time for this {@code Schedule}.
+     * @param isDone      if this {@code Schedule} is completed.
      */
-    public Schedule(String description, String date, int timeFrom, int timeTo, boolean isDone) {
+    public Schedule(String description, String date, String timeFrom, String timeTo, boolean isDone) {
         super(description, date, isDone);
         String dateCopy = date;
         if (dateCopy.contains("/")) {
             dateCopy = dateCopy.replace("/", "-");
         }
-        this.taskDate = LocalDate.of(Integer.parseInt(dateCopy.split("-")[2]), Integer.parseInt(dateCopy.split("-")[1]),
-                Integer.parseInt(dateCopy.split("-")[0]));
-        this.timeFrom = timeFrom;
-        this.timeTo = timeTo;
+        this.taskDateTimeFrom = LocalDateTime.of(Integer.parseInt(dateCopy.split("-")[2]),
+                Integer.parseInt(dateCopy.split("-")[1]), Integer.parseInt(dateCopy.split("-")[0]), getHour(timeFrom),
+                getMinute(timeFrom));
+        this.taskDateTimeTo = LocalDateTime.of(Integer.parseInt(dateCopy.split("-")[2]),
+                Integer.parseInt(dateCopy.split("-")[1]), Integer.parseInt(dateCopy.split("-")[0]), getHour(timeTo),
+                getMinute(timeTo));
+        this.timeFrom = Integer.parseInt(timeFrom);
+        this.timeTo = Integer.parseInt(timeTo);
     }
 
-    public LocalDate getTaskDate() {
-        return this.taskDate;
+    public LocalDateTime getTaskDateTimeFrom() {
+        return this.taskDateTimeFrom;
+    }
+
+    public LocalDateTime getTaskDateTimeTo() {
+        return this.taskDateTimeTo;
     }
 
     public int getTimeFrom() {
@@ -46,12 +55,7 @@ public class Schedule extends Event<Schedule> {
      * @return formatteed time and date.
      */
     public String getDateTime() {
-        return String.format("at %s from %d to %d", this.getDate(), this.getTimeFrom(), this.getTimeTo());
-    }
-
-    @Override
-    public Schedule markAsDone() {
-        return new Schedule(this.getDescription(), this.getDate(), this.getTimeFrom(), this.getTimeTo(), true);
+        return String.format("at %s from %04d to %04d", this.getDate(), this.getTimeFrom(), this.getTimeTo());
     }
 
     @Override
@@ -72,7 +76,15 @@ public class Schedule extends Event<Schedule> {
 
     @Override
     public String toString() {
-        return String.format("%s on %s from %d to %d", this.getDescription(), this.getDate(), this.timeFrom,
+        return String.format("%s on %s from %04d to %04d", this.getDescription(), this.getDate(), this.timeFrom,
                 this.timeTo);
+    }
+
+    private int getHour(String time) {
+        return Integer.parseInt(time) / 100;
+    }
+
+    private int getMinute(String time) {
+        return Integer.parseInt(time) % 100;
     }
 }

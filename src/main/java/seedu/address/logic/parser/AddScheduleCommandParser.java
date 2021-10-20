@@ -29,8 +29,8 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
 
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
         String date = argMultimap.getValue(PREFIX_DATE).get();
-        int from = Integer.parseInt(argMultimap.getValue(PREFIX_FROM).get());
-        int to = Integer.parseInt(argMultimap.getValue(PREFIX_TO).get());
+        String from = argMultimap.getValue(PREFIX_FROM).get();
+        String to = argMultimap.getValue(PREFIX_TO).get();
 
         Schedule schedule = new Schedule(description, date, from, to, false);
 
