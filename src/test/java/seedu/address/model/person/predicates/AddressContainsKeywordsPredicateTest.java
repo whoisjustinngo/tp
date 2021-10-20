@@ -17,14 +17,17 @@ class AddressContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("family");
         List<String> secondPredicateKeywordList = Arrays.asList("friend", "criminal");
 
-        AddressContainsKeywordsPredicate firstPredicate = new AddressContainsKeywordsPredicate(firstPredicateKeywordList);
-        AddressContainsKeywordsPredicate secondPredicate = new AddressContainsKeywordsPredicate(secondPredicateKeywordList);
+        AddressContainsKeywordsPredicate firstPredicate = new AddressContainsKeywordsPredicate(
+                                                                                        firstPredicateKeywordList);
+        AddressContainsKeywordsPredicate secondPredicate = new AddressContainsKeywordsPredicate(
+                                                                                        secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        AddressContainsKeywordsPredicate firstPredicateCopy = new AddressContainsKeywordsPredicate(firstPredicateKeywordList);
+        AddressContainsKeywordsPredicate firstPredicateCopy = new AddressContainsKeywordsPredicate(
+                                                                                        firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
