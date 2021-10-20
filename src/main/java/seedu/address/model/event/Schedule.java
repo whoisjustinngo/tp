@@ -2,11 +2,20 @@ package seedu.address.model.event;
 
 import java.time.LocalDateTime;
 
+import seedu.address.model.event.exceptions.InvalidTimeException;
+
 public class Schedule extends Event<Schedule> {
+    public static final String ERROR_MSG_LETTERS_IN_TIME =
+            "Please provide a proper time formatting between 0000 - 2359";
+    public static final String ERROR_MSG_INVALID_TIME_RANGE =
+            "Please provide a proper time range between 0000 - 2359.";
+    public static final String ERROR_MSG_INVALID_TIME_SQEUENCE =
+            "Time <from> cannot be greater than time <to>.";
     private final LocalDateTime taskDateTimeFrom;
     private final LocalDateTime taskDateTimeTo;
     private final int timeFrom;
     private final int timeTo;
+
 
     /**
      * Priamry Constructor
@@ -19,16 +28,13 @@ public class Schedule extends Event<Schedule> {
      */
     public Schedule(String description, String date, String timeFrom, String timeTo, boolean isDone) {
         super(description, date, isDone);
+        this.checkTimeRangeAndFormatting(timeFrom, timeTo);
         String dateCopy = date;
         if (dateCopy.contains("/")) {
             dateCopy = dateCopy.replace("/", "-");
         }
-        this.taskDateTimeFrom = LocalDateTime.of(Integer.parseInt(dateCopy.split("-")[2]),
-                Integer.parseInt(dateCopy.split("-")[1]), Integer.parseInt(dateCopy.split("-")[0]), getHour(timeFrom),
-                getMinute(timeFrom));
-        this.taskDateTimeTo = LocalDateTime.of(Integer.parseInt(dateCopy.split("-")[2]),
-                Integer.parseInt(dateCopy.split("-")[1]), Integer.parseInt(dateCopy.split("-")[0]), getHour(timeTo),
-                getMinute(timeTo));
+        this.taskDateTimeFrom = this.getLocalDateTime(dateCopy, timeFrom);
+        this.taskDateTimeTo = this.getLocalDateTime(dateCopy, timeTo);
         this.timeFrom = Integer.parseInt(timeFrom);
         this.timeTo = Integer.parseInt(timeTo);
     }
@@ -86,5 +92,37 @@ public class Schedule extends Event<Schedule> {
 
     private int getMinute(String time) {
         return Integer.parseInt(time) % 100;
+    }
+
+    private void checkTimeFormatting(String time) {
+        try {
+            int hour = Integer.parseInt(time) / 100;
+            int minute = Integer.parseInt(time) % 100;
+            if (hour > 23 || hour < 0) {
+                throw new InvalidTimeException(ERROR_MSG_INVALID_TIME_RANGE);
+            }
+            if (minute > 59 || minute < 0) {
+                throw new InvalidTimeException(ERROR_MSG_INVALID_TIME_RANGE);
+            }
+        } catch (NumberFormatException e) {
+            throw new InvalidTimeException(ERROR_MSG_LETTERS_IN_TIME);
+        }
+    }
+
+    private void checkTimeRange(String timeFrom, String timeTo) {
+        if (Integer.parseInt(timeFrom) > Integer.parseInt(timeTo)) {
+            throw new InvalidTimeException(ERROR_MSG_INVALID_TIME_SQEUENCE);
+        }
+    }
+
+    private void checkTimeRangeAndFormatting(String timeFrom, String timeTo) {
+        this.checkTimeFormatting(timeFrom);
+        this.checkTimeFormatting(timeTo);
+        this.checkTimeRange(timeFrom, timeTo);
+    }
+
+    private LocalDateTime getLocalDateTime(String dateCopy, String time) {
+        return LocalDateTime.of(Integer.parseInt(dateCopy.split("-")[2]), Integer.parseInt(dateCopy.split("-")[1]),
+                Integer.parseInt(dateCopy.split("-")[0]), getHour(time), getMinute(time));
     }
 }
