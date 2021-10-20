@@ -238,6 +238,32 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed for v1.3\] Display analytics on the Dashboard tab to facilitate goal setting
+
+A large portion of the income of financial advisors is from the commissions they earn from closing sales. This makes having
+personal goals an integral part of their workflow, as they need to know what they are working towards at the end of the day, 
+and how far they have left to go. Apart from being able to set their own ad hoc goals (feature coming soon), the dashboard
+will display general analytics so that the user can monitor their progress. Some fields that will be (tentatively) tracked are:
+* Total Commission Earned This Month
+* Total Number of Fresh Contacts this month
+* Total Number of Closing Contacts
+* Total Number of Closed Contacts This Month
+* Pending Claims
+* Contacts moved from fresh to closing to closed
+Note that there is no goal setting here, just monitoring of various statistics.
+
+#### Proposed Implementation
+The fields related to status of contacts will track changes in the contacts tab. For example for the number of fresh contacts
+this month, whenever the user adds a new contact with the `client` tag, the relevant section on the dashboard notices this 
+and increments the count by 1. When it is detected that a new month has begun (from reading system time), the count 
+would be reset.
+
+Integrating contacts and dashboard this way would reduce the amount of work the user needs to do.
+
+That being said, some fields like the total commission earned this month will have to be input manually.
+
+&nbsp;
+
 ### \[Proposed for v1.3\] Mark `Todo` as done
 
 #### Proposed Implementation
