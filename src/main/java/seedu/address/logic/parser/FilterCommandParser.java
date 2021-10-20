@@ -41,13 +41,14 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
+        Predicate<Person> namePredicate = getPredicateFromMultimap(PREFIX_NAME, argMultimap);
         Predicate<Person> tagsPredicate = getPredicateFromMultimap(PREFIX_TAG, argMultimap);
         Predicate<Person> relationshipPredicate = getPredicateFromMultimap(PREFIX_RELATIONSHIP, argMultimap);
         Predicate<Person> emailPredicate = getPredicateFromMultimap(PREFIX_EMAIL, argMultimap);
         Predicate<Person> addressPredicate = getPredicateFromMultimap(PREFIX_ADDRESS, argMultimap);
         Predicate<Person> phonePredicate = getPredicateFromMultimap(PREFIX_PHONE, argMultimap);
-        return new FilterCommand(tagsPredicate.and(relationshipPredicate).and(emailPredicate)
-                .and(addressPredicate).and(phonePredicate));
+        return new FilterCommand(namePredicate.and(relationshipPredicate).and(phonePredicate)
+                .and(emailPredicate).and(addressPredicate).and(tagsPredicate));
     }
 
     private Predicate<Person> getPredicateFromMultimap(Prefix prefix, ArgumentMultimap argMultimap) {

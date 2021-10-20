@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 
 
 public class FilterCommand extends Command {
@@ -18,9 +19,9 @@ public class FilterCommand extends Command {
             + "Example: " + COMMAND_WORD + "r/ client\n"
             + "Example: " + COMMAND_WORD + "t/ client";
 
-    private final Predicate predicate;
+    private final Predicate<Person> predicate;
 
-    public FilterCommand(Predicate predicate) {
+    public FilterCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
 
