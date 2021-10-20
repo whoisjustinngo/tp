@@ -5,11 +5,12 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FilterCommand;
-import seedu.address.model.person.TagsContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.TagsContainsKeywordsPredicate;
 
 class FilterCommandParserTest {
 
@@ -25,10 +26,10 @@ class FilterCommandParserTest {
     public void parse_validArgs_returnsFilterCommand() {
         // no leading and trailing whitespaces
         FilterCommand expectedFindCommand =
-                new FilterCommand(new TagsContainsKeywordsPredicate(Arrays.asList("Criminal", "Client")));
-        assertParseSuccess(parser, "Criminal Client", expectedFindCommand);
+                new FilterCommand((Predicate) new TagsContainsKeywordsPredicate(Arrays.asList("Criminal", "Client")));
+        assertParseSuccess(parser, " t/Criminal Client", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Criminal \n \t Client  \t", expectedFindCommand);
+        assertParseSuccess(parser, " t/\n Criminal \n \t Client  \t", expectedFindCommand);
     }
 }
