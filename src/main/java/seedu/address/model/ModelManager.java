@@ -226,4 +226,11 @@ public class ModelManager implements Model {
         requireNonNull(schedule);
         return addressBook.hasScheduleClash(schedule);
     }
+
+    @Override
+    public void setSchedule(Schedule target, Schedule editedSchedule) {
+        requireAllNonNull(target, editedSchedule);
+
+        addressBook.setSchedule(target, editedSchedule);
+    }
 }

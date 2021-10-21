@@ -11,6 +11,7 @@ public class Schedule extends Event<Schedule> {
             "Please provide a proper time range between 0000 - 2359.";
     public static final String ERROR_MSG_INVALID_TIME_SQEUENCE =
             "Time <from> cannot be greater than time <to>.";
+
     private final LocalDateTime taskDateTimeFrom;
     private final LocalDateTime taskDateTimeTo;
     private final int timeFrom;
@@ -62,6 +63,15 @@ public class Schedule extends Event<Schedule> {
      */
     public String getDateTime() {
         return String.format("at %s from %04d to %04d", this.getDate(), this.getTimeFrom(), this.getTimeTo());
+    }
+
+    public boolean isSameSchedule(Schedule schedule) {
+        return this.getTaskDateTimeFrom().equals(schedule.getTaskDateTimeFrom()) 
+                && this.getTaskDateTimeTo().equals(schedule.getTaskDateTimeTo())
+                && this.getDescription().equals(schedule.getDescription())
+                && this.getDate().equals(schedule.getDate())
+                && this.getTimeFrom() == schedule.getTimeFrom()
+                && this.getTimeTo() == schedule.getTimeTo();
     }
 
     @Override
