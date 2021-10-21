@@ -44,7 +44,7 @@ public class ScheduleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText(schedule.getDescription());
         date.setText(schedule.getDate());
-        time.setText(schedule.getTimeFrom() + " - " + schedule.getTimeTo());
+        time.setText(String.format("%04d - %04d", schedule.getTimeFrom(), schedule.getTimeTo()));
     }
 
     @Override

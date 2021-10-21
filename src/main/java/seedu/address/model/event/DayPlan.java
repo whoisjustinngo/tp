@@ -99,46 +99,12 @@ public class DayPlan {
     }
 
     /**
-     * Marks the given {@code Schedule} as done.
-     *
-     * @param currTask is the {@code Schedule} which will be marked as done.
-     */
-    public void markDone(Schedule currTask) {
-        int index = getIndex(currTask);
-        if (index < 0) {
-            return;
-        }
-        this.scheduledTasks.set(index, currTask.markAsDone());
-    }
-
-    /**
      * Checks if there is any {@code Schedule} in this {@code DayPlan}.
      *
      * @return true is there is a {@code Schedule} in this {@code DayPlan}.
      */
     public boolean hasSchedule() {
         return this.scheduledTasks.size() != 0;
-    }
-
-    private int getIndex(Schedule currTask) {
-        int currTimeFrom = currTask.getTimeFrom();
-        int currTimeTo = currTask.getTimeTo();
-        String description = currTask.getDescription();
-
-        for (int i = 0; i < this.scheduledTasks.size(); i++) {
-            Schedule pointerTask = this.scheduledTasks.get(i);
-            if (isEqual(pointerTask, currTimeFrom, currTimeTo, description)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private boolean isEqual(Schedule pointerTask, int currTimeFrom, int currTimeTo, String description) {
-        int pointerFrom = pointerTask.getTimeFrom();
-        int pointerTo = pointerTask.getTimeTo();
-        String pointerDescription = pointerTask.getDescription();
-        return (pointerFrom == currTimeFrom && currTimeTo == pointerTo && description.equals(pointerDescription));
     }
 
     private Comparator<Schedule> getComparatorEarlyToLate() {
