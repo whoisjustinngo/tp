@@ -79,6 +79,14 @@ public class Schedule extends Event<Schedule> {
     }
 
     @Override
+    public String getDate() {
+        int day = Integer.parseInt(this.date.split("-")[0]);
+        int month = Integer.parseInt(this.date.split("-")[1]);
+        int year = Integer.parseInt(this.date.split("-")[2]);
+        return String.format("%02d-%02d-%d", day, month, year);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
