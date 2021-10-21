@@ -1,10 +1,9 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Tags} matches any of the keywords given.
@@ -20,19 +19,15 @@ public class TagsContainsKeywordsPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         // all keywords must be present in tag
         for (String keyword : keywords) {
-            boolean match = false;
-            for (Tag tag : person.getTags()) {
-                if (tag.getTagName().toLowerCase().equals(keyword.toLowerCase())) {
-                    match = true;
-                    break;
-                }
-            }
-            if (!match) {
+            boolean hasMatch = person.getTags().stream()
+                    .anyMatch(tag -> tag.getTagName().equalsIgnoreCase(keyword));
+            if (!hasMatch) {
                 return false;
             }
         }
         return true;
     }
+
 
     @Override
     public boolean equals(Object other) {

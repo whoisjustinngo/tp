@@ -121,14 +121,15 @@ public class UniqueScheduleList implements Iterable<Schedule> {
     public boolean isClash(Schedule currTask) {
         int currTimeFrom = currTask.getTimeFrom();
         int currTimeTo = currTask.getTimeTo();
-        LocalDate currDate = currTask.getTaskDate();
+        LocalDate currDate = currTask.getTaskDateTimeFrom().toLocalDate();
 
         ArrayList<Schedule> clashList = new ArrayList<Schedule>();
 
         this.internalList.stream()
-                .filter(task -> currDate.equals(task.getTaskDate())
+                .filter(task -> currDate.equals(task.getTaskDateTimeFrom().toLocalDate())
                         && ((currTimeFrom > task.getTimeFrom() && currTimeFrom < task.getTimeTo())
                                 || (currTimeTo > task.getTimeFrom() && currTimeTo < task.getTimeTo())
+                                || (currTimeFrom < task.getTimeFrom() && currTimeTo > task.getTimeTo())
                                 || (task.getTimeFrom() == currTimeFrom) || (task.getTimeTo() == currTimeTo)))
                 .forEach(task -> clashList.add(task));
         return clashList.size() != 0;
@@ -145,13 +146,7 @@ public class UniqueScheduleList implements Iterable<Schedule> {
         return new Comparator<Schedule>() {
             @Override
             public int compare(Schedule firstTask, Schedule secondTask) {
-                if (firstTask.getTaskDate().compareTo(secondTask.getTaskDate()) > 0) {
-                    return 1;
-                } else if (firstTask.getTaskDate().compareTo(secondTask.getTaskDate()) < 0) {
-                    return -1;
-                } else {
-                    return (firstTask.getTimeFrom() > secondTask.getTimeFrom()) ? 1 : -1;
-                }
+                return firstTask.getTaskDateTimeFrom().compareTo(secondTask.getTaskDateTimeFrom());
             }
         };
     }

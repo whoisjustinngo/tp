@@ -64,19 +64,6 @@ public class DayDeadline {
     }
 
     /**
-     * Marks {@code Deadline} as done.
-     *
-     * @param deadline is the {@code Deadline} to be marked as done.
-     */
-    public void markDone(Deadline deadline) {
-        int index = checkExist(deadline);
-        if (index < 0) {
-            return;
-        }
-        this.dailyDeadline.set(index, deadline.markAsDone());
-    }
-
-    /**
      * Checks if there is any {@code Deadline} on the current day.
      *
      * @return boolean if there is a {@code Deadline}.
@@ -84,16 +71,4 @@ public class DayDeadline {
     public boolean hasDeadline() {
         return this.dailyDeadline.size() != 0;
     }
-
-    private int checkExist(Deadline deadline) {
-        String deadlineDescription = deadline.getDescription();
-        for (int i = 0; i < this.dailyDeadline.size(); i++) {
-            Deadline currDeadline = this.dailyDeadline.get(i);
-            if (currDeadline.getDescription().equals(deadlineDescription)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
 }
