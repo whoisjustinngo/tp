@@ -17,7 +17,6 @@ public class Schedule extends Event<Schedule> {
     private final int timeFrom;
     private final int timeTo;
 
-
     /**
      * Priamry Constructor
      *
@@ -65,13 +64,18 @@ public class Schedule extends Event<Schedule> {
         return String.format("at %s from %04d to %04d", this.getDate(), this.getTimeFrom(), this.getTimeTo());
     }
 
+    /**
+     * Checks if the respective {@code Schedule} is the same as this
+     * {@code Schedule}.
+     *
+     * @param schedule the {@code Schedule} to check if it is the same.
+     * @return a {@code boolean} if it is the same.
+     */
     public boolean isSameSchedule(Schedule schedule) {
-        return this.getTaskDateTimeFrom().equals(schedule.getTaskDateTimeFrom()) 
+        return this.getTaskDateTimeFrom().equals(schedule.getTaskDateTimeFrom())
                 && this.getTaskDateTimeTo().equals(schedule.getTaskDateTimeTo())
-                && this.getDescription().equals(schedule.getDescription())
-                && this.getDate().equals(schedule.getDate())
-                && this.getTimeFrom() == schedule.getTimeFrom()
-                && this.getTimeTo() == schedule.getTimeTo();
+                && this.getDescription().equals(schedule.getDescription()) && this.getDate().equals(schedule.getDate())
+                && this.getTimeFrom() == schedule.getTimeFrom() && this.getTimeTo() == schedule.getTimeTo();
     }
 
     @Override
