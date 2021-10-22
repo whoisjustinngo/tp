@@ -16,5 +16,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATE = new Prefix("date/");
     public static final Prefix PREFIX_FROM = new Prefix("fr/");
     public static final Prefix PREFIX_TO = new Prefix("to/");
-
+    public static final Prefix PREFIX_GOAL = new Prefix("goal/");
+    public static final Prefix PREFIX_END_DATE = new Prefix("bydate/");
+    public static final Prefix PREFIX_END_TIME = new Prefix("bytime/");
 }
