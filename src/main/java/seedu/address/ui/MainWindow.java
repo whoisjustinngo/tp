@@ -55,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
     private VBox dashboardTopPanelPlaceholder;
 
     @FXML
+    private VBox dashboardMiddlePanelPlaceholder;
+
+    @FXML
     private VBox dashboardBottomPanelPlaceholder;
 
     @FXML
@@ -145,7 +148,7 @@ public class MainWindow extends UiPart<Stage> {
 
         dashboardScheduleSection = new ScheduleListPanel(logic.getFilteredScheduleList());
         dashboardTodoSection = new TodoListPanel(logic.getFilteredTodoList());
-        dashboardTopPanelPlaceholder.getChildren().add(dashboardScheduleSection.getRoot());
+        dashboardMiddlePanelPlaceholder.getChildren().add(dashboardScheduleSection.getRoot());
         dashboardBottomPanelPlaceholder.getChildren().add(dashboardTodoSection.getRoot());
 
         resultDisplay = new ResultDisplay();

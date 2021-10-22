@@ -42,11 +42,24 @@
               <tabs>
                 <Tab id="dashboardTab" fx:id="dashboardTab" closable="false" styleClass="label" text="Dashboard">
                      <content>
-                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" styleClass="pane-with-border" stylesheets="@DarkTheme.css">
+                        <SplitPane dividerPositions="0.333, 0.666" orientation="VERTICAL" styleClass="pane-with-border" stylesheets="@DarkTheme.css">
                            <items>
-                              <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                              <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
                                  <content>
                                     <VBox fx:id="dashboardTopPanelPlaceholder" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: LIGHTSTEELBLUE;" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Here are some of your goals:" VBox.vgrow="NEVER">
+                                             <padding>
+                                                <Insets bottom="5.0" left="20.0" top="5.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                              <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                                 <content>
+                                    <VBox fx:id="dashboardMiddlePanelPlaceholder" prefHeight="200.0" prefWidth="100.0">
                                        <children>
                                           <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: LIGHTSTEELBLUE;" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Here is your upcoming schedule:" VBox.vgrow="NEVER">
                                              <padding>
@@ -57,7 +70,7 @@
                                  </content></ScrollPane>
                               <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
                                  <content>
-                                    <VBox fx:id="dashboardBottomPanelPlaceholder" prefHeight="200.0" prefWidth="100.0">
+                                    <VBox fx:id="dashboardBottomPanelPlaceholder" prefHeight="150.0" prefWidth="100.0">
                                        <children>
                                           <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: LIGHTSTEELBLUE;" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Here are some things you need to do:">
                                              <padding>
@@ -116,7 +129,7 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="SOMETIMES" />
       </VBox>
     </Scene>
   </scene>
