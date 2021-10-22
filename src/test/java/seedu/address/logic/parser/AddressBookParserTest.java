@@ -23,6 +23,8 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteTodoCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditTodoCommand;
+import seedu.address.logic.commands.EditTodoCommand.EditTodoDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -33,6 +35,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.todo.Todo;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTodoDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TodoBuilder;
@@ -88,6 +91,17 @@ public class AddressBookParserTest {
                 + INDEX_FIRST.getOneBased() + " "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editTodo() throws Exception {
+        Todo todo = new TodoBuilder().build();
+        EditTodoDescriptor descriptor = new EditTodoDescriptorBuilder(todo).build();
+        EditTodoCommand command = (EditTodoCommand) parser.parseCommand(TODOS.getLabel() + " "
+                + EditTodoCommand.COMMAND_WORD + " "
+                + INDEX_FIRST.getOneBased() + " "
+                + TodoUtil.getEditTodoDescriptorDetails(descriptor));
+        assertEquals(new EditTodoCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test
