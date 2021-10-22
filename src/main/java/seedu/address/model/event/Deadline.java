@@ -30,11 +30,6 @@ public class Deadline extends Event<Deadline> {
     }
 
     @Override
-    public Deadline markAsDone() {
-        return new Deadline(this.getDescription(), this.getDate(), true);
-    }
-
-    @Override
     public String toString() {
         return String.format("%s by %s", this.getDescription(), this.getDate());
     }

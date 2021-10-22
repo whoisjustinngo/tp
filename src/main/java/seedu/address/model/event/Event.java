@@ -19,13 +19,6 @@ abstract class Event<T> {
         this.isDone = isDone;
     }
 
-    /**
-     * Marks this {@code Event} as done.
-     *
-     * @return the {@code Event} that is marked as done.
-     */
-    abstract T markAsDone();
-
     public String getDescription() {
         return this.description;
     }

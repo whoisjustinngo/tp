@@ -56,8 +56,8 @@ public class JsonAdaptedSchedule {
         }
         final String modelDescription = this.description;
         final String modelDate = this.date;
-        final int modelFrom = Integer.parseInt(this.from);
-        final int modelTo = Integer.parseInt(this.to);
+        final String modelFrom = this.from;
+        final String modelTo = this.to;
         return new Schedule(modelDescription, modelDate, modelFrom, modelTo, false);
     }
 }
