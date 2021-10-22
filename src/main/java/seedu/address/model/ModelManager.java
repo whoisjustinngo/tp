@@ -146,6 +146,13 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void setTodo(Todo target, Todo editedTodo) {
+        requireAllNonNull(target, editedTodo);
+
+        addressBook.setTodo(target, editedTodo);
+    }
+
     // =========== Filtered Person List Accessors
     // =============================================================
 

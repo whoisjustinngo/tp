@@ -8,6 +8,9 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.todo.exceptions.DuplicateTodoException;
 import seedu.address.model.todo.exceptions.TodoNotFoundException;
 
@@ -46,6 +49,26 @@ public class UniqueTodoList implements Iterable<Todo> {
             throw new DuplicateTodoException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Replaces the todo {@code target} in the list with {@code editedTodo}.
+     * {@code target} must exist in the list.
+     * The {@code editedTodo} must not be the same as another existing todo in the list.
+     */
+    public void setTodo(Todo target, Todo editedTodo) {
+        requireAllNonNull(target, editedTodo);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new TodoNotFoundException();
+        }
+
+        if (!target.equals(editedTodo) && contains(editedTodo)) {
+            throw new DuplicateTodoException();
+        }
+
+        internalList.set(index, editedTodo);
     }
 
     /**

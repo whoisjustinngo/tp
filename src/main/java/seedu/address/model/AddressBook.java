@@ -161,6 +161,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given todo {@code target} in the list with
+     * {@code editedTodo}. {@code target} must exist in the address book. The
+     * {@code editedTodo} must not be the same as another
+     * existing todo in the address book.
+     */
+    public void setTodo(Todo target, Todo editedTodo) {
+        requireNonNull(editedTodo);
+
+        todos.setTodo(target, editedTodo);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}. {@code key} must exist in
      * the address book.
      */
