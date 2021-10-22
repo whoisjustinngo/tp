@@ -1,8 +1,12 @@
 package seedu.address.model.event;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.model.event.exceptions.InvalidTimeException;
+import seedu.address.model.tag.Tag;
 
 public class Schedule extends Event<Schedule> {
     public static final String ERROR_MSG_LETTERS_IN_TIME =
@@ -16,6 +20,7 @@ public class Schedule extends Event<Schedule> {
     private final LocalDateTime taskDateTimeTo;
     private final int timeFrom;
     private final int timeTo;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Priamry Constructor
@@ -26,7 +31,7 @@ public class Schedule extends Event<Schedule> {
      * @param timeTo      end time for this {@code Schedule}.
      * @param isDone      if this {@code Schedule} is completed.
      */
-    public Schedule(String description, String date, String timeFrom, String timeTo, boolean isDone) {
+    public Schedule(String description, String date, String timeFrom, String timeTo, boolean isDone, Set<Tag> tags) {
         super(description, date, isDone);
         this.checkTimeRangeAndFormatting(timeFrom, timeTo);
         String dateCopy = date;
@@ -37,6 +42,7 @@ public class Schedule extends Event<Schedule> {
         this.taskDateTimeTo = this.getLocalDateTime(dateCopy, timeTo);
         this.timeFrom = Integer.parseInt(timeFrom);
         this.timeTo = Integer.parseInt(timeTo);
+        this.tags.addAll(tags);
     }
 
     public LocalDateTime getTaskDateTimeFrom() {
@@ -53,6 +59,10 @@ public class Schedule extends Event<Schedule> {
 
     public int getTimeTo() {
         return this.timeTo;
+    }
+
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -98,8 +108,10 @@ public class Schedule extends Event<Schedule> {
 
         Schedule otherSchedule = (Schedule) other;
         return (otherSchedule.getDescription().equals(this.getDescription())
-                && otherSchedule.getTimeFrom() == this.getTimeFrom() && otherSchedule.getTimeTo() == this.getTimeTo()
-                && otherSchedule.getDate().equals(this.getDate()));
+                && otherSchedule.getTimeFrom() == this.getTimeFrom() 
+                && otherSchedule.getTimeTo() == this.getTimeTo()
+                && otherSchedule.getDate().equals(this.getDate())
+                && otherSchedule.getTags().equals(getTags()));
     }
 
     @Override
