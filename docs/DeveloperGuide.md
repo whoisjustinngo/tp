@@ -247,6 +247,23 @@ A `Predicate` takes in a keyword which applies a filter onto the model.
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+### \[Proposed for v1.2\] Scheduling an Event
+
+#### Proposed implementation
+
+The proposed feature of scheduling is parsed by `AddScheduleCommandParser`, and implemented by the `AddScheduleCommand`, where it will add the given Event into the list of Events that the user have. While adding a new `Event` into the `Schedule`, it will help to check if the given `Event` clashes with the Events which are already added into the `Schedule`. 
+
+On top of that, `Schedule` will all be arranged in the order starting from the earliest `Event` to the latest available `Event` with the aid of the `Comparator<Schedule>` which is declared in `UniqueScheduleList`.
+
+#### Design considerations:
+
+**Aspect: How mark as done executes:**
+* **Alternative 1 (current choice) Add Schedule into one UnqiueScheduleList**
+    * Pros: All the schedules are added into a list, and it is easier to navigate. It also makes the code looks cleaner and easier to understand as well.
+    * Cons: Iteration will always be O(n) since sorting and checking if there are clashes in `Schedule` happens in this `UniqueScheduleList`
+* **Alternative 2 use HashMap<Date, ScheduleList>**
+    * Pros: Operation does not need to take O(n) time when it comes to checking if the `Event` clashes, since we only check if there are clashes on that particular given date.
+    * Cons: Decreases overall code consistency.
 
 ### \[Proposed for v1.3\] Mark `Todo` as done
 
