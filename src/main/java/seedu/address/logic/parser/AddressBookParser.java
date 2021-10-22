@@ -136,6 +136,10 @@ public class AddressBookParser {
 
             case CONTACTS_TAB_ID:
                 return new FilterCommandParser().parse(arguments);
+
+            case SCHEDULE_TAB_ID:
+                return new FilterScheduleCommandParser().parse(arguments);
+
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
