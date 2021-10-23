@@ -3,13 +3,9 @@ package seedu.address.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.customGoal.CustomGoal;
-import seedu.address.model.person.Person;
-
-import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -57,8 +53,8 @@ public class CustomGoalCard extends UiPart<Region> {
         description.setText(customGoal.getDescription());
         progress.setText(Integer.toString(customGoal.getProgress()));
         goal.setText(Integer.toString(customGoal.getGoal()));
-        dateEnd.setText(customGoal.getEndDateForDisplay());
-        timeEnd.setText(customGoal.getEndTimeForDisplay());
+        dateEnd.setText(customGoal.getEndDateValue());
+        timeEnd.setText(customGoal.getEndTimeValue());
         progressBar.setProgress(((float)customGoal.getProgress() / (float)customGoal.getGoal()));
     }
 
