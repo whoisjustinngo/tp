@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
@@ -174,4 +175,8 @@ public interface Model {
      */
 
     void updateFilteredScheduleList(Predicate<Schedule> predicate);
+
+    void updateCustomGoal(Index goalToUpdate, float valueToUpdateBy);
+
+    int getNumOfCustomGoals();
 }

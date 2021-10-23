@@ -51,8 +51,8 @@ public class CustomGoalCard extends UiPart<Region> {
         this.customGoal = customGoal;
         id.setText(displayedIndex + ". ");
         description.setText(customGoal.getDescription());
-        progress.setText(Integer.toString(customGoal.getProgress()));
-        goal.setText(Integer.toString(customGoal.getGoal()));
+        progress.setText(Float.toString(customGoal.getProgress()));
+        goal.setText(Float.toString(customGoal.getGoal()));
         dateEnd.setText(customGoal.getEndDateValue());
         timeEnd.setText(customGoal.getEndTimeValue());
         progressBar.setProgress(((float)customGoal.getProgress() / (float)customGoal.getGoal()));

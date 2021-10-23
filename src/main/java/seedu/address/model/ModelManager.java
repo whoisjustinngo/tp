@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
@@ -138,6 +139,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateCustomGoal(Index goalToUpdate, float valueToUpdateBy) {
+        addressBook.updateCustomGoal(goalToUpdate, valueToUpdateBy);
+    }
+
+    @Override
+    public int getNumOfCustomGoals() {
+        return this.getFilteredCustomGoalList().size();
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -159,8 +170,8 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
-
     // =========== Filtered Person List Accessors
+
     // =============================================================
 
     /**
@@ -177,8 +188,8 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
-
     // =========== Filtered Todo List Accessors
+
     // =============================================================
 
     /**

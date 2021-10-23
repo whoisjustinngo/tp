@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.customGoal.UniqueCustomGoalList;
 import seedu.address.model.event.Schedule;
@@ -106,6 +107,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasCustomGoal(CustomGoal goal) {
         requireNonNull(goal);
         return customGoals.contains(goal);
+    }
+
+    public void updateCustomGoal(Index goalToUpdate, float valueToUpdateBy) {
+        requireNonNull(goalToUpdate);
+        customGoals.update(goalToUpdate, valueToUpdateBy);
     }
 
     //// person-level operations

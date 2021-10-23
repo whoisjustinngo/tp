@@ -11,8 +11,8 @@ public class CustomGoal {
     private static final String DATE_FORMAT = "E, dd MMM yyyy";
 
     private final String goalDescription;
-    private final int goal;
-    private int progress;
+    private final float goal;
+    private final float progress;
     private final LocalDate dateAdded;
     private final LocalDate endDate;
     private final LocalTime timeAdded;
@@ -29,11 +29,12 @@ public class CustomGoal {
         this.timeAdded = LocalTime.now();
     }
     
-    public CustomGoal(String goalDescription, int goal, int progress, String dateAdded, String timeAdded, String endDate,
+    public CustomGoal(String goalDescription, float goal, float progress, String dateAdded, String timeAdded,
+                      String endDate,
                       String endTime) {
         this.goalDescription = goalDescription.trim();
         this.goal = goal;
-        this.progress = progress;
+        this.progress = Math.max(progress, 0);
         this.dateAdded = LocalDate.parse(dateAdded, DateTimeFormatter.ofPattern(DATE_FORMAT));
         this.timeAdded = LocalTime.parse(timeAdded, DateTimeFormatter.ofPattern(TIME_FORMAT));
         if (endDate.equals("-")) {
@@ -47,23 +48,38 @@ public class CustomGoal {
             this.endTime = LocalTime.parse(endTime, DateTimeFormatter.ofPattern(TIME_FORMAT));    
         }
     }
+    
+    private CustomGoal(CustomGoal oldGoal, float valueToUpdateBy) {
+        this.goalDescription = oldGoal.getDescription();
+        this.goal = oldGoal.getGoal();
+        this.progress = Math.max((oldGoal.getProgress() + valueToUpdateBy), 0);
+        this.dateAdded = oldGoal.dateAdded;
+        this.timeAdded = oldGoal.timeAdded;
+        this.endDate = oldGoal.endDate;
+        this.endTime = oldGoal.endTime;
+    }
 
+    public CustomGoal updateProgress(float valueToUpdateBy) {
+        return new CustomGoal(this, valueToUpdateBy);
+    }
+    
     @Override
     public boolean equals(Object other) {
         if (this == other) {
             return true;
         }
-        
+
         if (!(other instanceof CustomGoal)) {
             return false;
         }
-        
+
         CustomGoal otherGoal = (CustomGoal) other;
         return this.goalDescription.equals(otherGoal.goalDescription)
                 && this.goal == otherGoal.goal
                 && this.endDate.isEqual(otherGoal.endDate)
                 && this.endTime.equals(otherGoal.endTime);
     }
+    
 
     @Override
     public int hashCode() {
@@ -86,11 +102,11 @@ public class CustomGoal {
         return this.goalDescription;
     }
 
-    public int getProgress() {
+    public float getProgress() {
         return this.progress;
     }
 
-    public int getGoal() {
+    public float getGoal() {
         return this.goal;
     }
 
@@ -98,16 +114,16 @@ public class CustomGoal {
         return this.endDate.isEqual(LocalDate.MAX) ? "-" :
                 this.endDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
     }
-    
+
     public String getEndTimeValue() {
         return this.endTime.equals(LocalTime.MAX) ? "-" : 
                 this.endTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
     }
-    
+
     public String getDateAddedValue() {
         return this.dateAdded.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
     }
-    
+
     public String getTimeAddedValue() {
         return this.timeAdded.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
     }

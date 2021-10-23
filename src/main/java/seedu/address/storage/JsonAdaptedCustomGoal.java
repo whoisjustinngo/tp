@@ -17,8 +17,8 @@ class JsonAdaptedCustomGoal {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "CustomGoal has fields missing!";
 
     private final String goalDescription;
-    private final int goal;
-    private final int progress;
+    private final float goal;
+    private final float progress;
     private final String dateAdded;
     private final String endDate;
     private final String timeAdded;
@@ -29,8 +29,8 @@ class JsonAdaptedCustomGoal {
      */
     @JsonCreator
     public JsonAdaptedCustomGoal(@JsonProperty("goalDescription") String goalDescription,
-                                 @JsonProperty("goal") int goal,
-                                 @JsonProperty("progress") int progress,
+                                 @JsonProperty("goal") float goal,
+                                 @JsonProperty("progress") float progress,
                                  @JsonProperty("dateAdded") String dateAdded,
                                  @JsonProperty("endDate") String endDate,
                                  @JsonProperty("timeAdded") String timeAdded,
@@ -67,8 +67,8 @@ class JsonAdaptedCustomGoal {
             throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
         }
         final String modelGoalDescription = goalDescription;
-        final int modelGoal = goal;
-        final int modelProgress = progress;
+        final float modelGoal = goal;
+        final float modelProgress = progress;
         final String modelDateAdded = dateAdded;
         final String modelEndDate = endDate;
         final String modelTimeAdded = timeAdded;

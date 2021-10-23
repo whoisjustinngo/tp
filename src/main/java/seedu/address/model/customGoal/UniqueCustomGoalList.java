@@ -2,6 +2,7 @@ package seedu.address.model.customGoal;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.customGoal.exceptions.DuplicateCustomGoalException;
 
 import java.util.Iterator;
@@ -44,6 +45,13 @@ public class UniqueCustomGoalList implements Iterable<CustomGoal> {
             throw new DuplicateCustomGoalException(); // TODO
         }
         internalList.add(toAdd);
+    }
+
+    public void update(Index goalToUpdate, float valueToUpdateBy) {
+        requireNonNull(goalToUpdate);
+        CustomGoal updatedGoal = internalList.get(goalToUpdate.getZeroBased()).updateProgress(valueToUpdateBy);
+        internalList.remove(goalToUpdate.getZeroBased());
+        internalList.add(goalToUpdate.getZeroBased(), updatedGoal);
     }
 
     /**
@@ -93,10 +101,10 @@ public class UniqueCustomGoalList implements Iterable<CustomGoal> {
                 || (other instanceof UniqueCustomGoalList // instanceof handles nulls
                         && internalList.equals(((UniqueCustomGoalList) other).internalList));
     }
-
 //    @Override
 //    public int hashCode() {
 //        return internalList.hashCode();
+
 //    }
 
     /**
