@@ -34,6 +34,8 @@ public class TodoCard extends UiPart<Region> {
     private Label description;
     @FXML
     private FlowPane tags;
+    @FXML
+    private HBox todoContentHBox;
 
     /**
      * Creates a {@code TodoCard} with the given {@code Todo} and index to display.
@@ -46,6 +48,11 @@ public class TodoCard extends UiPart<Region> {
         todo.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (todo.isDone()) {
+            Label isDoneLabel = new Label("done!");
+            isDoneLabel.setId("isDoneLabel");
+            todoContentHBox.getChildren().add(isDoneLabel);
+        }
     }
 
     @Override

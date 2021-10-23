@@ -84,8 +84,9 @@ public class EditTodoCommand extends Command {
         String updatedDescription = editTodoDescriptor.getDescription()
                 .orElse(todoToEdit.getDescription());
         Set<Tag> updatedTags = editTodoDescriptor.getTags().orElse(todoToEdit.getTags());
+        boolean isDone = todoToEdit.isDone();
 
-        return new Todo(updatedDescription, updatedTags);
+        return new Todo(updatedDescription, updatedTags, isDone);
     }
 
     @Override

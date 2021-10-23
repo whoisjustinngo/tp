@@ -22,17 +22,20 @@ class JsonAdaptedTodo {
 
     private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final boolean isDone;
 
     /**
      * Constructs a {@code JsonAdaptedTodo} with the given todo details.
      */
     @JsonCreator
     public JsonAdaptedTodo(@JsonProperty("description") String description,
-                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                           @JsonProperty("isDone") boolean isDone) {
         this.description = description;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.isDone = isDone;
     }
 
     /**
@@ -43,6 +46,7 @@ class JsonAdaptedTodo {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        isDone = source.isDone();
     }
 
     /**
@@ -63,7 +67,9 @@ class JsonAdaptedTodo {
 
         final Set<Tag> modelTags = new HashSet<>(todoTags);
 
-        return new Todo(modelDescription, modelTags);
+        final boolean modelIsDone = isDone;
+
+        return new Todo(modelDescription, modelTags, modelIsDone);
     }
 
 }

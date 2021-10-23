@@ -16,14 +16,26 @@ import seedu.address.model.tag.Tag;
 public class Todo {
     private final String description;
     private final Set<Tag> tags = new HashSet<>();
+    private final boolean isDone;
 
     /**
-     * Every field must be present and not null.
+     * Every field except isDone must be present and not null. isDone is automatically set to false.
      */
     public Todo(String description, Set<Tag> tags) {
         requireAllNonNull(description, tags);
         this.description = description;
         this.tags.addAll(tags);
+        this.isDone = false;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Todo(String description, Set<Tag> tags, boolean isDone) {
+        requireAllNonNull(description, tags);
+        this.description = description;
+        this.tags.addAll(tags);
+        this.isDone = isDone;
     }
 
     public String getDescription() {
@@ -38,10 +50,25 @@ public class Todo {
         return Collections.unmodifiableSet(tags);
     }
 
+    public boolean isDone() {
+        return isDone;
+    }
+
+    /**
+     * Creates and returns a {@code Todo} with the same details but is marked as done.
+     */
+    public Todo getDoneVersion() {
+        return new Todo(description, tags, true);
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription());
+
+        if (isDone) {
+            builder.append(" [done]");
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -70,6 +97,6 @@ public class Todo {
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, tags);
+        return Objects.hash(description, tags, isDone);
     }
 }
