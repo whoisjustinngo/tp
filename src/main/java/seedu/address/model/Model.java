@@ -179,4 +179,6 @@ public interface Model {
     void updateCustomGoal(Index goalToUpdate, float valueToUpdateBy);
 
     int getNumOfCustomGoals();
+
+    void deleteCustomGoal(Index goalToDelete);
 }

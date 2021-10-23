@@ -139,6 +139,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteCustomGoal(Index goalToDelete) {
+        addressBook.deleteCustomGoal(goalToDelete);
+    }
+
+    @Override
     public void updateCustomGoal(Index goalToUpdate, float valueToUpdateBy) {
         addressBook.updateCustomGoal(goalToUpdate, valueToUpdateBy);
     }

@@ -42,7 +42,7 @@ public class UniqueCustomGoalList implements Iterable<CustomGoal> {
     public void add(CustomGoal toAdd)  {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateCustomGoalException(); // TODO
+            throw new DuplicateCustomGoalException();
         }
         internalList.add(toAdd);
     }
@@ -52,6 +52,11 @@ public class UniqueCustomGoalList implements Iterable<CustomGoal> {
         CustomGoal updatedGoal = internalList.get(goalToUpdate.getZeroBased()).updateProgress(valueToUpdateBy);
         internalList.remove(goalToUpdate.getZeroBased());
         internalList.add(goalToUpdate.getZeroBased(), updatedGoal);
+    }
+
+    public void delete(Index goalToDelete) {
+        requireNonNull(goalToDelete);
+        internalList.remove(goalToDelete.getZeroBased());
     }
 
     /**
@@ -94,7 +99,6 @@ public class UniqueCustomGoalList implements Iterable<CustomGoal> {
     public Iterator<CustomGoal> iterator() {
         return internalList.iterator();
     }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -103,6 +107,7 @@ public class UniqueCustomGoalList implements Iterable<CustomGoal> {
     }
 //    @Override
 //    public int hashCode() {
+
 //        return internalList.hashCode();
 
 //    }

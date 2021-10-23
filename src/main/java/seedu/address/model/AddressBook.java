@@ -104,6 +104,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         customGoals.add(toAdd);
     }
 
+    public void deleteCustomGoal(Index goalToDelete) {
+        requireNonNull(goalToDelete);
+        customGoals.delete(goalToDelete);
+    }
+
     public boolean hasCustomGoal(CustomGoal goal) {
         requireNonNull(goal);
         return customGoals.contains(goal);

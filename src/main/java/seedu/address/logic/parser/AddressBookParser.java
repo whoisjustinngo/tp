@@ -90,7 +90,7 @@ public class AddressBookParser {
             switch (tab) {
 
             case DASHBOARD_TAB_ID:
-                throw new ParseException(MESSAGE_INVALID_TAB);
+                return new DeleteCustomGoalCommandParser().parse(arguments);
 
             case CONTACTS_TAB_ID:
                 return new DeleteCommandParser().parse(arguments);
