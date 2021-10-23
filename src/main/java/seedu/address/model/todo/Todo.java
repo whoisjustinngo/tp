@@ -1,6 +1,13 @@
 package seedu.address.model.todo;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a task to be done.
@@ -8,24 +15,40 @@ import static java.util.Objects.requireNonNull;
  */
 public class Todo {
     private final String description;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Constructs a Todo.
-     *
-     * @param description The description of this todo.
+     * Every field must be present and not null.
      */
-    public Todo(String description) {
-        requireNonNull(description);
+    public Todo(String description, Set<Tag> tags) {
+        requireAllNonNull(description, tags);
         this.description = description;
+        this.tags.addAll(tags);
     }
 
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
     @Override
     public String toString() {
-        return description;
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getDescription());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
+        return builder.toString();
     }
 
     /**
@@ -47,6 +70,6 @@ public class Todo {
 
     @Override
     public int hashCode() {
-        return description.hashCode();
+        return Objects.hash(description, tags);
     }
 }

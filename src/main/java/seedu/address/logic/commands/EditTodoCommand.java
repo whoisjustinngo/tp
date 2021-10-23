@@ -2,16 +2,21 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TODOS;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.todo.Todo;
 
 /**
@@ -24,7 +29,8 @@ public class EditTodoCommand extends Command {
             + "by the index number used in the displayed todo list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]\n"
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "read book ";
 
@@ -77,8 +83,9 @@ public class EditTodoCommand extends Command {
 
         String updatedDescription = editTodoDescriptor.getDescription()
                 .orElse(todoToEdit.getDescription());
+        Set<Tag> updatedTags = editTodoDescriptor.getTags().orElse(todoToEdit.getTags());
 
-        return new Todo(updatedDescription);
+        return new Todo(updatedDescription, updatedTags);
     }
 
     @Override
@@ -105,6 +112,7 @@ public class EditTodoCommand extends Command {
      */
     public static class EditTodoDescriptor {
         private String description;
+        private Set<Tag> tags;
 
         public EditTodoDescriptor() {}
 
@@ -113,13 +121,14 @@ public class EditTodoCommand extends Command {
          */
         public EditTodoDescriptor(EditTodoDescriptor toCopy) {
             setDescription(toCopy.description);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description);
+            return CollectionUtil.isAnyNonNull(description, tags);
         }
 
         public void setDescription(String description) {
@@ -129,6 +138,24 @@ public class EditTodoCommand extends Command {
         public Optional<String> getDescription() {
             return Optional.ofNullable(description);
         }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
 
         @Override
         public boolean equals(Object other) {
@@ -145,7 +172,8 @@ public class EditTodoCommand extends Command {
             // state check
             EditTodoDescriptor e = (EditTodoDescriptor) other;
 
-            return getDescription().equals(e.getDescription());
+            return getDescription().equals(e.getDescription())
+                    && getTags().equals(e.getTags());
         }
     }
 }
