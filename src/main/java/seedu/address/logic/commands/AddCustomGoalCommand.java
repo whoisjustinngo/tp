@@ -32,9 +32,8 @@ public class AddCustomGoalCommand extends Command {
             + PREFIX_DESCRIPTION + "earn $1000 in commissions "
             + PREFIX_GOAL + "1000 "
             + PREFIX_END_DATE + "23-07-2021";
-    public static final String MESSAGE_SUCCESS = "New custom goal created added: %1$s"; // TODO
-    public static final String MESSAGE_DUPLICATE_TODO = "This custom goal already exists"; 
-    // TODO
+    public static final String MESSAGE_SUCCESS = "New custom goal created added: %1$s";
+    public static final String MESSAGE_DUPLICATE_CUSTOM_GOAL = "This custom goal already exists";
 
     private final CustomGoal toAdd;
 
@@ -48,16 +47,13 @@ public class AddCustomGoalCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-//        requireNonNull(model); TODO
-//
-//        if (model.hasTodo(toAdd)) {
-//            throw new CommandException(MESSAGE_DUPLICATE_TODO);
-//        }
-//
-//        model.addTodo(toAdd);
-//        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        
-        // TODO create a new window to add to dashboard
+        requireNonNull(model);
+
+        if (model.hasCustomGoal(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CUSTOM_GOAL);
+        }
+
+        model.addCustomGoal(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));   
     }
 

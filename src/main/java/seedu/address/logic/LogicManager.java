@@ -14,6 +14,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.todo.Todo;
@@ -74,6 +75,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
         return model.getFilteredScheduleList();
+    }
+
+    @Override
+    public ObservableList<CustomGoal> getFilteredCustomGoalList() {
+        return model.getFilteredCustomGoalList();
     }
 
     @Override

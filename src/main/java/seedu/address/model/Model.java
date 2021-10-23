@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.todo.Todo;
@@ -73,6 +74,12 @@ public interface Model {
     boolean hasTodo(Todo todo);
 
     /**
+     * Returns true if a CustomGoal with the same description, goal, and/or endDate and/or endTime as
+     * {@code toAdd} exists in the list of customGoals.
+     */
+    boolean hasCustomGoal(CustomGoal toAdd);
+
+    /**
      * Returns true if a Schedule with the same description, date and time as
      * {@code schedule} exists in the list of Schedule.
      */
@@ -98,6 +105,11 @@ public interface Model {
      * Deletes the given todo. The todo must exist in the address book.
      */
     void deleteSchedule(Schedule target);
+
+    /**
+     * Adds the given CustomGoal, which must not already exist in the list of customGoals.
+     */
+    void addCustomGoal(CustomGoal toAdd);
 
     /**
      * Adds the given person. {@code person} must not already exist in the address
@@ -141,6 +153,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered schedule list */
     ObservableList<Schedule> getFilteredScheduleList();
+
+    /** Returns an unmodifiable view of the filtered custom goal list */
+    ObservableList<CustomGoal> getFilteredCustomGoalList();
 
     /**
      * Updates the filter of the filtered todo list to filter by the given

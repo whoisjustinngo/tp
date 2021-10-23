@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private CustomGoalListPanel customGoalSection;
     private ScheduleListPanel dashboardScheduleSection;
     private TodoListPanel dashboardTodoSection;
     private PersonListPanel personListPanel;
@@ -136,6 +137,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        
+        customGoalSection = new CustomGoalListPanel(logic.getFilteredCustomGoalList());
+        dashboardTopPanelPlaceholder.getChildren().add(customGoalSection.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());

@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.todo.Todo;
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<CustomGoal> filteredCustomGoals;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Todo> filteredTodos;
     private final FilteredList<Schedule> filteredSchedule;
@@ -38,6 +40,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredCustomGoals = new FilteredList<>(this.addressBook.getCustomGoalList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTodos = new FilteredList<>(this.addressBook.getTodoList());
         filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
@@ -109,6 +112,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasCustomGoal(CustomGoal toAdd) {
+        requireNonNull(toAdd);
+        return addressBook.hasCustomGoal(toAdd);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -121,6 +130,11 @@ public class ModelManager implements Model {
     @Override
     public void deleteSchedule(Schedule target) {
         addressBook.removeSchedule(target);
+    }
+
+    @Override
+    public void addCustomGoal(CustomGoal toAdd) {
+        addressBook.addCustomGoal(toAdd);
     }
 
     @Override
@@ -183,6 +197,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
         return filteredSchedule;
+    }
+
+    @Override
+    public ObservableList<CustomGoal> getFilteredCustomGoalList() {
+        return filteredCustomGoals;
     }
 
     @Override
