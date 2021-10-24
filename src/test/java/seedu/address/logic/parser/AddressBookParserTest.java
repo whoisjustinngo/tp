@@ -21,6 +21,7 @@ import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteTodoCommand;
+import seedu.address.logic.commands.DoneTodoCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EditTodoCommand;
@@ -142,6 +143,15 @@ public class AddressBookParserTest {
                 TODOS.getLabel() + " " + ListTodosCommand.COMMAND_WORD) instanceof ListTodosCommand);
         assertTrue(parser.parseCommand(TODOS.getLabel() + " " + ListTodosCommand.COMMAND_WORD + " 3")
                 instanceof ListTodosCommand);
+    }
+
+    @Test
+    public void parseCommand_doneTodo() throws Exception {
+        Todo todo = new TodoBuilder().build();
+        DoneTodoCommand command = (DoneTodoCommand) parser.parseCommand(TODOS.getLabel() + " "
+                + DoneTodoCommand.COMMAND_WORD + " "
+                + INDEX_FIRST.getOneBased());
+        assertEquals(new DoneTodoCommand(INDEX_FIRST), command);
     }
 
     @Test

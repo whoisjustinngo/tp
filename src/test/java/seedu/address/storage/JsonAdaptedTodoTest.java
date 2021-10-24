@@ -29,7 +29,7 @@ public class JsonAdaptedTodoTest {
 
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
-        JsonAdaptedTodo todo = new JsonAdaptedTodo(null, VALID_TAGS);
+        JsonAdaptedTodo todo = new JsonAdaptedTodo(null, VALID_TAGS, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "description");
         assertThrows(IllegalValueException.class, expectedMessage, todo::toModelType);
     }
@@ -39,7 +39,7 @@ public class JsonAdaptedTodoTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedTodo todo =
-                new JsonAdaptedTodo(VALID_DESCRIPTION, invalidTags);
+                new JsonAdaptedTodo(VALID_DESCRIPTION, invalidTags, false);
         assertThrows(IllegalValueException.class, todo::toModelType);
     }
 
