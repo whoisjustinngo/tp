@@ -127,4 +127,20 @@ public class CustomGoal {
     public String getTimeAddedValue() {
         return this.timeAdded.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
     }
+    
+    public String getProgressValue() {
+        return formatFloat(this.progress); 
+    }
+    
+    public String getGoalValue() {
+        return formatFloat(this.goal);
+    }
+
+    public String formatFloat(float f) {
+        if (f == (long)f) {
+            return String.format("%d", (long)f);
+        } else {
+            return String.format("%s", f);
+        }
+    }
 }
