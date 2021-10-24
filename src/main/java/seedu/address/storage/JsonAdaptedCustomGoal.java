@@ -2,12 +2,9 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.customGoal.CustomGoal;
-import seedu.address.model.todo.Todo;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 /**
  * Jackson-friendly version of {@link seedu.address.model.customGoal.CustomGoal}.
@@ -73,13 +70,13 @@ class JsonAdaptedCustomGoal {
         final String modelEndDate = endDate;
         final String modelTimeAdded = timeAdded;
         final String modelEndTime = endTime;
-        return new CustomGoal(modelGoalDescription
-                , modelGoal
-                , modelProgress
-                , modelDateAdded
-                , modelTimeAdded
-                , modelEndDate
-                , modelEndTime);
+        return new CustomGoal(modelGoalDescription,
+                modelGoal,
+                modelProgress,
+                modelDateAdded,
+                modelTimeAdded,
+                modelEndDate,
+                modelEndTime);
     }
 
 }

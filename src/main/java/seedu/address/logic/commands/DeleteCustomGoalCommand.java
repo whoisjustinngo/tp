@@ -1,21 +1,20 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VALUE;
-
 /**
- * Adds a person to the address book.
+ * Deletes a specified CustomGoal from the list of CustomGoals.
  */
 public class DeleteCustomGoalCommand extends Command {
 
     public static final String COMMAND_WORD = "update";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes the custom goal corresponding to the " +
-            "specified index"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes the custom goal corresponding to the "
+            + "specified index"
             + "Parameters: "
             + "INDEX_OF_GOAL_TO_UPDATE\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -26,6 +25,10 @@ public class DeleteCustomGoalCommand extends Command {
 
     private final Index goalToDelete;
 
+    /**
+     * Creates a command to delete the custom goal corresponding to the specified index.
+     * @param goalToDelete The (1-based) index of the CustomGoal to delete in the list of CustomGoals.
+     */
     public DeleteCustomGoalCommand(Index goalToDelete) {
         requireNonNull(goalToDelete);
         this.goalToDelete = goalToDelete;
@@ -34,7 +37,7 @@ public class DeleteCustomGoalCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        
+
         if (this.goalToDelete.getOneBased() > model.getNumOfCustomGoals()) {
             throw new CommandException(MESSAGE_INVALID_INDEX);
         }
@@ -47,6 +50,6 @@ public class DeleteCustomGoalCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCustomGoalCommand // instanceof handles nulls
-                &&  this.equals(((DeleteCustomGoalCommand) other)));
+                && this.equals(((DeleteCustomGoalCommand) other)));
     }
 }

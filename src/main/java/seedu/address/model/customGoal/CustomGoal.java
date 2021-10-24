@@ -5,6 +5,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+/**
+ * Represents a custom goal which is to be displayed on the dashboard.
+ */
 public class CustomGoal {
 
     private static final String TIME_FORMAT = "HH:mm";
@@ -18,7 +21,13 @@ public class CustomGoal {
     private final LocalTime timeAdded;
     private final LocalTime endTime;
 
-    // TODO change the date and time to optionals
+    /**
+     * Creates a new custom goal.
+     * @param description The description of the goal.
+     * @param goal The value of the goal, i.e. the value the user is aiming to achieve.
+     * @param endDate The date by which to complete the goal.
+     * @param endTime The time by which to complete the goal.
+     */
     public CustomGoal(String description, int goal, LocalDate endDate, LocalTime endTime) {
         this.goalDescription = description.trim();
         this.goal = goal;
@@ -28,7 +37,14 @@ public class CustomGoal {
         this.dateAdded = LocalDate.now();
         this.timeAdded = LocalTime.now();
     }
-    
+
+    /**
+     * Works just like {@link CustomGoal#CustomGoal(java.lang.String, int, java.time.LocalDate, java.time.LocalTime)}
+     * except this takes additional <code>String</code> parameters specifying the date and time the custom goal was
+     * created.
+     * @param dateAdded The date the custom goal was created.
+     * @param timeAdded The time the custom goal was created.
+     */
     public CustomGoal(String goalDescription, float goal, float progress, String dateAdded, String timeAdded,
                       String endDate,
                       String endTime) {
@@ -40,15 +56,15 @@ public class CustomGoal {
         if (endDate.equals("-")) {
             this.endDate = LocalDate.MAX;
         } else {
-            this.endDate = LocalDate.parse(endDate, DateTimeFormatter.ofPattern(DATE_FORMAT));;    
+            this.endDate = LocalDate.parse(endDate, DateTimeFormatter.ofPattern(DATE_FORMAT));;
         }
         if (endTime.equals("-")) {
             this.endTime = LocalTime.MAX;
         } else {
-            this.endTime = LocalTime.parse(endTime, DateTimeFormatter.ofPattern(TIME_FORMAT));    
+            this.endTime = LocalTime.parse(endTime, DateTimeFormatter.ofPattern(TIME_FORMAT));
         }
     }
-    
+
     private CustomGoal(CustomGoal oldGoal, float valueToUpdateBy) {
         this.goalDescription = oldGoal.getDescription();
         this.goal = oldGoal.getGoal();
@@ -62,11 +78,17 @@ public class CustomGoal {
     public CustomGoal updateProgress(float valueToUpdateBy) {
         return new CustomGoal(this, valueToUpdateBy);
     }
-    
+
     public boolean isComplete() {
         return this.progress >= this.goal;
     }
-    
+
+    /**
+     * Compares this CustomGoal with another object to check if they are the same.
+     * Two CustomGoals are considered equal if they have the same goalDescription, goal, endDate, and endTime.
+     * @param other The other object to compare this to.
+     * @return Whether the other object is equal to this CustomGoal.
+     */
     @Override
     public boolean equals(Object other) {
         if (this == other) {
@@ -83,7 +105,6 @@ public class CustomGoal {
                 && this.endDate.isEqual(otherGoal.endDate)
                 && this.endTime.equals(otherGoal.endTime);
     }
-    
 
     @Override
     public int hashCode() {
@@ -92,14 +113,34 @@ public class CustomGoal {
 
     @Override
     public String toString() { // TODO update to a better format
-        return "CustomGoal{" +
-                "goalDescription='" + goalDescription + '\'' +
-                ", goal=" + goal +
-                ", dateAdded=" + dateAdded +
-                ", dateEnd=" + endDate +
-                ", timeAdded=" + timeAdded +
-                ", timeEnd=" + endTime +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.goalDescription);
+        if (!this.endDate.isEqual(LocalDate.MAX)) {
+            sb.append(" by ");
+            sb.append(this.getEndDateValue());
+        }
+        if (!this.endTime.equals(LocalTime.MAX)) {
+            sb.append(" ");
+            sb.append(this.getEndTimeValue());
+        }
+        sb.append(" - progress: ");
+        sb.append(this.getProgressValue());
+        sb.append("/");
+        sb.append(this.getGoalValue());
+        return sb.toString();
+    }
+
+    /**
+     * Converts the provided float to a string while truncating all trailing zeroes.
+     * @param f The float to convert and truncate.
+     * @return The string representation of the given float with the trailing zeroes truncated.ß
+     */
+    public String formatFloat(float f) {
+        if (f == (long) f) {
+            return String.format("%d", (long) f);
+        } else {
+            return String.format("%s", f);
+        }
     }
 
     public String getDescription() {
@@ -115,13 +156,12 @@ public class CustomGoal {
     }
 
     public String getEndDateValue() {
-        return this.endDate.isEqual(LocalDate.MAX) ? "-" :
-                this.endDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
+        return this.endDate.isEqual(LocalDate.MAX)
+                ? "-" : this.endDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
     }
 
     public String getEndTimeValue() {
-        return this.endTime.equals(LocalTime.MAX) ? "-" : 
-                this.endTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
+        return this.endTime.equals(LocalTime.MAX) ? "-" : this.endTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
     }
 
     public String getDateAddedValue() {
@@ -131,20 +171,12 @@ public class CustomGoal {
     public String getTimeAddedValue() {
         return this.timeAdded.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
     }
-    
+
     public String getProgressValue() {
-        return formatFloat(this.progress); 
-    }
-    
-    public String getGoalValue() {
-        return formatFloat(this.goal);
+        return formatFloat(this.progress);
     }
 
-    public String formatFloat(float f) {
-        if (f == (long)f) {
-            return String.format("%d", (long)f);
-        } else {
-            return String.format("%s", f);
-        }
+    public String getGoalValue() {
+        return formatFloat(this.goal);
     }
 }

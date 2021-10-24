@@ -1,8 +1,7 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddCustomGoalCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.customGoal.CustomGoal;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -11,11 +10,12 @@ import java.time.format.DateTimeParseException;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.AddCustomGoalCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.customGoal.CustomGoal;
 
 /**
- * Parses input arguments and creates a new AddTodoCommand object
+ * Parses input arguments and creates a new AddCustomGoalCommand object
  */
 public class AddCustomGoalCommandParser implements Parser<AddCustomGoalCommand> {
 
@@ -23,22 +23,23 @@ public class AddCustomGoalCommandParser implements Parser<AddCustomGoalCommand> 
     public static final String TIME_FORMAT = "HHmm";
     public static final String MESSAGE_WRONG_DATETIME_FORMAT =
             "Please use date in " + DATE_FORMAT + " format and time in " + TIME_FORMAT + " 24hr format\n";
-    public static final String MESSAGE_WRONG_GOAL_FORMAT = 
+    public static final String MESSAGE_WRONG_GOAL_FORMAT =
             "Goal has to be an integer";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddTodoCommand
-     * and returns an AddTodoCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * Parses the provided string and creates a proper {@link AddCustomGoalCommand} that can be
+     * subsequently executed.
+     * @param args The string to parse.
+     * @return TheAddCustomGoalCommand created from parsing.
+     * @throws ParseException If the argument given is invalid.
      */
     public AddCustomGoalCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_GOAL, PREFIX_END_DATE, PREFIX_END_TIME); 
-        // add more fields
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_GOAL, PREFIX_END_DATE, PREFIX_END_TIME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_GOAL)
                 || ((!arePrefixesPresent(argMultimap, PREFIX_END_DATE)) && arePrefixesPresent(argMultimap,
-                PREFIX_END_TIME))  // user specified an end time without an end date
+                PREFIX_END_TIME)) // user specified an end time without an end date
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddCustomGoalCommand.MESSAGE_USAGE));
@@ -47,32 +48,33 @@ public class AddCustomGoalCommandParser implements Parser<AddCustomGoalCommand> 
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
         int goal;
         try {
-            goal = Integer.parseInt(argMultimap.getValue(PREFIX_GOAL).get());    
+            goal = Integer.parseInt(argMultimap.getValue(PREFIX_GOAL).get());
         } catch (NumberFormatException ex) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     MESSAGE_WRONG_GOAL_FORMAT));
         }
-        
+
         LocalTime endTime;
-        try {  // if have time
-            endTime = LocalTime.parse(argMultimap.getValue(PREFIX_END_TIME).get(), DateTimeFormatter.ofPattern(TIME_FORMAT));
-        } catch (NoSuchElementException nsee) { // if user didnt specify a time
+        try { // if have time
+            endTime = LocalTime.parse(argMultimap.getValue(PREFIX_END_TIME).get(),
+                    DateTimeFormatter.ofPattern(TIME_FORMAT));
+        } catch (NoSuchElementException nsee) { // if user didn't specify a time
             endTime = LocalTime.MAX;
         } catch (DateTimeParseException dtpe) { // if user specified a wrong time
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     MESSAGE_WRONG_DATETIME_FORMAT));
         }
-        
+
         LocalDate endDate;
-        try {  // if have date
-            endDate = LocalDate.parse(argMultimap.getValue(PREFIX_END_DATE).get(), DateTimeFormatter.ofPattern(DATE_FORMAT));
+        try { // if have date
+            endDate = LocalDate.parse(argMultimap.getValue(PREFIX_END_DATE).get(),
+                    DateTimeFormatter.ofPattern(DATE_FORMAT));
         } catch (NoSuchElementException nsee) { // if user didnt specify a date
             endDate = LocalDate.MAX;
         } catch (DateTimeParseException dtpe) { // if user specified a wrong time
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     MESSAGE_WRONG_DATETIME_FORMAT));
         }
-        
 
         CustomGoal customGoal = new CustomGoal(description, goal, endDate, endTime);
 

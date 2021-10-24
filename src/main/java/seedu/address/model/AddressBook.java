@@ -99,21 +99,40 @@ public class AddressBook implements ReadOnlyAddressBook {
 
 
     //// customGoal-level operations
+
+    /**
+     * Adds a given customGoal to the list of CustomGoals.
+     */
     public void addCustomGoal(CustomGoal toAdd) {
         requireNonNull(toAdd);
         customGoals.add(toAdd);
     }
 
+    /**
+     * Deletes the <code>CustomGoal</code> corresponding to the specified <code>Index</code> from the list.
+     * @param goalToDelete The <code>Index</code> of the desired <code>CustomGoal</code> to be deleted (1-based).
+     */
     public void deleteCustomGoal(Index goalToDelete) {
         requireNonNull(goalToDelete);
         customGoals.delete(goalToDelete);
     }
 
+    /**
+     * Checks if specified goal is already in the list of CustomGoals.
+     * @param goal The goal to check.
+     * @return Whether the goal is currently in the list of CustomGoals or not.
+     */
     public boolean hasCustomGoal(CustomGoal goal) {
         requireNonNull(goal);
         return customGoals.contains(goal);
     }
 
+    /**
+     * Increases the progress of the <code>CustomGoal</code> corresponding to the specified <code>Index</code> by the
+     * specified value.
+     * @param goalToUpdate The <code>Index</code> of the desired <code>CustomGoal</code>.
+     * @param valueToUpdateBy The value to update the progress of the specified <code>CustomGoal</code> by.
+     */
     public void updateCustomGoal(Index goalToUpdate, float valueToUpdateBy) {
         requireNonNull(goalToUpdate);
         customGoals.update(goalToUpdate, valueToUpdateBy);

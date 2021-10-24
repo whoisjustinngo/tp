@@ -1,25 +1,18 @@
 package seedu.address.model.customGoal;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.customGoal.exceptions.DuplicateCustomGoalException;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-/** TODO update this
- * A list of customGoals that enforces uniqueness between its elements and does not allow nulls.
- * A customGoal is considered unique by comparing using {@code Todo#equals(Object)}. As such, adding and updating of
- * customGoals uses Todo#equals(Object) for equality so as to ensure that the customGoal being added or updated is
- * unique in the UniqueTodoList. Also, the removal of a customGoal uses Todo#equals(Object) so
- * as to ensure that the customGoal with exactly the same fields will be removed.
- *
- * Supports a minimal set of list operations.
- *
+/**
+ * A list of unique non-null CustomGoals which supports basic list operations.
  */
 public class UniqueCustomGoalList implements Iterable<CustomGoal> {
 
@@ -28,7 +21,8 @@ public class UniqueCustomGoalList implements Iterable<CustomGoal> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent custom goal as the given argument.
+     * Returns true if the list contains a custom goal equal to the one specified in the argument.
+     * @see CustomGoal#equals(java.lang.Object)
      */
     public boolean contains(CustomGoal toCheck) {
         requireNonNull(toCheck);
@@ -36,10 +30,9 @@ public class UniqueCustomGoalList implements Iterable<CustomGoal> {
     }
 
     /**
-     * Adds a CustomGoal to the list.
-     * The CustomGoal must not already exist in the list.
+     * Adds a new unique CustomGoal to the list.
      */
-    public void add(CustomGoal toAdd)  {
+    public void add(CustomGoal toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateCustomGoalException();
@@ -47,6 +40,12 @@ public class UniqueCustomGoalList implements Iterable<CustomGoal> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Increases the progress of the <code>CustomGoal</code> corresponding to the specified <code>Index</code> by the
+     * specified value.
+     * @param goalToUpdate The <code>Index</code> of the desired <code>CustomGoal</code>.
+     * @param valueToUpdateBy The value to update the progress of the specified <code>CustomGoal</code> by.
+     */
     public void update(Index goalToUpdate, float valueToUpdateBy) {
         requireNonNull(goalToUpdate);
         CustomGoal updatedGoal = internalList.get(goalToUpdate.getZeroBased()).updateProgress(valueToUpdateBy);
@@ -54,19 +53,18 @@ public class UniqueCustomGoalList implements Iterable<CustomGoal> {
         internalList.add(goalToUpdate.getZeroBased(), updatedGoal);
     }
 
+    /**
+     * Deletes the <code>CustomGoal</code> corresponding to the specified <code>Index</code> from the list.
+     * @param goalToDelete The <code>Index</code> of the desired <code>CustomGoal</code> to be deleted (1-based).
+     */
     public void delete(Index goalToDelete) {
         requireNonNull(goalToDelete);
         internalList.remove(goalToDelete.getZeroBased());
     }
 
-    public void setCustomGoals(UniqueCustomGoalList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
     /**
      * Replaces the contents of this list with {@code customGoals}.
-     * {@code customGoals} must not contain duplicate customGoals.
+     * {@code customGoals} must not contain duplicates.
      */
     public void setCustomGoals(List<CustomGoal> customGoals) {
         requireAllNonNull(customGoals);
@@ -88,6 +86,7 @@ public class UniqueCustomGoalList implements Iterable<CustomGoal> {
     public Iterator<CustomGoal> iterator() {
         return internalList.iterator();
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -97,7 +96,6 @@ public class UniqueCustomGoalList implements Iterable<CustomGoal> {
 
     /**
      * Returns true if {@code customGoals} contains only unique customGoals.
-     * @param customGoals
      */
     private boolean customGoalsAreUnique(List<CustomGoal> customGoals) {
         for (int i = 0; i < customGoals.size() - 1; i++) {

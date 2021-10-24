@@ -137,7 +137,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        
+
         customGoalSection = new CustomGoalListPanel(logic.getFilteredCustomGoalList());
         dashboardTopPanelPlaceholder.getChildren().add(customGoalSection.getRoot());
 

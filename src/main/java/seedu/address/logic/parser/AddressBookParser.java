@@ -64,17 +64,16 @@ public class AddressBookParser {
             default:
                 throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
             }
-            
+
         case UpdateCustomGoalCommand.COMMAND_WORD:
             switch(tab) {
-                
+
             case DASHBOARD_TAB_ID:
                 return new UpdateCustomGoalCommandParser().parse(arguments);
-                
+
             default:
                 throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
             }
-                
 
         case EditCommand.COMMAND_WORD:
             switch (tab) {

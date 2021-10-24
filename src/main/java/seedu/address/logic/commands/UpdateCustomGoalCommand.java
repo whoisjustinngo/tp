@@ -1,25 +1,21 @@
 package seedu.address.logic.commands;
 
-import com.fasterxml.jackson.databind.node.DecimalNode;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VALUE;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-
-import java.text.DecimalFormat;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
- * Adds a person to the address book.
+ * Creates a command to update the progress of a specific CustomGoal.
  */
 public class UpdateCustomGoalCommand extends Command {
 
     public static final String COMMAND_WORD = "update";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": updates a custom goal by a specified value for the " +
-            "user to track their progress. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": updates a custom goal by a specified value for the "
+            + "user to track their progress. "
             + "Parameters: "
             + "INDEX_OF_GOAL_TO_UPDATE "
             + PREFIX_VALUE + "VALUE "
@@ -34,7 +30,9 @@ public class UpdateCustomGoalCommand extends Command {
     private final float valueToUpdateBy;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an UpdateCustomGoalCommand.
+     * @param goalToUpdate The (1-based) <code>Index</code> of the CustomGoal to update.
+     * @param value The value with which to increase the progress of the corresponding CustomGoal by.
      */
     public UpdateCustomGoalCommand(Index goalToUpdate, float value) {
         requireNonNull(goalToUpdate);
@@ -45,7 +43,7 @@ public class UpdateCustomGoalCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        
+
         if (this.goalToUpdate.getOneBased() > model.getNumOfCustomGoals()) {
             throw new CommandException(MESSAGE_INVALID_INDEX);
         }
@@ -55,9 +53,14 @@ public class UpdateCustomGoalCommand extends Command {
                 formatFloat(this.valueToUpdateBy)));
     }
 
+    /**
+     * Converts the provided float to a string while truncating all trailing zeroes.
+     * @param f The float to convert and truncate.
+     * @return The string representation of the given float with the trailing zeroes truncated.ß
+     */
     public String formatFloat(float f) {
-        if (f == (long)f) {
-            return String.format("%d", (long)f);
+        if (f == (long) f) {
+            return String.format("%d", (long) f);
         } else {
             return String.format("%s", f);
         }
@@ -67,6 +70,6 @@ public class UpdateCustomGoalCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UpdateCustomGoalCommand // instanceof handles nulls
-                &&  this.equals(((UpdateCustomGoalCommand) other)));
+                && this.equals(((UpdateCustomGoalCommand) other)));
     }
 }

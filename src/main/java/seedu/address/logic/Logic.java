@@ -41,7 +41,7 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of schedule */
     ObservableList<Schedule> getFilteredScheduleList();
-    
+
     /** Returns an unmodifiable view of the filtered list of custom goal */
     ObservableList<CustomGoal> getFilteredCustomGoalList();
 

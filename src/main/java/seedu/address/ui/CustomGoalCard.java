@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import seedu.address.model.customGoal.CustomGoal;
 
 /**
@@ -14,8 +13,6 @@ import seedu.address.model.customGoal.CustomGoal;
 public class CustomGoalCard extends UiPart<Region> {
 
     private static final String FXML = "CustomGoalCard.fxml";
-    public static final String DATE_FORMAT = "dd-MM-yyyy";
-    public static final String TIME_FORMAT = "HHmm";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -59,7 +56,7 @@ public class CustomGoalCard extends UiPart<Region> {
         goal.setText(customGoal.getGoalValue());
         dateEnd.setText(customGoal.getEndDateValue());
         timeEnd.setText(customGoal.getEndTimeValue());
-        progressBar.setProgress(((float)customGoal.getProgress() / (float)customGoal.getGoal()));
+        progressBar.setProgress(((float) customGoal.getProgress() / (float) customGoal.getGoal()));
     }
 
     @Override

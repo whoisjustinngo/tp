@@ -1,23 +1,25 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GOAL;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.customGoal.CustomGoal;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
 /**
- * Adds a custom goal to the dashboard.
+ * Command to add a custom goal to the dashboard.
  */
 public class AddCustomGoalCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    // TODO split into /d and /t for target /dateend for date end and /timeend for time end (last 2 optional)
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new custom goal to the dashboard. " 
-            + "Parameters: " 
-            + PREFIX_DESCRIPTION + "DESCRIPTION " 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new custom goal to the dashboard. "
+            + "Parameters: "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_GOAL + "GOAL "
             + "[" + PREFIX_END_DATE + "END_DATE" + "] "
             + "[" + PREFIX_END_TIME + "END_TIME" + "]\n"
@@ -38,7 +40,7 @@ public class AddCustomGoalCommand extends Command {
     private final CustomGoal toAdd;
 
     /**
-     * Creates an AddTodoCommand to add the specified {@code Todo}
+     * Creates an AddCustomGoalCommand to add the specified CustomGoal.
      */
     public AddCustomGoalCommand(CustomGoal goal) {
         requireNonNull(goal);
@@ -54,11 +56,11 @@ public class AddCustomGoalCommand extends Command {
         }
 
         model.addCustomGoal(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));   
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
-    public boolean equals(Object other) { // TODO check the target and date and time end as well
+    public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCustomGoalCommand // instanceof handles nulls
                 && toAdd.equals(((AddCustomGoalCommand) other).toAdd));

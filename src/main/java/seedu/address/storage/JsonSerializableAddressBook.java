@@ -52,7 +52,8 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        customGoals.addAll(source.getCustomGoalList().stream().map(JsonAdaptedCustomGoal::new).collect(Collectors.toList()));
+        customGoals.addAll(source.getCustomGoalList().stream().map(JsonAdaptedCustomGoal::new)
+                .collect(Collectors.toList()));
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         todos.addAll(source.getTodoList().stream().map(JsonAdaptedTodo::new).collect(Collectors.toList()));
         schedules.addAll(source.getScheduleList().stream().map(JsonAdaptedSchedule::new).collect(Collectors.toList()));
