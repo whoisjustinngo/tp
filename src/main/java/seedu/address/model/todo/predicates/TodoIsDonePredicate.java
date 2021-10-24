@@ -1,6 +1,5 @@
 package seedu.address.model.todo.predicates;
 
-import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.model.todo.Todo;

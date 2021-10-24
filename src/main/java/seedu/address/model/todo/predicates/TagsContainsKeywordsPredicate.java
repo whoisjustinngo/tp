@@ -3,6 +3,7 @@ package seedu.address.model.todo.predicates;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.todo.Todo;
 
 /**
@@ -17,10 +18,13 @@ public class TagsContainsKeywordsPredicate implements Predicate<Todo> {
 
     @Override
     public boolean test(Todo todo) {
-        // all keywords must be present in tag
+        if (keywords.size() == 0) {
+            return false;
+        }
+
         for (String keyword : keywords) {
             boolean hasMatch = todo.getTags().stream()
-                    .anyMatch(tag -> tag.getTagName().equalsIgnoreCase(keyword));
+                    .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.getTagName(), keyword));
             if (!hasMatch) {
                 return false;
             }
