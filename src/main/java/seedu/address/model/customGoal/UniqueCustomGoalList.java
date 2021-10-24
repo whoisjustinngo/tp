@@ -59,17 +59,6 @@ public class UniqueCustomGoalList implements Iterable<CustomGoal> {
         internalList.remove(goalToDelete.getZeroBased());
     }
 
-    /**
-     * Removes the equivalent goal from the list.
-     * The goal must exist in the list.
-     */
-//    public void remove(CustomGoal toRemove) {
-//        requireNonNull(toRemove);
-//        if (!internalList.remove(toRemove)) {
-//            throw new CustomGoalNotFoundException(); // TODO
-//        }
-//    }
-
     public void setCustomGoals(UniqueCustomGoalList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -105,12 +94,6 @@ public class UniqueCustomGoalList implements Iterable<CustomGoal> {
                 || (other instanceof UniqueCustomGoalList // instanceof handles nulls
                         && internalList.equals(((UniqueCustomGoalList) other).internalList));
     }
-//    @Override
-//    public int hashCode() {
-
-//        return internalList.hashCode();
-
-//    }
 
     /**
      * Returns true if {@code customGoals} contains only unique customGoals.
