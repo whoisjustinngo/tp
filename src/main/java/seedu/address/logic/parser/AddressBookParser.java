@@ -130,6 +130,9 @@ public class AddressBookParser {
 
             case TODOS_TAB_ID:
                 return new FindTodoCommandParser().parse(arguments);
+                
+            case SCHEDULE_TAB_ID:
+                return new FindScheduleCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

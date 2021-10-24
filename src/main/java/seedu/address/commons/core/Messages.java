@@ -11,6 +11,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_TAB_NAME = "Invalid tab name:%s";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_TODOS_LISTED_OVERVIEW = "%1$d todos listed!";
+    public static final String MESSAGE_SCHEDULE_LISTED_OVERVIEW = "%1$d schedules listed!";
     public static final String MESSAGE_ERROR_PARSING_TAB = "There was an error parsing your command: error parsing tab";
     public static final String MESSAGE_INVALID_TAB = "Command entered from an invalid tab. Switch tabs and try again.";
     public static final String MESSAGE_INVALID_TODO_DISPLAYED_INDEX = "The todo index provided is invalid";
