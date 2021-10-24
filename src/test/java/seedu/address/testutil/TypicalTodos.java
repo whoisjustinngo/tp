@@ -50,6 +50,6 @@ public class TypicalTodos {
     }
 
     public static List<Todo> getTypicalTodos() {
-        return new ArrayList<>(Arrays.asList(READ, TRAVEL));
+        return new ArrayList<>(Arrays.asList(READ, TRAVEL, SHOP, EAT));
     }
 }

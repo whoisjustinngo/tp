@@ -21,6 +21,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.todo.Todo;
+import seedu.address.model.todo.predicates.DescriptionContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -136,5 +138,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the todo at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTodoAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTodoList().size());
+
+        Todo todo = model.getFilteredTodoList().get(targetIndex.getZeroBased());
+        final String[] splitDescription = todo.getDescription().split("\\s+");
+        model.updateFilteredTodoList(
+                new DescriptionContainsKeywordsPredicate(Arrays.asList(splitDescription[0])));
+
+        assertEquals(1, model.getFilteredTodoList().size());
     }
 }
