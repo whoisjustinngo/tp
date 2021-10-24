@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.address.model.customGoal.CustomGoal;
 
 /**
@@ -52,6 +53,9 @@ public class CustomGoalCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText(customGoal.getDescription());
         progress.setText(customGoal.getProgressValue());
+        if (customGoal.isComplete()) {
+            progress.setStyle("-fx-text-fill: CHARTREUSE");
+        }
         goal.setText(customGoal.getGoalValue());
         dateEnd.setText(customGoal.getEndDateValue());
         timeEnd.setText(customGoal.getEndTimeValue());

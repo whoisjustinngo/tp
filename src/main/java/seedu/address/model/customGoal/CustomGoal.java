@@ -63,6 +63,10 @@ public class CustomGoal {
         return new CustomGoal(this, valueToUpdateBy);
     }
     
+    public boolean isComplete() {
+        return this.progress >= this.goal;
+    }
+    
     @Override
     public boolean equals(Object other) {
         if (this == other) {
