@@ -125,6 +125,13 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Replaces the given todo {@code target} with {@code editedTodo}.
+     * {@code target} must exist in the address book. The
+     * {@code editedTodo} must not be the same as another existing todo.
+     */
+    void setTodo(Todo target, Todo editedTodo);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

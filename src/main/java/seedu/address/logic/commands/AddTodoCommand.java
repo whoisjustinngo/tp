@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -16,9 +17,12 @@ public class AddTodoCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Todo to your list of Todos. "
             + "Parameters: "
-            + PREFIX_DESCRIPTION + "DESCRIPTION\n"
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DESCRIPTION + "read book";
+            + PREFIX_DESCRIPTION + "read book "
+            + PREFIX_TAG + "personalDevelopment "
+            + PREFIX_TAG + "nonUrgent";
 
     public static final String MESSAGE_SUCCESS = "New Todo added: %1$s";
     public static final String MESSAGE_DUPLICATE_TODO = "This Todo already exists in your list of Todos";
