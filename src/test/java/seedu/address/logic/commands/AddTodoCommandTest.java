@@ -15,11 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.todo.Todo;
@@ -142,6 +144,11 @@ class AddTodoCommandTest {
         }
 
         @Override
+        public boolean hasCustomGoal(CustomGoal toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -187,12 +194,37 @@ class AddTodoCommandTest {
         }
 
         @Override
+        public ObservableList<CustomGoal> getFilteredCustomGoalList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteSchedule(Schedule target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public void addCustomGoal(CustomGoal toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateCustomGoal(Index goalToUpdate, float valueToUpdateBy) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getNumOfCustomGoals() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteCustomGoal(Index goalToDelete) {
             throw new AssertionError("This method should not be called.");
         }
 

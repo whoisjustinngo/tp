@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -136,10 +137,16 @@ public class AddressBookTest {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Todo> todos = FXCollections.observableArrayList();
         private final ObservableList<Schedule> schedules = FXCollections.observableArrayList();
+        private final ObservableList<CustomGoal> customGoals = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons, Collection<Todo> todos) {
             this.persons.setAll(persons);
             this.todos.setAll(todos);
+        }
+
+        @Override
+        public ObservableList<CustomGoal> getCustomGoalList() {
+            return customGoals;
         }
 
         @Override
