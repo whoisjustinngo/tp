@@ -108,7 +108,7 @@ public class Schedule extends Event<Schedule> {
 
         Schedule otherSchedule = (Schedule) other;
         return (otherSchedule.getDescription().equals(this.getDescription())
-                && otherSchedule.getTimeFrom() == this.getTimeFrom() 
+                && otherSchedule.getTimeFrom() == this.getTimeFrom()
                 && otherSchedule.getTimeTo() == this.getTimeTo()
                 && otherSchedule.getDate().equals(this.getDate())
                 && otherSchedule.getTags().equals(getTags()));

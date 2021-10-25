@@ -15,8 +15,8 @@ public class ScheduleContainsFromPredicate implements Predicate<Schedule> {
 
     @Override
     public boolean test(Schedule schedule) {
-        return keywords.stream().anyMatch(
-                keyword -> StringUtil.containsWordIgnoreCase(String.valueOf(schedule.getTimeFrom()), keyword));
+        return keywords.stream().anyMatch(keyword ->
+                StringUtil.containsWordIgnoreCase(String.valueOf(schedule.getTimeFrom()), keyword));
     }
 
     @Override
