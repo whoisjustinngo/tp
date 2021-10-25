@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.analytics.Analytics;
+import seedu.address.model.analytics.ClientAnalytics;
 import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
@@ -142,7 +142,7 @@ public interface Model {
     /**
      * Gets the {@code Analytics} object for this addressBook.
      */
-    Analytics getAnalytics();
+    ClientAnalytics getAnalytics();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

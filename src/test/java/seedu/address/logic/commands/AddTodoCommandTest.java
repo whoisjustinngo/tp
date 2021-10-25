@@ -21,6 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.analytics.ClientAnalytics;
 import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
@@ -160,6 +161,11 @@ class AddTodoCommandTest {
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ClientAnalytics getAnalytics() {
             throw new AssertionError("This method should not be called.");
         }
 

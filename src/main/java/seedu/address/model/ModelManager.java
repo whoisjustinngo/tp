@@ -12,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.analytics.Analytics;
+import seedu.address.model.analytics.ClientAnalytics;
 import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
@@ -25,7 +25,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
-    private final Analytics analytics;
+    private final ClientAnalytics clientAnalytics;
     private final UserPrefs userPrefs;
     private final FilteredList<CustomGoal> filteredCustomGoals;
     private final FilteredList<Person> filteredPersons;
@@ -42,7 +42,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
-        this.analytics = new Analytics(this.addressBook);
+        this.clientAnalytics = new ClientAnalytics(this.addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCustomGoals = new FilteredList<>(this.addressBook.getCustomGoalList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -93,8 +93,8 @@ public class ModelManager implements Model {
     // =========== Analytics
     // ================================================================================
     @Override
-    public Analytics getAnalytics() {
-        return this.analytics;
+    public ClientAnalytics getAnalytics() {
+        return this.clientAnalytics;
     }
 
     // =========== AddressBook
