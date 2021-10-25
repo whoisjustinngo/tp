@@ -8,13 +8,14 @@ public class Analytics {
     
     private final ReadOnlyAddressBook addressBook;
     private final ObservableList<Person> persons;
-    
+
     Analytics(ReadOnlyAddressBook addressBook) {
         this.addressBook = addressBook;
         this.persons = addressBook.getPersonList();
         this.persons.addListener(new ListChangeListener<Person>() {
             @Override
             public void onChanged(Change<? extends Person> c) {
+                System.out.println("change: " + c);
                 updateAnalytics();
             }
         });
@@ -22,7 +23,6 @@ public class Analytics {
     }
     
     private void updateAnalytics() {
-        System.out.println("update analytics");
+        
     }
-    
 }

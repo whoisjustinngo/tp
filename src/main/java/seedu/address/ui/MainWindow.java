@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private AnalyticsPanel analyticsSection;
     private CustomGoalListPanel customGoalSection;
     private ScheduleListPanel dashboardScheduleSection;
     private TodoListPanel dashboardTodoSection;
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+    
+    @FXML
+    private VBox dashboardAnalyticsPlaceholder;
 
     @FXML
     private VBox dashboardCustomGoalsPlaceholder;
@@ -137,6 +141,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        
+        analyticsSection = new AnalyticsPanel(logic.getAnalytics());
+        dashboardAnalyticsPlaceholder.getChildren().add(analyticsSection.getRoot());
 
         customGoalSection = new CustomGoalListPanel(logic.getFilteredCustomGoalList());
         dashboardCustomGoalsPlaceholder.getChildren().add(customGoalSection.getRoot());

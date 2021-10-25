@@ -7,6 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Analytics;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
@@ -59,4 +60,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    Analytics getAnalytics();
 }

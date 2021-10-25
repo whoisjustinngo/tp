@@ -138,6 +138,11 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Gets the {@code Analytics} object for this addressBook.
+     */
+    Analytics getAnalytics();
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

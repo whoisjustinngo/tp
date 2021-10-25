@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final Analytics analytics;
     private final UserPrefs userPrefs;
     private final FilteredList<CustomGoal> filteredCustomGoals;
     private final FilteredList<Person> filteredPersons;
@@ -40,6 +41,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.analytics = new Analytics(this.addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCustomGoals = new FilteredList<>(this.addressBook.getCustomGoalList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -85,6 +87,13 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    // =========== Analytics
+    // ================================================================================
+    @Override
+    public Analytics getAnalytics() {
+        return this.analytics;
     }
 
     // =========== AddressBook
