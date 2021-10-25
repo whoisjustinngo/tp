@@ -3,10 +3,12 @@ package seedu.address.model.analytics;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.ClientState;
 import seedu.address.model.person.ClientStub;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Status;
 
+import java.time.LocalDateTime;
+import java.time.temporal.IsoFields;
 import java.util.HashMap;
 
 import static java.util.Objects.requireNonNull;
@@ -21,7 +23,7 @@ public class ClientAnalytics {
         requireNonNull(addressBook);
         this.addressBook = addressBook;
         this.persons = addressBook.getPersonList();
-        this.values = new TrackedValueList(Status.values()); // default is to track all values in status
+        this.values = new TrackedValueList(ClientState.values()); // default is to track all values in status
         
         this.persons.addListener(new ListChangeListener<Person>() { // listen for changes in contacts 
             @Override
@@ -34,24 +36,34 @@ public class ClientAnalytics {
     }
 
     private void updateAnalytics() {
-        HashMap<Status, Integer> counts = new HashMap<Status, Integer>();
+        HashMap<ClientState, Integer> counts = new HashMap<ClientState, Integer>();
         System.out.println("trying to update");
         for (Person person: this.persons) {
             if (person instanceof ClientStub) { // TODO update with client
-                Status status = ((ClientStub) person).getClientStatus();
-                if (!counts.containsKey(status)) {
-                    counts.put(status, 1);
-                } else {
-                    int currentValue = counts.get(status);
-                    counts.put(status, currentValue + 1);
+                ClientStub client = (ClientStub) person;
+                LocalDateTime lastUpdated = client.getLastUpdated();
+                ClientState state = client.getClientState();
+                // check if expired
+                if (isInThisQuarter(lastUpdated)) {
+                    if (!counts.containsKey(state)) {
+                        counts.put(state, 1);
+                    } else {
+                        int currentValue = counts.get(state);
+                        counts.put(state, currentValue + 1);
+                    }    
                 }
             }
         }
         values.update(counts);
     }
     
-    public int getValueOfTrackedField(Status status) {
-        return this.values.getValue(status);
+    public int getValueOfTrackedField(ClientState state) {
+        return this.values.getValue(state);
+    }
+    
+    private boolean isInThisQuarter(LocalDateTime entry) {
+        return entry.get(IsoFields.QUARTER_OF_YEAR) == LocalDateTime.now().get(IsoFields.QUARTER_OF_YEAR)
+                && entry.getYear() == LocalDateTime.now().getYear();
     }
     
     public ObservableList<Integer> getValues() {

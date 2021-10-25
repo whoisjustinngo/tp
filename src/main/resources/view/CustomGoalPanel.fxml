@@ -10,13 +10,13 @@
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="27.0" styleClass="table-header" stylesheets="@DarkTheme.css" VBox.vgrow="NEVER">
      <columnConstraints>
-       <ColumnConstraints hgrow="NEVER" percentWidth="5.0" />
-         <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
-       <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-         <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0" />
-         <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-         <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
-         <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+       <ColumnConstraints percentWidth="5.0" />
+         <ColumnConstraints percentWidth="20.0" />
+       <ColumnConstraints percentWidth="10.0" />
+         <ColumnConstraints percentWidth="15.0" />
+         <ColumnConstraints percentWidth="10.0" />
+         <ColumnConstraints percentWidth="20.0" />
+         <ColumnConstraints percentWidth="20.0" />
      </columnConstraints>
      <rowConstraints>
        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />

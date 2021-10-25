@@ -1,6 +1,6 @@
 package seedu.address.model.person;
 
-public enum Status {
+public enum ClientState {
     FRESH,
     APPROACHED,
     PITCHED,

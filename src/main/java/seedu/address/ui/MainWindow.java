@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
@@ -55,6 +56,9 @@ public class MainWindow extends UiPart<Stage> {
     
     @FXML
     private VBox dashboardAnalyticsPlaceholder;
+    
+    @FXML
+    private Label analyticsHeader;
 
     @FXML
     private VBox dashboardCustomGoalsPlaceholder;
@@ -143,6 +147,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         
         analyticsSection = new AnalyticsPanel(logic.getAnalytics());
+        analyticsHeader.setText(AnalyticsPanel.getHeader());
         dashboardAnalyticsPlaceholder.getChildren().add(analyticsSection.getRoot());
 
         customGoalSection = new CustomGoalListPanel(logic.getFilteredCustomGoalList());

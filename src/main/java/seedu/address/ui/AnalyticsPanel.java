@@ -7,15 +7,19 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.analytics.ClientAnalytics;
-import seedu.address.model.person.Status;
+import seedu.address.model.person.ClientState;
 
+import java.time.LocalDateTime;
+import java.time.temporal.IsoFields;
 import java.util.logging.Logger;
 
 /**
  * Panel containing the list of CustomGoals.
  */
 public class AnalyticsPanel extends UiPart<Region> {
+
     private static final String FXML = "AnalyticsPanel.fxml"; 
+    
     private final Logger logger = LogsCenter.getLogger(AnalyticsPanel.class);
 
     @FXML
@@ -53,11 +57,16 @@ public class AnalyticsPanel extends UiPart<Region> {
         updateValues();
     }
     
+    public static String getHeader() {
+        int currentQuarter = LocalDateTime.now().get(IsoFields.QUARTER_OF_YEAR);
+        return "Q" + Integer.toString(currentQuarter) + " values:";
+    }
+    
     private void updateValues() {
-        this.freshCount.setText(Integer.toString(this.clientAnalytics.getValueOfTrackedField(Status.FRESH)));
-        this.approachedCount.setText(Integer.toString(this.clientAnalytics.getValueOfTrackedField(Status.APPROACHED)));
-        this.pitchedCount.setText(Integer.toString(this.clientAnalytics.getValueOfTrackedField(Status.PITCHED)));
-        this.negotiatedCount.setText(Integer.toString(this.clientAnalytics.getValueOfTrackedField(Status.NEGOTIATED)));
-        this.closedCount.setText(Integer.toString(this.clientAnalytics.getValueOfTrackedField(Status.CLOSED)));
+        this.freshCount.setText(Integer.toString(this.clientAnalytics.getValueOfTrackedField(ClientState.FRESH)));
+        this.approachedCount.setText(Integer.toString(this.clientAnalytics.getValueOfTrackedField(ClientState.APPROACHED)));
+        this.pitchedCount.setText(Integer.toString(this.clientAnalytics.getValueOfTrackedField(ClientState.PITCHED)));
+        this.negotiatedCount.setText(Integer.toString(this.clientAnalytics.getValueOfTrackedField(ClientState.NEGOTIATED)));
+        this.closedCount.setText(Integer.toString(this.clientAnalytics.getValueOfTrackedField(ClientState.CLOSED)));
     }
 }

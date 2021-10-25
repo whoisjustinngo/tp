@@ -2,19 +2,24 @@ package seedu.address.model.person;
 
 import seedu.address.model.tag.Tag;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 public class ClientStub extends Person {
     
-    private final Status clientStatus;
+    private final StatusStub clientStatus;
     
     public ClientStub(Name name, Relationship relationship, Phone phone, Email email, Address address, Set<Tag> tags,
-     Status status) {
+     StatusStub status) {
         super(name, relationship, phone, email, address, tags);
         this.clientStatus = status;
     }
 
-    public Status getClientStatus() {
-        return clientStatus;
+    public ClientState getClientState() {
+        return this.clientStatus.getState();
+    }
+    
+    public LocalDateTime getLastUpdated(){
+        return this.clientStatus.getLastUpdated();
     }
 }
