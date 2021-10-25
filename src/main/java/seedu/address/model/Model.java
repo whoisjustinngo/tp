@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.analytics.Analytics;
 import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;

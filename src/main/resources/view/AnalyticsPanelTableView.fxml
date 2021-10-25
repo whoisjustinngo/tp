@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+
+<TableView fixedCellSize="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@DarkTheme.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+  <columns>
+    <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Type" />
+    <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" sortable="false" text="Count" />
+  </columns>
+</TableView>
