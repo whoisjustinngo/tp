@@ -53,13 +53,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private VBox dashboardTopPanelPlaceholder;
+    private VBox dashboardCustomGoalsPlaceholder;
 
     @FXML
-    private VBox dashboardMiddlePanelPlaceholder;
+    private VBox dashboardSchedulePlaceholder;
 
     @FXML
-    private VBox dashboardBottomPanelPlaceholder;
+    private VBox dashboardTodosPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -139,7 +139,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
 
         customGoalSection = new CustomGoalListPanel(logic.getFilteredCustomGoalList());
-        dashboardTopPanelPlaceholder.getChildren().add(customGoalSection.getRoot());
+        dashboardCustomGoalsPlaceholder.getChildren().add(customGoalSection.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -152,8 +152,8 @@ public class MainWindow extends UiPart<Stage> {
 
         dashboardScheduleSection = new ScheduleListPanel(logic.getFilteredScheduleList());
         dashboardTodoSection = new TodoListPanel(logic.getFilteredTodoList());
-        dashboardMiddlePanelPlaceholder.getChildren().add(dashboardScheduleSection.getRoot());
-        dashboardBottomPanelPlaceholder.getChildren().add(dashboardTodoSection.getRoot());
+        dashboardSchedulePlaceholder.getChildren().add(dashboardScheduleSection.getRoot());
+        dashboardTodosPlaceholder.getChildren().add(dashboardTodoSection.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
