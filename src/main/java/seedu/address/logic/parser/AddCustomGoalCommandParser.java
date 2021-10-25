@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GOAL;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -29,6 +32,7 @@ public class AddCustomGoalCommandParser implements Parser<AddCustomGoalCommand> 
     /**
      * Parses the provided string and creates a proper {@link AddCustomGoalCommand} that can be
      * subsequently executed.
+     *
      * @param args The string to parse.
      * @return TheAddCustomGoalCommand created from parsing.
      * @throws ParseException If the argument given is invalid.

@@ -53,10 +53,10 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
-    
+
     @FXML
     private VBox dashboardAnalyticsPlaceholder;
-    
+
     @FXML
     private Label analyticsHeader;
 
@@ -145,7 +145,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        
+
         analyticsSection = new AnalyticsPanel(logic.getAnalytics());
         analyticsHeader.setText(AnalyticsPanel.getHeader());
         dashboardAnalyticsPlaceholder.getChildren().add(analyticsSection.getRoot());
