@@ -16,6 +16,7 @@ public class TodoBuilder {
 
     private String description;
     private Set<Tag> tags;
+    private boolean isDone = false;
 
     /**
      * Creates a {@code TodoBuilder} with the default details.
@@ -40,6 +41,7 @@ public class TodoBuilder {
         this.description = description;
         return this;
     }
+
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Todo} that we are building.
      */
@@ -48,9 +50,17 @@ public class TodoBuilder {
         return this;
     }
 
+    /**
+     * Marks the todo that we are building as done.
+     */
+    public TodoBuilder withDone() {
+        this.isDone = true;
+        return this;
+    }
+
 
     public Todo build() {
-        return new Todo(description, tags);
+        return new Todo(description, tags, isDone);
     }
 
 }

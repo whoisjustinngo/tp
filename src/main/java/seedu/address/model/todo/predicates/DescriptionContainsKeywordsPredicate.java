@@ -7,7 +7,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.model.todo.Todo;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Todo}'s {@code description} matches any of the keywords given.
  */
 public class DescriptionContainsKeywordsPredicate implements Predicate<Todo> {
     private final List<String> keywords;

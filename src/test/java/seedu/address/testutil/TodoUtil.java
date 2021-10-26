@@ -23,6 +23,13 @@ public class TodoUtil {
     }
 
     /**
+     * Returns a filter command string for filtering {@code todo}s.
+     */
+    public static String getFilterTodoCommand(Todo todo) {
+        return " " + AddTodoCommand.COMMAND_WORD + " " + getTodoDetails(todo);
+    }
+
+    /**
      * Returns the part of command string for the given {@code todo}'s details.
      */
     public static String getTodoDetails(Todo todo) {

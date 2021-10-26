@@ -157,8 +157,15 @@ public class AddressBookParser {
         case FilterCommand.COMMAND_WORD:
             switch (tab) {
 
+            case DASHBOARD_TAB_ID:
+                throw new ParseException(MESSAGE_INVALID_TAB);
+
             case CONTACTS_TAB_ID:
                 return new FilterCommandParser().parse(arguments);
+
+            case TODOS_TAB_ID:
+                return new FilterTodoCommandParser().parse(arguments);
+
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
