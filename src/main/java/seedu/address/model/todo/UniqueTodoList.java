@@ -49,6 +49,26 @@ public class UniqueTodoList implements Iterable<Todo> {
     }
 
     /**
+     * Replaces the todo {@code target} in the list with {@code editedTodo}.
+     * {@code target} must exist in the list.
+     * The {@code editedTodo} must not be the same as another existing todo in the list.
+     */
+    public void setTodo(Todo target, Todo editedTodo) {
+        requireAllNonNull(target, editedTodo);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new TodoNotFoundException();
+        }
+
+        if (!target.equals(editedTodo) && contains(editedTodo)) {
+            throw new DuplicateTodoException();
+        }
+
+        internalList.set(index, editedTodo);
+    }
+
+    /**
      * Removes the equivalent todo from the list.
      * The todo must exist in the list.
      */

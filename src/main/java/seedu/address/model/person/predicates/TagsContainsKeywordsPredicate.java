@@ -17,6 +17,10 @@ public class TagsContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        if (keywords.size() == 0) {
+            return false;
+        }
+
         // all keywords must be present in tag
         for (String keyword : keywords) {
             boolean hasMatch = person.getTags().stream()

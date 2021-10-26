@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -31,6 +32,7 @@
                <Label fx:id="description" text="\$description" />
             </children>
       </HBox>
+         <FlowPane fx:id="tags" prefHeight="10.0" prefWidth="130.0" />
     </VBox>
       <Label fx:id="date" styleClass="cell_big_label" text="\$date" GridPane.columnIndex="1" />
   <Label fx:id="time" styleClass="cell_big_label" text="\$time" GridPane.columnIndex="2" />

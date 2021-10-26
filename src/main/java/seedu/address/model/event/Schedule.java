@@ -1,8 +1,12 @@
 package seedu.address.model.event;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.model.event.exceptions.InvalidTimeException;
+import seedu.address.model.tag.Tag;
 
 public class Schedule extends Event<Schedule> {
     public static final String ERROR_MSG_LETTERS_IN_TIME =
@@ -11,11 +15,12 @@ public class Schedule extends Event<Schedule> {
             "Please provide a proper time range between 0000 - 2359.";
     public static final String ERROR_MSG_INVALID_TIME_SQEUENCE =
             "Time <from> cannot be greater than time <to>.";
+
     private final LocalDateTime taskDateTimeFrom;
     private final LocalDateTime taskDateTimeTo;
     private final int timeFrom;
     private final int timeTo;
-
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Priamry Constructor
@@ -26,7 +31,7 @@ public class Schedule extends Event<Schedule> {
      * @param timeTo      end time for this {@code Schedule}.
      * @param isDone      if this {@code Schedule} is completed.
      */
-    public Schedule(String description, String date, String timeFrom, String timeTo, boolean isDone) {
+    public Schedule(String description, String date, String timeFrom, String timeTo, boolean isDone, Set<Tag> tags) {
         super(description, date, isDone);
         this.checkTimeRangeAndFormatting(timeFrom, timeTo);
         String dateCopy = date;
@@ -37,6 +42,7 @@ public class Schedule extends Event<Schedule> {
         this.taskDateTimeTo = this.getLocalDateTime(dateCopy, timeTo);
         this.timeFrom = Integer.parseInt(timeFrom);
         this.timeTo = Integer.parseInt(timeTo);
+        this.tags.addAll(tags);
     }
 
     public LocalDateTime getTaskDateTimeFrom() {
@@ -55,6 +61,10 @@ public class Schedule extends Event<Schedule> {
         return this.timeTo;
     }
 
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
     /**
      * Gets the formatted time and date in a proper {@code String}.
      *
@@ -62,6 +72,28 @@ public class Schedule extends Event<Schedule> {
      */
     public String getDateTime() {
         return String.format("at %s from %04d to %04d", this.getDate(), this.getTimeFrom(), this.getTimeTo());
+    }
+
+    /**
+     * Checks if the respective {@code Schedule} is the same as this
+     * {@code Schedule}.
+     *
+     * @param schedule the {@code Schedule} to check if it is the same.
+     * @return a {@code boolean} if it is the same.
+     */
+    public boolean isSameSchedule(Schedule schedule) {
+        return this.getTaskDateTimeFrom().equals(schedule.getTaskDateTimeFrom())
+                && this.getTaskDateTimeTo().equals(schedule.getTaskDateTimeTo())
+                && this.getDescription().equals(schedule.getDescription()) && this.getDate().equals(schedule.getDate())
+                && this.getTimeFrom() == schedule.getTimeFrom() && this.getTimeTo() == schedule.getTimeTo();
+    }
+
+    @Override
+    public String getDate() {
+        int day = Integer.parseInt(this.date.split("-")[0]);
+        int month = Integer.parseInt(this.date.split("-")[1]);
+        int year = Integer.parseInt(this.date.split("-")[2]);
+        return String.format("%02d-%02d-%d", day, month, year);
     }
 
     @Override
@@ -76,8 +108,10 @@ public class Schedule extends Event<Schedule> {
 
         Schedule otherSchedule = (Schedule) other;
         return (otherSchedule.getDescription().equals(this.getDescription())
-                && otherSchedule.getTimeFrom() == this.getTimeFrom() && otherSchedule.getTimeTo() == this.getTimeTo()
-                && otherSchedule.getDate().equals(this.getDate()));
+                && otherSchedule.getTimeFrom() == this.getTimeFrom()
+                && otherSchedule.getTimeTo() == this.getTimeTo()
+                && otherSchedule.getDate().equals(this.getDate())
+                && otherSchedule.getTags().equals(getTags()));
     }
 
     @Override
