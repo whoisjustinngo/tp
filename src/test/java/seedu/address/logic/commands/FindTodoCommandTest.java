@@ -8,8 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTodos.APPEAL;
 import static seedu.address.testutil.TypicalTodos.BAKE;
 import static seedu.address.testutil.TypicalTodos.EAT;
-import static seedu.address.testutil.TypicalTodos.SHOP;
-import static seedu.address.testutil.TypicalTodos.TRAVEL;
 import static seedu.address.testutil.TypicalTodos.getTypicalAddressBook;
 
 import java.util.Arrays;
