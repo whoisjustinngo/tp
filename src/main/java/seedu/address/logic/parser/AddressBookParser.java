@@ -159,10 +159,10 @@ public class AddressBookParser {
 
             case DASHBOARD_TAB_ID:
                 throw new ParseException(MESSAGE_INVALID_TAB);
-
             case CONTACTS_TAB_ID:
                 return new FilterCommandParser().parse(arguments);
-
+            case SCHEDULE_TAB_ID:
+                return new FilterScheduleCommandParser().parse(arguments);
             case TODOS_TAB_ID:
                 return new FilterTodoCommandParser().parse(arguments);
 

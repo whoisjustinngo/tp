@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.event.Schedule;
@@ -33,6 +36,8 @@ public class ScheduleCard extends UiPart<Region> {
     private Label date;
     @FXML
     private Label time;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code ScheduleCard} with the given {@code Schedule} and index to
@@ -45,6 +50,9 @@ public class ScheduleCard extends UiPart<Region> {
         description.setText(schedule.getDescription());
         date.setText(schedule.getDate());
         time.setText(String.format("%04d - %04d", schedule.getTimeFrom(), schedule.getTimeTo()));
+        schedule.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
