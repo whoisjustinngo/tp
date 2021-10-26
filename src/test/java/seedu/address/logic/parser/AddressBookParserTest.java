@@ -28,6 +28,7 @@ import seedu.address.logic.commands.EditTodoCommand;
 import seedu.address.logic.commands.EditTodoCommand.EditTodoDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindTodoCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTodosCommand;
@@ -35,6 +36,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.todo.Todo;
+import seedu.address.model.todo.predicates.DescriptionContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditTodoDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -119,6 +121,14 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(CONTACTS.getLabel() + " "
                 + FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findTodo() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindTodoCommand command = (FindTodoCommand) parser.parseCommand(TODOS.getLabel() + " "
+                + FindTodoCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindTodoCommand(new DescriptionContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
