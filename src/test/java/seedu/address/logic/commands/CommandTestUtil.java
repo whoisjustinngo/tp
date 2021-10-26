@@ -72,9 +72,13 @@ public class CommandTestUtil {
 
     public static final String VALID_DESCRIPTION_READ = "read";
     public static final String VALID_DESCRIPTION_TRAVEL = "travel";
+    public static final String VALID_TAG_LEARNING = "learning";
+    public static final String VALID_TAG_LEISURE = "leisure";
 
     public static final String DESCRIPTION_READ = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_READ;
     public static final String DESCRIPTION_TRAVEL = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_TRAVEL;
+    public static final String TAG_DESC_LEARNING = " " + PREFIX_TAG + VALID_TAG_LEARNING;
+    public static final String TAG_DESC_LEISURE = " " + PREFIX_TAG + VALID_TAG_LEISURE;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
