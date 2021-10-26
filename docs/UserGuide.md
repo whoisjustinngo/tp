@@ -203,7 +203,7 @@ Examples:
 
 Filters Todos according to any of its attributes (description, tags, and whether it is marked as done).
 
-Format: `filter [d/DESCRIPTION KEYWORDS]... [t/TAG KEYWORDS]... [done/YES or NO]`
+Format: `filter [d/DESCRIPTION KEYWORDS]... [t/TAG KEYWORDS]... [done/yes OR done/no]`
 
 * The keywords are case-insensitive. e.g `read book` will match `Read Book`
 * The order of the keywords does not matter. e.g. `Book Read` will match `Read Book`
