@@ -83,6 +83,9 @@ public class AddressBookParser {
             case CONTACTS_TAB_ID:
                 return new EditCommandParser().parse(arguments);
 
+            case TODOS_TAB_ID:
+                return new EditTodoCommandParser().parse(arguments);
+
             case SCHEDULE_TAB_ID:
                 return new EditScheduleCommandParser().parse(arguments);
 
@@ -131,6 +134,7 @@ public class AddressBookParser {
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
+
         case FilterCommand.COMMAND_WORD:
             switch (tab) {
 
@@ -139,6 +143,7 @@ public class AddressBookParser {
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
+
         case TabSwitchCommand.COMMAND_WORD:
             return new TabSwitchCommandParser().parse(arguments);
 
