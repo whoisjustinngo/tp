@@ -36,8 +36,8 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT =
-            Pattern.compile("(?<tab>\\S+) (?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern
+            .compile("(?<tab>\\S+) (?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -86,6 +86,9 @@ public class AddressBookParser {
             case TODOS_TAB_ID:
                 return new EditTodoCommandParser().parse(arguments);
 
+            case SCHEDULE_TAB_ID:
+                return new EditScheduleCommandParser().parse(arguments);
+
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
@@ -124,6 +127,9 @@ public class AddressBookParser {
 
             case CONTACTS_TAB_ID:
                 return new FindCommandParser().parse(arguments);
+
+            case SCHEDULE_TAB_ID:
+                return new FindScheduleCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
