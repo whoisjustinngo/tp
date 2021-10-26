@@ -3,9 +3,9 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 
 abstract class Event<T> {
-    private final String description;
-    private final String date;
-    private final boolean isDone;
+    protected final String description;
+    protected final String date;
+    protected final boolean isDone;
 
     protected Event(String description, String date, boolean isDone) {
         requireNonNull(description);

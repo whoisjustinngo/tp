@@ -79,8 +79,8 @@ public interface Model {
     boolean hasSchedule(Schedule schedule);
 
     /**
-     * Returns true if a Schedule clashes with {@code schedule} exists in
-     * the list of schedules.
+     * Returns true if a Schedule clashes with {@code schedule} exists in the list
+     * of schedules.
      */
     boolean hasScheduleClash(Schedule schedule);
 
@@ -124,6 +124,14 @@ public interface Model {
      * address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Replaces the given schedule {@code target} with {@code editedSchedule}.
+     * {@code target} must exist in the address book. The schedule identity of
+     * {@code editedSchedule} must not be the same as another existing schedule in
+     * the address book.
+     */
+    void setSchedule(Schedule target, Schedule editedSchedule);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
