@@ -126,6 +126,13 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
+     * Replaces the given todo {@code target} with {@code editedTodo}.
+     * {@code target} must exist in the address book. The
+     * {@code editedTodo} must not be the same as another existing todo.
+     */
+    void setTodo(Todo target, Todo editedTodo);
+
+    /**
      * Replaces the given schedule {@code target} with {@code editedSchedule}.
      * {@code target} must exist in the address book. The schedule identity of
      * {@code editedSchedule} must not be the same as another existing schedule in
