@@ -210,6 +210,11 @@ class AddTodoCommandTest {
         public boolean hasScheduleClash(Schedule schedule) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setSchedule(Schedule target, Schedule editedSchedule) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
