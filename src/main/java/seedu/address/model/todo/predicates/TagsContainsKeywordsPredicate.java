@@ -1,14 +1,15 @@
-package seedu.address.model.person.predicates;
+package seedu.address.model.todo.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.model.person.Person;
+import seedu.address.commons.util.StringUtil;
+import seedu.address.model.todo.Todo;
 
 /**
- * Tests that a {@code Person}'s {@code Tags} matches any of the keywords given.
+ * Tests that a {@code Todo}'s {@code Tags} matches any of the keywords given.
  */
-public class TagsContainsKeywordsPredicate implements Predicate<Person> {
+public class TagsContainsKeywordsPredicate implements Predicate<Todo> {
     private final List<String> keywords;
 
     public TagsContainsKeywordsPredicate(List<String> keywords) {
@@ -16,22 +17,20 @@ public class TagsContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Todo todo) {
         if (keywords.size() == 0) {
             return false;
         }
 
-        // all keywords must be present in tag
         for (String keyword : keywords) {
-            boolean hasMatch = person.getTags().stream()
-                    .anyMatch(tag -> tag.getTagName().equalsIgnoreCase(keyword));
+            boolean hasMatch = todo.getTags().stream()
+                    .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.getTagName(), keyword));
             if (!hasMatch) {
                 return false;
             }
         }
         return true;
     }
-
 
     @Override
     public boolean equals(Object other) {

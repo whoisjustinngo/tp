@@ -161,6 +161,30 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given todo {@code target} in the list with
+     * {@code editedTodo}. {@code target} must exist in the address book. The
+     * {@code editedTodo} must not be the same as another
+     * existing todo in the address book.
+     */
+    public void setTodo(Todo target, Todo editedTodo) {
+        requireNonNull(editedTodo);
+
+        todos.setTodo(target, editedTodo);
+    }
+
+    /**
+     * Replaces the given schedule {@code target} in the list with
+     * {@code editedSchedule}. {@code target} must exist in the address book. The
+     * schedule identity of {@code editedSchedule} must not be the same as another
+     * existing schedule in the address book.
+     */
+    public void setSchedule(Schedule target, Schedule editedSchedule) {
+        requireNonNull(editedSchedule);
+
+        schedule.setSchedule(target, editedSchedule);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}. {@code key} must exist in
      * the address book.
      */
