@@ -25,7 +25,7 @@ public class FilterTodoCommand extends Command {
             + "Parameters: "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION KEYWORDS]... "
             + "[" + PREFIX_TAG + "TAG KEYWORDS]... "
-            + "[" + PREFIX_DONE + "YES or NO]\n"
+            + "[" + PREFIX_DONE + "yes OR " + PREFIX_DONE + "no]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "read "
             + PREFIX_TAG + "personalDevelopment nonUrgent "
