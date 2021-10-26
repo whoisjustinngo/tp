@@ -1,6 +1,11 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 import seedu.address.model.todo.Todo;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Todo objects.
@@ -10,12 +15,14 @@ public class TodoBuilder {
     public static final String DEFAULT_DESCRIPTION = "read";
 
     private String description;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code TodoBuilder} with the default details.
      */
     public TodoBuilder() {
         description = DEFAULT_DESCRIPTION;
+        tags = new HashSet<>();
     }
 
     /**
@@ -23,6 +30,7 @@ public class TodoBuilder {
      */
     public TodoBuilder(Todo todoToCopy) {
         description = todoToCopy.getDescription();
+        tags = new HashSet<>(todoToCopy.getTags());
     }
 
     /**
@@ -32,10 +40,17 @@ public class TodoBuilder {
         this.description = description;
         return this;
     }
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Todo} that we are building.
+     */
+    public TodoBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
 
 
     public Todo build() {
-        return new Todo(description);
+        return new Todo(description, tags);
     }
 
 }

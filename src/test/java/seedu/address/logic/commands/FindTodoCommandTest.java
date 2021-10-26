@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_TODOS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalTodos.APPEAL;
+import static seedu.address.testutil.TypicalTodos.BAKE;
 import static seedu.address.testutil.TypicalTodos.EAT;
 import static seedu.address.testutil.TypicalTodos.SHOP;
 import static seedu.address.testutil.TypicalTodos.TRAVEL;
@@ -67,11 +69,11 @@ public class FindTodoCommandTest {
     @Test
     public void execute_multipleKeywords_multipleTodosFound() {
         String expectedMessage = String.format(MESSAGE_TODOS_LISTED_OVERVIEW, 3);
-        DescriptionContainsKeywordsPredicate predicate = preparePredicate("Travel shop Eat");
+        DescriptionContainsKeywordsPredicate predicate = preparePredicate("Appeal bake Eat");
         FindTodoCommand command = new FindTodoCommand(predicate);
         expectedModel.updateFilteredTodoList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TRAVEL, SHOP, EAT), model.getFilteredTodoList());
+        assertEquals(Arrays.asList(APPEAL, BAKE, EAT), model.getFilteredTodoList());
     }
 
     /**
