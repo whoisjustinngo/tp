@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FROM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -20,7 +21,7 @@ public class AddScheduleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Schedule to your list of Events. "
             + "Parameters: " + PREFIX_DESCRIPTION + "DESCRIPTION " + PREFIX_DATE + "DATE " + PREFIX_FROM + "FROM "
             + PREFIX_TO + "TO\n" + "Example: " + COMMAND_WORD + " " + PREFIX_DESCRIPTION + "lesson " + PREFIX_DATE
-            + "16-05-2021 " + PREFIX_FROM + "1400 " + PREFIX_TO + "1600";
+            + "16-05-2021 " + PREFIX_FROM + "1400 " + PREFIX_TO + "1600 " + PREFIX_TAG + "important";
 
     public static final String MESSAGE_SUCCESS = "New Schedule added: %1$s";
     public static final String MESSAGE_DUPLICATE_SCHEDULE = "This schedule clashes with"

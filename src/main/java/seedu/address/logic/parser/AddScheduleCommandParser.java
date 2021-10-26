@@ -4,14 +4,17 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FROM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.event.exceptions.InvalidTimeException;
+import seedu.address.model.tag.Tag;
 
 public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
     /**
@@ -22,7 +25,7 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
      */
     public AddScheduleCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_FROM,
-                PREFIX_TO);
+                PREFIX_TO, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_FROM, PREFIX_TO)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -33,9 +36,10 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
         String date = argMultimap.getValue(PREFIX_DATE).get();
         String from = argMultimap.getValue(PREFIX_FROM).get();
         String to = argMultimap.getValue(PREFIX_TO).get();
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         try {
-            Schedule schedule = new Schedule(description, date, from, to, false);
+            Schedule schedule = new Schedule(description, date, from, to, false, tagList);
             return new AddScheduleCommand(schedule);
         } catch (InvalidTimeException e) {
             throw new ParseException(e.getMsg());

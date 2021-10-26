@@ -185,6 +185,14 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
+
+    @Override
+    public void setTodo(Todo target, Todo editedTodo) {
+        requireAllNonNull(target, editedTodo);
+
+        addressBook.setTodo(target, editedTodo);
+    }
+
     // =========== Filtered Person List Accessors
 
     // =============================================================
@@ -270,5 +278,12 @@ public class ModelManager implements Model {
     public boolean hasScheduleClash(Schedule schedule) {
         requireNonNull(schedule);
         return addressBook.hasScheduleClash(schedule);
+    }
+
+    @Override
+    public void setSchedule(Schedule target, Schedule editedSchedule) {
+        requireAllNonNull(target, editedSchedule);
+
+        addressBook.setSchedule(target, editedSchedule);
     }
 }

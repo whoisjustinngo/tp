@@ -88,8 +88,8 @@ public interface Model {
     boolean hasSchedule(Schedule schedule);
 
     /**
-     * Returns true if a Schedule clashes with {@code schedule} exists in
-     * the list of schedules.
+     * Returns true if a Schedule clashes with {@code schedule} exists in the list
+     * of schedules.
      */
     boolean hasScheduleClash(Schedule schedule);
 
@@ -143,6 +143,22 @@ public interface Model {
      * Gets the {@code Analytics} object for this addressBook.
      */
     ClientAnalytics getAnalytics();
+
+     /**
+     * Replaces the given todo {@code target} with {@code editedTodo}.
+     * {@code target} must exist in the address book. The
+     * {@code editedTodo} must not be the same as another existing todo.
+     */
+    void setTodo(Todo target, Todo editedTodo);
+
+    /**
+     * Replaces the given schedule {@code target} with {@code editedSchedule}.
+     * {@code target} must exist in the address book. The schedule identity of
+     * {@code editedSchedule} must not be the same as another existing schedule in
+     * the address book.
+     */
+    void setSchedule(Schedule target, Schedule editedSchedule);
+
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
