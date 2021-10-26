@@ -62,6 +62,26 @@ public class UniqueScheduleList implements Iterable<Schedule> {
     }
 
     /**
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the list.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     */
+    public void setSchedule(Schedule target, Schedule editedSchedule) {
+        requireAllNonNull(target, editedSchedule);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        if (!target.isSameSchedule(editedSchedule) && contains(editedSchedule)) {
+            throw new DuplicateScheduleException();
+        }
+
+        internalList.set(index, editedSchedule);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Schedule> asUnmodifiableObservableList() {
