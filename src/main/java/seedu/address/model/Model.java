@@ -16,13 +16,19 @@ import seedu.address.model.todo.Todo;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Todo> PREDICATE_SHOW_ALL_TODOS = unused -> true;
 
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULE = unused -> true;
 
     /**
@@ -60,7 +66,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -144,7 +152,7 @@ public interface Model {
      */
     ClientAnalytics getAnalytics();
 
-     /**
+    /**
      * Replaces the given todo {@code target} with {@code editedTodo}.
      * {@code target} must exist in the address book. The
      * {@code editedTodo} must not be the same as another existing todo.
@@ -160,7 +168,9 @@ public interface Model {
     void setSchedule(Schedule target, Schedule editedSchedule);
 
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
@@ -171,13 +181,19 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /** Returns an unmodifiable view of the filtered todo list */
+    /**
+     * Returns an unmodifiable view of the filtered todo list
+     */
     ObservableList<Todo> getFilteredTodoList();
 
-    /** Returns an unmodifiable view of the filtered schedule list */
+    /**
+     * Returns an unmodifiable view of the filtered schedule list
+     */
     ObservableList<Schedule> getFilteredScheduleList();
 
-    /** Returns an unmodifiable view of the filtered custom goal list */
+    /**
+     * Returns an unmodifiable view of the filtered custom goal list
+     */
     ObservableList<CustomGoal> getFilteredCustomGoalList();
 
     /**
