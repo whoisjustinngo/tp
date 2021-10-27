@@ -1,5 +1,5 @@
 [![CI Status](https://github.com/AY2122S1-CS2103-T14-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2122S1-CS2103-T14-4/tp/actions)
-![Ui](docs/images/dashboard-tab-v1.2.png)
+![Ui](docs/images/dashboard-tab-v1.3.png)
 
 # Advyze
 This is **a project by Software Engineering (SE) students** which is designed for tech-savvy student or financial advisors who prefer CLI over GUI, and have a lot of clients and a busy school schedule to keep track of.<br>

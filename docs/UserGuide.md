@@ -60,11 +60,11 @@ The dashboard is the default landing page of the app and displays a summary of r
   * The user's schedule in chronological order
   * The user's todos, with the earliest added at the top
 * These sections are automatically updated as the data in the respective tabs are changed.
-* The user can adjust how much of each section is to be displayed by sliding the white horizontal bar up and down.
+* The user can adjust how much of each section is to be displayed by sliding the black bars as required.
 * In future versions, the user will be able to customise what they wish to see on the dashboard.
 
-This is how the dashboard looks like as of v1.2: 
-![dashboard_tab](images/dashboard-tab-v1.2.png)
+This is how the dashboard looks like as of v1.3: 
+![dashboard_tab](images/dashboard-tab-v1.3.png)
 
 ### Adding a Custom Goal: `add`
 Adds a new custom goal.  
@@ -155,7 +155,7 @@ Format: `delete [INDEX]`
 -   The index refers to the index number shown in the Event list.
 -   The index must be a positive integer 1, 2, 3, ...
 
-![schedule_tab](images/schedule-tab-v1.2.png)
+![schedule_tab](images/schedule-tab-v1.3.png)
 
 ## Todos
 
