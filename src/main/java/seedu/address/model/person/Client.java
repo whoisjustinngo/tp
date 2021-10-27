@@ -11,10 +11,22 @@ import seedu.address.model.tag.Tag;
 public class Client extends Person {
     private final Set<Policy> policies = new HashSet<>();
     private final Status status;
-    private String notes;
+    private final String notes;
 
     /**
      * Every field must be present and not null.
+     */
+    public Client(Name name, Relationship relationship, Phone phone, Email email, Address address,
+                  Set<Tag> tags) {
+        super(name, relationship, phone, email, address, tags);
+        this.policies.addAll(policies);
+        status = Status.FRESH;
+        notes = "";
+        System.out.println("Client has been created");
+    }
+
+    /**
+     * Overloaded function adding clients with existing policies
      */
     public Client(Name name, Relationship relationship, Phone phone, Email email, Address address,
                   Set<Tag> tags, Set<Policy> policies) {
@@ -24,35 +36,15 @@ public class Client extends Person {
         notes = "";
     }
 
-    /**
-     * Set Client's notes
-     * @param notes
-     */
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public Set<Policy> getPolicies() {
+        return policies;
     }
 
-    /**
-     * Set Client's notes
-     * @param status
-     */
-    public void setStatus(Status status) {
-        this.status = status;
+    public Status getStatus() {
+        return status;
     }
 
-    /**
-     * Add to policy to client's portfolio
-     * @param policy
-     */
-    public void addPolicy(Policy policy) {
-        policies.add(policy);
-    }
-
-    /**
-     * Remove to policy to client's portfolio from index
-     * @param policy
-     */
-    public void addPolicy(Policy policy) {
-        policies.add(policy);
+    public String getNotes() {
+        return notes;
     }
 }
