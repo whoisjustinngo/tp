@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VALUE;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.customGoal.exceptions.NegativeProgressException;
 
 /**
  * Creates a command to update the progress of a specific CustomGoal.
@@ -24,6 +25,8 @@ public class UpdateCustomGoalCommand extends Command {
             + "This adds 20.3 to the progress of custom goal 1";
 
     public static final String MESSAGE_SUCCESS = "Successfully updated progress of custom goal %s with value %s";
+    public static final String MESSAGE_RESET = "Progress cannot be negative, progress of custom goal %s "
+            + "is reset to 0";
     public static final String MESSAGE_INVALID_INDEX = "The specified index is invalid";
 
     private final Index goalToUpdate;
@@ -48,9 +51,14 @@ public class UpdateCustomGoalCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_INDEX);
         }
 
-        model.updateCustomGoal(this.goalToUpdate, this.valueToUpdateBy);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.goalToUpdate.getOneBased(),
-                formatFloat(this.valueToUpdateBy)));
+        try {
+            model.updateCustomGoal(this.goalToUpdate, this.valueToUpdateBy);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, this.goalToUpdate.getOneBased(),
+                    formatFloat(this.valueToUpdateBy)));
+        } catch (NegativeProgressException ex) {
+            return new CommandResult(String.format(MESSAGE_RESET, this.goalToUpdate.getOneBased(),
+                    formatFloat(this.valueToUpdateBy)));
+        }
     }
 
     /**
