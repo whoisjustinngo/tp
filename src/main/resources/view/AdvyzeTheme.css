@@ -52,8 +52,6 @@
     -fx-focus-color: #4F5D2F;
 }
 
-
-
 .section-header {
     -fx-font-family: "Linux Libertine Bold";
     -fx-font-size: 14pt;
@@ -86,11 +84,18 @@
     -fx-text-fill: #605C4E;
 }
 
+.command-window {
+    -fx-font-family: "Linux Libertine Semibold";
+    -fx-font-size: 12pt;
+    -fx-background-color: #F2E9E4;
+    -fx-text-fill: #605C4E;
+}
+
 .result-window {
     -fx-font-family: "Linux Libertine Semibold";
     -fx-font-size: 12pt;
-    -fx-background-radius: 20pt;
-    -fx-border-radius: 20pt;
+    /*-fx-background-radius: 20pt;*/
+    /*-fx-border-radius: 20pt;*/
     -fx-background-color: #B0B2B8;
     -fx-text-fill: #605C4E;
 }
