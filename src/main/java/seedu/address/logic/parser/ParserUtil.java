@@ -190,4 +190,16 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code Collection<Policy> policies} into a {@code Set<Policy>}.
+     */
+    public static Set<Policy> parsePolicies(Collection<Policy> policies, Policy toAdd) throws ParseException {
+        requireNonNull(policies);
+        final Set<Policy> policySet = new HashSet<>();
+        for (Policy policy : policies) {
+            policySet.add(policy);
+        }
+        return policySet;
+    }
+
 }

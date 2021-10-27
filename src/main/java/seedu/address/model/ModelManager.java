@@ -15,9 +15,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.analytics.ClientAnalytics;
 import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
-import seedu.address.model.person.Client;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Policy;
 import seedu.address.model.todo.Todo;
 
 /**
