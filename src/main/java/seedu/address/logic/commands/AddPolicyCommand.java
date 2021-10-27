@@ -69,7 +69,7 @@ public class AddPolicyCommand extends Command {
         Person clientWithNewPolicy = createClientWithNewPolicy(clientToAddPolicy, newPolicy);
         model.setPerson(personToAddPolicy, clientWithNewPolicy);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, clientWithNewPolicy));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, clientWithNewPolicy.getPolicies()));
     }
 
     @Override
