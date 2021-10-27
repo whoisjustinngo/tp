@@ -40,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private ScheduleListPanel dashboardScheduleSection;
     private TodoListPanel dashboardTodoSection;
     private PersonListPanel personListPanel;
+    private PersonDetailedPanel personDetailedPanel;
     private TodoListPanel todoListPanel;
     private ScheduleListPanel scheduleListPanel;
     private ResultDisplay resultDisplay;
@@ -71,6 +72,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane personDetailedPlaceholder;
 
     @FXML
     private StackPane scheduleListPanelPlaceholder;
@@ -155,6 +159,9 @@ public class MainWindow extends UiPart<Stage> {
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        personDetailedPanel = new PersonDetailedPanel(logic.getFilteredPersonList());
+        personDetailedPlaceholder.getChildren().add(personDetailedPanel.getRoot());
 
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
         todoListPanelPlaceholder.getChildren().add(todoListPanel.getRoot());
@@ -266,6 +273,7 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 
     public String getSelectedPane() {
         return tabs.getSelectionModel().getSelectedItem().getId();
