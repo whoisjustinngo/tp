@@ -24,7 +24,7 @@ public class AddCustomGoalCommand extends Command {
             + "[" + PREFIX_END_DATE + "END_DATE" + "] "
             + "[" + PREFIX_END_TIME + "END_TIME" + "]\n"
             + "Note: 1. if you specify an end time, you have to specify an end date as well\n"
-            + "2. GOAL has to be an integer\n"
+            + "2. GOAL has to be a non-negative number\n"
             + "Example 1: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "call 20 clients "
             + PREFIX_GOAL + "20 "

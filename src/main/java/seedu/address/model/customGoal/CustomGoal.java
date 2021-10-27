@@ -28,7 +28,7 @@ public class CustomGoal {
      * @param endDate The date by which to complete the goal.
      * @param endTime The time by which to complete the goal.
      */
-    public CustomGoal(String description, int goal, LocalDate endDate, LocalTime endTime) {
+    public CustomGoal(String description, float goal, LocalDate endDate, LocalTime endTime) {
         this.goalDescription = description.trim();
         this.goal = goal;
         this.progress = 0;
@@ -39,7 +39,7 @@ public class CustomGoal {
     }
 
     /**
-     * Works just like {@link CustomGoal#CustomGoal(java.lang.String, int, java.time.LocalDate, java.time.LocalTime)}
+     * Works just like {@link CustomGoal#CustomGoal(java.lang.String, float, java.time.LocalDate, java.time.LocalTime)}
      * except this takes additional <code>String</code> parameters specifying the date and time the custom goal was
      * created.
      * @param dateAdded The date the custom goal was created.
@@ -178,5 +178,16 @@ public class CustomGoal {
 
     public String getGoalValue() {
         return formatFloat(this.goal);
+    }
+
+    /**
+     * Checks if the current custom goal is overdue
+     */
+    public boolean isOverdue() {
+        if (LocalDate.now().isEqual(this.endDate)) {
+            return LocalTime.now().isAfter(this.endTime);
+        } else {
+            return LocalDate.now().isAfter(this.endDate);
+        }
     }
 }

@@ -53,6 +53,10 @@ public class CustomGoalCard extends UiPart<Region> {
         if (customGoal.isComplete()) {
             progress.setStyle("-fx-text-fill: CHARTREUSE");
         }
+        if (customGoal.isOverdue()) {
+            dateEnd.setStyle("-fx-text-fill: RED");
+            timeEnd.setStyle("-fx-text-fill: RED");
+        }
         goal.setText(customGoal.getGoalValue());
         dateEnd.setText(customGoal.getEndDateValue());
         timeEnd.setText(customGoal.getEndTimeValue());

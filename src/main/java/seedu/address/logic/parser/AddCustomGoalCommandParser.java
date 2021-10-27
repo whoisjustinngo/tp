@@ -27,7 +27,7 @@ public class AddCustomGoalCommandParser implements Parser<AddCustomGoalCommand> 
     public static final String MESSAGE_WRONG_DATETIME_FORMAT =
             "Please use date in " + DATE_FORMAT + " format and time in " + TIME_FORMAT + " 24hr format\n";
     public static final String MESSAGE_WRONG_GOAL_FORMAT =
-            "Goal has to be an integer";
+            "Goal has to be a non-negative number";
 
     /**
      * Parses the provided string and creates a proper {@link AddCustomGoalCommand} that can be
@@ -50,9 +50,12 @@ public class AddCustomGoalCommandParser implements Parser<AddCustomGoalCommand> 
         }
 
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
-        int goal;
+        float goal;
         try {
-            goal = Integer.parseInt(argMultimap.getValue(PREFIX_GOAL).get());
+            goal = Float.parseFloat(argMultimap.getValue(PREFIX_GOAL).get());
+            if (goal < 0) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_WRONG_GOAL_FORMAT));
+            }
         } catch (NumberFormatException ex) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     MESSAGE_WRONG_GOAL_FORMAT));

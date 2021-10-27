@@ -78,12 +78,14 @@ Example:
 * Goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2021`
 * Goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021`
 
-### Updating a Custom Goal: `update`  
-Updates the progress of a particular custom goal by the specified value.  
+### Updating a Custom Goal: `update`
 
-Format: `update INDEX_OF_CUSTOM_GOAL val/VALUE_TO_UDATE_BY`  
+Format: `update INDEX_OF_CUSTOM_GOAL val/AMOUNT_TO_INCREMENT_GOAL_BY`
 
-Note: `VALUE_TO_UPDATE_BY` has to be a number (can be positive or negative). 
+Note: `AMOUNT_TO_INCREMENT_GOAL_BY` has to be a number (can be positive or negative).  
+
+Updates *the progress* of a particular custom goal by the specified value, i.e. updated progress = old progress + 
+`AMOUNT_TO_INCREMENT_GOAL_BY`
   
 Example: 
 * update custom goal 1 `update 1 val/123.4`
