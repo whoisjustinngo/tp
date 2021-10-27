@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
@@ -34,6 +35,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private AnalyticsPanel analyticsSection;
+    private CustomGoalListPanel customGoalSection;
     private ScheduleListPanel dashboardScheduleSection;
     private TodoListPanel dashboardTodoSection;
     private PersonListPanel personListPanel;
@@ -52,10 +55,19 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private VBox dashboardTopPanelPlaceholder;
+    private VBox dashboardAnalyticsPlaceholder;
 
     @FXML
-    private VBox dashboardBottomPanelPlaceholder;
+    private Label analyticsHeader;
+
+    @FXML
+    private VBox dashboardCustomGoalsPlaceholder;
+
+    @FXML
+    private VBox dashboardSchedulePlaceholder;
+
+    @FXML
+    private VBox dashboardTodosPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -134,6 +146,13 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
+        analyticsSection = new AnalyticsPanel(logic.getAnalytics());
+        analyticsHeader.setText(AnalyticsPanel.getHeader());
+        dashboardAnalyticsPlaceholder.getChildren().add(analyticsSection.getRoot());
+
+        customGoalSection = new CustomGoalListPanel(logic.getFilteredCustomGoalList());
+        dashboardCustomGoalsPlaceholder.getChildren().add(customGoalSection.getRoot());
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -145,8 +164,8 @@ public class MainWindow extends UiPart<Stage> {
 
         dashboardScheduleSection = new ScheduleListPanel(logic.getFilteredScheduleList());
         dashboardTodoSection = new TodoListPanel(logic.getFilteredTodoList());
-        dashboardTopPanelPlaceholder.getChildren().add(dashboardScheduleSection.getRoot());
-        dashboardBottomPanelPlaceholder.getChildren().add(dashboardTodoSection.getRoot());
+        dashboardSchedulePlaceholder.getChildren().add(dashboardScheduleSection.getRoot());
+        dashboardTodosPlaceholder.getChildren().add(dashboardTodoSection.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

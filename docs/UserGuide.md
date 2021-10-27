@@ -55,6 +55,8 @@ Refer to the [Features](#Features) below for more details on what Advyze can do.
 ## Dashboard
 The dashboard is the default landing page of the app and displays a summary of relevant information from the other sections of the app.
 * The dashboard by default shows:
+  * Some analytics tracking the status of clients
+  * Custom goals that can be set by the user
   * The user's schedule in chronological order
   * The user's todos, with the earliest added at the top
 * These sections are automatically updated as the data in the respective tabs are changed.
@@ -64,9 +66,35 @@ The dashboard is the default landing page of the app and displays a summary of r
 This is how the dashboard looks like as of v1.2: 
 ![dashboard_tab](images/dashboard-tab-v1.2.png)
 
-### Customising the dashboard
-Allows the user to customise what to display on the dashboard. More details coming soon.
+### Adding a Custom Goal: `add`
+Adds a new custom goal.  
 
+Format: `add d/DESCRIPTION goal/GOAL [bydate/END_DATE] [bytime/END_TIME]`  
+
+Note: `GOAL` has to be a number, `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format
+hhmm in 24-hour format. If `END_TIME` is specified, `END_DATE` has to be specified as well.  
+  
+Example:
+* Goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2021`
+* Goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021`
+
+### Updating a Custom Goal: `update`
+
+Format: `update INDEX_OF_CUSTOM_GOAL val/AMOUNT_TO_INCREMENT_GOAL_BY`
+
+Note: `AMOUNT_TO_INCREMENT_GOAL_BY` has to be a number (can be positive or negative).  
+
+Updates *the progress* of a particular custom goal by the specified value, i.e. updated progress = old progress + 
+`AMOUNT_TO_INCREMENT_GOAL_BY`
+  
+Example: 
+* update custom goal 1 `update 1 val/123.4`
+  
+### Deleting a Custom Goal: `delete`
+Deletes the specified Custom Goal from the dashboard.  
+
+Format: `delete INDEX_OF_GOAL_TO_DELETE`
+  
 
 ## Contacts
 

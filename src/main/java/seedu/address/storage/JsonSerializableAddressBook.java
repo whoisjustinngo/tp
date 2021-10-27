@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.todo.Todo;
@@ -22,9 +23,11 @@ import seedu.address.model.todo.Todo;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_GOAL = "Custom Goals list contains duplicate custom goal(s).";
     public static final String MESSAGE_DUPLICATE_TODO = "Todos list contains duplicate todo(s).";
     public static final String MESSAGE_DUPLICATE_SCHEDULE = "Schedule list contains duplicate schedule(s).";
 
+    private final List<JsonAdaptedCustomGoal> customGoals = new ArrayList<>();
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedTodo> todos = new ArrayList<>();
     private final List<JsonAdaptedSchedule> schedules = new ArrayList<>();
@@ -34,8 +37,10 @@ class JsonSerializableAddressBook {
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("customGoals") List<JsonAdaptedCustomGoal> customGoals,
                                        @JsonProperty("todos") List<JsonAdaptedTodo> todos,
                                        @JsonProperty("schedules") List<JsonAdaptedSchedule> schedules) {
+        this.customGoals.addAll(customGoals);
         this.persons.addAll(persons);
         this.todos.addAll(todos);
         this.schedules.addAll(schedules);
@@ -47,6 +52,8 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+        customGoals.addAll(source.getCustomGoalList().stream().map(JsonAdaptedCustomGoal::new)
+                .collect(Collectors.toList()));
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         todos.addAll(source.getTodoList().stream().map(JsonAdaptedTodo::new).collect(Collectors.toList()));
         schedules.addAll(source.getScheduleList().stream().map(JsonAdaptedSchedule::new).collect(Collectors.toList()));
@@ -65,6 +72,14 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+        }
+
+        for (JsonAdaptedCustomGoal jsonAdaptedCustomGoal : customGoals) {
+            CustomGoal customGoal = jsonAdaptedCustomGoal.toModelType();
+            if (addressBook.hasCustomGoal(customGoal)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_GOAL);
+            }
+            addressBook.addCustomGoal(customGoal);
         }
 
         for (JsonAdaptedTodo jsonAdaptedTodo : todos) {
