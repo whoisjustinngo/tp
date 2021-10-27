@@ -63,6 +63,7 @@ public class Person {
         this.tags.addAll(tags);
         this.status = Status.FRESH;
         this.notes = "";
+        this.policies.addAll(policies);
         lastUpdated = LocalDateTime.now();
     }
     public Name getName() {
