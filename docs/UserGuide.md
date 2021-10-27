@@ -55,6 +55,8 @@ Refer to the [Features](#Features) below for more details on what Advyze can do.
 ## Dashboard
 The dashboard is the default landing page of the app and displays a summary of relevant information from the other sections of the app.
 * The dashboard by default shows:
+  * Some analytics tracking the status of clients
+  * Custom goals that can be set by the user
   * The user's schedule in chronological order
   * The user's todos, with the earliest added at the top
 * These sections are automatically updated as the data in the respective tabs are changed.
@@ -64,9 +66,35 @@ The dashboard is the default landing page of the app and displays a summary of r
 This is how the dashboard looks like as of v1.2: 
 ![dashboard_tab](images/dashboard-tab-v1.2.png)
 
-### Customising the dashboard
-Allows the user to customise what to display on the dashboard. More details coming soon.
+### Adding a Custom Goal: `add`
+Adds a new custom goal.  
 
+Format: `add d/DESCRIPTION goal/GOAL [bydate/END_DATE] [bytime/END_TIME]`  
+
+Note: `GOAL` has to be a number, `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format
+hhmm in 24-hour format. If `END_TIME` is specified, `END_DATE` has to be specified as well.  
+  
+Example:
+* Goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2021`
+* Goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021`
+
+### Updating a Custom Goal: `update`
+
+Format: `update INDEX_OF_CUSTOM_GOAL val/AMOUNT_TO_INCREMENT_GOAL_BY`
+
+Note: `AMOUNT_TO_INCREMENT_GOAL_BY` has to be a number (can be positive or negative).  
+
+Updates *the progress* of a particular custom goal by the specified value, i.e. updated progress = old progress + 
+`AMOUNT_TO_INCREMENT_GOAL_BY`
+  
+Example: 
+* update custom goal 1 `update 1 val/123.4`
+  
+### Deleting a Custom Goal: `delete`
+Deletes the specified Custom Goal from the dashboard.  
+
+Format: `delete INDEX_OF_GOAL_TO_DELETE`
+  
 
 ## Contacts
 
@@ -131,7 +159,21 @@ Format: `delete [INDEX]`
 
 ## Todos
 
-### Listing all Todos : `list`
+### Adding a Todo while on the Todos tab : `add`
+
+Adds a Todo that will be displayed on the Dashboard and the Todos tabs.
+
+Format: `add d/DESCRIPTION [t/TAG]...`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A Todo can have any number of tags (including 0)
+</div>
+
+Examples:
+* `add d/read book`
+* `add d/buy new jeans t/urgent t/shopping`
+
+### Listing all Todos while on the Todos tab : `list`
 
 Shows a list of all Todos.
 
@@ -140,17 +182,69 @@ Format: `list`
 * The list is sorted in chronological order, according to the time at which the Todo was created.
 * By default, the list of all Todos will be shown upon navigating to the Todos tab.
 
-### Adding a Todo while on the Todo tab : `add`
+### Editing a Todo while on the Todos tab : `edit`
 
-Adds a Todo that will be displayed on the Dashboard and the Todos tabs.
+Edits an existing Todo.
 
-Format: `add d/DESCRIPTION`
+Format: `edit INDEX [d/DESCRIPTION] [t/TAG]…​`
+
+* Edits the Todo at the specified `INDEX`. The index refers to the index number shown in the displayed Todos list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the Todo will be removed i.e adding of tags is not cumulative.
+* You can remove all the Todo’s tags by typing `t/` without
+  specifying any tags after it.
 
 Examples:
-* `add d/read book`
-* `add d/buy new jeans`
+*  `edit 1 d/Read The Intelligent Investor` Edits the description of the 1st Todo to be `Read The Intelligent Investor`.
+*  `edit 2 d/Travel to Germany t/` Edits the description of the 2nd Todo to be `Travel to Germany` and clears all existing tags.
 
-### Deleting a Todo while on the Todo tab : `delete`
+### Marking a Todo as done while on the Todos tab : `done`
+
+Marks the specified Todo as done.
+
+* Marks the Todo at the specified `INDEX` as done.
+* The index refers to the index number shown in the displayed Todos list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `done 3` marks the 3rd Todo in the displayed Todos list as done.
+* `filter d/book` followed by `done 1` marks the 1st Todo in the results of the `filter` command as done.
+
+### Searching Todos by description while on the Todos tab : `find`
+
+Finds Todos whose descriptions contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `read book` will match `Read Book`
+* The order of the keywords does not matter. e.g. `Book Read` will match `Read Book`
+* Only the description is searched.
+* Only full words will be matched e.g. `rea` will not match `read`
+* Todos matching at least one keyword will be returned (i.e. `OR` search). e.g. `Read Buy` will return `Read Book`, `Buy Jeans`
+
+Examples:
+* `find book` returns all Todos with `book` in its description, i.e. `read book` and `return book`
+* `find book buy` returns all Todos with `book`, `buy`, or `book buy` in its description, i.e. `read book` and `buy jeans`
+
+### Filtering Todos by attributes while on the Todos tab : `filter`
+
+Filters Todos according to any of its attributes (description, tags, and whether it is marked as done).
+
+Format: `filter [d/DESCRIPTION KEYWORDS]... [t/TAG KEYWORDS]... [done/yes OR done/no]`
+
+* The keywords are case-insensitive. e.g `read book` will match `Read Book`
+* The order of the keywords does not matter. e.g. `Book Read` will match `Read Book`
+* Only full words will be matched e.g. `rea` will not match `read`
+* At least one of the optional fields must be provided, i.e. you must filter by 1 or more attributes.
+
+Examples:
+* `filter d/book` returns all Todos with `book` in its description, i.e. `read book` and `return book`
+* `filter d/book done/yes` returns all Todos with `book` in its description and are marked as done, i.e. `read book`
+* `filter t/learning d/read book` returns all Todos with `learning` as a tag and `read book` in its description, i.e. `read book`
+* `filter done/no` returns all Todos which are not marked as done.
+
+### Deleting a Todo while on the Todos tab : `delete`
 
 Deletes a specified Todo.
 
@@ -162,8 +256,17 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 3` deletes the 3rd Todo in the displayed Todos list.
+* `filter d/book` followed by `delete 1` deletes the 1st Todo in the results of the `filter` command
 
 ## General
+
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 ### Switching between Tabs: `tab`
 

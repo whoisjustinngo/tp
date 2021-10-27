@@ -15,7 +15,7 @@ import seedu.address.model.todo.exceptions.TodoNotFoundException;
  * A list of todos that enforces uniqueness between its elements and does not allow nulls.
  * A todo is considered unique by comparing using {@code Todo#equals(Object)}. As such, adding and updating of
  * todos uses Todo#equals(Object) for equality so as to ensure that the todo being added or updated is
- * unique in the UniquePersonList. Also, the removal of a todo uses Todo#equals(Object) so
+ * unique in the UniqueTodoList. Also, the removal of a todo uses Todo#equals(Object) so
  * as to ensure that the todo with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -46,6 +46,26 @@ public class UniqueTodoList implements Iterable<Todo> {
             throw new DuplicateTodoException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Replaces the todo {@code target} in the list with {@code editedTodo}.
+     * {@code target} must exist in the list.
+     * The {@code editedTodo} must not be the same as another existing todo in the list.
+     */
+    public void setTodo(Todo target, Todo editedTodo) {
+        requireAllNonNull(target, editedTodo);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new TodoNotFoundException();
+        }
+
+        if (!target.equals(editedTodo) && contains(editedTodo)) {
+            throw new DuplicateTodoException();
+        }
+
+        internalList.set(index, editedTodo);
     }
 
     /**

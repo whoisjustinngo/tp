@@ -12,6 +12,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DoneTodoCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
@@ -21,6 +22,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListSchedulesCommand;
 import seedu.address.logic.commands.ListTodosCommand;
 import seedu.address.logic.commands.TabSwitchCommand;
+import seedu.address.logic.commands.UpdateCustomGoalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -36,8 +38,8 @@ public class AddressBookParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT =
-            Pattern.compile("(?<tab>\\S+) (?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern
+            .compile("(?<tab>\\S+) (?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -62,7 +64,7 @@ public class AddressBookParser {
             switch (tab) {
 
             case DASHBOARD_TAB_ID:
-                throw new ParseException(MESSAGE_INVALID_TAB);
+                return new AddCustomGoalCommandParser().parse(arguments);
 
             case CONTACTS_TAB_ID:
                 return new AddCommandParser().parse(arguments);
@@ -77,67 +79,15 @@ public class AddressBookParser {
                 throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
             }
 
-        case EditCommand.COMMAND_WORD:
-            switch (tab) {
-
-            case CONTACTS_TAB_ID:
-                return new EditCommandParser().parse(arguments);
-
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-            }
-
-        case DeleteCommand.COMMAND_WORD:
-            switch (tab) {
+        case UpdateCustomGoalCommand.COMMAND_WORD:
+            switch(tab) {
 
             case DASHBOARD_TAB_ID:
-                throw new ParseException(MESSAGE_INVALID_TAB);
-
-            case CONTACTS_TAB_ID:
-                return new DeleteCommandParser().parse(arguments);
-
-            case SCHEDULE_TAB_ID:
-                return new DeleteScheduleCommandParser().parse(arguments);
-
-            case TODOS_TAB_ID:
-                return new DeleteTodoCommandParser().parse(arguments);
+                return new UpdateCustomGoalCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
             }
-
-        case ClearCommand.COMMAND_WORD:
-            switch (tab) {
-
-            case CONTACTS_TAB_ID:
-                return new ClearCommand();
-
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-            }
-
-        case FindCommand.COMMAND_WORD:
-            switch (tab) {
-
-            case CONTACTS_TAB_ID:
-                return new FindCommandParser().parse(arguments);
-
-            case SCHEDULE_TAB_ID:
-                return new FindScheduleCommandParser().parse(arguments);
-
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-            }
-        case FilterCommand.COMMAND_WORD:
-            switch (tab) {
-
-            case CONTACTS_TAB_ID:
-                return new FilterCommandParser().parse(arguments);
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-            }
-        case TabSwitchCommand.COMMAND_WORD:
-            return new TabSwitchCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             switch (tab) {
@@ -157,6 +107,102 @@ public class AddressBookParser {
             default:
                 throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
             }
+
+        case EditCommand.COMMAND_WORD:
+            switch (tab) {
+
+            case DASHBOARD_TAB_ID:
+                throw new ParseException(MESSAGE_INVALID_TAB);
+
+            case CONTACTS_TAB_ID:
+                return new EditCommandParser().parse(arguments);
+
+            case TODOS_TAB_ID:
+                return new EditTodoCommandParser().parse(arguments);
+
+            case SCHEDULE_TAB_ID:
+                return new EditScheduleCommandParser().parse(arguments);
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
+
+        case DeleteCommand.COMMAND_WORD:
+            switch (tab) {
+
+            case DASHBOARD_TAB_ID:
+                return new DeleteCustomGoalCommandParser().parse(arguments);
+
+            case CONTACTS_TAB_ID:
+                return new DeleteCommandParser().parse(arguments);
+
+            case SCHEDULE_TAB_ID:
+                return new DeleteScheduleCommandParser().parse(arguments);
+
+            case TODOS_TAB_ID:
+                return new DeleteTodoCommandParser().parse(arguments);
+
+            default:
+                throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
+            }
+
+        case FindCommand.COMMAND_WORD:
+            switch (tab) {
+
+            case DASHBOARD_TAB_ID:
+                throw new ParseException(MESSAGE_INVALID_TAB);
+
+            case CONTACTS_TAB_ID:
+                return new FindCommandParser().parse(arguments);
+
+            case TODOS_TAB_ID:
+                return new FindTodoCommandParser().parse(arguments);
+
+            case SCHEDULE_TAB_ID:
+                return new FindScheduleCommandParser().parse(arguments);
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
+
+        case FilterCommand.COMMAND_WORD:
+            switch (tab) {
+
+            case DASHBOARD_TAB_ID:
+                throw new ParseException(MESSAGE_INVALID_TAB);
+            case CONTACTS_TAB_ID:
+                return new FilterCommandParser().parse(arguments);
+            case SCHEDULE_TAB_ID:
+                return new FilterScheduleCommandParser().parse(arguments);
+            case TODOS_TAB_ID:
+                return new FilterTodoCommandParser().parse(arguments);
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
+
+        case ClearCommand.COMMAND_WORD:
+            switch (tab) {
+
+            case CONTACTS_TAB_ID:
+                return new ClearCommand();
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
+
+        case DoneTodoCommand.COMMAND_WORD:
+            switch (tab) {
+
+            case TODOS_TAB_ID:
+                return new DoneTodoCommandParser().parse(arguments);
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
+
+        case TabSwitchCommand.COMMAND_WORD:
+            return new TabSwitchCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

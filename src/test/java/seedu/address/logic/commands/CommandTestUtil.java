@@ -21,7 +21,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.todo.Todo;
+import seedu.address.model.todo.predicates.DescriptionContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTodoDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -66,11 +69,18 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditTodoCommand.EditTodoDescriptor DESC_READ;
+    public static final EditTodoCommand.EditTodoDescriptor DESC_TRAVEL;
 
     public static final String VALID_DESCRIPTION_READ = "read";
     public static final String VALID_DESCRIPTION_TRAVEL = "travel";
+    public static final String VALID_TAG_LEARNING = "learning";
+    public static final String VALID_TAG_LEISURE = "leisure";
 
     public static final String DESCRIPTION_READ = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_READ;
+    public static final String DESCRIPTION_TRAVEL = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_TRAVEL;
+    public static final String TAG_DESC_LEARNING = " " + PREFIX_TAG + VALID_TAG_LEARNING;
+    public static final String TAG_DESC_LEISURE = " " + PREFIX_TAG + VALID_TAG_LEISURE;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -79,6 +89,8 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_READ = new EditTodoDescriptorBuilder().withDescription(VALID_DESCRIPTION_READ).build();
+        DESC_TRAVEL = new EditTodoDescriptorBuilder().withDescription(VALID_DESCRIPTION_TRAVEL).build();
     }
 
     /**
@@ -136,5 +148,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the todo at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTodoAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTodoList().size());
+
+        Todo todo = model.getFilteredTodoList().get(targetIndex.getZeroBased());
+        final String[] splitDescription = todo.getDescription().split("\\s+");
+        model.updateFilteredTodoList(
+                new DescriptionContainsKeywordsPredicate(Arrays.asList(splitDescription[0])));
+
+        assertEquals(1, model.getFilteredTodoList().size());
     }
 }

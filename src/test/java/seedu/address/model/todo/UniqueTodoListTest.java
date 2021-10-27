@@ -48,6 +48,30 @@ public class UniqueTodoListTest {
     }
 
     @Test
+    public void setTodo_nullTargetTodo_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTodoList.setTodo(null, READ));
+    }
+
+    @Test
+    public void setTodo_nullEditedTodo_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTodoList.setTodo(READ, null));
+    }
+
+    @Test
+    public void setTodo_targetTodoNotInList_throwsTodoNotFoundException() {
+        assertThrows(TodoNotFoundException.class, () -> uniqueTodoList.setTodo(READ, READ));
+    }
+
+    @Test
+    public void setTodo_editedTodoIsSameTodo_success() {
+        uniqueTodoList.add(READ);
+        uniqueTodoList.setTodo(READ, READ);
+        UniqueTodoList expectedUniqueTodoList = new UniqueTodoList();
+        expectedUniqueTodoList.add(READ);
+        assertEquals(expectedUniqueTodoList, uniqueTodoList);
+    }
+
+    @Test
     public void remove_nullTodo_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueTodoList.remove(null));
     }

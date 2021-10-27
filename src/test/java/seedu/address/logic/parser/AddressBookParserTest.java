@@ -21,10 +21,14 @@ import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteTodoCommand;
+import seedu.address.logic.commands.DoneTodoCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditTodoCommand;
+import seedu.address.logic.commands.EditTodoCommand.EditTodoDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindTodoCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTodosCommand;
@@ -32,7 +36,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.todo.Todo;
+import seedu.address.model.todo.predicates.DescriptionContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTodoDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TodoBuilder;
@@ -91,6 +97,17 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_editTodo() throws Exception {
+        Todo todo = new TodoBuilder().build();
+        EditTodoDescriptor descriptor = new EditTodoDescriptorBuilder(todo).build();
+        EditTodoCommand command = (EditTodoCommand) parser.parseCommand(TODOS.getLabel() + " "
+                + EditTodoCommand.COMMAND_WORD + " "
+                + INDEX_FIRST.getOneBased() + " "
+                + TodoUtil.getEditTodoDescriptorDetails(descriptor));
+        assertEquals(new EditTodoCommand(INDEX_FIRST, descriptor), command);
+    }
+
+    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(DASHBOARD.getLabel()
                 + " " + ExitCommand.COMMAND_WORD) instanceof ExitCommand);
@@ -104,6 +121,14 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(CONTACTS.getLabel() + " "
                 + FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findTodo() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindTodoCommand command = (FindTodoCommand) parser.parseCommand(TODOS.getLabel() + " "
+                + FindTodoCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindTodoCommand(new DescriptionContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -128,6 +153,15 @@ public class AddressBookParserTest {
                 TODOS.getLabel() + " " + ListTodosCommand.COMMAND_WORD) instanceof ListTodosCommand);
         assertTrue(parser.parseCommand(TODOS.getLabel() + " " + ListTodosCommand.COMMAND_WORD + " 3")
                 instanceof ListTodosCommand);
+    }
+
+    @Test
+    public void parseCommand_doneTodo() throws Exception {
+        Todo todo = new TodoBuilder().build();
+        DoneTodoCommand command = (DoneTodoCommand) parser.parseCommand(TODOS.getLabel() + " "
+                + DoneTodoCommand.COMMAND_WORD + " "
+                + INDEX_FIRST.getOneBased());
+        assertEquals(new DoneTodoCommand(INDEX_FIRST), command);
     }
 
     @Test

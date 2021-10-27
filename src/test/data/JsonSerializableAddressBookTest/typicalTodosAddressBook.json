@@ -6,5 +6,6 @@
   }, {
     "description" : "travel"
   } ],
-  "schedules" : [ ]
+  "schedules" : [ ],
+  "customGoals" : []
 }
