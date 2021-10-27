@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -44,6 +45,18 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private TabPane tabs;
+    
+    @FXML
+    private Tab dashboardTab;
+
+    @FXML
+    private Tab contactsTab;
+
+    @FXML
+    private Tab scheduleTab;
+
+    @FXML
+    private Tab todosTab;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -179,6 +192,29 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    @FXML
+    private void changeTabSelection() {
+        String tabSelected = this.getSelectedPane();
+        String style = "-fx-font-family: \"Linux Libertine Semibold\";\n" 
+                + "-fx-font-size: 14pt;\n" 
+                + "-fx-background-color: #22223B;\n" 
+                + "-fx-text-fill: #F2E9E4;";
+        
+        switch (tabSelected) {
+        case "dashboardTab":
+            dashboardTab.setStyle(style);
+
+        case "contactsTab":
+            contactsTab.setStyle(style);
+            
+        case "scheduleTab":
+            scheduleTab.setStyle(style);
+            
+        case "todosTab":
+            todosTab.setStyle(style);
         }
     }
 

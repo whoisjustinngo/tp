@@ -42,3 +42,22 @@
     font-family: "Open Sans SemiBold Italic";
     src: url("/fonts/open-sans/OpenSans-SemiBoldItalic.ttf");
 }
+
+/* for linux libertine fonts - import as necessary*/
+
+@font-face {
+    font-family: "Linux Libertine";
+    src: url("/fonts/linuxLibertine/LinLibertine_R.ttf");
+}
+
+@font-face {
+    font-family: "Linux Libertine Semibold";
+    src: url("/fonts/linuxLibertine/LinLibertine_RZ.ttf");
+}
+
+@font-face {
+    font-family: "Linux Libertine Bold";
+    src: url("/fonts/linuxLibertine/LinLibertine_RB.ttf");
+}
+
+ 
