@@ -19,22 +19,46 @@
          <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
          <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
     </columnConstraints>
-      <Label fx:id="id" stylesheets="@AdvyzeTheme.css" text="\$id" GridPane.vgrow="NEVER" />
-   <Label fx:id="description" stylesheets="@AdvyzeTheme.css" text="\$description" wrapText="true" GridPane.columnIndex="1" GridPane.vgrow="NEVER" />
+      <Label fx:id="id" stylesheets="@AdvyzeTheme.css" text="\$id" GridPane.vgrow="NEVER">
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin></Label>
+   <Label fx:id="description" stylesheets="@AdvyzeTheme.css" text="\$description" wrapText="true" GridPane.columnIndex="1" GridPane.vgrow="NEVER">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin></Label>
    <Label fx:id="progress" stylesheets="@AdvyzeTheme.css" text="\$progress" GridPane.columnIndex="2" GridPane.vgrow="NEVER">
          <padding>
             <Insets right="5.0" />
-         </padding></Label>
+         </padding>
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin></Label>
       <ProgressBar fx:id="progressBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" progress="0.0" styleClass="rounded-cell" stylesheets="@AdvyzeTheme.css" GridPane.columnIndex="3" GridPane.vgrow="NEVER">
          <opaqueInsets>
             <Insets />
-         </opaqueInsets></ProgressBar>
+         </opaqueInsets>
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin></ProgressBar>
    <Label fx:id="goal" stylesheets="@AdvyzeTheme.css" text="\$goal" wrapText="true" GridPane.columnIndex="4" GridPane.vgrow="NEVER">
          <padding>
             <Insets left="5.0" />
-         </padding></Label>
-   <Label fx:id="dateEnd" stylesheets="@AdvyzeTheme.css" text="\$dateEnd" wrapText="true" GridPane.columnIndex="5" GridPane.vgrow="NEVER" />
-      <Label fx:id="timeEnd" stylesheets="@AdvyzeTheme.css" text="\$timeEnd" GridPane.columnIndex="6" GridPane.vgrow="NEVER" />
+         </padding>
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin></Label>
+   <Label fx:id="dateEnd" stylesheets="@AdvyzeTheme.css" text="\$dateEnd" wrapText="true" GridPane.columnIndex="5" GridPane.vgrow="NEVER">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="timeEnd" stylesheets="@AdvyzeTheme.css" text="\$timeEnd" GridPane.columnIndex="6" GridPane.vgrow="NEVER">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin></Label>
       <rowConstraints>
          <RowConstraints vgrow="NEVER" />
       </rowConstraints>
