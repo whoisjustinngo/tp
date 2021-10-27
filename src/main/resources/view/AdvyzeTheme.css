@@ -10,25 +10,25 @@
 .background-with-border {
     -fx-background-color: #F2E9E4;
     -fx-border-width: 4px;
-    -fx-border-color: #22223B;
+    -fx-border-color: #363020;
 }
 
 .background-with-border-dark {
-    -fx-background-color: #22223B;
+    -fx-background-color: #363020;
     -fx-border-width: 4px;
-    -fx-border-color: #22223B;
+    -fx-border-color: #363020;
 }
 
 .pane-with-border {
     -fx-background-color: #F2E9E4;
     -fx-border-width: 4px;
-    -fx-border-color: #22223B;
+    -fx-border-color: #363020;
 }
 
 .tab-button {
     -fx-font-family: "Linux Libertine Semibold";
     -fx-font-size: 14pt;
-    -fx-background-color: #9a8c98;
+    -fx-background-color: #A49966;
     -fx-text-fill: #F2E9E4;
     -fx-background-radius: 30pt;
 }
@@ -36,7 +36,7 @@
 .tab-button :selected { // TODO
     -fx-font-family: "Linux Libertine Semibold";
     -fx-font-size: 14pt;
-    -fx-background-color: #22223B;
+    -fx-background-color: #363020;
     -fx-text-fill: #F2E9E4;
 }
 
@@ -48,27 +48,29 @@
     -fx-padding: 0 -1 -1 0
 }
 
+
+
 .section-header {
     -fx-font-family: "Linux Libertine Bold";
     -fx-font-size: 14pt;
     -fx-padding: 4px;
-    -fx-background-color: #22223B;
+    -fx-background-color: #363020;
     -fx-text-fill: #F2E9E4;
 }
 
 .table-header {
     -fx-font-family: "Linux Libertine Semibold";
-    -fx-background-color: #4A4E69;
+    -fx-background-color: #605C4E;
     -fx-text-fill: #F2E9E4;
     -fx-font-size: 14pt;
     -fx-padding: 0pt, 5pt, 0pt, 5pt;
-    /*-fx-border-color: #22223B;*/
+    /*-fx-border-color: #363020;*/
 }
 
 .menu-bar {
     -fx-font-family: "Linux Libertine Semibold";
     -fx-font-size: 12pt;
-    -fx-background-color: #22223B;
+    -fx-background-color: #363020;
 }
 
 .rounded-cell {
@@ -77,7 +79,7 @@
     -fx-background-radius: 20pt;
     -fx-border-radius: 20pt;
     -fx-background-color: #F2E9E4;
-    -fx-text-fill: #4A4E69;
+    -fx-text-fill: #605C4E;
 }
 
 .result-window {
@@ -85,15 +87,15 @@
     -fx-font-size: 12pt;
     -fx-background-radius: 20pt;
     -fx-border-radius: 20pt;
-    -fx-background-color: #C9ADA7;
-    -fx-text-fill: #4A4E69;
+    -fx-background-color: #C7C7A6;
+    -fx-text-fill: #605C4E;
 }
 
 .result-text-display {
     -fx-background-color: transparent;
     -fx-font-family: "Linux Libertine";
     -fx-font-size: 14pt;
-    -fx-text-fill: #4A4E69;
+    -fx-text-fill: #605C4E;
 }
 
 .status-bar {
@@ -102,7 +104,7 @@
     -fx-background-radius: 20pt;
     -fx-border-radius: 20pt;
     -fx-background-color: #F2E9E4;
-    -fx-text-fill: #4A4E69;
+    -fx-text-fill: #605C4E;
     -fx-label-padding: 10, 5, 5, 0;
 }
 
@@ -117,21 +119,21 @@
     -fx-background-color: transparent;
     -fx-font-family: "Linux Libertine";
     -fx-font-size: 14pt;
-    -fx-text-fill: #4A4E69;
+    -fx-text-fill: #605C4E;
 }
 
 .text-area .scroll-pane {
     -fx-background-color: transparent;
     -fx-font-family: "Linux Libertine";
     -fx-font-size: 14pt;
-    -fx-text-fill: #4A4E69;
+    -fx-text-fill: #605C4E;
 }
 
 .text-area .scroll-pane .viewport{
     -fx-background-color: transparent;
     -fx-font-family: "Linux Libertine";
     -fx-font-size: 14pt;
-    -fx-text-fill: #4A4E69;
+    -fx-text-fill: #605C4E;
 }
 
 
@@ -139,13 +141,13 @@
     -fx-background-color: transparent;
     -fx-font-family: "Linux Libertine";
     -fx-font-size: 14pt;
-    -fx-text-fill: #4A4E69;
+    -fx-text-fill: #605C4E;
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: #C9ADA7;
+    -fx-background-color: #C7C7A6;
 }
 
 .list-cell {
@@ -156,25 +158,25 @@
 
 .list-cell:filled:even {
     -fx-background-color: #F2E9E4;
-    -fx-text-fill: #4A4E69;
+    -fx-text-fill: #605C4E;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #C9ADA7;
-    -fx-text-fill: #22223B;
+    -fx-background-color: #C7C7A6;
+    -fx-text-fill: #363020;
 }
 
 .list-cell:filled:selected {
-    /*-fx-background-color: #C9ADA7;*/
+    /*-fx-background-color: #C7C7A6;*/
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #C9ADA7;
+    -fx-border-color: #C7C7A6;
     -fx-border-width: 1;
 }
 
 .list-cell .label {
-    -fx-text-fill: #22223B;
+    -fx-text-fill: #363020;
     -fx-font-size: 14pt;
     -fx-font-family: "Linux Libertine Semibold";
 }
