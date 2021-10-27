@@ -5,6 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.customGoal.CustomGoal;
+import seedu.address.model.customGoal.UniqueCustomGoalList;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.event.UniqueScheduleList;
 import seedu.address.model.person.Person;
@@ -18,6 +21,7 @@ import seedu.address.model.todo.UniqueTodoList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+    private final UniqueCustomGoalList customGoals;
     private final UniquePersonList persons;
     private final UniqueTodoList todos;
     private final UniqueScheduleList schedule;
@@ -31,6 +35,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * ways to avoid duplication among constructors.
      */
     {
+        customGoals = new UniqueCustomGoalList();
         persons = new UniquePersonList();
         todos = new UniqueTodoList();
         schedule = new UniqueScheduleList();
@@ -48,6 +53,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// list overwrite operations
+
+    /**
+     * Replaces the contents of the customGoals list with {@code customGoals}.
+     * {@code customGoals} must not contain duplicates.
+     */
+    public void setCustomGoals(List<CustomGoal> customGoals) {
+        this.customGoals.setCustomGoals(customGoals);
+    }
 
     /**
      * Replaces the contents of the person list with {@code persons}.
@@ -78,10 +91,51 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
+        setCustomGoals(newData.getCustomGoalList());
         setPersons(newData.getPersonList());
         setTodos(newData.getTodoList());
         setSchedules(newData.getScheduleList());
+    }
+
+
+    //// customGoal-level operations
+
+    /**
+     * Adds a given customGoal to the list of CustomGoals.
+     */
+    public void addCustomGoal(CustomGoal toAdd) {
+        requireNonNull(toAdd);
+        customGoals.add(toAdd);
+    }
+
+    /**
+     * Deletes the <code>CustomGoal</code> corresponding to the specified <code>Index</code> from the list.
+     * @param goalToDelete The <code>Index</code> of the desired <code>CustomGoal</code> to be deleted (1-based).
+     */
+    public void deleteCustomGoal(Index goalToDelete) {
+        requireNonNull(goalToDelete);
+        customGoals.delete(goalToDelete);
+    }
+
+    /**
+     * Checks if specified goal is already in the list of CustomGoals.
+     * @param goal The goal to check.
+     * @return Whether the goal is currently in the list of CustomGoals or not.
+     */
+    public boolean hasCustomGoal(CustomGoal goal) {
+        requireNonNull(goal);
+        return customGoals.contains(goal);
+    }
+
+    /**
+     * Increases the progress of the <code>CustomGoal</code> corresponding to the specified <code>Index</code> by the
+     * specified value.
+     * @param goalToUpdate The <code>Index</code> of the desired <code>CustomGoal</code>.
+     * @param valueToUpdateBy The value to update the progress of the specified <code>CustomGoal</code> by.
+     */
+    public void updateCustomGoal(Index goalToUpdate, float valueToUpdateBy) {
+        requireNonNull(goalToUpdate);
+        customGoals.update(goalToUpdate, valueToUpdateBy);
     }
 
     //// person-level operations
@@ -212,6 +266,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
+    }
+
+    @Override
+    public ObservableList<CustomGoal> getCustomGoalList() {
+        return customGoals.asUnmodifiableObservableList();
     }
 
     @Override

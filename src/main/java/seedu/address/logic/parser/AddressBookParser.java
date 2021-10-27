@@ -22,6 +22,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListSchedulesCommand;
 import seedu.address.logic.commands.ListTodosCommand;
 import seedu.address.logic.commands.TabSwitchCommand;
+import seedu.address.logic.commands.UpdateCustomGoalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -63,7 +64,7 @@ public class AddressBookParser {
             switch (tab) {
 
             case DASHBOARD_TAB_ID:
-                throw new ParseException(MESSAGE_INVALID_TAB);
+                return new AddCustomGoalCommandParser().parse(arguments);
 
             case CONTACTS_TAB_ID:
                 return new AddCommandParser().parse(arguments);
@@ -73,6 +74,16 @@ public class AddressBookParser {
 
             case TODOS_TAB_ID:
                 return new AddTodoCommandParser().parse(arguments);
+
+            default:
+                throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
+            }
+
+        case UpdateCustomGoalCommand.COMMAND_WORD:
+            switch(tab) {
+
+            case DASHBOARD_TAB_ID:
+                return new UpdateCustomGoalCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
@@ -120,7 +131,7 @@ public class AddressBookParser {
             switch (tab) {
 
             case DASHBOARD_TAB_ID:
-                throw new ParseException(MESSAGE_INVALID_TAB);
+                return new DeleteCustomGoalCommandParser().parse(arguments);
 
             case CONTACTS_TAB_ID:
                 return new DeleteCommandParser().parse(arguments);
