@@ -8,6 +8,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.analytics.ClientAnalytics;
+import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.todo.Todo;
@@ -41,6 +43,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of schedule */
     ObservableList<Schedule> getFilteredScheduleList();
 
+    /** Returns an unmodifiable view of the filtered list of custom goal */
+    ObservableList<CustomGoal> getFilteredCustomGoalList();
+
     /**
      * Returns the user prefs' address book file path.
      */
@@ -55,4 +60,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    ClientAnalytics getAnalytics();
 }

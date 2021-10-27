@@ -11,6 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.analytics.ClientAnalytics;
+import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.todo.Todo;
@@ -22,7 +25,9 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final ClientAnalytics clientAnalytics;
     private final UserPrefs userPrefs;
+    private final FilteredList<CustomGoal> filteredCustomGoals;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Todo> filteredTodos;
     private final FilteredList<Schedule> filteredSchedule;
@@ -37,7 +42,9 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.clientAnalytics = new ClientAnalytics(this.addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredCustomGoals = new FilteredList<>(this.addressBook.getCustomGoalList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTodos = new FilteredList<>(this.addressBook.getTodoList());
         filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
@@ -83,6 +90,13 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    // =========== Analytics
+    // ================================================================================
+    @Override
+    public ClientAnalytics getAnalytics() {
+        return this.clientAnalytics;
+    }
+
     // =========== AddressBook
     // ================================================================================
 
@@ -109,6 +123,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasCustomGoal(CustomGoal toAdd) {
+        requireNonNull(toAdd);
+        return addressBook.hasCustomGoal(toAdd);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -121,6 +141,26 @@ public class ModelManager implements Model {
     @Override
     public void deleteSchedule(Schedule target) {
         addressBook.removeSchedule(target);
+    }
+
+    @Override
+    public void addCustomGoal(CustomGoal toAdd) {
+        addressBook.addCustomGoal(toAdd);
+    }
+
+    @Override
+    public void deleteCustomGoal(Index goalToDelete) {
+        addressBook.deleteCustomGoal(goalToDelete);
+    }
+
+    @Override
+    public void updateCustomGoal(Index goalToUpdate, float valueToUpdateBy) {
+        addressBook.updateCustomGoal(goalToUpdate, valueToUpdateBy);
+    }
+
+    @Override
+    public int getNumOfCustomGoals() {
+        return this.getFilteredCustomGoalList().size();
     }
 
     @Override
@@ -146,7 +186,15 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void setTodo(Todo target, Todo editedTodo) {
+        requireAllNonNull(target, editedTodo);
+
+        addressBook.setTodo(target, editedTodo);
+    }
+
     // =========== Filtered Person List Accessors
+
     // =============================================================
 
     /**
@@ -163,8 +211,8 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
-
     // =========== Filtered Todo List Accessors
+
     // =============================================================
 
     /**
@@ -183,6 +231,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
         return filteredSchedule;
+    }
+
+    @Override
+    public ObservableList<CustomGoal> getFilteredCustomGoalList() {
+        return filteredCustomGoals;
     }
 
     @Override
@@ -225,5 +278,12 @@ public class ModelManager implements Model {
     public boolean hasScheduleClash(Schedule schedule) {
         requireNonNull(schedule);
         return addressBook.hasScheduleClash(schedule);
+    }
+
+    @Override
+    public void setSchedule(Schedule target, Schedule editedSchedule) {
+        requireAllNonNull(target, editedSchedule);
+
+        addressBook.setSchedule(target, editedSchedule);
     }
 }
