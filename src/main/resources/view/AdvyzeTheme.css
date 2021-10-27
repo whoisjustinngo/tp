@@ -10,25 +10,25 @@
 .background-with-border {
     -fx-background-color: #F2E9E4;
     -fx-border-width: 4px;
-    -fx-border-color: #363020;
+    -fx-border-color: #7D7E75;
 }
 
 .background-with-border-dark {
-    -fx-background-color: #363020;
+    -fx-background-color: #7D7E75;
     -fx-border-width: 4px;
-    -fx-border-color: #363020;
+    -fx-border-color: #7D7E75;
 }
 
 .pane-with-border {
     -fx-background-color: #F2E9E4;
     -fx-border-width: 4px;
-    -fx-border-color: #363020;
+    -fx-border-color: #7D7E75;
 }
 
 .tab-button {
     -fx-font-family: "Linux Libertine Semibold";
     -fx-font-size: 14pt;
-    -fx-background-color: #A49966;
+    -fx-background-color: #F2E9E4;
     -fx-text-fill: #F2E9E4;
     -fx-background-radius: 30pt;
 }
@@ -36,8 +36,8 @@
 .tab-button :selected { // TODO
     -fx-font-family: "Linux Libertine Semibold";
     -fx-font-size: 14pt;
-    -fx-background-color: #363020;
-    -fx-text-fill: #F2E9E4;
+    -fx-background-color: #7D7E75;
+    -fx-text-fill: #CFD6EA;
 }
 
 .tab-header-background {
@@ -48,13 +48,17 @@
     -fx-padding: 0 -1 -1 0
 }
 
+.tab-pane-focused :focused {
+    -fx-focus-color: #4F5D2F;
+}
+
 
 
 .section-header {
     -fx-font-family: "Linux Libertine Bold";
     -fx-font-size: 14pt;
     -fx-padding: 4px;
-    -fx-background-color: #363020;
+    -fx-background-color: #7D7E75;
     -fx-text-fill: #F2E9E4;
 }
 
@@ -64,13 +68,13 @@
     -fx-text-fill: #F2E9E4;
     -fx-font-size: 14pt;
     -fx-padding: 0pt, 5pt, 0pt, 5pt;
-    /*-fx-border-color: #363020;*/
+    /*-fx-border-color: #7D7E75;*/
 }
 
 .menu-bar {
     -fx-font-family: "Linux Libertine Semibold";
     -fx-font-size: 12pt;
-    -fx-background-color: #363020;
+    -fx-background-color: #7D7E75;
 }
 
 .rounded-cell {
@@ -87,7 +91,7 @@
     -fx-font-size: 12pt;
     -fx-background-radius: 20pt;
     -fx-border-radius: 20pt;
-    -fx-background-color: #C7C7A6;
+    -fx-background-color: #B0B2B8;
     -fx-text-fill: #605C4E;
 }
 
@@ -147,7 +151,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: #C7C7A6;
+    -fx-background-color: #B0B2B8;
 }
 
 .list-cell {
@@ -157,26 +161,26 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #F2E9E4;
+    -fx-background-color: derive(#B0B2B8, 20%);
     -fx-text-fill: #605C4E;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #C7C7A6;
-    -fx-text-fill: #363020;
+    -fx-background-color: #B0B2B8;
+    -fx-text-fill: #7D7E75;
 }
 
 .list-cell:filled:selected {
-    /*-fx-background-color: #C7C7A6;*/
+    /*-fx-background-color: #B0B2B8;*/
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #C7C7A6;
+    -fx-border-color: #B0B2B8;
     -fx-border-width: 1;
 }
 
 .list-cell .label {
-    -fx-text-fill: #363020;
+    -fx-text-fill: #423629;
     -fx-font-size: 14pt;
     -fx-font-family: "Linux Libertine Semibold";
 }
