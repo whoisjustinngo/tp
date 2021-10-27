@@ -45,13 +45,13 @@
               <tabs>
                 <Tab id="dashboardTab" fx:id="dashboardTab" closable="false" styleClass="tab-button" text="Dashboard">
                      <content>
-                        <SplitPane dividerPositions="0.33, 0.66" orientation="VERTICAL" styleClass="pane-with-border" stylesheets="@DarkTheme.css">
+                        <SplitPane dividerPositions="0.33, 0.66" orientation="VERTICAL" styleClass="pane-with-border" stylesheets="@AdvyzeTheme.css">
                            <items>
-                              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pane-with-border" stylesheets="@DarkTheme.css">
+                              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" stylesheets="@AdvyzeTheme.css">
                                  <children>
-                                    <SplitPane dividerPositions="0.2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pane-with-border" stylesheets="@DarkTheme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <SplitPane fx:id="topPane" dividerPositions="0.2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" stylesheets="@AdvyzeTheme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <items>
-                                          <VBox fx:id="dashboardAnalyticsPlaceholder" prefHeight="200.0" prefWidth="100.0">
+                                          <VBox fx:id="dashboardAnalyticsPlaceholder" prefHeight="200.0" styleClass="background" stylesheets="@AdvyzeTheme.css">
                                              <children>
                                                 <Label fx:id="analyticsHeader" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="section-header" stylesheets="@AdvyzeTheme.css" text="\\$analyticsHeader" VBox.vgrow="NEVER">
                                                    <padding>
@@ -60,7 +60,7 @@
                                                 </Label>
                                              </children>
                                           </VBox>
-                                          <VBox fx:id="dashboardCustomGoalsPlaceholder" prefHeight="200.0" prefWidth="100.0">
+                                          <VBox fx:id="dashboardCustomGoalsPlaceholder" prefHeight="200.0" prefWidth="100.0" stylesheets="@AdvyzeTheme.css">
                                              <children>
                                                 <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="section-header" stylesheets="@AdvyzeTheme.css" text="Here are some of your goals:" VBox.vgrow="NEVER">
                                                    <padding>

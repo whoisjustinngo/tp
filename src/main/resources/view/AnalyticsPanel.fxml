@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="grid-pane" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="background" stylesheets="@AdvyzeTheme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
-    <ColumnConstraints hgrow="NEVER" />
     <ColumnConstraints hgrow="ALWAYS" />
+    <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints vgrow="SOMETIMES" />
@@ -20,22 +20,22 @@
       <RowConstraints vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label styleClass="label-bright" stylesheets="@DarkTheme.css" text="Type" GridPane.vgrow="NEVER">
+      <Label styleClass="dark_text_header" stylesheets="@AdvyzeTheme.css" text="Type" GridPane.vgrow="NEVER">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label styleClass="label-bright" stylesheets="@DarkTheme.css" text="Count" GridPane.columnIndex="1" GridPane.vgrow="NEVER">
+      <Label styleClass="dark_text_header" stylesheets="@AdvyzeTheme.css" text="Count" GridPane.columnIndex="1" GridPane.vgrow="NEVER">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label styleClass="label-bright" stylesheets="@DarkTheme.css" text="Fresh Leads" GridPane.rowIndex="1">
+      <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Fresh Leads" GridPane.rowIndex="1">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label styleClass="label-bright" stylesheets="@DarkTheme.css" text="Approached" GridPane.rowIndex="2">
+      <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Approached" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -43,7 +43,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label styleClass="label-bright" stylesheets="@DarkTheme.css" text="Pitched" GridPane.rowIndex="3">
+      <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Pitched" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -51,37 +51,37 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label styleClass="label-bright" stylesheets="@DarkTheme.css" text="Negotiated" GridPane.rowIndex="4">
+      <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Negotiated" GridPane.rowIndex="4">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label styleClass="label-bright" stylesheets="@DarkTheme.css" text="Closed" GridPane.rowIndex="5">
+      <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Closed" GridPane.rowIndex="5">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label fx:id="freshCount" maxWidth="1.7976931348623157E308" styleClass="label-bright" stylesheets="@DarkTheme.css" text="\$freshCount" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Label fx:id="freshCount" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$freshCount" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label fx:id="approachedCount" layoutX="304.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="label-bright" stylesheets="@DarkTheme.css" text="\$approachedCount" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Label fx:id="approachedCount" layoutX="304.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$approachedCount" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label fx:id="pitchedCount" layoutX="10.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="label-bright" stylesheets="@DarkTheme.css" text="\$pitchedCount" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <Label fx:id="pitchedCount" layoutX="10.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$pitchedCount" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label fx:id="negotiatedCount" layoutX="10.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="label-bright" stylesheets="@DarkTheme.css" text="\$negotiatedCount" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <Label fx:id="negotiatedCount" layoutX="10.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$negotiatedCount" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label fx:id="closedCount" layoutX="10.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="label-bright" stylesheets="@DarkTheme.css" text="\$closedCount" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <Label fx:id="closedCount" layoutX="10.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$closedCount" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>

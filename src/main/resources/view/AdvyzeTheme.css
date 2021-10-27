@@ -119,6 +119,20 @@
     -fx-background-color: transparent;
 }
 
+.dark_text {
+    -fx-font-family: "Linux Libertine Semibold";
+    -fx-font-size: 12pt;
+    -fx-text-fill: #423629;
+    -fx-background-color: transparent;
+}
+
+.dark_text_header {
+    -fx-font-family: "Linux Libertine Bold";
+    -fx-font-size: 12pt;
+    -fx-text-fill: #423629;
+    -fx-background-color: transparent;
+}
+
 .text-area {
     -fx-background-color: transparent;
     -fx-font-family: "Linux Libertine";
@@ -263,9 +277,11 @@
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: derive(#1d1d1d, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-box-border: transparent;
 }
 
 .split-pane:vertical .split-pane-divider {
     -fx-background-color: derive(#1d1d1d, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-box-border: transparent;
 }
