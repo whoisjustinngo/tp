@@ -10,7 +10,9 @@ import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.customGoal.UniqueCustomGoalList;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.event.UniqueScheduleList;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Policy;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.todo.Todo;
 import seedu.address.model.todo.UniqueTodoList;
@@ -261,6 +263,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         return schedule.isClash(key);
     }
 
+
+    // policy methods
+
+    /**
+     * Returns true if a client has a {@code policy}
+     * from the same insurer and has the same policy number
+     */
+    public boolean clientHasPolicy(Client client, Policy policy) {
+        return client.getPolicies().contains(policy);
+    }
+
     //// util methods
 
     @Override
@@ -299,4 +312,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 }

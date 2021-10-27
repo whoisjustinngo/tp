@@ -1,4 +1,5 @@
 package seedu.address.model.person;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ public class Client extends Person {
     private final Set<Policy> policies = new HashSet<>();
     private final Status status;
     private final String notes;
+    private final LocalDateTime lastUpdated;
 
     /**
      * Every field must be present and not null.
@@ -22,6 +24,7 @@ public class Client extends Person {
         this.policies.addAll(policies);
         status = Status.FRESH;
         notes = "";
+        lastUpdated = LocalDateTime.now();
         System.out.println("Client has been created");
     }
 
@@ -34,6 +37,7 @@ public class Client extends Person {
         this.policies.addAll(policies);
         status = Status.FRESH;
         notes = "";
+        lastUpdated = LocalDateTime.now();
     }
 
     public Set<Policy> getPolicies() {
@@ -46,5 +50,9 @@ public class Client extends Person {
 
     public String getNotes() {
         return notes;
+    }
+
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
     }
 }

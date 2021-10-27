@@ -9,7 +9,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.analytics.ClientAnalytics;
 import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Policy;
 import seedu.address.model.todo.Todo;
 
 /**
@@ -100,6 +102,12 @@ public interface Model {
      * of schedules.
      */
     boolean hasScheduleClash(Schedule schedule);
+
+    /**
+     * Returns true if a person with has {@code policy} with same
+     * insurer and policy number.
+     */
+    boolean clientHasPolicy(Client client, Policy policy);
 
     /**
      * Deletes the given person. The person must exist in the address book.
