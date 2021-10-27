@@ -21,4 +21,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_END_DATE = new Prefix("bydate/");
     public static final Prefix PREFIX_END_TIME = new Prefix("bytime/");
     public static final Prefix PREFIX_VALUE = new Prefix("val/");
+    public static final Prefix PREFIX_INSURER = new Prefix("insurer/");
+    public static final Prefix PREFIX_NUMBER = new Prefix("num/");
+    public static final Prefix PREFIX_COMMISSION = new Prefix("comm/");
 }

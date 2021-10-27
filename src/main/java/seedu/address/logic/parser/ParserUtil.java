@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Policy;
 import seedu.address.model.person.Relationship;
 import seedu.address.model.tag.Tag;
 
@@ -22,7 +23,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
+    private static final String INTEGER_MESSAGE_CONSTRAINTS = "Number must be an integer.";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -49,6 +50,57 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String insurerName} into a {@code insurerName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Name parseInsurerName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!name.matches(Policy.NAME_VALIDATION_REGEX)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code policyName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Name parsePolicyName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!name.matches(Policy.NAME_VALIDATION_REGEX)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Name(trimmedName);
+    }
+    /**
+     * Ensure non-null and is numeric
+     */
+    public static int parsePolicyNumber(String number) throws ParseException {
+        requireNonNull(number);
+        if (!number.matches(Policy.NUMBER_VALIDATION_REGEX)) {
+            throw new ParseException(INTEGER_MESSAGE_CONSTRAINTS);
+        }
+        return Integer.valueOf(number);
+    }
+
+    /**
+     * Ensure non-null and is numeric
+     */
+    public static double parseCommission(String number) throws ParseException {
+        requireNonNull(number);
+        if (!number.matches(Policy.COMMISSION_VALIDATION_REGEX)) {
+            throw new ParseException(INTEGER_MESSAGE_CONSTRAINTS);
+        }
+        return Integer.valueOf(number);
     }
 
     /**

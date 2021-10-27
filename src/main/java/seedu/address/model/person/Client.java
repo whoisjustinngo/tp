@@ -29,16 +29,18 @@ public class Client extends Person {
     }
 
     /**
-     * Overloaded function adding clients with existing policies
+     * Overloaded function adding clients with existing policies, status and notes
      */
     public Client(Name name, Relationship relationship, Phone phone, Email email, Address address,
-                  Set<Tag> tags, Set<Policy> policies) {
+                  Set<Tag> tags, Set<Policy> policies, Status status, String notes) {
         super(name, relationship, phone, email, address, tags);
         this.policies.addAll(policies);
-        status = Status.FRESH;
-        notes = "";
+        this.status = status;
+        this.notes = notes;
         lastUpdated = LocalDateTime.now();
     }
+
+
 
     public Set<Policy> getPolicies() {
         return policies;

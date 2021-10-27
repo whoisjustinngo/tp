@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPolicyCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -75,6 +76,14 @@ public class AddressBookParser {
             case TODOS_TAB_ID:
                 return new AddTodoCommandParser().parse(arguments);
 
+            default:
+                throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
+            }
+
+        case AddPolicyCommand.COMMAND_WORD:
+            switch (tab) {
+            case CONTACTS_TAB_ID:
+                return new AddPolicyCommandParser().parse(arguments);
             default:
                 throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
             }

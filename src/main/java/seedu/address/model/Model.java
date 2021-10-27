@@ -104,12 +104,6 @@ public interface Model {
     boolean hasScheduleClash(Schedule schedule);
 
     /**
-     * Returns true if a person with has {@code policy} with same
-     * insurer and policy number.
-     */
-    boolean clientHasPolicy(Client client, Policy policy);
-
-    /**
      * Deletes the given person. The person must exist in the address book.
      */
     void deletePerson(Person target);

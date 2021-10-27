@@ -131,12 +131,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean clientHasPolicy(Client client, Policy policy) {
-        requireNonNull(policy);
-        return addressBook.clientHasPolicy(client, policy);
-    }
-
-    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }

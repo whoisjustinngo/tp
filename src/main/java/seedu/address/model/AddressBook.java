@@ -263,17 +263,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return schedule.isClash(key);
     }
 
-
-    // policy methods
-
-    /**
-     * Returns true if a client has a {@code policy}
-     * from the same insurer and has the same policy number
-     */
-    public boolean clientHasPolicy(Client client, Policy policy) {
-        return client.getPolicies().contains(policy);
-    }
-
     //// util methods
 
     @Override

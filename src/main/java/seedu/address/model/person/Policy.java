@@ -18,9 +18,10 @@ public class Policy {
 
     public static final String COMMISSION_VALIDATION_REGEX = "[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)";
     public static final String NAME_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String NUMBER_VALIDATION_REGEX = "^\\d+$";
 
-    public final String name;
-    public final String insurer;
+    public final Name name;
+    public final Name insurer;
     public final int number;
     public final Double commission;
 
@@ -32,44 +33,19 @@ public class Policy {
      * @param name A valid policy name.
      * @param commission A valid commission.
      */
-    public Policy(String insurer, String number, String name, String commission) {
+    public Policy(Name insurer, int number, Name name, double commission) {
         requireAllNonNull(insurer, number, name, commission);
-        checkArgument(isValidPolicyNumber(number), NUMBER_MESSAGE_CONSTRAINTS);
-        checkArgument(isValidName(name), POLICY_NAME_MESSAGE_CONSTRAINTS);
-        checkArgument(isValidName(insurer), INSURER_NAME_MESSAGE_CONSTRAINTS);
-        checkArgument(isValidPolicyCommission(commission), COMMISSION_MESSAGE_CONSTRAINTS);
         this.name = name;
         this.insurer = insurer;
         this.commission = Double.valueOf(commission);
         this.number = Integer.valueOf(number);
     }
 
-    /**
-     * Returns true if a given string is a valid policy number.
-     */
-    public static boolean isValidPolicyNumber(String test) {
-        return test.matches(NAME_VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if a given string is a valid name.
-     */
-    public static boolean isValidName(String test) {
-        return test.matches(NAME_VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if a given string is a valid insurance plan commission.
-     */
-    public static boolean isValidPolicyCommission(String test) {
-        return test.matches(COMMISSION_VALIDATION_REGEX);
-    }
-
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
-    public String getInsurer() {
+    public Name getInsurer() {
         return insurer;
     }
 
