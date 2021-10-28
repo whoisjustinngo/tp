@@ -44,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
     private ScheduleListPanel dashboardScheduleSection;
     private TodoListPanel dashboardTodoSection;
     private PersonListPanel personListPanel;
+    private PersonDetailedPanel personDetailedPanel;
+    private PolicyListPanel policyListPanel;
+    private NotesPanel notesPanel;
     private TodoListPanel todoListPanel;
     private ScheduleListPanel scheduleListPanel;
     private ResultDisplay resultDisplay;
@@ -91,6 +94,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private VBox personDetailedPlaceholder;
+
+    @FXML
+    private VBox policyListPanelPlaceholder;
+
+    @FXML
+    private VBox notesPlaceholder;
 
     @FXML
     private StackPane scheduleListPanelPlaceholder;
@@ -177,6 +189,15 @@ public class MainWindow extends UiPart<Stage> {
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        personDetailedPanel = new PersonDetailedPanel(logic.getSelectedPersonList());
+        personDetailedPlaceholder.getChildren().add(personDetailedPanel.getRoot());
+
+        policyListPanel = new PolicyListPanel(logic.getSelectedPersonList());
+        policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
+
+        notesPanel = new NotesPanel(logic.getSelectedPersonList());
+        notesPlaceholder.getChildren().add(notesPanel.getRoot());
 
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
         todoListPanelPlaceholder.getChildren().add(todoListPanel.getRoot());
@@ -313,6 +334,7 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 
     public String getSelectedPane() {
         return tabs.getSelectionModel().getSelectedItem().getId();

@@ -9,11 +9,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddNoteCommand;
+import seedu.address.logic.commands.AddPolicyCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DoneTodoCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditStatusCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -22,6 +25,7 @@ import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListSchedulesCommand;
 import seedu.address.logic.commands.ListTodosCommand;
+import seedu.address.logic.commands.SelectContactCommand;
 import seedu.address.logic.commands.TabSwitchCommand;
 import seedu.address.logic.commands.UpdateCustomGoalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -35,6 +39,7 @@ public class AddressBookParser {
     private static final String CONTACTS_TAB_ID = "contactsTab";
     private static final String SCHEDULE_TAB_ID = "scheduleTab";
     private static final String TODOS_TAB_ID = "todosTab";
+    private static final String DETAILS_TAB_ID = "detailsTab";
 
     /**
      * Used for initial separation of command word and args.
@@ -76,6 +81,16 @@ public class AddressBookParser {
             case TODOS_TAB_ID:
                 return new AddTodoCommandParser().parse(arguments);
 
+            default:
+                throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
+            }
+
+        case AddPolicyCommand.COMMAND_WORD:
+            switch (tab) {
+            case CONTACTS_TAB_ID:
+                //fallthrough
+            case DETAILS_TAB_ID:
+                return new AddPolicyCommandParser().parse(arguments);
             default:
                 throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
             }
@@ -182,6 +197,16 @@ public class AddressBookParser {
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
 
+        case SelectContactCommand.COMMAND_WORD:
+            switch (tab) {
+            case DETAILS_TAB_ID:
+                //fallthrough
+            case CONTACTS_TAB_ID:
+                return new SelectContactCommandParser().parse(arguments);
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
+
         case ClearCommand.COMMAND_WORD:
             switch (tab) {
 
@@ -216,7 +241,23 @@ public class AddressBookParser {
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+
+        case AddNoteCommand.COMMAND_WORD:
+            switch(tab) {
+            case DETAILS_TAB_ID:
+                return new AddNoteCommandParser().parse(arguments);
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
+        case EditStatusCommand.COMMAND_WORD:
+            switch(tab) {
+            case CONTACTS_TAB_ID:
+                //fallthrough
+            case DETAILS_TAB_ID:
+                return new EditStatusCommandParser().parse(arguments);
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
         }
     }
-
 }
