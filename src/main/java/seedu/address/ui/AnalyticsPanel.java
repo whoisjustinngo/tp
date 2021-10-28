@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.analytics.ClientAnalytics;
-import seedu.address.model.person.ClientState;
 import seedu.address.model.person.Status;
 
 /**

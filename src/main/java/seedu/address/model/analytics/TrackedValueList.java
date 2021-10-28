@@ -8,7 +8,6 @@ import java.util.HashSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.analytics.exceptions.UntrackedFieldException;
-import seedu.address.model.person.ClientState;
 import seedu.address.model.person.Status;
 
 public class TrackedValueList {
