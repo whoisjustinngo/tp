@@ -25,7 +25,7 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * Adds a person to the address book.
+ * Adds a policy to a client in the address book.
  */
 public class AddPolicyCommand extends Command {
 
@@ -61,15 +61,13 @@ public class AddPolicyCommand extends Command {
         }
 
         Person personToAddPolicy = lastShownList.get(targetIndex.getZeroBased());
-
         if (!personToAddPolicy.getRelationship().value.equals("client")) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
-        Person clientToAddPolicy = personToAddPolicy;
-        Person clientWithNewPolicy = createClientWithNewPolicy(clientToAddPolicy, newPolicy);
-        model.setPerson(personToAddPolicy, clientWithNewPolicy);
+        Person personWithNewPolicy = createClientWithNewPolicy(personToAddPolicy, newPolicy);
+        model.setPerson(personToAddPolicy, personWithNewPolicy);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, clientWithNewPolicy.getPolicies()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personWithNewPolicy.getPolicies()));
     }
 
     @Override
@@ -81,7 +79,7 @@ public class AddPolicyCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Person} with the details of {@code clientToEdit}
      * edited with {@code editPersonDescriptor}.
      */
     private static Person createClientWithNewPolicy(Person clientToEdit, Policy newPolicy) throws CommandException {

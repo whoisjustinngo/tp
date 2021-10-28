@@ -62,7 +62,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.status = Status.FRESH;
-        this.notes = "";
+        this.notes = notes;
         this.policies.addAll(policies);
         lastUpdated = LocalDateTime.now();
     }
