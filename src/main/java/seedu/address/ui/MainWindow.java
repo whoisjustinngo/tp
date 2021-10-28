@@ -1,13 +1,6 @@
 package seedu.address.ui;
 
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -18,7 +11,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -29,7 +21,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.TabSwitch;
-import seedu.address.model.person.Policy;
 
 /**
  * The Main Window. Provides the basic application layout containing a menu bar
@@ -199,7 +190,6 @@ public class MainWindow extends UiPart<Stage> {
 
         policyListPanel = new PolicyListPanel(logic.getSelectedPersonList());
         policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
-
 
         notesPanel = new NotesPanel(logic.getSelectedPersonList());
         notesPlaceholder.getChildren().add(notesPanel.getRoot());
