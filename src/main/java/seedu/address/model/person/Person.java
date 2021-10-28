@@ -61,7 +61,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.status = Status.FRESH;
+        this.status = status;
         this.notes = notes;
         this.policies.addAll(policies);
         lastUpdated = LocalDateTime.now();
