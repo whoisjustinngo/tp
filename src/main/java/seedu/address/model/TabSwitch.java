@@ -9,6 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class TabSwitch {
     private static final String DASHBOARD_ALIAS = "dashboard";
     private static final String CONTACTS_ALIAS = "contacts";
+    private static final String DETAILS_ALIAS = "details";
     private static final String SCHEDULE_ALIAS = "schedule";
     private static final String TODOS_ALIAS = "todos";
 
@@ -17,8 +18,10 @@ public class TabSwitch {
     public enum Tab { //used to index tabs for TabPane
         DASHBOARD("dashboardTab", 0),
         CONTACTS("contactsTab", 1),
-        SCHEDULE("scheduleTab", 2),
-        TODOS("todosTab", 3);
+        DETAILS("detailsTab", 2),
+        SCHEDULE("scheduleTab", 3),
+        TODOS("todosTab", 4);
+
 
         private final String label;
         private final int index;
@@ -46,6 +49,8 @@ public class TabSwitch {
                 return SCHEDULE_ALIAS;
             case 3:
                 return TODOS_ALIAS;
+            case 4:
+                return DETAILS_ALIAS;
             default:
                 return DOES_NOT_EXIST;
             }
@@ -67,6 +72,8 @@ public class TabSwitch {
                 return SCHEDULE;
             case TODOS_ALIAS:
                 return TODOS;
+            case DETAILS_ALIAS:
+                return DETAILS;
             default:
                 throw new ParseException("Tab does not exist!");
             }

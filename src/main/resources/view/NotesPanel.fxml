@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="placeHolder" styleClass="result-window" stylesheets="@AdvyzeTheme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <VBox prefHeight="3571.0" prefWidth="1838.0">
+      <children>
+         <GridPane minHeight="-Infinity" prefHeight="40.0" styleClass="table-header" stylesheets="@AdvyzeTheme.css">
+            <columnConstraints>
+               <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+               <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Notes" textAlignment="CENTER" GridPane.halignment="CENTER">
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+               </Label>
+            </children>
+         </GridPane>
+        <TextArea fx:id="notesDisplay" editable="false" prefHeight="2414.0" prefWidth="443.0" styleClass="result-text-display" stylesheets="@AdvyzeTheme.css" wrapText="true">
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </TextArea>
+      </children>
+   </VBox>
+</StackPane>

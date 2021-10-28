@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="background-with-border-dark" stylesheets="@AdvyzeTheme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane minHeight="-Infinity" prefHeight="40.0" styleClass="table-header" stylesheets="@AdvyzeTheme.css">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="25.0" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <children>
+            <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="ID" textAlignment="CENTER">
+                <opaqueInsets>
+                    <Insets />
+                </opaqueInsets>
+                <padding>
+                    <Insets left="30.0" />
+                </padding>
+            </Label>
+            <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Policy Name" textAlignment="CENTER" GridPane.columnIndex="2" />
+            <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Policy Number" textAlignment="CENTER" GridPane.columnIndex="3" />
+            <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Commission" textAlignment="CENTER" GridPane.columnIndex="4" />
+            <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Insurer" textAlignment="CENTER" GridPane.columnIndex="1" />
+        </children>
+    </GridPane>
+    <ListView fx:id="policiesListView" VBox.vgrow="ALWAYS" />
+</VBox>

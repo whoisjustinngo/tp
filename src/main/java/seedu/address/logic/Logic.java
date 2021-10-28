@@ -50,6 +50,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of custom goal */
     ObservableList<CustomGoal> getFilteredCustomGoalList();
 
+    /** Returns an unmodifiable view of a selected person */
+    ObservableList<Person> getSelectedPersonList();
+
     /** Generates schedules */
     void importSchedule(File file) throws IOException, ParserException,
             CommandException, ParseException, java.text.ParseException;
