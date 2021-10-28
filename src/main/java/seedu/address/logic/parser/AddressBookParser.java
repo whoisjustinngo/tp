@@ -74,7 +74,7 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        this.targetTab = matcher.group("tab");
+        this.targetTab = toTabPrefix(tab);
 
         switch (commandWord) {
 
@@ -220,6 +220,7 @@ public class AddressBookParser {
             }
 
         case TabSwitchCommand.COMMAND_WORD:
+            this.targetTab = arguments;
             return new TabSwitchCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
@@ -242,7 +243,7 @@ public class AddressBookParser {
      * @param tab tabname provided, might be tab IDs themselves
      * @return
      */
-    private String toTabIDs(String tab) {
+    private String toTabIDs(String tab) throws ParseException {
         switch (tab) {
         case DASHBOARD_PREFIX:
             return DASHBOARD_TAB_ID;
@@ -257,19 +258,17 @@ public class AddressBookParser {
             return SCHEDULE_TAB_ID;
 
         case DASHBOARD_TAB_ID:
-
         case CONTACTS_TAB_ID:
-
         case TODOS_TAB_ID:
-
         case SCHEDULE_TAB_ID:
+            return tab;
 
         default:
-            return tab;
+            throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
         }
     }
 
-    private String toTabPrefix(String tabId) {
+    private String toTabPrefix(String tabId) throws ParseException {
         switch (tabId) {
 
         case DASHBOARD_TAB_ID:
@@ -285,7 +284,7 @@ public class AddressBookParser {
             return SCHEDULE_PREFIX;
 
         default:
-            return tabId;
+            throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
         }
     }
 
@@ -294,7 +293,7 @@ public class AddressBookParser {
      * @return
      */
     public Command goToContextTab() throws ParseException {
-        return new TabSwitchCommandParser().parse(toTabPrefix(this.targetTab));
+        return new TabSwitchCommandParser().parse(this.targetTab);
     }
 
 }

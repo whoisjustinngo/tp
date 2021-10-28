@@ -51,15 +51,17 @@ public class LogicManager implements Logic {
     public List<CommandResult> execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        // Command 1
+        // user input command
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
 
-        // Command 2
-        CommandResult goToContextCommanResult;
+        // go to where the context is run
+        CommandResult goToContextCommandResult;
         Command contextCommand = addressBookParser.goToContextTab();
-        goToContextCommanResult = contextCommand.execute(model);
+
+        // executing go to context, then user input
+        goToContextCommandResult = contextCommand.execute(model);
+        commandResult = command.execute(model);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -68,7 +70,7 @@ public class LogicManager implements Logic {
         }
 
         List<CommandResult> commandResults = new ArrayList<>();
-        commandResults.add(goToContextCommanResult); // run tabswitch first, so that the last command run can be safe
+        commandResults.add(goToContextCommandResult); // run tabswitch first, so that the last command run can be safe
         commandResults.add(commandResult);
 
         return commandResults;
