@@ -8,8 +8,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane minHeight="-Infinity" prefHeight="40.0">
+<VBox styleClass="background-with-border-dark" stylesheets="@AdvyzeTheme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane minHeight="-Infinity" prefHeight="40.0" styleClass="table-header" stylesheets="@AdvyzeTheme.css">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="17.0" prefWidth="100.0" />
@@ -21,7 +21,7 @@
             <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-            <Label styleClass="table-header" text="ID" textAlignment="CENTER">
+            <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="ID" textAlignment="CENTER">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -29,10 +29,10 @@
                     <Insets left="30.0" />
                 </padding>
             </Label>
-            <Label styleClass="table-header" text="Policy Name" textAlignment="CENTER" GridPane.columnIndex="2" />
-            <Label styleClass="table-header" text="Policy Number" textAlignment="CENTER" GridPane.columnIndex="3" />
-            <Label styleClass="table-header" text="Commission" textAlignment="CENTER" GridPane.columnIndex="4" />
-            <Label styleClass="table-header" text="Insurer" textAlignment="CENTER" GridPane.columnIndex="1" />
+            <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Policy Name" textAlignment="CENTER" GridPane.columnIndex="2" />
+            <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Policy Number" textAlignment="CENTER" GridPane.columnIndex="3" />
+            <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Commission" textAlignment="CENTER" GridPane.columnIndex="4" />
+            <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Insurer" textAlignment="CENTER" GridPane.columnIndex="1" />
         </children>
     </GridPane>
     <ListView fx:id="policiesListView" VBox.vgrow="ALWAYS" />
