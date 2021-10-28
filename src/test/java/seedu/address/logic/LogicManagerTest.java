@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -106,8 +107,9 @@ public class LogicManagerTest {
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
             Model expectedModel) throws CommandException, ParseException {
-        CommandResult result = logic.execute(CONTACTS.getLabel() + " " + inputCommand);
-        assertEquals(expectedMessage, result.getFeedbackToUser());
+        List<CommandResult> results = logic.execute(CONTACTS.getLabel() + " " + inputCommand);
+        assertEquals(2, results.size());
+        assertEquals(expectedMessage, results.get(1).getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
 
@@ -120,8 +122,9 @@ public class LogicManagerTest {
      */
     private void assertCommandSuccess(String tabId, String inputCommand, String expectedMessage,
                                       Model expectedModel) throws CommandException, ParseException {
-        CommandResult result = logic.execute(tabId + inputCommand);
-        assertEquals(expectedMessage, result.getFeedbackToUser());
+        List<CommandResult> results = logic.execute(tabId + inputCommand);
+        assertEquals(2, results.size());
+        assertEquals(expectedMessage, results.get(1).getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
 

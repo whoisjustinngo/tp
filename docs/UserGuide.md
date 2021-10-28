@@ -136,14 +136,31 @@ Shows all the added Events
 
 ### Add Event command: `add`
 
-Format: `[type] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] OR [due/DUE DATE]`
+Format: `[type] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS] ([recurd/DATE] or [recurw/DATE] or [recury/DATE])`
+
+ * recurd/DATE Event recurring daily till the given date
+ * recurw/DATE Event recurring weekly till the given date
+ * recury/DATE Event recurring yearly till the given date
 
 Here are some of the examples to use the command lines.
 
--   `Adding a schedule: add event d/CS2103 meeting from/1300 to/1500`
--   `Adding a deadline: add event d/sign contract (Bob) due/21-09-2021`
+ * `Adding a schedule which recur daily: add d/lesson date/16-05-2021 fr/1400 to/1600 t/important recurd/18-05-2021`
+ * `Adding a schedule which recur weekly: add d/meeting date/18-05-2021 fr/1600 to/1800 t/priority recurw/15-08-2021`
 
-Note: While adding an Event, it will check if the Event given has any clashes with other Events which have already been added. The Event will be added only if there is no clash in timing with other Events which are already in the list.
+**Note:** While adding an Event, it will check if the Event given has any clashes with other Events which have already been added. The Event will be added only if there is no clash in timing with other Events which are already in the list. This applies to the recurring Event as well, if there are clashes in any of the given recurring Events, it will consider the Event as a clash, and will not proceed to adding any Events.
+
+### Edit Event command: `edit`
+
+Edits the Event which has the respective INDEX given by the user.
+
+Format: `edit [INDEX] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS]`  
+
+Here are some of the examples to use the command lines.
+
+ * `Editing a tag in schedule: edit 1 t/important`
+ * `Editing a description and date in a schedule: edit 2 d/meeting date/18-05-2021`
+
+**Note:** It is not compulsory to include all fields. Only include those fields which you would like to edit.
 
 ### Delete Event command: `delete`
 
@@ -151,9 +168,32 @@ Deletes the Event which has the respective INDEX given by the user.
 
 Format: `delete [INDEX]`
 
--   Deletes an event at the specified INDEX.
--   The index refers to the index number shown in the Event list.
--   The index must be a positive integer 1, 2, 3, ...
+* Deletes an event at the specified INDEX.
+* The index refers to the index number shown in the Event list.
+* The index must be a positive integer 1, 2, 3, ...
+
+### Find Event command: `find`
+
+Find the Event which have the same keywords in the description
+
+Format: `find lesson`
+ 
+ * Finds Events that carries the given keyword in the description
+ * Events that have the keyword will be displayed in the user interface
+ * Events that does not have the keyword will not be displayed
+
+### Filter Event command: `filter`
+
+Filters the Event according to the keywords in any of the attributes.
+
+Format: `filter [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS]`
+
+Here are some of the examples to use the command lines.
+
+ * `Filtering a tag in schedule: filter t/important`
+ * `Filter based on a description and date in a schedule: filter d/meeting date/18-05-2021`
+
+**Note:** It is not compulsory to include all fields. Only include those fields which you would like to filter.
 
 ![schedule_tab](images/schedule-tab-v1.3.png)
 
@@ -291,6 +331,13 @@ Examples:
 * When in Todos tab, input `/schedule add event des/CS2103 meeting from/1300 to/1500` will add an event in Schedule tab instead of adding it in Todos tab.
 * When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` under the Schedule tab.
 * When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` under the Schedule tab.
+
+### Importing Schedule
+
+Allows users to import `.ics` files, similar to importing timetable from NUSMods into Google Calendars.
+
+Example:
+* In any tab, input `import` will open file browser to prompt the user for a `.ics` file.
 
 ### Exiting Application: `exit`
 

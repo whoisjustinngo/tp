@@ -1,9 +1,12 @@
 package seedu.address.logic;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import net.fortuna.ical4j.data.ParserException;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -46,6 +49,10 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of custom goal */
     ObservableList<CustomGoal> getFilteredCustomGoalList();
+
+    /** Generates schedules */
+    void importSchedule(File file) throws IOException, ParserException,
+            CommandException, ParseException, java.text.ParseException;
 
     /**
      * Returns the user prefs' address book file path.
