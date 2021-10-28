@@ -230,9 +230,18 @@ public class MainWindow extends UiPart<Stage> {
      *
      */
     @FXML
-    public File handleImport() {
-        importWindow.show();
-        return importWindow.getIcsFile();
+    public void handleImport() {
+        try {
+            importWindow.show();
+            logic.generateSchedule(importWindow.getIcsFile());
+            resultDisplay.setFeedbackToUser("Successfully imported schedule!");
+        } catch (IOException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        } catch (ParserException | ParseException | java.text.ParseException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        } catch (CommandException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
     }
 
     void show() {
@@ -275,7 +284,7 @@ public class MainWindow extends UiPart<Stage> {
      * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText)
-            throws CommandException, ParseException, IOException, ParserException, java.text.ParseException {
+            throws CommandException, ParseException {
         try {
             String currentTab = this.getSelectedPane();
             CommandResult commandResult = logic.execute(currentTab + " " + commandText);
@@ -295,12 +304,11 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowImport()) {
-                File openedFile = handleImport();
-                logic.generateSchedule(openedFile);
+                handleImport();
             }
 
             return commandResult;
-        } catch (CommandException | ParseException | java.text.ParseException e) {
+        } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
