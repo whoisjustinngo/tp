@@ -1,5 +1,10 @@
 package seedu.address.ui;
 
+import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -15,6 +20,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import net.fortuna.ical4j.data.CalendarBuilder;
+import net.fortuna.ical4j.data.ParserException;
+import net.fortuna.ical4j.model.Calendar;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -46,6 +54,7 @@ public class MainWindow extends UiPart<Stage> {
     private ScheduleListPanel scheduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ImportWindow importWindow;
 
     @FXML
     private TabPane tabs;
@@ -117,6 +126,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        importWindow = new ImportWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -220,6 +231,15 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     *
+     */
+    @FXML
+    public File handleImport() {
+        importWindow.show();
+        return importWindow.getIcsFile();
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -259,7 +279,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText)
+            throws CommandException, ParseException, IOException, ParserException, java.text.ParseException {
         try {
             String currentTab = this.getSelectedPane();
             CommandResult commandResult = logic.execute(currentTab + " " + commandText);
@@ -278,8 +299,13 @@ public class MainWindow extends UiPart<Stage> {
                 handleSwitchTab(commandResult.getTabId());
             }
 
+            if (commandResult.isShowImport()) {
+                File openedFile = handleImport();
+                logic.generateSchedule(openedFile);
+            }
+
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | java.text.ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

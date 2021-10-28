@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
@@ -81,6 +82,18 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<CustomGoal> getFilteredCustomGoalList() {
         return model.getFilteredCustomGoalList();
+    }
+
+    /**
+     * Generates schedules
+     */
+    @Override
+    public void generateSchedule(File openedFile)
+            throws IOException, CommandException, ParseException, java.text.ParseException {
+        if(openedFile == null) {
+            return; // no file was passed in
+        }
+        ImportCalendar.generateSchedules(openedFile, model);
     }
 
     @Override
