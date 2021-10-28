@@ -52,6 +52,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private PersonDetailedPanel personDetailedPanel;
     private PolicyListPanel policyListPanel;
+    private NotesPanel notesPanel;
     private TodoListPanel todoListPanel;
     private ScheduleListPanel scheduleListPanel;
     private ResultDisplay resultDisplay;
@@ -104,6 +105,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private VBox policyListPanelPlaceholder;
+
+    @FXML
+    private VBox notesPlaceholder;
 
     @FXML
     private StackPane scheduleListPanelPlaceholder;
@@ -195,6 +199,10 @@ public class MainWindow extends UiPart<Stage> {
 
         policyListPanel = new PolicyListPanel(logic.getSelectedPersonList());
         policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
+
+
+        notesPanel = new NotesPanel(logic.getSelectedPersonList());
+        notesPlaceholder.getChildren().add(notesPanel.getRoot());
 
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
         todoListPanelPlaceholder.getChildren().add(todoListPanel.getRoot());
