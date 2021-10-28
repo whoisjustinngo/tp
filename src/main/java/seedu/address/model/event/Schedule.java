@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
@@ -9,18 +10,19 @@ import seedu.address.model.event.exceptions.InvalidTimeException;
 import seedu.address.model.tag.Tag;
 
 public class Schedule extends Event<Schedule> {
-    public static final String ERROR_MSG_LETTERS_IN_TIME =
-            "Please provide a proper time formatting between 0000 - 2359";
-    public static final String ERROR_MSG_INVALID_TIME_RANGE =
-            "Please provide a proper time range between 0000 - 2359.";
-    public static final String ERROR_MSG_INVALID_TIME_SQEUENCE =
-            "Time <from> cannot be greater than time <to>.";
+    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static final String ERROR_MSG_LETTERS_IN_TIME = "Please provide a proper time formatting between 0000 - 2359";
+    public static final String ERROR_MSG_INVALID_TIME_RANGE = "Please provide a proper time range between 0000 - 2359.";
+    public static final String ERROR_MSG_INVALID_TIME_SQEUENCE = "Time <from> cannot be greater than time <to>.";
 
     private final LocalDateTime taskDateTimeFrom;
     private final LocalDateTime taskDateTimeTo;
     private final int timeFrom;
     private final int timeTo;
     private final Set<Tag> tags = new HashSet<>();
+    private final String recurrType;
+    private final String recurrDate;
+    private final LocalDateTime recurrDateTo;
 
     /**
      * Priamry Constructor
@@ -31,7 +33,8 @@ public class Schedule extends Event<Schedule> {
      * @param timeTo      end time for this {@code Schedule}.
      * @param isDone      if this {@code Schedule} is completed.
      */
-    public Schedule(String description, String date, String timeFrom, String timeTo, boolean isDone, Set<Tag> tags) {
+    public Schedule(String description, String date, String timeFrom, String timeTo, boolean isDone, Set<Tag> tags,
+            String recurrType, String recurDate) {
         super(description, date, isDone);
         this.checkTimeRangeAndFormatting(timeFrom, timeTo);
         String dateCopy = date;
@@ -43,6 +46,41 @@ public class Schedule extends Event<Schedule> {
         this.timeFrom = Integer.parseInt(timeFrom);
         this.timeTo = Integer.parseInt(timeTo);
         this.tags.addAll(tags);
+        this.recurrType = recurrType;
+
+        if (!recurrType.equals("N")) {
+            String recurrDateCopy = recurDate;
+            recurrDateCopy = recurrDateCopy.replace("/", "-");
+            this.recurrDate = recurrDateCopy;
+            recurrDateTo = this.getLocalDateTime(recurrDateCopy, timeTo);
+        } else {
+            recurrDateTo = null;
+            this.recurrDate = recurDate;
+        }
+    }
+
+    public Schedule(Schedule schedule) {
+        super(schedule.getDescription(), schedule.getDate(), false);
+        this.taskDateTimeFrom = schedule.getTaskDateTimeFrom();
+        this.taskDateTimeTo = schedule.getRecurrDateTo();
+        this.timeFrom = schedule.getTimeFrom();
+        this.timeTo = schedule.getTimeTo();
+        this.tags.addAll(schedule.getTags());
+        this.recurrType = schedule.getRecurrType();
+        this.recurrDate = schedule.getRecurrDate();
+        this.recurrDateTo = schedule.getRecurrDateTo();
+    }
+
+    public Schedule(Schedule schedule, LocalDateTime taskDateTimeFrom, LocalDateTime taskDateTimeTo) {
+        super(schedule.getDescription(), taskDateTimeFrom.format(Schedule.formatter), false);
+        this.taskDateTimeFrom = taskDateTimeFrom;
+        this.taskDateTimeTo = taskDateTimeTo;
+        this.timeFrom = schedule.getTimeFrom();
+        this.timeTo = schedule.getTimeTo();
+        this.tags.addAll(schedule.getTags());
+        this.recurrType = schedule.getRecurrType();
+        this.recurrDate = schedule.getRecurrDate();
+        this.recurrDateTo = schedule.getRecurrDateTo();
     }
 
     public LocalDateTime getTaskDateTimeFrom() {
@@ -63,6 +101,30 @@ public class Schedule extends Event<Schedule> {
 
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public String getRecurrType() {
+        return this.recurrType;
+    }
+
+    public LocalDateTime getRecurrDateTo() {
+        return this.recurrDateTo;
+    }
+
+    public String getRecurrDate() {
+        return this.recurrDate;
+    }
+
+    public Schedule addOneDay() {
+        return new Schedule(this, this.taskDateTimeFrom.plusDays(1), this.taskDateTimeTo.plusDays(1));
+    }
+
+    public Schedule addOneWeek() {
+        return new Schedule(this, this.taskDateTimeFrom.plusWeeks(1), this.taskDateTimeTo.plusWeeks(1));
+    }
+
+    public Schedule addOneYear() {
+        return new Schedule(this, this.taskDateTimeFrom.plusYears(1), this.taskDateTimeTo.plusYears(1));
     }
 
     /**
@@ -108,9 +170,8 @@ public class Schedule extends Event<Schedule> {
 
         Schedule otherSchedule = (Schedule) other;
         return (otherSchedule.getDescription().equals(this.getDescription())
-                && otherSchedule.getTimeFrom() == this.getTimeFrom()
-                && otherSchedule.getTimeTo() == this.getTimeTo()
-                && otherSchedule.getDate().equals(this.getDate())
+                && otherSchedule.getTaskDateTimeFrom().equals(this.getTaskDateTimeFrom())
+                && otherSchedule.getTaskDateTimeTo().equals(this.getTaskDateTimeTo())
                 && otherSchedule.getTags().equals(getTags()));
     }
 
