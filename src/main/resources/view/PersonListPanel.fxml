@@ -8,8 +8,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <GridPane minHeight="-Infinity" prefHeight="40.0">
+<VBox styleClass="background-with-border-dark" stylesheets="@AdvyzeTheme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <GridPane styleClass="table-header" stylesheets="@AdvyzeTheme.css">
      <columnConstraints>
        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
@@ -18,22 +18,49 @@
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
      </columnConstraints>
      <rowConstraints>
-       <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+       <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
      </rowConstraints>
       <children>
-         <Label styleClass="table-header" text="Name" textAlignment="CENTER">
+         <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Name" textAlignment="CENTER">
             <opaqueInsets>
                <Insets />
             </opaqueInsets>
             <padding>
-               <Insets left="30.0" />
+               <Insets left="5.0" />
             </padding>
+            <GridPane.margin>
+               <Insets />
+            </GridPane.margin>
          </Label>
-         <Label styleClass="table-header" text="Phone" textAlignment="CENTER" GridPane.columnIndex="2" />
-         <Label styleClass="table-header" text="Address" textAlignment="CENTER" GridPane.columnIndex="3" />
-         <Label styleClass="table-header" text="Email" textAlignment="CENTER" GridPane.columnIndex="4" />
-         <Label styleClass="table-header" text="Type" textAlignment="CENTER" GridPane.columnIndex="1" />
+         <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Phone" textAlignment="CENTER" GridPane.columnIndex="2">
+            <GridPane.margin>
+               <Insets />
+            </GridPane.margin>
+            <padding>
+               <Insets left="5.0" />
+            </padding></Label>
+         <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Address" textAlignment="CENTER" GridPane.columnIndex="3">
+            <GridPane.margin>
+               <Insets />
+            </GridPane.margin>
+            <padding>
+               <Insets left="5.0" />
+            </padding></Label>
+         <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Email" textAlignment="CENTER" GridPane.columnIndex="4">
+            <GridPane.margin>
+               <Insets />
+            </GridPane.margin>
+            <padding>
+               <Insets left="5.0" />
+            </padding></Label>
+         <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Type" textAlignment="CENTER" GridPane.columnIndex="1">
+            <GridPane.margin>
+               <Insets />
+            </GridPane.margin>
+            <padding>
+               <Insets left="5.0" />
+            </padding></Label>
       </children>
    </GridPane>
-  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
+  <ListView fx:id="personListView" stylesheets="@AdvyzeTheme.css" VBox.vgrow="ALWAYS" />
 </VBox>

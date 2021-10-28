@@ -12,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -57,6 +59,21 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private TabPane tabs;
+
+    @FXML
+    private Tab dashboardTab;
+
+    @FXML
+    private Tab contactsTab;
+
+    @FXML
+    private Tab scheduleTab;
+
+    @FXML
+    private Tab todosTab;
+
+    @FXML
+    private SplitPane topPane;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -199,6 +216,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        topPane.setDividerPosition(0, 0.2);
     }
 
     /**

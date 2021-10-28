@@ -24,42 +24,45 @@
   <scene>
     <Scene>
       <stylesheets>
+        <URL value="@AdvyzeTheme.css" />
         <URL value="@Fonts.css" />
-        <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+      <VBox styleClass="background-with-border-dark" stylesheets="@AdvyzeTheme.css">
+        <MenuBar fx:id="menuBar" styleClass="rounded-cell" stylesheets="@AdvyzeTheme.css" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
         </MenuBar>
-            <TabPane id="tabs" fx:id="tabs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <TabPane id="tabs" fx:id="tabs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@AdvyzeTheme.css" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
               <tabs>
-                <Tab id="dashboardTab" fx:id="dashboardTab" closable="false" styleClass="label" text="Dashboard">
+                <Tab id="dashboardTab" fx:id="dashboardTab" closable="false" styleClass="tab-button" text="Dashboard">
                      <content>
-                        <SplitPane dividerPositions="0.33, 0.66" orientation="VERTICAL" styleClass="pane-with-border" stylesheets="@DarkTheme.css">
+                        <SplitPane dividerPositions="0.33, 0.66" orientation="VERTICAL" styleClass="pane-with-border" stylesheets="@AdvyzeTheme.css">
                            <items>
-                              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pane-with-border" stylesheets="@DarkTheme.css">
+                              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" styleClass="background-with-border-dark" stylesheets="@AdvyzeTheme.css">
                                  <children>
-                                    <SplitPane dividerPositions="0.2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pane-with-border" stylesheets="@DarkTheme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <SplitPane fx:id="topPane" dividerPositions="0.2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" stylesheets="@AdvyzeTheme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <items>
-                                          <VBox fx:id="dashboardAnalyticsPlaceholder" prefHeight="200.0" prefWidth="100.0">
+                                          <VBox fx:id="dashboardAnalyticsPlaceholder" prefHeight="200.0" styleClass="background" stylesheets="@AdvyzeTheme.css">
                                              <children>
-                                                <Label fx:id="analyticsHeader" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: LIGHTSTEELBLUE;" styleClass="label-bright" stylesheets="@DarkTheme.css" text="\\$analyticsHeader" VBox.vgrow="NEVER">
+                                                <Label fx:id="analyticsHeader" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="section-header" stylesheets="@AdvyzeTheme.css" text="\\$analyticsHeader" VBox.vgrow="NEVER">
                                                    <padding>
                                                       <Insets bottom="5.0" left="20.0" top="5.0" />
                                                    </padding>
                                                 </Label>
                                              </children>
                                           </VBox>
-                                          <VBox fx:id="dashboardCustomGoalsPlaceholder" prefHeight="200.0" prefWidth="100.0">
+                                          <VBox fx:id="dashboardCustomGoalsPlaceholder" prefHeight="200.0" prefWidth="100.0" stylesheets="@AdvyzeTheme.css">
                                              <children>
-                                                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: LIGHTSTEELBLUE;" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Here are some of your goals:" VBox.vgrow="NEVER">
+                                                <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="section-header" stylesheets="@AdvyzeTheme.css" text="Here are some of your goals:" VBox.vgrow="NEVER">
                                                    <padding>
                                                       <Insets bottom="5.0" left="20.0" top="5.0" />
                                                    </padding>
@@ -70,22 +73,22 @@
                                     </SplitPane>
                                  </children>
                               </AnchorPane>
-                              <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                              <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" styleClass="background-with-border-dark" stylesheets="@AdvyzeTheme.css">
                                  <content>
-                                    <VBox fx:id="dashboardSchedulePlaceholder" prefHeight="200.0" prefWidth="100.0">
+                                    <VBox fx:id="dashboardSchedulePlaceholder" styleClass="background" stylesheets="@AdvyzeTheme.css">
                                        <children>
-                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: LIGHTSTEELBLUE;" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Here is your upcoming schedule:" VBox.vgrow="NEVER">
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="section-header" stylesheets="@AdvyzeTheme.css" text="Here is your upcoming schedule:" VBox.vgrow="NEVER">
                                              <padding>
                                                 <Insets bottom="5.0" left="20.0" top="5.0" />
                                              </padding></Label>
                                        </children>
                                     </VBox>
                                  </content></ScrollPane>
-                              <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                              <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" styleClass="background-with-border-dark" stylesheets="@AdvyzeTheme.css">
                                  <content>
-                                    <VBox fx:id="dashboardTodosPlaceholder" prefHeight="150.0" prefWidth="100.0">
+                                    <VBox fx:id="dashboardTodosPlaceholder" styleClass="background" stylesheets="@AdvyzeTheme.css">
                                        <children>
-                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: LIGHTSTEELBLUE;" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Here are some things you need to do:">
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="section-header" stylesheets="@AdvyzeTheme.css" text="Here are some things you need to do:">
                                              <padding>
                                                 <Insets bottom="5.0" left="20.0" top="5.0" />
                                              </padding>
@@ -97,7 +100,7 @@
                         </SplitPane>
                      </content>
                 </Tab>
-                <Tab id="contactsTab" fx:id="contactsTab" closable="false" styleClass="label" text="Contacts">
+                <Tab id="contactsTab" fx:id="contactsTab" closable="false" styleClass="tab-button" text="Contacts">
                   <content>
                     <AnchorPane>
                            <children>
@@ -106,7 +109,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab id="contactsTab" fx:id="detailsTab" closable="false" styleClass="label" text="Details">
+                  <Tab id="detailsTab" fx:id="detailsTab" closable="false" styleClass="tab-button" text="Details">
                      <content>
                         <AnchorPane>
                            <children>
@@ -123,7 +126,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                <Tab id="scheduleTab" fx:id="scheduleTab" closable="false" styleClass="label" text="Schedule">
+                <Tab id="scheduleTab" fx:id="scheduleTab" closable="false" styleClass="tab-button" text="Schedule">
                   <content>
                     <AnchorPane>
                            <children>
@@ -131,9 +134,9 @@
                            </children></AnchorPane>
                   </content>
                 </Tab>
-                <Tab id="todosTab" fx:id="todosTab" closable="false" styleClass="label" text="Todos">
+                <Tab id="todosTab" fx:id="todosTab" closable="false" styleClass="tab-button" text="Todos">
                   <content>
-                    <AnchorPane>
+                    <AnchorPane styleClass="background-with-border-dark" stylesheets="@AdvyzeTheme.css">
                       <children>
                         <StackPane fx:id="todoListPanelPlaceholder" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                       </children>
@@ -141,25 +144,20 @@
                   </content>
                 </Tab>
               </tabs>
-               <stylesheets>
-                  <URL value="@Fonts.css" />
-                  <URL value="@DarkTheme.css" />
-               </stylesheets>
             </TabPane>
 
-        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="background-with-border-dark" stylesheets="@AdvyzeTheme.css" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="70.0" minHeight="100.0" minWidth="450.0" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="70.0" minHeight="100.0" minWidth="450.0" prefHeight="100" styleClass="background-with-border-dark" stylesheets="@AdvyzeTheme.css" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="SOMETIMES" />
+        <StackPane fx:id="statusbarPlaceholder" styleClass="status-bar" stylesheets="@AdvyzeTheme.css" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>
