@@ -9,9 +9,8 @@ import java.util.HashMap;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.ClientState;
-import seedu.address.model.person.ClientStub;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Status;
 
 /**
  * A class which tracks various fields in the list of contacts for display on the dashboard.
@@ -29,7 +28,7 @@ public class ClientAnalytics {
         requireNonNull(addressBook);
         this.addressBook = addressBook;
         this.persons = addressBook.getPersonList();
-        this.values = new TrackedValueList(ClientState.values()); // default is to track all values in status
+        this.values = new TrackedValueList(Status.values()); // default is to track all values in status
 
         this.persons.addListener(new ListChangeListener<Person>() { // listen for changes in contacts
             @Override
@@ -42,20 +41,19 @@ public class ClientAnalytics {
     }
 
     private void updateAnalytics() {
-        HashMap<ClientState, Integer> counts = new HashMap<ClientState, Integer>();
+        HashMap<Status, Integer> counts = new HashMap<Status, Integer>();
         System.out.println("trying to update");
         for (Person person: this.persons) {
-            if (person instanceof ClientStub) { // TODO update with client
-                ClientStub client = (ClientStub) person;
-                LocalDateTime lastUpdated = client.getLastUpdated();
-                ClientState state = client.getClientState();
+            if (person.getRelationship().value.equals("client")) { // TODO update with client
+                LocalDateTime lastUpdated = person.getLastUpdated();
+                Status status = person.getStatus();
                 // check if expired
                 if (isInThisQuarter(lastUpdated)) {
-                    if (!counts.containsKey(state)) {
-                        counts.put(state, 1);
+                    if (!counts.containsKey(status)) {
+                        counts.put(status, 1);
                     } else {
-                        int currentValue = counts.get(state);
-                        counts.put(state, currentValue + 1);
+                        int currentValue = counts.get(status);
+                        counts.put(status, currentValue + 1);
                     }
                 }
             }
@@ -63,7 +61,7 @@ public class ClientAnalytics {
         values.update(counts);
     }
 
-    public int getValueOfTrackedField(ClientState state) {
+    public int getValueOfTrackedField(Status state) {
         return this.values.getValue(state);
     }
 

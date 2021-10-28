@@ -65,7 +65,9 @@ public class PersonCard extends UiPart<Region> {
         Label status = new Label(person.getStatus().name());
         status.setBackground(new Background(new BackgroundFill(Color.rgb(33, 22, 80, 0.7),
                 new CornerRadii(5.0), new Insets(-5.0))));
-        tags.getChildren().add(status);
+        if (person.getRelationship().value.equals("client")) {
+            tags.getChildren().add(status);
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

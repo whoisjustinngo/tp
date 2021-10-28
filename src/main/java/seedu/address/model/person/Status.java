@@ -8,8 +8,9 @@ import java.util.Set;
  */
 public enum Status {
     FRESH,
-    APPROACH,
-    QUOTED,
+    APPROACHED,
+    PITCHED,
+    NEGOTIATED,
     CLOSED,
     LOST;
 
