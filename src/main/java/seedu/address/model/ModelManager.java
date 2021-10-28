@@ -220,7 +220,6 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Person> getSelectedPersonList() {
-        assert selectedPerson.size() == 1 : "Selected more than 1 person";
         return selectedPerson;
     }
 

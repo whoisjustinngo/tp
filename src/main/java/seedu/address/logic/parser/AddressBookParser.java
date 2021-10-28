@@ -22,6 +22,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListSchedulesCommand;
 import seedu.address.logic.commands.ListTodosCommand;
+import seedu.address.logic.commands.SelectContactCommand;
 import seedu.address.logic.commands.TabSwitchCommand;
 import seedu.address.logic.commands.UpdateCustomGoalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -35,6 +36,7 @@ public class AddressBookParser {
     private static final String CONTACTS_TAB_ID = "contactsTab";
     private static final String SCHEDULE_TAB_ID = "scheduleTab";
     private static final String TODOS_TAB_ID = "todosTab";
+    private static final String DETAILS_TAB_ID = "detailsTab";
 
     /**
      * Used for initial separation of command word and args.
@@ -186,6 +188,16 @@ public class AddressBookParser {
             case TODOS_TAB_ID:
                 return new FilterTodoCommandParser().parse(arguments);
 
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
+
+        case SelectContactCommand.COMMAND_WORD:
+            switch (tab) {
+            case DETAILS_TAB_ID:
+                //fallthrough
+            case CONTACTS_TAB_ID:
+                return new SelectContactCommandParser().parse(arguments);
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
