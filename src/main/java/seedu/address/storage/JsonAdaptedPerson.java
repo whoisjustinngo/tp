@@ -33,6 +33,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String notes;
+    private final String status;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
 
@@ -44,6 +45,7 @@ class JsonAdaptedPerson {
             @JsonProperty("relationship") String relationship, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("notes") String notes,
+            @JsonProperty("status") String status,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("policies") List<JsonAdaptedPolicy> policies) {
         this.name = name;
@@ -52,6 +54,7 @@ class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
         this.notes = notes;
+        this.status = status;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -70,6 +73,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         notes = source.getNotes();
+        status = source.getStatus().name();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -134,12 +138,17 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (!Status.contains(status)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
+        }
+        final Status modelStatus = Status.valueOf(status);
+
         if (notes == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Notes"));
         }
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Policy> modelPolicies = new HashSet<>(personPolicies);
         return new Person(modelName, modelRelationship, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies,
-                Status.FRESH, notes); //todo support client status
+                modelStatus, notes);
     }
 }

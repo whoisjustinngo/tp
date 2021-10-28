@@ -13,6 +13,7 @@ public enum Status {
     CLOSED,
     LOST;
 
+    public static final String MESSAGE_CONSTRAINTS = "Value is not a valid status!";
     private static final Set<String> values = new HashSet<String>(Status.values().length);
 
     static {

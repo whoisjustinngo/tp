@@ -1,24 +1,14 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 import java.util.logging.Logger;
 
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.ClientState;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Policy;
 
 /**
  * Panel containing the list of CustomGoals.
