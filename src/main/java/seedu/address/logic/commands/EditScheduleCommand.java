@@ -89,7 +89,8 @@ public class EditScheduleCommand extends Command {
         String updatedTimeTo = editScheduleDescriptor.getTimeTo().orElse(String.valueOf(scheduleToEdit.getTimeTo()));
         Set<Tag> updatedTags = editScheduleDescriptor.getTags().orElse(scheduleToEdit.getTags());
 
-        return new Schedule(updatedDescription, updatedDate, updatedTimeFrom, updatedTimeTo, false, updatedTags);
+        return new Schedule(updatedDescription, updatedDate, updatedTimeFrom, updatedTimeTo, false, updatedTags,
+                scheduleToEdit.getRecurrType(), scheduleToEdit.getRecurrDate());
     }
 
     @Override
@@ -174,17 +175,17 @@ public class EditScheduleCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code tags} to this object's {@code tags}. A defensive copy of
+         * {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException} if modification is attempted. Returns
+         * {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();

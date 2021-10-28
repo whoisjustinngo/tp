@@ -79,6 +79,6 @@ public class JsonAdaptedSchedule {
         final String modelTo = this.to;
         final Set<Tag> modelTags = new HashSet<>(scheduleTags);
 
-        return new Schedule(modelDescription, modelDate, modelFrom, modelTo, false, modelTags);
+        return new Schedule(modelDescription, modelDate, modelFrom, modelTo, false, modelTags, "N", "");
     }
 }
