@@ -110,7 +110,15 @@
                      <content>
                         <AnchorPane>
                            <children>
-                              <StackPane fx:id="personDetailedPlaceholder" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <SplitPane dividerPositions="0.22338709677419355" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                                      <items>
+                                        <AnchorPane fx:id="personDetailedPlaceholder" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                        <AnchorPane fx:id="policyListPanelPlaceholder" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                      </items>
+                                    </SplitPane>
+                                 </children></StackPane>
                            </children>
                         </AnchorPane>
                      </content>

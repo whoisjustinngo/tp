@@ -53,10 +53,15 @@ public class Policy {
         return number;
     }
 
+    public String getAsNumberString() {
+        return String.valueOf(number);
+    }
     public Double getCommission() {
         return commission;
     }
-
+    public String getCommissionAsString() {
+        return String.valueOf(commission);
+    }
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

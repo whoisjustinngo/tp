@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="150.0" />
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" percentWidth="15.0" prefWidth="94.0" />
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" percentWidth="30.0" prefWidth="206.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="150.0" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" minHeight="80.0" prefHeight="80.0" prefWidth="150.0">
+      <padding>
+        <Insets bottom="5.0" left="15.0" right="5.0" top="20.0" />
+      </padding>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="id" styleClass="cell_big_label">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
+      </HBox>
+      <FlowPane fx:id="tags" />
+    </VBox>
+   <Label fx:id="insurer" styleClass="cell_small_label" text="\$insurer" wrapText="true" GridPane.columnIndex="1" />
+   <Label fx:id="policyName" styleClass="cell_small_label" text="\$policyName" wrapText="true" GridPane.columnIndex="2" />
+   <Label fx:id="policyNumber" styleClass="cell_small_label" text="\$policyNumber" wrapText="true" GridPane.columnIndex="3" />
+   <Label fx:id="commission" styleClass="cell_small_label" text="\$commission" wrapText="true" GridPane.columnIndex="4" />
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+</HBox>
