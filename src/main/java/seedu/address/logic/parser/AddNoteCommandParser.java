@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddNoteCommand;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -31,7 +30,7 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
         requireNonNull(args);
         final Matcher matcher = ADD_NOTE_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE));
         }
 
         final String indexArg = matcher.group("index");
