@@ -12,6 +12,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_SCHEDULE_DISPLAYED_INDEX = "The schedule index provided is invalid";
     public static final String MESSAGE_INVALID_TAB_NAME = "Invalid tab name:%s";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_PERSONS_SELECTED_OVERVIEW = "%s is selected, here are the details!";
     public static final String MESSAGE_TODOS_LISTED_OVERVIEW = "%1$d todos listed!";
     public static final String MESSAGE_SCHEDULE_LISTED_OVERVIEW = "%1$d schedules listed!";
     public static final String MESSAGE_ERROR_PARSING_TAB = "There was an error parsing your command: error parsing tab";

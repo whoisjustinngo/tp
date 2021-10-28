@@ -42,7 +42,8 @@ public class SelectContactCommand extends Command {
         Predicate<Person> predicate = person -> person.equals(personToSelect);
         model.updateSelectedPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getSelectedPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_SELECTED_OVERVIEW,
+                        model.getSelectedPersonList().get(0).getName().fullName));
     }
 
     @Override

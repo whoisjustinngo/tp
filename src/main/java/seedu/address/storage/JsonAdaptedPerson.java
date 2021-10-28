@@ -32,6 +32,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String notes;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
 
@@ -42,6 +43,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name,
             @JsonProperty("relationship") String relationship, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("notes") String notes,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("policies") List<JsonAdaptedPolicy> policies) {
         this.name = name;
@@ -49,6 +51,7 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.notes = notes;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -66,6 +69,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        notes = source.getNotes();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -125,16 +129,17 @@ class JsonAdaptedPerson {
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
-
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
 
+        if (notes == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Notes"));
+        }
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Policy> modelPolicies = new HashSet<>(personPolicies);
         return new Person(modelName, modelRelationship, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies,
-                Status.FRESH, ""); //todo support other client details
+                Status.FRESH, notes); //todo support client status
     }
-
 }
