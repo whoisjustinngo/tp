@@ -31,6 +31,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,7 +40,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name,
             @JsonProperty("relationship") String relationship, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("policies") List<JsonAdaptedPolicy> policies) {
         this.name = name;
         this.relationship = relationship;
         this.phone = phone;
@@ -48,7 +50,10 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-    }
+        if (policies != null) {
+            this.policies.addAll(policies);
+        }
+     }
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
@@ -61,6 +66,9 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        policies.addAll(source.getPolicies().stream()
+                .map(JsonAdaptedPolicy::new)
                 .collect(Collectors.toList()));
     }
 

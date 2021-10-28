@@ -177,12 +177,8 @@ public class MainWindow extends UiPart<Stage> {
         personDetailedPanel = new PersonDetailedPanel(logic.getSelectedPersonList());
         personDetailedPlaceholder.getChildren().add(personDetailedPanel.getRoot());
 
-        //get ObservableList<T> from Set<T>
-        List<Policy> policies = new ArrayList<>(logic.getFilteredPersonList().get(0).getPolicies());
-        ObservableList<Policy> observablePolicies = FXCollections.observableList(policies);
-
-        policyListPanel = new PolicyListPanel(observablePolicies);
-        //policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
+        policyListPanel = new PolicyListPanel(logic.getSelectedPersonList());
+        policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
 
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
         todoListPanelPlaceholder.getChildren().add(todoListPanel.getRoot());
