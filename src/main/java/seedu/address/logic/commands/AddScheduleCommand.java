@@ -26,9 +26,9 @@ public class AddScheduleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Schedule to your list of Events. "
             + "Parameters: " + PREFIX_DESCRIPTION + "DESCRIPTION " + PREFIX_DATE + "DATE " + PREFIX_FROM + "FROM "
             + PREFIX_TO + "TO " + PREFIX_TAG + "TAG (" + PREFIX_RECURR_DAILY + " or " + PREFIX_RECURR_WEEKLY + " or "
-            + PREFIX_RECURR_YEARLY + "RECURR TILL)\n" + "Example: " + COMMAND_WORD + " " + PREFIX_DESCRIPTION + "lesson "
-            + PREFIX_DATE + "16-05-2021 " + PREFIX_FROM + "1400 " + PREFIX_TO + "1600 " + PREFIX_TAG + "important "
-            + PREFIX_RECURR_DAILY + "18-05-2021";
+            + PREFIX_RECURR_YEARLY + "RECURR TILL)\n" + "Example: " + COMMAND_WORD + " " + PREFIX_DESCRIPTION
+            + "lesson " + PREFIX_DATE + "16-05-2021 " + PREFIX_FROM + "1400 " + PREFIX_TO + "1600 " + PREFIX_TAG
+            + "important " + PREFIX_RECURR_DAILY + "18-05-2021";
 
     public static final String MESSAGE_SUCCESS = "New Schedule added: %1$s";
     public static final String MESSAGE_DUPLICATE_SCHEDULE = "This schedule clashes with"

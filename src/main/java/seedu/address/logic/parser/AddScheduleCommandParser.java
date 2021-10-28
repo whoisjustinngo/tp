@@ -4,11 +4,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FROM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURR_DAILY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURR_WEEKLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURR_YEARLY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 
 import java.util.Optional;
 import java.util.Set;
@@ -58,7 +58,7 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
             recurrType = "Y";
             recurrDate = recurrY.get();
         }
-        
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         try {

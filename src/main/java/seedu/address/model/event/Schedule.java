@@ -1,7 +1,7 @@
 package seedu.address.model.event;
 
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,8 +10,9 @@ import seedu.address.model.event.exceptions.InvalidTimeException;
 import seedu.address.model.tag.Tag;
 
 public class Schedule extends Event<Schedule> {
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    public static final String ERROR_MSG_LETTERS_IN_TIME = "Please provide a proper time formatting between 0000 - 2359";
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static final String ERROR_MSG_LETTERS_IN_TIME =
+            "Please provide a proper time formatting between 0000 - 2359";
     public static final String ERROR_MSG_INVALID_TIME_RANGE = "Please provide a proper time range between 0000 - 2359.";
     public static final String ERROR_MSG_INVALID_TIME_SQEUENCE = "Time <from> cannot be greater than time <to>.";
 
@@ -59,6 +60,11 @@ public class Schedule extends Event<Schedule> {
         }
     }
 
+    /**
+     * Constructor which helps to create the same Object as {@code this}.
+     *
+     * @param schedule is the {@code Schedule} to be created.
+     */
     public Schedule(Schedule schedule) {
         super(schedule.getDescription(), schedule.getDate(), false);
         this.taskDateTimeFrom = schedule.getTaskDateTimeFrom();
@@ -71,8 +77,16 @@ public class Schedule extends Event<Schedule> {
         this.recurrDateTo = schedule.getRecurrDateTo();
     }
 
+    /**
+     * Constructor which helps in the changing of the date, keeping the remaining
+     * information the same.
+     *
+     * @param schedule         is the {@code Schedule} to be created.
+     * @param taskDateTimeFrom the new date with a specific timing from.
+     * @param taskDateTimeTo   the new date with a specific timing to.
+     */
     public Schedule(Schedule schedule, LocalDateTime taskDateTimeFrom, LocalDateTime taskDateTimeTo) {
-        super(schedule.getDescription(), taskDateTimeFrom.format(Schedule.formatter), false);
+        super(schedule.getDescription(), taskDateTimeFrom.format(Schedule.FORMATTER), false);
         this.taskDateTimeFrom = taskDateTimeFrom;
         this.taskDateTimeTo = taskDateTimeTo;
         this.timeFrom = schedule.getTimeFrom();
