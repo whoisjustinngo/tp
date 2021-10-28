@@ -90,7 +90,7 @@ public class LogicManager implements Logic {
     @Override
     public void generateSchedule(File openedFile)
             throws IOException, CommandException, ParseException, java.text.ParseException {
-        if(openedFile == null) {
+        if (openedFile == null) {
             return; // no file was passed in
         }
         ImportCalendar.generateSchedules(openedFile, model);

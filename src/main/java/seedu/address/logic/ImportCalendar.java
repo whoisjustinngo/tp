@@ -1,16 +1,6 @@
 package seedu.address.logic;
 
-import net.fortuna.ical4j.data.CalendarBuilder;
-import net.fortuna.ical4j.data.ParserException;
-import net.fortuna.ical4j.model.*;
-import net.fortuna.ical4j.model.Calendar;
-import net.fortuna.ical4j.model.property.RRule;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.event.Schedule;
-import seedu.address.model.event.exceptions.InvalidTimeException;
-import seedu.address.model.tag.Tag;
+import static seedu.address.logic.commands.AddScheduleCommand.MESSAGE_DUPLICATE_SCHEDULE;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,9 +8,25 @@ import java.io.IOException;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
-import static seedu.address.logic.commands.AddScheduleCommand.MESSAGE_DUPLICATE_SCHEDULE;
+import net.fortuna.ical4j.data.CalendarBuilder;
+import net.fortuna.ical4j.data.ParserException;
+import net.fortuna.ical4j.model.Calendar;
+import net.fortuna.ical4j.model.Component;
+import net.fortuna.ical4j.model.DateTime;
+import net.fortuna.ical4j.model.Property;
+import net.fortuna.ical4j.model.property.RRule;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
+import seedu.address.model.event.Schedule;
+import seedu.address.model.event.exceptions.InvalidTimeException;
+import seedu.address.model.tag.Tag;
 
 public class ImportCalendar {
 
@@ -61,18 +67,18 @@ public class ImportCalendar {
         for (Iterator i = calendar.getComponents().iterator(); i.hasNext();) {
             Component component = (Component) i.next();
             String description = component.getProperty(Property.SUMMARY).getValue();
-            if(description == null) {
+            if (description == null) {
                 throw new ParseException("Error! Description for Schedule not found!");
             }
 
             String dtStartString = component.getProperty(Property.DTSTART).getValue();
-            if(dtStartString == null) {
+            if (dtStartString == null) {
                 throw new ParseException("Error! Description for Schedule not found!");
             }
             DateTime dtStart = new DateTime(dtStartString);
 
             String dtEndString = component.getProperty(Property.DTEND).getValue();
-            if(dtEndString == null) {
+            if (dtEndString == null) {
                 throw new ParseException("Error! Description for Schedule not found!");
             }
             DateTime dtEnd = new DateTime(dtEndString);
@@ -86,7 +92,7 @@ public class ImportCalendar {
 
             RRule repeatRule = (RRule) component.getProperty(Property.RRULE);
             Integer repeatTimes;
-            if(repeatRule == null) {
+            if (repeatRule == null) {
                 repeatTimes = 1;
             } else {
                 repeatTimes = repeatRule.getRecur().getCount();
@@ -105,7 +111,8 @@ public class ImportCalendar {
     }
 
 
-    private static List<Schedule> createSchedule(Schedule schedule, Integer repeatTimes, Model model) throws CommandException {
+    private static List<Schedule> createSchedule(Schedule schedule, Integer repeatTimes, Model model)
+            throws CommandException {
         List<Schedule> schedulesList = new ArrayList<>();
         if (repeatTimes == 1) {
             Set<Tag> tagList = new HashSet<>();
@@ -117,7 +124,7 @@ public class ImportCalendar {
             // TODO: reassign generateRecurrence to what is specified in repeatRule
             // TODO: reading weeks
         }
-        for(int ind = 0; ind < 1; ind++) {
+        for (int ind = 0; ind < 1; ind++) {
             if (model.hasScheduleClash(schedule)) {
                 throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);
             }

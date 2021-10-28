@@ -50,7 +50,8 @@ public interface Logic {
     ObservableList<CustomGoal> getFilteredCustomGoalList();
 
     /** Generates schedules */
-    void generateSchedule(File file) throws IOException, ParserException, CommandException, ParseException, java.text.ParseException;
+    void generateSchedule(File file) throws IOException, ParserException,
+            CommandException, ParseException, java.text.ParseException;
 
     /**
      * Returns the user prefs' address book file path.

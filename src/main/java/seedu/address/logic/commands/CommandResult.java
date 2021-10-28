@@ -61,6 +61,10 @@ public class CommandResult {
         this.showImport = false;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and {@code showImport}, and other fields set to their default value.
+     */
     public CommandResult(String feedbackToUser, boolean showImport) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
