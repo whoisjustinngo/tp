@@ -7,8 +7,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="27.0" styleClass="table-header" stylesheets="@DarkTheme.css" VBox.vgrow="NEVER">
+<VBox styleClass="background" stylesheets="@AdvyzeTheme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="27.0" styleClass="table-header" stylesheets="@AdvyzeTheme.css" VBox.vgrow="NEVER">
      <columnConstraints>
        <ColumnConstraints percentWidth="5.0" />
          <ColumnConstraints percentWidth="20.0" />
@@ -22,13 +22,13 @@
        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-         <Label stylesheets="@DarkTheme.css" text="Description" textAlignment="CENTER" GridPane.columnIndex="1" />
-         <Label stylesheets="@DarkTheme.css" text="Progress" textAlignment="CENTER" GridPane.columnIndex="2" />
-         <Label styleClass="table-header" stylesheets="@DarkTheme.css" textAlignment="CENTER" GridPane.columnIndex="3" />
-         <Label stylesheets="@DarkTheme.css" text="Goal" GridPane.columnIndex="4" />
-         <Label stylesheets="@DarkTheme.css" text="End Date" textAlignment="CENTER" GridPane.columnIndex="5" />
-         <Label stylesheets="@DarkTheme.css" text="End Time" GridPane.columnIndex="6" />
+         <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Description" textAlignment="CENTER" GridPane.columnIndex="1" />
+         <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Progress" textAlignment="CENTER" GridPane.columnIndex="2" />
+         <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" textAlignment="CENTER" GridPane.columnIndex="3" />
+         <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="Goal" GridPane.columnIndex="4" />
+         <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="End Date" textAlignment="CENTER" GridPane.columnIndex="5" />
+         <Label styleClass="light_text" stylesheets="@AdvyzeTheme.css" text="End Time" GridPane.columnIndex="6" />
       </children>
    </GridPane>
-  <ListView fx:id="customGoalListView" VBox.vgrow="ALWAYS" />
+  <ListView fx:id="customGoalListView" stylesheets="@AdvyzeTheme.css" VBox.vgrow="ALWAYS" />
 </VBox>

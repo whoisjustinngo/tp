@@ -4,9 +4,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FROM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURR_DAILY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURR_WEEKLY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURR_YEARLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -25,7 +29,7 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
      */
     public AddScheduleCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_FROM,
-                PREFIX_TO, PREFIX_TAG);
+                PREFIX_TO, PREFIX_TAG, PREFIX_RECURR_DAILY, PREFIX_RECURR_WEEKLY, PREFIX_RECURR_YEARLY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_FROM, PREFIX_TO)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -36,10 +40,29 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
         String date = argMultimap.getValue(PREFIX_DATE).get();
         String from = argMultimap.getValue(PREFIX_FROM).get();
         String to = argMultimap.getValue(PREFIX_TO).get();
+        Optional<String> recurrD = argMultimap.getValue(PREFIX_RECURR_DAILY);
+        Optional<String> recurrW = argMultimap.getValue(PREFIX_RECURR_WEEKLY);
+        Optional<String> recurrY = argMultimap.getValue(PREFIX_RECURR_YEARLY);
+        String recurrType = "N";
+        String recurrDate = "";
+        if (!recurrD.isEmpty()) {
+            System.out.println(recurrD.get());
+            recurrType = "D";
+            recurrDate = recurrD.get();
+        }
+        if (!recurrW.isEmpty()) {
+            recurrType = "W";
+            recurrDate = recurrW.get();
+        }
+        if (!recurrY.isEmpty()) {
+            recurrType = "Y";
+            recurrDate = recurrY.get();
+        }
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         try {
-            Schedule schedule = new Schedule(description, date, from, to, false, tagList);
+            Schedule schedule = new Schedule(description, date, from, to, false, tagList, recurrType, recurrDate);
             return new AddScheduleCommand(schedule);
         } catch (InvalidTimeException e) {
             throw new ParseException(e.getMsg());
