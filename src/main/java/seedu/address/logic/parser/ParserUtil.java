@@ -100,7 +100,7 @@ public class ParserUtil {
         if (!number.matches(Policy.COMMISSION_VALIDATION_REGEX)) {
             throw new ParseException(INTEGER_MESSAGE_CONSTRAINTS);
         }
-        return Integer.valueOf(number);
+        return Double.valueOf(number);
     }
 
     /**
