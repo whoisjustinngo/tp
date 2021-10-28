@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Advyze" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Advyze" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -111,19 +111,17 @@
                 </Tab>
                   <Tab id="detailsTab" fx:id="detailsTab" closable="false" styleClass="tab-button" text="Details">
                      <content>
-                        <AnchorPane>
+                        <VBox stylesheets="@AdvyzeTheme.css">
                            <children>
-                              <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <SplitPane dividerPositions="0.22338709677419355" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
-                                      <items>
-                                        <AnchorPane fx:id="personDetailedPlaceholder" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-                                        <AnchorPane fx:id="policyListPanelPlaceholder" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-                                      </items>
-                                    </SplitPane>
-                                 </children></StackPane>
+                              <VBox fx:id="personDetailedPlaceholder" styleClass="background-with-border" stylesheets="@AdvyzeTheme.css" VBox.vgrow="NEVER" />
+                              <SplitPane dividerPositions="0.3" maxHeight="1.7976931348623157E308" stylesheets="@AdvyzeTheme.css" VBox.vgrow="ALWAYS">
+                                 <items>
+                                    <VBox fx:id="policyListPanelPlaceholder" prefHeight="200.0" prefWidth="100.0" styleClass="background-with-border" stylesheets="@AdvyzeTheme.css" />
+                                    <VBox fx:id="notesPlaceholder" prefHeight="200.0" prefWidth="100.0" styleClass="background-with-border" stylesheets="@AdvyzeTheme.css" />
+                                 </items>
+                              </SplitPane>
                            </children>
-                        </AnchorPane>
+                        </VBox>
                      </content>
                   </Tab>
                 <Tab id="scheduleTab" fx:id="scheduleTab" closable="false" styleClass="tab-button" text="Schedule">
