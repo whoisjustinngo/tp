@@ -50,7 +50,7 @@ public interface Logic {
     ObservableList<CustomGoal> getFilteredCustomGoalList();
 
     /** Generates schedules */
-    void generateSchedule(File file) throws IOException, ParserException,
+    void importSchedule(File file) throws IOException, ParserException,
             CommandException, ParseException, java.text.ParseException;
 
     /**

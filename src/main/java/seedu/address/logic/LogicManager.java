@@ -3,7 +3,9 @@ package seedu.address.logic;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -27,6 +29,7 @@ import seedu.address.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    public static final String FAILED_SCHEDULES = "There are {%d} timeslots that do not fit in your current schedule!";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -88,12 +91,17 @@ public class LogicManager implements Logic {
      * Generates schedules
      */
     @Override
-    public void generateSchedule(File openedFile)
-            throws IOException, CommandException, ParseException, java.text.ParseException {
-        if (openedFile == null) {
-            return; // no file was passed in
+    public void importSchedule(File openedFile)
+            throws IOException, ParseException, CommandException {
+        List<Schedule> scheduleList = model.importSchedule(openedFile);
+        List<Schedule> getValidSchedules = scheduleList.stream()
+                .filter(schedule -> !(model.hasScheduleClash(schedule) && model.hasSchedule(schedule)))
+                .collect(Collectors.toList());
+        if(getValidSchedules.size() != scheduleList.size()) {
+            throw new CommandException(String.format(FAILED_SCHEDULES,
+                    scheduleList.size() - getValidSchedules.size()));
         }
-        ImportCalendar.generateSchedules(openedFile, model);
+        getValidSchedules.forEach(schedule -> model.addSchedule(schedule));
     }
 
     @Override

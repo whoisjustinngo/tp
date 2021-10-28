@@ -232,7 +232,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleImport() {
         try {
             importWindow.show();
-            logic.generateSchedule(importWindow.getIcsFile());
+            logic.importSchedule(importWindow.getIcsFile());
             resultDisplay.setFeedbackToUser("Successfully imported schedule!");
         } catch (IOException e) {
             resultDisplay.setFeedbackToUser(e.getMessage());
