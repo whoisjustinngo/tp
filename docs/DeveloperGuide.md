@@ -351,6 +351,43 @@ Since `Todos` are guaranteed to be immutable in the current implementation of th
     * Pros: Might be faster, since there is no need to create a new `Todo` instance.
     * Cons: Decreased consistency across the codebase, and no longer guarantees that `Todo`s are immutable.
 
+### \[Proposed for v1.3\] Finding and Editing exisiting Events
+
+#### Proposed implementation
+
+The proposed feature of finding and editing the existing `Events` is being parsed by `FindScheduleCommandParser` and `EditScheduleCommandParser` respectively. Once parsed, those command will be implemented by the `FindScheduleCommand` and `EditScheduleCommand` respectively. 
+
+For `FindScheduleCommand` a `Predicate` will takes in the keywords that is given by the user, then it will search through the `UniqueScheduleList`, checking if there are any `Events` which have the same keywords in description. Once done, it will return a `List` of all the `Events` which have the same keywords as the one given by the user, listing on the user interface.
+
+For `EditScheduleCommand` user will need to input the index of the `Event` which will be editted, then key in only the interested field which the user would like to edit. Once completed, the old `Event` will be replaced with the new `Event` with the updated information.  
+
+**Aspect on how finding an event is done**
+  * Using a `Predicate` to get a `true false` return to check if the keywords are present in the description. If it is present, then it will be displayed. Otherwise, it will not be displayed. 
+
+### \[Proposed for v1.3\] Including Tags in Events
+
+The proposed feature is to add tags in the `Events` which is going to be added or `Events` which are already existed in the `UniqueScheduleList`. Tags are added so as to categorise different `Events` and also allows user to easily `Fitler` out `Events` that carries the same tags.
+
+**Aspect on how tagging is done**
+ * In each `Event`, there is a `List<Tag>` which carries all the `Tag` which the user have the `Event` tied to. All the `Tags` which are present in this `List<Tag>` will be displayed in the user interface as well. 
+
+### \[Proposed for v1.3\] Filtering Events
+
+Filtering an `Event` is similar to finding an `Event`. It is being parsed by the `FilterScheduleCommandParser` and filtering is being implemented by the `FilterScheduleCommand`. The parser will utilise a `Predicate` to filter the `UniqueScheduleList` based on any attribute which the user would like to filter on the `Event`. The `Predicate` takes in keyword of the respective attribute, and applied a filter onto the `UniqueScheduleList`. Only the `Event` which satisfies the `Predicate` will be displayed in the user interface.
+
+**Aspect on how filtering is done**
+`UniqueScheduleList` is used to keep store in-memory data which wraps an `ObservableList<Schedule>`. It is then fed to the Ui to display the filtered `Event` to the user. This design provides a clean way for us to filter data using Predicate.
+
+### \[Proposed for v1.3\] Adding Recurring Events
+
+Adding recurring `Event` is an enhancement in adding an `Event` into the `Schedule`. It allows user to add daily, weekly or yearly `Event` in a command line. 
+
+Once a date is given to recur daily, weekly or yearly, it will first check for any clashes found if all the `Event` is added into the `Schedule`. If there are no clashes, all the `Events`, till the recur date, will be added, otherwise none will be added.
+
+**Aspect on how recurring of Event is done**
+
+ * This is done implementing another attribute for the `Event`, which is the recurring date. If the recurring date is present, then `Event` is a recurring `Event` otherwise it need not recur. Another attribute called `recurrType` will determine if it recurs daily (D), weekly (W) or yearly (Y). `Event` will recur until it reaches the recur date.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
