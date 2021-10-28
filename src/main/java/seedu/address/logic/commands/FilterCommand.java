@@ -13,10 +13,10 @@ public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose tags contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filter all todos according to their attributes "
+            + "(case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: /ATTRIBUTE KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " b/ John\n"
+            + "Example: " + COMMAND_WORD + " n/ John\n"
             + "Example: " + COMMAND_WORD + " r/ client\n"
             + "Example: " + COMMAND_WORD + " e/ @gmail.com\n"
             + "Example: " + COMMAND_WORD + " t/ family";
