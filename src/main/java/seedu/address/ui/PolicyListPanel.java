@@ -18,15 +18,15 @@ public class PolicyListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PolicyListPanel.class);
 
     @FXML
-    private ListView<Policy> customGoalListView;
+    private ListView<Policy> policiesListView;
 
     /**
      * Creates a {@code PolicyPanel} with the given {@code ObservableList}.
      */
     public PolicyListPanel(ObservableList<Policy> policies) {
         super(FXML);
-        customGoalListView.setItems(policies);
-        customGoalListView.setCellFactory(listView -> new PolicyListViewCell());
+        policiesListView.setItems(policies);
+        policiesListView.setCellFactory(listView -> new PolicyListViewCell());
     }
 
     /**

@@ -35,5 +35,5 @@
             <Label styleClass="table-header" text="Type" textAlignment="CENTER" GridPane.columnIndex="1" />
         </children>
     </GridPane>
-    <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
+    <ListView fx:id="policiesListView" VBox.vgrow="ALWAYS" />
 </VBox>

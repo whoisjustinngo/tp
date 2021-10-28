@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
@@ -48,7 +49,7 @@ public class MainWindow extends UiPart<Stage> {
     private TodoListPanel dashboardTodoSection;
     private PersonListPanel personListPanel;
     private PersonDetailedPanel personDetailedPanel;
-    //private PolicyListPanel policyListPanel;
+    private PolicyListPanel policyListPanel;
     private TodoListPanel todoListPanel;
     private ScheduleListPanel scheduleListPanel;
     private ResultDisplay resultDisplay;
@@ -175,9 +176,12 @@ public class MainWindow extends UiPart<Stage> {
         personDetailedPlaceholder.getChildren().add(personDetailedPanel.getRoot());
 
         //get ObservableList<T> from Set<T>
-        //List<Policy> policies = new ArrayList<>(logic.getFilteredPersonList().get(0).getPolicies());
-        //ObservableList<Policy> observablePolicies = new FilteredList<>((ObservableList<Policy>) policies);
-        //policyListPanel = new PolicyListPanel(observablePolicies);
+        List<Policy> policies = new ArrayList<>(logic.getFilteredPersonList().get(0).getPolicies());
+        ObservableList<Policy> observablePolicies = FXCollections.observableList(policies);
+        if (observablePolicies.size() == 0) {
+            System.out.println("NULL found");
+        }
+        policyListPanel = new PolicyListPanel(observablePolicies);
         //policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
 
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
