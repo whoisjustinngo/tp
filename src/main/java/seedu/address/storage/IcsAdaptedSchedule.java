@@ -1,26 +1,38 @@
 package seedu.address.storage;
 
-import net.fortuna.ical4j.model.Component;
-import net.fortuna.ical4j.model.DateTime;
-import net.fortuna.ical4j.model.Property;
-import net.fortuna.ical4j.model.property.RRule;
-import seedu.address.model.event.Schedule;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import net.fortuna.ical4j.model.Component;
+import net.fortuna.ical4j.model.DateTime;
+import net.fortuna.ical4j.model.Property;
+import net.fortuna.ical4j.model.property.RRule;
+import seedu.address.model.event.Schedule;
 
 public class IcsAdaptedSchedule {
     private Component schedule;
     private int repeatNumberOfTimes = 1;
+
+    /**
+     * Represents a schedule in ics.
+     *
+     * @param event a component that represents a schedule
+     */
     public IcsAdaptedSchedule(Component event) {
         this.schedule = event;
     }
 
-    public Schedule ToModel() throws java.text.ParseException{
+    /**
+     * Converts Schedules as ics component into Schedule model.
+     *
+     * @return a Schedule object
+     * @throws java.text.ParseException
+     */
+    public Schedule toModel() throws java.text.ParseException {
         String description = this.schedule.getProperty(Property.SUMMARY).getValue();
         String dtStartString = this.schedule.getProperty(Property.DTSTART).getValue();
         DateTime dtStart = new DateTime(dtStartString);

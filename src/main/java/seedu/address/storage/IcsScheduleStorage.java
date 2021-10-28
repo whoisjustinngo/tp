@@ -1,32 +1,26 @@
 package seedu.address.storage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.Component;
-import net.fortuna.ical4j.model.DateTime;
-import net.fortuna.ical4j.model.Property;
-import net.fortuna.ical4j.model.property.RRule;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.event.exceptions.InvalidTimeException;
 import seedu.address.model.tag.Tag;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.commands.AddScheduleCommand.MESSAGE_DUPLICATE_SCHEDULE;
-
 public class IcsScheduleStorage implements ScheduleStorage {
     @Override
-    public List<Schedule> importSchedule(File file) throws IOException, ParseException{
+    public List<Schedule> importSchedule(File file) throws IOException, ParseException {
         // get ics
         FileInputStream fileInputStream = new FileInputStream(file);
         CalendarBuilder calendarBuilder = new CalendarBuilder();
@@ -41,7 +35,7 @@ public class IcsScheduleStorage implements ScheduleStorage {
         for (Iterator i = calendar.getComponents().iterator(); i.hasNext();) {
             try {
                 IcsAdaptedSchedule icsAdaptedSchedule = new IcsAdaptedSchedule((Component) i.next());
-                List<Schedule> schedules = this.createSchedule(icsAdaptedSchedule.ToModel(),
+                List<Schedule> schedules = this.createSchedule(icsAdaptedSchedule.toModel(),
                         icsAdaptedSchedule.getRepeatNumberOfTimes());
                 allSchedules.addAll(schedules);
             } catch (InvalidTimeException | java.text.ParseException e) {

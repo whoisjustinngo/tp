@@ -97,7 +97,7 @@ public class LogicManager implements Logic {
         List<Schedule> getValidSchedules = scheduleList.stream()
                 .filter(schedule -> !(model.hasScheduleClash(schedule) && model.hasSchedule(schedule)))
                 .collect(Collectors.toList());
-        if(getValidSchedules.size() != scheduleList.size()) {
+        if (getValidSchedules.size() != scheduleList.size()) {
             throw new CommandException(String.format(FAILED_SCHEDULES,
                     scheduleList.size() - getValidSchedules.size()));
         }
