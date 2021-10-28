@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
 /**
- * Controller for a help page
+ * Controller for the Import page
  */
 public class ImportWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -21,23 +21,23 @@ public class ImportWindow extends UiPart<Stage> {
     private AnchorPane importWindowAnchorPane;
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new ImportWindow.
      *
-     * @param root Stage to use as the root of the HelpWindow.
+     * @param root Stage to use as the root of the ImportWindow.
      */
     public ImportWindow(Stage root) {
         super(FXML, root);
     }
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new ImportWindow.
      */
     public ImportWindow() {
         this(new Stage());
     }
 
     /**
-     * Gets the file opened
+     * Gets the file that is opened
      */
     public File getIcsFile() {
         return icsFile;
@@ -69,12 +69,5 @@ public class ImportWindow extends UiPart<Stage> {
         Stage stage = (Stage) importWindowAnchorPane.getScene().getWindow();
 
         icsFile = fileChooser.showOpenDialog(stage);
-    }
-
-    /**
-     * Focuses on the help window.
-     */
-    public void focus() {
-        getRoot().requestFocus();
     }
 }

@@ -12,10 +12,10 @@ public class ImportCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": imports a schedule.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String SHOWING_IMPORT_WINDOW = "Opened import window.";
+    public static final String MESSAGE_SHOWING_IMPORT_WINDOW = "Opened import window.";
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_IMPORT_WINDOW, true);
+        return new CommandResult(MESSAGE_SHOWING_IMPORT_WINDOW, true);
     }
 }

@@ -226,7 +226,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     *
+     * Opens the OS's default file browser and allows user to select an ics file of their choice.
      */
     @FXML
     public void handleImport() {
