@@ -183,8 +183,7 @@ public class MainWindow extends UiPart<Stage> {
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-        //detailed panel should only show 1 person
+        
         personDetailedPanel = new PersonDetailedPanel(logic.getSelectedPersonList());
         personDetailedPlaceholder.getChildren().add(personDetailedPanel.getRoot());
 
