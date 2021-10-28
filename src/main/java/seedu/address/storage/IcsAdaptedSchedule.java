@@ -59,7 +59,7 @@ public class IcsAdaptedSchedule {
         RRule repeatRule = (RRule) this.schedule.getProperty(Property.RRULE);
 
         List<ExDate> exDates = this.schedule.getProperties(Property.EXDATE);
-        for(Iterator i = exDates.iterator();i.hasNext();) {
+        for (Iterator i = exDates.iterator(); i.hasNext();) {
             ExDate exDate = (ExDate) i.next();
             DateTime dtExDate = (new DateTime(exDate.getValue()));
             excludedDates.add(Instant.ofEpochMilli(dtExDate.getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
@@ -77,6 +77,12 @@ public class IcsAdaptedSchedule {
         return this.repeatNumberOfTimes;
     }
 
+    /**
+     * Checks if the schedule is to be excluded from the list.
+     *
+     * @param schedule
+     * @return
+     */
     public boolean isInExcluded(Schedule schedule) {
         return excludedDates.stream()
                 .anyMatch(localDate -> localDate.format(DateTimeFormatter.ofPattern("dd-MM-YYYY"))
