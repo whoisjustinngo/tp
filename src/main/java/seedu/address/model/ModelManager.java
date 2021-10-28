@@ -3,7 +3,10 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,11 +15,13 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.analytics.ClientAnalytics;
 import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
 import seedu.address.model.person.Person;
 import seedu.address.model.todo.Todo;
+import seedu.address.storage.IcsScheduleStorage;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,6 +32,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final ClientAnalytics clientAnalytics;
     private final UserPrefs userPrefs;
+    private final IcsScheduleStorage icsScheduleStorage;
     private final FilteredList<CustomGoal> filteredCustomGoals;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> selectedPerson;
@@ -45,6 +51,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.clientAnalytics = new ClientAnalytics(this.addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.icsScheduleStorage = new IcsScheduleStorage();
         filteredCustomGoals = new FilteredList<>(this.addressBook.getCustomGoalList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTodos = new FilteredList<>(this.addressBook.getTodoList());
@@ -303,4 +310,11 @@ public class ModelManager implements Model {
 
         addressBook.setSchedule(target, editedSchedule);
     }
+
+    @Override
+    public List<Schedule> importSchedule(File file) throws IOException, ParseException {
+        requireNonNull(file);
+        return icsScheduleStorage.importSchedule(file);
+    }
+
 }

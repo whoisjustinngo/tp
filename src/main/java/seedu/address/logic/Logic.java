@@ -1,8 +1,11 @@
 package seedu.address.logic;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
+import net.fortuna.ical4j.data.ParserException;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -48,6 +51,10 @@ public interface Logic {
 
     /** Returns an unmodifiable view of a selected person */
     ObservableList<Person> getSelectedPersonList();
+
+    /** Generates schedules */
+    void importSchedule(File file) throws IOException, ParserException,
+            CommandException, ParseException, java.text.ParseException;
 
     /**
      * Returns the user prefs' address book file path.

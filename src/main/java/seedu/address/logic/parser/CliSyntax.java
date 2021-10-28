@@ -24,4 +24,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_INSURER = new Prefix("insurer/");
     public static final Prefix PREFIX_NUMBER = new Prefix("num/");
     public static final Prefix PREFIX_COMMISSION = new Prefix("comm/");
+    public static final Prefix PREFIX_RECURR_DAILY = new Prefix("recurd/");
+    public static final Prefix PREFIX_RECURR_WEEKLY = new Prefix("recurw/");
+    public static final Prefix PREFIX_RECURR_YEARLY = new Prefix("recury/");
 }

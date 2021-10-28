@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import net.fortuna.ical4j.data.ParserException;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -48,6 +50,7 @@ public class MainWindow extends UiPart<Stage> {
     private ScheduleListPanel scheduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ImportWindow importWindow;
 
     @FXML
     private TabPane tabs;
@@ -128,6 +131,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        importWindow = new ImportWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -240,6 +245,24 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the OS's default file browser and allows user to select an ics file of their choice.
+     */
+    @FXML
+    public void handleImport() {
+        try {
+            importWindow.show();
+            logic.importSchedule(importWindow.getIcsFile());
+            resultDisplay.setFeedbackToUser("Successfully imported schedule!");
+        } catch (IOException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        } catch (ParserException | ParseException | java.text.ParseException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        } catch (CommandException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -279,7 +302,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText)
+            throws CommandException, ParseException {
         try {
             String currentTab = this.getSelectedPane();
             CommandResult commandResult = logic.execute(currentTab + " " + commandText);
@@ -296,6 +320,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isSwitchTab()) {
                 handleSwitchTab(commandResult.getTabId());
+            }
+
+            if (commandResult.isShowImport()) {
+                handleImport();
             }
 
             return commandResult;
