@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
 
