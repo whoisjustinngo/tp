@@ -321,11 +321,11 @@ Examples:
 * `tab dashboard` while in the Contacts tab changes to the Dashboard tab
 * `tab contacts` in the Contacts tab just jumps to the top of the page (returns the tab to the original landing page view)
 
-### Convenience Commands (not supported yet as of v1.2)
+### Convenience Commands
 
 Allows users to input commands meant for a specific tab regardless of which tab they are currently viewing.
 
-Format: [commands listed by other functionalities]
+Format: `/TAB NAME` [commands listed by other functionalities]
 
 Examples:
 * When in Todos tab, input `/schedule add event des/CS2103 meeting from/1300 to/1500` will add an event in Schedule tab instead of adding it in Todos tab.

@@ -388,6 +388,23 @@ Once a date is given to recur daily, weekly or yearly, it will first check for a
 
  * This is done implementing another attribute for the `Event`, which is the recurring date. If the recurring date is present, then `Event` is a recurring `Event` otherwise it need not recur. Another attribute called `recurrType` will determine if it recurs daily (D), weekly (W) or yearly (Y). `Event` will recur until it reaches the recur date.
 
+
+### \[Proposed for v1.3\] Convenience Commands
+
+For v1.2, users have to go to a specific tab in order to run commands from said tab. To allow quality of life upgrades, users can add
+a tab name to indicate which tab it runs in. However, to give the users visual feedback, we need to switch to the tab the command was intended for.
+
+### Proposed Implementation
+To reasonably realise this, the original AB3 needs to be reconfigured to either
+1. recognize it is running at a different tab, and set `tabswitch` to be true, alongside the actual tab OR
+2. always run `tab [TAB NAME]` as the first command, and then runs the next command (which is what the user enters)
+
+Both of these implementations require major overhauls, but the latter requires a much smaller one, namely modifying
+how to `execute` 2 commands. To achieve this, instead of returning a `Command`, return a `List<Command>` and execute all of the Commands.
+
+However, we only need to return the last `CommandResult` as that is what the user entered. Therefore, we always assign the last `CommandResult` to 
+show feedback to user.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
