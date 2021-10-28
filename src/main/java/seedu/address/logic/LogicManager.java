@@ -29,7 +29,8 @@ import seedu.address.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
-    public static final String FAILED_SCHEDULES = "There are {%d} timeslots that do not fit in your current schedule!";
+    public static final String FAILED_SCHEDULES_MESSAGE =
+            "There are {%d} timeslots that do not fit in your current schedule!";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -98,7 +99,7 @@ public class LogicManager implements Logic {
                 .filter(schedule -> !(model.hasScheduleClash(schedule) && model.hasSchedule(schedule)))
                 .collect(Collectors.toList());
         if (getValidSchedules.size() != scheduleList.size()) {
-            throw new CommandException(String.format(FAILED_SCHEDULES,
+            throw new CommandException(String.format(FAILED_SCHEDULES_MESSAGE,
                     scheduleList.size() - getValidSchedules.size()));
         }
         getValidSchedules.forEach(schedule -> model.addSchedule(schedule));
