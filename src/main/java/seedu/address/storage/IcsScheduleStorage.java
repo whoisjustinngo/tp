@@ -37,6 +37,8 @@ public class IcsScheduleStorage implements ScheduleStorage {
                 IcsAdaptedSchedule icsAdaptedSchedule = new IcsAdaptedSchedule((Component) i.next());
                 List<Schedule> schedules = this.createSchedule(icsAdaptedSchedule.toModel(),
                         icsAdaptedSchedule.getRepeatNumberOfTimes());
+                // remove from list of excluded
+                schedules.stream().filter(schedule -> !icsAdaptedSchedule.isInExcluded(schedule));
                 allSchedules.addAll(schedules);
             } catch (InvalidTimeException | java.text.ParseException e) {
                 throw new ParseException(e.getMessage());
@@ -49,17 +51,16 @@ public class IcsScheduleStorage implements ScheduleStorage {
         List<Schedule> schedulesList = new ArrayList<>();
         if (repeatTimes == 1) {
             Set<Tag> tagList = new HashSet<>();
+            tagList.addAll(schedule.getTags());
             tagList.add(new Tag("exam"));
             schedule = new Schedule(schedule.getDescription(), schedule.getDate(),
                     String.valueOf(schedule.getTimeFrom()), String.valueOf(schedule.getTimeTo()), schedule.isDone(),
-                    tagList);
-        } else {
-            // TODO: reassign generateRecurrence to what is specified in repeatRule
-            // TODO: reading weeks
+                    tagList, schedule.getRecurrType(), schedule.getRecurrDate());
         }
-        for (int ind = 0; ind < 1; ind++) {
+        for (int ind = 0; ind < repeatTimes; ind++) {
             schedulesList.add(schedule);
             // TODO: increment the schedule by a week
+            schedule = schedule.addOneWeek();
         }
 
         return schedulesList;

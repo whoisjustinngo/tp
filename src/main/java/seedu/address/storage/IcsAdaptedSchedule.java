@@ -3,19 +3,28 @@ package seedu.address.storage;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 
 import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.DateTime;
 import net.fortuna.ical4j.model.Property;
+import net.fortuna.ical4j.model.property.ExDate;
 import net.fortuna.ical4j.model.property.RRule;
 import seedu.address.model.event.Schedule;
+
 
 public class IcsAdaptedSchedule {
     private Component schedule;
     private int repeatNumberOfTimes = 1;
+
+    // Logically, these are public holidays
+    private List<LocalDate> excludedDates = new ArrayList<>();
 
     /**
      * Represents a schedule in ics.
@@ -48,15 +57,29 @@ public class IcsAdaptedSchedule {
                 .toLocalTime().format(DateTimeFormatter.ofPattern("HHmm"));
 
         RRule repeatRule = (RRule) this.schedule.getProperty(Property.RRULE);
+
+        List<ExDate> exDates = this.schedule.getProperties(Property.EXDATE);
+        for(Iterator i = exDates.iterator();i.hasNext();) {
+            ExDate exDate = (ExDate) i.next();
+            DateTime dtExDate = (new DateTime(exDate.getValue()));
+            excludedDates.add(Instant.ofEpochMilli(dtExDate.getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+        }
         if (repeatRule == null) {
             this.repeatNumberOfTimes = 1;
         } else {
             this.repeatNumberOfTimes = repeatRule.getRecur().getCount();
         }
-        return new Schedule(description, date, from, to, false, new HashSet<>());
+        return new Schedule(description, date, from, to, false, new HashSet<>(),
+                "N", "");
     }
 
     public int getRepeatNumberOfTimes() {
         return this.repeatNumberOfTimes;
+    }
+
+    public boolean isInExcluded(Schedule schedule) {
+        return excludedDates.stream()
+                .anyMatch(localDate -> localDate.format(DateTimeFormatter.ofPattern("dd-MM-YYYY"))
+                .equals(schedule.getDate()));
     }
 }
