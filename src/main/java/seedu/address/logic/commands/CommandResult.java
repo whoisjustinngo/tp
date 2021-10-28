@@ -24,6 +24,9 @@ public class CommandResult {
 
     private final TabSwitch.Tab tabId;
 
+    /** A new window should be shown to the user. */
+    private final boolean showImport;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -33,6 +36,7 @@ public class CommandResult {
         this.exit = exit;
         this.switchTab = false;
         this.tabId = null;
+        this.showImport = false;
     }
 
     /**
@@ -54,6 +58,20 @@ public class CommandResult {
         this.exit = false;
         this.switchTab = switchTab;
         this.tabId = tabId;
+        this.showImport = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and {@code showImport}, and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showImport) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.switchTab = false;
+        this.tabId = null;
+        this.showImport = showImport;
     }
 
     public String getFeedbackToUser() {
@@ -74,6 +92,10 @@ public class CommandResult {
 
     public boolean isSwitchTab() {
         return switchTab;
+    }
+
+    public boolean isShowImport() {
+        return showImport;
     }
 
     @Override

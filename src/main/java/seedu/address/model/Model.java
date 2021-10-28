@@ -1,11 +1,15 @@
 package seedu.address.model;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.analytics.ClientAnalytics;
 import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
@@ -219,4 +223,6 @@ public interface Model {
     int getNumOfCustomGoals();
 
     void deleteCustomGoal(Index goalToDelete);
+
+    List<Schedule> importSchedule(File file) throws IOException, ParseException;
 }
