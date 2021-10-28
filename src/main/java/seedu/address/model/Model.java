@@ -174,12 +174,26 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns an unmodifiable view of a selected person list
+     */
+    ObservableList<Person> getSelectedPersonList();
+
+    /**
      * Updates the filter of the filtered person list to filter by the given
      * {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+
+    /**
+     * Updates the filter of the selected person list to filter by the given
+     * {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateSelectedPersonList(Predicate<Person> predicate);
 
     /**
      * Returns an unmodifiable view of the filtered todo list

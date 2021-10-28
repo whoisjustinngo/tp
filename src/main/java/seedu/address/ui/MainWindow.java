@@ -172,15 +172,15 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         //detailed panel only show 1 person
-        personDetailedPanel = new PersonDetailedPanel(logic.getFilteredPersonList());
+
+        // allow user to filter this list
+        personDetailedPanel = new PersonDetailedPanel(logic.getSelectedPersonList());
         personDetailedPlaceholder.getChildren().add(personDetailedPanel.getRoot());
 
         //get ObservableList<T> from Set<T>
         List<Policy> policies = new ArrayList<>(logic.getFilteredPersonList().get(0).getPolicies());
         ObservableList<Policy> observablePolicies = FXCollections.observableList(policies);
-        if (observablePolicies.size() == 0) {
-            System.out.println("NULL found");
-        }
+
         policyListPanel = new PolicyListPanel(observablePolicies);
         //policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
 
