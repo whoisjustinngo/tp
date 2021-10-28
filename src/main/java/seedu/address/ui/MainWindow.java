@@ -100,9 +100,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private AnchorPane personDetailedPlaceholder;
+    private VBox personDetailedPlaceholder;
+
     @FXML
-    private AnchorPane policyListPanelPlaceholder;
+    private VBox policyListPanelPlaceholder;
 
     @FXML
     private StackPane scheduleListPanelPlaceholder;
