@@ -35,11 +35,20 @@ public class AddressBookParser {
     private static final String SCHEDULE_TAB_ID = "scheduleTab";
     private static final String TODOS_TAB_ID = "todosTab";
 
+    private static final String DASHBOARD_PREFIX = "dashboard";
+    private static final String CONTACTS_PREFIX = "contacts";
+    private static final String SCHEDULE_PREFIX = "schedule";
+    private static final String TODOS_PREFIX = "todos";
+
     /**
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern
             .compile("(?<tab>\\S+) (?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern CONTEXTUAL_COMMAND_FORMAT = Pattern
+            .compile("(?<prefixTab>\\S+) /(?<tab>\\S+) (?<commandWord>\\S+)(?<arguments>.*)");
+
+    private String targetTab;
 
     /**
      * Parses user input into command for execution.
@@ -49,14 +58,22 @@ public class AddressBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
+        final Matcher matcher;
+        final Matcher basicMatcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        final Matcher contextualMatcher = CONTEXTUAL_COMMAND_FORMAT.matcher(userInput.trim());
+        if (contextualMatcher.matches()) {
+            matcher = contextualMatcher;
+        } else if (basicMatcher.matches()) {
+            matcher = basicMatcher;
+        } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String tab = matcher.group("tab");
+        final String tab = toTabIDs(matcher.group("tab"));
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
+        this.targetTab = matcher.group("tab");
 
         switch (commandWord) {
 
@@ -213,6 +230,67 @@ public class AddressBookParser {
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    /**
+     * Converts convinience tab names to tab IDs.
+     *
+     * @param tab tabname provided, might be tab IDs themselves
+     * @return
+     */
+    private String toTabIDs(String tab) {
+        switch (tab) {
+        case DASHBOARD_PREFIX:
+            return DASHBOARD_TAB_ID;
+
+        case CONTACTS_PREFIX:
+            return CONTACTS_TAB_ID;
+
+        case TODOS_PREFIX:
+            return TODOS_TAB_ID;
+
+        case SCHEDULE_PREFIX:
+            return SCHEDULE_TAB_ID;
+
+        case DASHBOARD_TAB_ID:
+
+        case CONTACTS_TAB_ID:
+
+        case TODOS_TAB_ID:
+
+        case SCHEDULE_TAB_ID:
+
+        default:
+            return tab;
+        }
+    }
+
+    private String toTabPrefix(String tabId) {
+        switch (tabId) {
+
+        case DASHBOARD_TAB_ID:
+            return DASHBOARD_PREFIX;
+
+        case CONTACTS_TAB_ID:
+            return CONTACTS_PREFIX;
+
+        case TODOS_TAB_ID:
+            return TODOS_PREFIX;
+
+        case SCHEDULE_TAB_ID:
+            return SCHEDULE_PREFIX;
+
+        default:
+            return tabId;
+        }
+    }
+
+    /**
+     * Always switches to where it last ran the context.
+     * @return
+     */
+    public Command goToContextTab() throws ParseException {
+        return new TabSwitchCommandParser().parse(toTabPrefix(this.targetTab));
     }
 
 }
