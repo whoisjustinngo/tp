@@ -3,10 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
@@ -23,17 +21,8 @@
       <padding>
         <Insets bottom="5.0" left="15.0" right="5.0" top="20.0" />
       </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
-      </HBox>
-      <FlowPane fx:id="tags" />
     </VBox>
+      <Label fx:id="id" styleClass="cell_small_label" text="\$id" wrapText="true" />
    <Label fx:id="insurer" styleClass="cell_small_label" text="\$insurer" wrapText="true" GridPane.columnIndex="1" />
    <Label fx:id="policyName" styleClass="cell_small_label" text="\$policyName" wrapText="true" GridPane.columnIndex="2" />
    <Label fx:id="policyNumber" styleClass="cell_small_label" text="\$policyNumber" wrapText="true" GridPane.columnIndex="3" />

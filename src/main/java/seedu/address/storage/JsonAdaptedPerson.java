@@ -15,7 +15,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Policy;
 import seedu.address.model.person.Relationship;
+import seedu.address.model.person.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -53,7 +55,7 @@ class JsonAdaptedPerson {
         if (policies != null) {
             this.policies.addAll(policies);
         }
-     }
+    }
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
@@ -79,8 +81,12 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final List<Policy> personPolicies = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+        for (JsonAdaptedPolicy policy : policies) {
+            personPolicies.add(policy.toModelType());
         }
 
         if (name == null) {
@@ -126,7 +132,9 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelRelationship, modelPhone, modelEmail, modelAddress, modelTags);
+        final Set<Policy> modelPolicies = new HashSet<>(personPolicies);
+        return new Person(modelName, modelRelationship, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies,
+                Status.FRESH, ""); //todo support other client details
     }
 
 }
