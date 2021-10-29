@@ -132,8 +132,6 @@ Changing a friend to a client: `edit 1 r/client`
 Changing a contact's phone and email: `edit 1 p/12345678 e/newEmail@gmail.com`  
 Changing a contact's tags: `edit 2 t/nus t/dancer`
 
-Example:  
-`delete 2`
 ### Deleting a contact: `delete`
 Format: `delete INDEX`  
 Deletes the contact at the specified INDEX.  
