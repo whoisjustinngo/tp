@@ -395,9 +395,9 @@ For v1.2, users have to go to a specific tab in order to run commands from said 
 a tab name to indicate which tab it runs in. However, to give the users visual feedback, we need to switch to the tab the command was intended for.
 
 ### Proposed Implementation
-To reasonably realise this, the original AB3 needs to be reconfigured to either
-1. recognize it is running at a different tab, and set `tabswitch` to be true, alongside the actual tab OR
-2. always run `tab [TAB NAME]` as the first command, and then runs the next command (which is what the user enters)
+To reasonably realise this, the original AB3 needs to be reconfigured to EITHER:
+1. recognize it is running at a different tab, and set `tabswitch` to be true in `CommandResult`, alongside the actual `TAB_NAME` OR
+2. always run `tab [TAB NAME]` as the first command, and then runs the user's command
 
 Both of these implementations require major overhauls, but the latter requires a much smaller one, namely modifying
 how to `execute` 2 commands. To achieve this, instead of returning a `Command`, return a `List<Command>` and execute all of the Commands.
