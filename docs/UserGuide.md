@@ -332,6 +332,13 @@ Examples:
 * When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` under the Schedule tab.
 * When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` under the Schedule tab.
 
+### Importing Schedule
+
+Allows users to import `.ics` files, similar to importing timetable from NUSMods into Google Calendars.
+
+Example:
+* In any tab, input `import` will open file browser to prompt the user for a `.ics` file.
+
 ### Exiting Application: `exit`
 
 Terminates the application

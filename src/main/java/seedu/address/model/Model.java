@@ -1,11 +1,15 @@
 package seedu.address.model;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.analytics.ClientAnalytics;
 import seedu.address.model.customGoal.CustomGoal;
 import seedu.address.model.event.Schedule;
@@ -174,12 +178,26 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns an unmodifiable view of a selected person list
+     */
+    ObservableList<Person> getSelectedPersonList();
+
+    /**
      * Updates the filter of the filtered person list to filter by the given
      * {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+
+    /**
+     * Updates the filter of the selected person list to filter by the given
+     * {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateSelectedPersonList(Predicate<Person> predicate);
 
     /**
      * Returns an unmodifiable view of the filtered todo list
@@ -219,4 +237,6 @@ public interface Model {
     int getNumOfCustomGoals();
 
     void deleteCustomGoal(Index goalToDelete);
+
+    List<Schedule> importSchedule(File file) throws IOException, ParseException;
 }

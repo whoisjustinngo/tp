@@ -289,6 +289,46 @@ Integrating contacts and dashboard this way would reduce the amount of work the 
 
 That being said, some fields like the total commission earned this month will have to be input manually.
 
+### \[Proposed for v1.3\] Import .ics Schedules
+For student financial advisors, they might have a portal that can generate calendar files that can be imported into google calendar,
+such as NUSMods. NUSMods has a download `.ics` button that generates a `.ics` file for the users. These fields can be programmatically 
+added into Advyze.
+
+The basic structure of an `.ics` file is as follows
+```
+BEGIN VCALENDAR
+VERSION:2.0
+PRODID:-//NUSMods//NUSMods//EN
+BEGIN VEVENT
+DTSTAMP:20211027T064817Z
+DTSTART:20211123T090000Z
+DTEND:20211123T110000Z
+SUMMARY:CS2103 Exam
+...
+END VEVENT
+BEGIN VEVENT
+...
+END VEVENT
+END VCALENDAR
+```
+
+For more details, look up the definition of fields of `.ics` files at [RFC2445](http://www.faqs.org/rfcs/rfc2445.html).
+
+#### Proposed Implementation
+As a start, implement a minimal version that includes the above visible fields.
+- `VEVENT`
+  - `DTSTART`
+  - `DTEND`
+  - `SUMMARY`
+  - `RRULE`
+- `VCALENDAR`
+
+Each `VEVENT` will be represented as a `Schedule`, and each recurrence specified (if applicable) in `RRULE` are independent 
+`Schedules` with different start and end times. The import will not be made if there are exceptions thrown in the process of 
+parsing errors or fails during verification of whether the schedule has conflicts. If clashes exist, users will be prompted
+the message when they add one single schedule, and no imports will be made. This is to facilitate manual conflict resolution
+by the user, where the user will attempt to find which event has error on their own and keep tying to import until it is successful.
+
 &nbsp;
 
 ### \[Proposed for v1.3\] Mark `Todo` as done

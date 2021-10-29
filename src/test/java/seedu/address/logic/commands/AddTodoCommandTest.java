@@ -6,9 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -17,6 +20,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -119,6 +123,15 @@ class AddTodoCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void updateSelectedPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public ObservableList<Person> getSelectedPersonList() {
+            throw new AssertionError("This method should not be called.");
+        };
         @Override
         public void addTodo(Todo todo) {
             throw new AssertionError("This method should not be called.");
@@ -236,6 +249,11 @@ class AddTodoCommandTest {
 
         @Override
         public void deleteCustomGoal(Index goalToDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Schedule> importSchedule(File file) throws IOException, ParseException {
             throw new AssertionError("This method should not be called.");
         }
 

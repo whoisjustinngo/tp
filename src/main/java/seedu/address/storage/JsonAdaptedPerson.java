@@ -15,7 +15,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Policy;
 import seedu.address.model.person.Relationship;
+import seedu.address.model.person.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,7 +32,10 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String notes;
+    private final String status;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,14 +44,22 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name,
             @JsonProperty("relationship") String relationship, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("notes") String notes,
+            @JsonProperty("status") String status,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("policies") List<JsonAdaptedPolicy> policies) {
         this.name = name;
         this.relationship = relationship;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.notes = notes;
+        this.status = status;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (policies != null) {
+            this.policies.addAll(policies);
         }
     }
 
@@ -59,8 +72,13 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        notes = source.getNotes();
+        status = source.getStatus().name();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        policies.addAll(source.getPolicies().stream()
+                .map(JsonAdaptedPolicy::new)
                 .collect(Collectors.toList()));
     }
 
@@ -71,8 +89,12 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final List<Policy> personPolicies = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+        for (JsonAdaptedPolicy policy : policies) {
+            personPolicies.add(policy.toModelType());
         }
 
         if (name == null) {
@@ -111,14 +133,22 @@ class JsonAdaptedPerson {
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
-
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelRelationship, modelPhone, modelEmail, modelAddress, modelTags);
-    }
+        if (!Status.contains(status)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
+        }
+        final Status modelStatus = Status.valueOf(status);
 
+        if (notes == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Notes"));
+        }
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Policy> modelPolicies = new HashSet<>(personPolicies);
+        return new Person(modelName, modelRelationship, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies,
+                modelStatus, notes);
+    }
 }
