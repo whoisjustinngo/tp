@@ -203,6 +203,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addSchedule(Schedule s) {
         schedule.add(s);
         schedule.sort();
+        schedule.view();
     }
 
     /**
