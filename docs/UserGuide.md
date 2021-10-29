@@ -149,6 +149,8 @@ Here are some of the examples to use the command lines.
 
 **Note:** While adding an Event, it will check if the Event given has any clashes with other Events which have already been added. The Event will be added only if there is no clash in timing with other Events which are already in the list. This applies to the recurring Event as well, if there are clashes in any of the given recurring Events, it will consider the Event as a clash, and will not proceed to adding any Events.
 
+Next, only upcoming Events will be shown. Events which happened in the past will be stored in the database, but will not be shown in the user interface.
+
 ### Edit Event command: `edit`
 
 Edits the Event which has the respective INDEX given by the user.

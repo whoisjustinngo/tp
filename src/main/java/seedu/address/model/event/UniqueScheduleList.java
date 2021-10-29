@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -160,6 +161,10 @@ public class UniqueScheduleList implements Iterable<Schedule> {
      */
     public void sort() {
         this.internalList.sort(getScheduleComparator());
+    }
+
+    public void view() {
+        this.internalList.removeIf(schedule -> schedule.getTaskDateTimeTo().compareTo(LocalDateTime.now()) < 0);
     }
 
     private Comparator<Schedule> getScheduleComparator() {
