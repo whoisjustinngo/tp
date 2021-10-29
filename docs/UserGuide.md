@@ -155,7 +155,7 @@ Filter all persons according to their attributes (case-insensitive) and displays
 You can view a contact's policies and notes by using the details tab: `tab details`
 
 # Selecting a contact to view details: `select`  
-Format: `select INDEX`
+Format: `select INDEX`  
 Selects a contact at the specified INDEX to view policies and notes
 * The index refers to the index number shown in the Contact list.
 * The index must be a positive integer 1, 2, 3, … and a valid index in the contact list
@@ -163,16 +163,16 @@ Selects a contact at the specified INDEX to view policies and notes
 Example: `select 2`
 
 ### Adding a policy to a contact: `policy`
-Format: `policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`
-
+Format: `policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`  
+Add a policy to a contact at the specified INDEX  show in the Contact list  
 Example:  
-Adding policy to second contact in contact list: `policy 2 insurer/AIG num/1231 n/Critical illness comm/100`
+`policy 2 insurer/AIG num/1231 n/Critical illness comm/100`
 
 ### Adding a note to a contact: `note`
 Format: `note INDEX MESSAGE`
-
+Add a note to a contact at the specified INDEX show in the Contact list  
 Example:  
-Adding note to first contact in contact list: `note 1 Income 100k, Coverage insufficent`
+`note 1 Income 100k, Coverage insufficent`
 
 ![details_tab](images/details-tab-v1.3.png)
 ### Deleting a note from a contact: `Coming Soon`
