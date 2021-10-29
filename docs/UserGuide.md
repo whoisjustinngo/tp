@@ -166,7 +166,7 @@ Example: `select 2`
 Format: `policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`  
 Add a policy to a contact at the specified INDEX  show in the Contact list  
 Example:  
-`policy 2 insurer/AIG num/1231 n/Critical illness comm/100`
+`policy 1 insurer/AIG num/1231 n/Critical illness comm/100`
 
 ### Adding a note to a contact: `note`
 Format: `note INDEX MESSAGE`
