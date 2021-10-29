@@ -35,7 +35,8 @@ public class NotesPanel extends UiPart<Region> {
         updateValues();
     }
     private void updateValues() {
-        notesDisplay.setText(selectedPersons.get(0).getNotes());
+        String toDisplay = selectedPersons.size() == 0 ? "" : selectedPersons.get(0).getNotes();
+        notesDisplay.setText(toDisplay);
     }
 
 }
