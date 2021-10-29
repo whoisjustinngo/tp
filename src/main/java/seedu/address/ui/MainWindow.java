@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -44,6 +46,9 @@ public class MainWindow extends UiPart<Stage> {
     private ScheduleListPanel dashboardScheduleSection;
     private TodoListPanel dashboardTodoSection;
     private PersonListPanel personListPanel;
+    private PersonDetailedPanel personDetailedPanel;
+    private PolicyListPanel policyListPanel;
+    private NotesPanel notesPanel;
     private TodoListPanel todoListPanel;
     private ScheduleListPanel scheduleListPanel;
     private ResultDisplay resultDisplay;
@@ -91,6 +96,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private VBox personDetailedPlaceholder;
+
+    @FXML
+    private VBox policyListPanelPlaceholder;
+
+    @FXML
+    private VBox notesPlaceholder;
 
     @FXML
     private StackPane scheduleListPanelPlaceholder;
@@ -177,6 +191,15 @@ public class MainWindow extends UiPart<Stage> {
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        personDetailedPanel = new PersonDetailedPanel(logic.getSelectedPersonList());
+        personDetailedPlaceholder.getChildren().add(personDetailedPanel.getRoot());
+
+        policyListPanel = new PolicyListPanel(logic.getSelectedPersonList());
+        policyListPanelPlaceholder.getChildren().add(policyListPanel.getRoot());
+
+        notesPanel = new NotesPanel(logic.getSelectedPersonList());
+        notesPlaceholder.getChildren().add(notesPanel.getRoot());
 
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
         todoListPanelPlaceholder.getChildren().add(todoListPanel.getRoot());
@@ -286,20 +309,24 @@ public class MainWindow extends UiPart<Stage> {
             throws CommandException, ParseException {
         try {
             String currentTab = this.getSelectedPane();
-            CommandResult commandResult = logic.execute(currentTab + " " + commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            List<CommandResult> commandResults = logic.execute(currentTab + " " + commandText);
+            CommandResult commandResult = commandResults.get(0); // we can assume there will always be at least 1
+            for (Iterator<CommandResult> i = commandResults.iterator(); i.hasNext();) {
+                commandResult = i.next();
+                logger.info("Result: " + commandResult.getFeedbackToUser());
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
+                if (commandResult.isShowHelp()) {
+                    handleHelp();
+                }
 
-            if (commandResult.isExit()) {
-                handleExit();
-            }
+                if (commandResult.isExit()) {
+                    handleExit();
+                }
 
-            if (commandResult.isSwitchTab()) {
-                handleSwitchTab(commandResult.getTabId());
+                if (commandResult.isSwitchTab()) {
+                    handleSwitchTab(commandResult.getTabId());
+                }
             }
 
             if (commandResult.isShowImport()) {
@@ -313,6 +340,7 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 
     public String getSelectedPane() {
         return tabs.getSelectionModel().getSelectedItem().getId();

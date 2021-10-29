@@ -149,6 +149,8 @@ Here are some of the examples to use the command lines.
 
 **Note:** While adding an Event, it will check if the Event given has any clashes with other Events which have already been added. The Event will be added only if there is no clash in timing with other Events which are already in the list. This applies to the recurring Event as well, if there are clashes in any of the given recurring Events, it will consider the Event as a clash, and will not proceed to adding any Events.
 
+Next, only upcoming Events will be shown. Events which happened in the past will be stored in the database, but will not be shown in the user interface.
+
 ### Edit Event command: `edit`
 
 Edits the Event which has the respective INDEX given by the user.
@@ -321,14 +323,14 @@ Examples:
 * `tab dashboard` while in the Contacts tab changes to the Dashboard tab
 * `tab contacts` in the Contacts tab just jumps to the top of the page (returns the tab to the original landing page view)
 
-### Convenience Commands (not supported yet as of v1.2)
+### Convenience Commands
 
 Allows users to input commands meant for a specific tab regardless of which tab they are currently viewing.
 
-Format: [commands listed by other functionalities]
+Format: `/TAB NAME` [command meant to run on specified TAB_NAME]
 
 Examples:
-* When in Todos tab, input `/schedule add event des/CS2103 meeting from/1300 to/1500` will add an event in Schedule tab instead of adding it in Todos tab.
+* When in Todos tab, input `/schedule add event d/CS2103 meeting fr/1300 to/1500` will add an event in Schedule tab instead of adding it in Todos tab.
 * When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` under the Schedule tab.
 * When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` under the Schedule tab.
 

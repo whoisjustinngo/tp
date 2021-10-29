@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -25,8 +26,15 @@ public class Person {
     private final Relationship relationship;
     private final Set<Tag> tags = new HashSet<>();
 
+    // Client information
+    private final Set<Policy> policies = new HashSet<>();
+
+    private final Status status;
+    private final String notes;
+    private final LocalDateTime lastUpdated;
+
     /**
-     * Every field must be present and not null.
+     * Every field must be present without client details.
      */
     public Person(Name name, Relationship relationship, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -36,8 +44,28 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        status = Status.FRESH;
+        notes = "";
+        lastUpdated = LocalDateTime.now();
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Relationship relationship, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Set<Policy> policies, Status status, String notes) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.relationship = relationship;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.status = status;
+        this.notes = notes;
+        this.policies.addAll(policies);
+        lastUpdated = LocalDateTime.now();
+    }
     public Name getName() {
         return name;
     }
@@ -58,6 +86,13 @@ public class Person {
         return relationship;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -66,6 +101,20 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Returns an immutable policy set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Policy> getPolicies() {
+        return Collections.unmodifiableSet(policies);
+    }
+
+    /**
+     * Returns an datetime the class was last updated
+     */
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
+    }
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

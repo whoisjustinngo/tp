@@ -8,7 +8,7 @@ import java.util.HashSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.analytics.exceptions.UntrackedFieldException;
-import seedu.address.model.person.ClientState;
+import seedu.address.model.person.Status;
 
 public class TrackedValueList {
 
@@ -16,14 +16,14 @@ public class TrackedValueList {
     private final ObservableList<Integer> internalUnmodifiableValuesList =
             FXCollections.unmodifiableObservableList(internalValueList);
 
-    private final HashMap<ClientState, Integer> statusToIndexMappings;
-    private final HashSet<ClientState> trackedFields;
+    private final HashMap<Status, Integer> statusToIndexMappings;
+    private final HashSet<Status> trackedFields;
 
-    TrackedValueList(ClientState[] toTrack) {
-        statusToIndexMappings = new HashMap<ClientState, Integer>();
-        this.trackedFields = new HashSet<ClientState>();
+    TrackedValueList(Status[] toTrack) {
+        statusToIndexMappings = new HashMap<Status, Integer>();
+        this.trackedFields = new HashSet<Status>();
         int index = 0;
-        for (ClientState state: toTrack) {
+        for (Status state: toTrack) {
             requireNonNull(state);
             statusToIndexMappings.put(state, index);
             internalValueList.add(0);
@@ -32,17 +32,17 @@ public class TrackedValueList {
         }
     }
 
-    private int getIndex(ClientState state) {
-        if (this.statusToIndexMappings.containsKey(state)) {
-            return this.statusToIndexMappings.get(state);
+    private int getIndex(Status status) {
+        if (this.statusToIndexMappings.containsKey(status)) {
+            return this.statusToIndexMappings.get(status);
         } else {
             throw new UntrackedFieldException();
         }
     }
 
-    public int getValue(ClientState state) {
-        requireNonNull(state);
-        int index = getIndex(state);
+    public int getValue(Status status) {
+        requireNonNull(status);
+        int index = getIndex(status);
         return this.internalValueList.get(index);
     }
 
@@ -54,11 +54,11 @@ public class TrackedValueList {
      * Updates the tracked value list with values from the provided hashmap.
      * @param counts Counts of the number of clients having each ClientState.
      */
-    public void update(HashMap<ClientState, Integer> counts) {
-        for (ClientState state: counts.keySet()) {
-            if (this.trackedFields.contains(state)) {
-                int index = this.getIndex(state);
-                int value = counts.get(state);
+    public void update(HashMap<Status, Integer> counts) {
+        for (Status status: counts.keySet()) {
+            if (this.trackedFields.contains(status)) {
+                int index = this.getIndex(status);
+                int value = counts.get(status);
                 this.internalValueList.set(index, value);
             }
         }

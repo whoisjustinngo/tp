@@ -35,6 +35,7 @@ public class ModelManager implements Model {
     private final IcsScheduleStorage icsScheduleStorage;
     private final FilteredList<CustomGoal> filteredCustomGoals;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Person> selectedPerson;
     private final FilteredList<Todo> filteredTodos;
     private final FilteredList<Schedule> filteredSchedule;
 
@@ -55,6 +56,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTodos = new FilteredList<>(this.addressBook.getTodoList());
         filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
+        selectedPerson = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -217,6 +219,21 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Person> getSelectedPersonList() {
+        return selectedPerson;
+    }
+
+    @Override
+    public void updateSelectedPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        selectedPerson.setPredicate(predicate);
     }
     // =========== Filtered Todo List Accessors
 

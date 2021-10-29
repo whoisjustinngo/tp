@@ -130,18 +130,17 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private Name name;
-        private Relationship relationship;
-        private Phone phone;
-        private Email email;
-        private Address address;
-        private Set<Tag> tags;
+        protected Name name;
+        protected Relationship relationship;
+        protected Phone phone;
+        protected Email email;
+        protected Address address;
+        protected Set<Tag> tags;
 
         public EditPersonDescriptor() {}
 
         /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * Creates editPersonDescriptor to recreate immutable Persons
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
