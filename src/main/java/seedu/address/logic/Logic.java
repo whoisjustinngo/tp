@@ -3,6 +3,7 @@ package seedu.address.logic;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import net.fortuna.ical4j.data.ParserException;
@@ -28,7 +29,7 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    List<CommandResult> execute(String commandText) throws CommandException, ParseException;
 
     /**
      * Returns the AddressBook.

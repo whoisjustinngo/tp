@@ -3,6 +3,7 @@ package seedu.address.logic;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -47,11 +48,19 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public List<CommandResult> execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
+        // user input command
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
+
+        // go to where the context is run
+        CommandResult goToContextCommandResult;
+        Command contextCommand = addressBookParser.goToContextTab();
+
+        // executing go to context, then user input
+        goToContextCommandResult = contextCommand.execute(model);
         commandResult = command.execute(model);
 
         try {
@@ -60,7 +69,11 @@ public class LogicManager implements Logic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
-        return commandResult;
+        List<CommandResult> commandResults = new ArrayList<>();
+        commandResults.add(goToContextCommandResult); // run tabswitch first, so that the last command run can be safe
+        commandResults.add(commandResult);
+
+        return commandResults;
     }
 
     @Override

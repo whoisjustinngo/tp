@@ -42,10 +42,15 @@ public class IcsAdaptedSchedule {
      * @throws java.text.ParseException
      */
     public Schedule toModel() throws java.text.ParseException {
-        String description = this.schedule.getProperty(Property.SUMMARY).getValue();
-        String dtStartString = this.schedule.getProperty(Property.DTSTART).getValue();
+        Property summary = this.schedule.getProperty(Property.SUMMARY);
+        Property dtstartProperty = this.schedule.getProperty(Property.DTSTART);
+        Property dtendProperty = this.schedule.getProperty(Property.DTEND);
+        requireAllNonNull(summary, dtstartProperty, dtendProperty);
+
+        String description = summary.getValue();
+        String dtStartString = dtstartProperty.getValue();
         DateTime dtStart = new DateTime(dtStartString);
-        String dtEndString = this.schedule.getProperty(Property.DTEND).getValue();
+        String dtEndString = dtendProperty.getValue();
         DateTime dtEnd = new DateTime(dtEndString);
         requireAllNonNull(description, dtStartString, dtEndString);
 

@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -307,20 +309,24 @@ public class MainWindow extends UiPart<Stage> {
             throws CommandException, ParseException {
         try {
             String currentTab = this.getSelectedPane();
-            CommandResult commandResult = logic.execute(currentTab + " " + commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            List<CommandResult> commandResults = logic.execute(currentTab + " " + commandText);
+            CommandResult commandResult = commandResults.get(0); // we can assume there will always be at least 1
+            for (Iterator<CommandResult> i = commandResults.iterator(); i.hasNext();) {
+                commandResult = i.next();
+                logger.info("Result: " + commandResult.getFeedbackToUser());
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
+                if (commandResult.isShowHelp()) {
+                    handleHelp();
+                }
 
-            if (commandResult.isExit()) {
-                handleExit();
-            }
+                if (commandResult.isExit()) {
+                    handleExit();
+                }
 
-            if (commandResult.isSwitchTab()) {
-                handleSwitchTab(commandResult.getTabId());
+                if (commandResult.isSwitchTab()) {
+                    handleSwitchTab(commandResult.getTabId());
+                }
             }
 
             if (commandResult.isShowImport()) {
