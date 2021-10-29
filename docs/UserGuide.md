@@ -108,21 +108,28 @@ Format: `list`
 Format: `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]`
 
 Note:  
-Only supports adding relationships "friend" and "client" in v1.2  
+Only supports adding relationships "friend" and "client" in v1.3
 
 Examples:  
 * Adding a friend: `add n/bobby r/friend p/12345678 e/example@gmail.com a/NUS`
 * Adding a client: `add n/bob r/client p/12345678 e/example@gmail.com a/Heng Mui Kiat Street 32`
-* Adding a friend with 2 tags: `add n/darren r/friend p/12345678 e/example@gmail.com a/Heng Mui Kiat Street 32` t/classmate t/SOC 
+* Adding a friend with 2 tags: `add n/darren r/friend p/12345678 e/example@gmail.com a/Heng Mui Kiat Street 32 t/classmate t/SOC`  
+
+### Adding a policy to a contact: `policy`
+Format: `policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`
+
+Example:  
+Adding policy to second contact: `policy 2 insurer/AIG num/1231 n/Critical illness comm/100`
+
 ### Editing a contact: `edit`
 Format: `edit INDEX [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`  
 Edits the contact at the specified INDEX.
 * The index refers to the index number shown in the Contact list.
 * The index must be a positive integer 1, 2, 3, … and a valid index in the contact list
 
-Examples:
+Examples:  
 Changing a friend to a client: `edit 1 r/client`  
-Changing a contact's phone and email: `edit 1 p/12345678 e/newEmail@gmail.com`
+Changing a contact's phone and email: `edit 1 p/12345678 e/newEmail@gmail.com`  
 Changing a contact's tags: `edit 2 t/nus t/dancer`
 
 Example:  
@@ -136,7 +143,7 @@ Deletes the contact at the specified INDEX.
 Example:  
 `delete 2`
 
-### Filtering contact according to attributes: `filter `
+### Filtering contact according to attributes: `filter`
 Format: `filter [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`  
 Filter all persons according to their attributes (case-insensitive) and displays them as a list with index numbers.
 * Multiple filters are supported
@@ -148,7 +155,28 @@ Filter all persons according to their attributes (case-insensitive) and displays
 * Filter for attribute: name must match whole word
   * All other attributes are simple keyword matches
 
-![contacts_tab](images/contacts-tab-v1.3.png)
+![contacts_tab](images/contacts-tab-v1.3.png)  
+
+## Viewing a contact's policies and notes
+You can view a contact's policies and notes by using the details tab: `tab details`
+
+## Selecting a contact to view details `select`  
+Format: `select INDEX`
+Selects a contact at the specified INDEX to view policies and notes
+* The index refers to the index number shown in the Contact list.
+* The index must be a positive integer 1, 2, 3, … and a valid index in the contact list
+
+Example: `select 2`
+
+### Adding a note to a contact: `note`
+Format: `note INDEX MESSAGE`
+
+Example:  
+Adding policy to second contact: `note 1 Income 100k, Coverage insufficent`
+
+![details_tab](images/details-tab-v1.3.png)
+### Deleting a note from a contact: `Coming Soon`
+### Deleting a policy from a contact: `Coming Soon`
 
 ## Scheduling an Event
 
