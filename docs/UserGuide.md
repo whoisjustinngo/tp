@@ -149,10 +149,12 @@ Filter all persons according to their attributes (case-insensitive) and displays
 
 ![contacts_tab](images/contacts-tab-v1.3.png)  
 
-## Viewing a contact's policies and notes
+## Details  
+
+# Viewing a contact's policies and notes
 You can view a contact's policies and notes by using the details tab: `tab details`
 
-## Selecting a contact to view details `select`  
+# Selecting a contact to view details: `select`  
 Format: `select INDEX`
 Selects a contact at the specified INDEX to view policies and notes
 * The index refers to the index number shown in the Contact list.
