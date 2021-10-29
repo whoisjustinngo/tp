@@ -164,13 +164,13 @@ Example: `select 2`
 Format: `policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`
 
 Example:  
-Adding policy to second contact: `policy 2 insurer/AIG num/1231 n/Critical illness comm/100`
+Adding policy to second contact in contact list: `policy 2 insurer/AIG num/1231 n/Critical illness comm/100`
 
 ### Adding a note to a contact: `note`
 Format: `note INDEX MESSAGE`
 
 Example:  
-Adding policy to second contact: `note 1 Income 100k, Coverage insufficent`
+Adding note to first contact in contact list: `note 1 Income 100k, Coverage insufficent`
 
 ![details_tab](images/details-tab-v1.3.png)
 ### Deleting a note from a contact: `Coming Soon`
