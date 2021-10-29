@@ -45,6 +45,7 @@ public class AddressBookParser {
     private static final String CONTACTS_PREFIX = "contacts";
     private static final String SCHEDULE_PREFIX = "schedule";
     private static final String TODOS_PREFIX = "todos";
+    private static final String DETAILS_PREFIX = "details";
 
     /**
      * Used for initial separation of command word and args.
@@ -299,10 +300,14 @@ public class AddressBookParser {
         case SCHEDULE_PREFIX:
             return SCHEDULE_TAB_ID;
 
+        case DETAILS_PREFIX:
+            return DETAILS_TAB_ID;
+
         case DASHBOARD_TAB_ID:
         case CONTACTS_TAB_ID:
         case TODOS_TAB_ID:
         case SCHEDULE_TAB_ID:
+        case DETAILS_TAB_ID:
             return tab;
 
         default:
@@ -324,6 +329,9 @@ public class AddressBookParser {
 
         case SCHEDULE_TAB_ID:
             return SCHEDULE_PREFIX;
+
+        case DETAILS_TAB_ID:
+            return DETAILS_PREFIX;
 
         default:
             throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
