@@ -45,11 +45,11 @@ public class TabSwitch {
                 return DASHBOARD_ALIAS;
             case 1:
                 return CONTACTS_ALIAS;
-            case 2:
-                return SCHEDULE_ALIAS;
             case 3:
-                return TODOS_ALIAS;
+                return SCHEDULE_ALIAS;
             case 4:
+                return TODOS_ALIAS;
+            case 2:
                 return DETAILS_ALIAS;
             default:
                 return DOES_NOT_EXIST;

@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -43,7 +44,10 @@ public class PolicyListPanel extends UiPart<Region> {
     }
 
     private void updateValues() {
-        this.policies = new ArrayList<>(selectedPersons.get(0).getPolicies());
+        HashSet<Policy> noPolicy = new HashSet<>();
+        this.policies = new ArrayList<Policy>(selectedPersons.size() > 0
+                ? selectedPersons.get(0).getPolicies()
+                : noPolicy);
         this.observablePolicies = FXCollections.observableList(policies);
         policiesListView.setItems(observablePolicies);
         policiesListView.setCellFactory(listView -> new PolicyListViewCell());
