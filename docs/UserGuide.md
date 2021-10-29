@@ -115,12 +115,6 @@ Examples:
 * Adding a client: `add n/bob r/client p/12345678 e/example@gmail.com a/Heng Mui Kiat Street 32`
 * Adding a friend with 2 tags: `add n/darren r/friend p/12345678 e/example@gmail.com a/Heng Mui Kiat Street 32 t/classmate t/SOC`  
 
-### Adding a policy to a contact: `policy`
-Format: `policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`
-
-Example:  
-Adding policy to second contact: `policy 2 insurer/AIG num/1231 n/Critical illness comm/100`
-
 ### Editing a contact: `edit`
 Format: `edit INDEX [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`  
 Edits the contact at the specified INDEX.
@@ -165,6 +159,12 @@ Selects a contact at the specified INDEX to view policies and notes
 * The index must be a positive integer 1, 2, 3, … and a valid index in the contact list
 
 Example: `select 2`
+
+### Adding a policy to a contact: `policy`
+Format: `policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`
+
+Example:  
+Adding policy to second contact: `policy 2 insurer/AIG num/1231 n/Critical illness comm/100`
 
 ### Adding a note to a contact: `note`
 Format: `note INDEX MESSAGE`
