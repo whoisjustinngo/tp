@@ -73,10 +73,10 @@ Format: `add d/DESCRIPTION goal/GOAL [bydate/END_DATE] [bytime/END_TIME]`
 
 Note: `GOAL` has to be a number, `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format
 hhmm in 24-hour format. If `END_TIME` is specified, `END_DATE` has to be specified as well.  
-  
+
 Example:
 * Goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2021`
-* Goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021`
+* Goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021 bytime/1200`
 
 ### Updating a Custom Goal: `update`
 
@@ -86,7 +86,7 @@ Note: `AMOUNT_TO_INCREMENT_GOAL_BY` has to be a number (can be positive or negat
 
 Updates *the progress* of a particular custom goal by the specified value, i.e. updated progress = old progress + 
 `AMOUNT_TO_INCREMENT_GOAL_BY`
-  
+
 Example: 
 * update custom goal 1 `update 1 val/123.4`
   
@@ -94,7 +94,7 @@ Example:
 Deletes the specified Custom Goal from the dashboard.  
 
 Format: `delete INDEX_OF_GOAL_TO_DELETE`
-  
+
 
 ## Contacts
 
@@ -231,7 +231,7 @@ Format: `delete [INDEX]`
 Find the Event which have the same keywords in the description
 
 Format: `find lesson`
- 
+
  * Finds Events that carries the given keyword in the description
  * Events that have the keyword will be displayed in the user interface
  * Events that does not have the keyword will not be displayed
