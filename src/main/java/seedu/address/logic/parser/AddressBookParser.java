@@ -287,7 +287,7 @@ public class AddressBookParser {
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
         case ShowPastEventsCommand.COMMAND_WORD:
-        switch(tab) {
+            switch(tab) {
             case SCHEDULE_TAB_ID:
                 return new ShowPastEventsCommand();
             default:

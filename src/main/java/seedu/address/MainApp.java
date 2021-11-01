@@ -64,7 +64,7 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
         model.updateFilteredScheduleList(schedule -> LocalDateTime.now().compareTo(schedule.getTaskDateTimeTo()) < 0);
-        
+
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
