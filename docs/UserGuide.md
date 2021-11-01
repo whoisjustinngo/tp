@@ -55,7 +55,7 @@ Refer to the [Features](#Features) below for more details on what Advyze can do.
 ## Dashboard
 The dashboard is the default landing page of the app and displays a summary of relevant information from the other sections of the app.
 * The dashboard by default shows:
-  * Some analytics tracking the status of clients
+  * A section that displays analytics for contacts which is updated as the user populates it with data 
   * Custom goals that can be set by the user
   * The user's schedule in chronological order
   * The user's todos, with the earliest added at the top
@@ -73,10 +73,10 @@ Format: `add d/DESCRIPTION goal/GOAL [bydate/END_DATE] [bytime/END_TIME]`
 
 Note: `GOAL` has to be a number, `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format
 hhmm in 24-hour format. If `END_TIME` is specified, `END_DATE` has to be specified as well.  
-  
+
 Example:
 * Goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2021`
-* Goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021`
+* Goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021 bytime/1200`
 
 ### Updating a Custom Goal: `update`
 
@@ -86,15 +86,15 @@ Note: `AMOUNT_TO_INCREMENT_GOAL_BY` has to be a number (can be positive or negat
 
 Updates *the progress* of a particular custom goal by the specified value, i.e. updated progress = old progress + 
 `AMOUNT_TO_INCREMENT_GOAL_BY`
-  
+
 Example: 
-* update custom goal 1 `update 1 val/123.4`
+* To update progress of custom goal 1 by 123.4: `update 1 val/123.4`
   
 ### Deleting a Custom Goal: `delete`
 Deletes the specified Custom Goal from the dashboard.  
 
 Format: `delete INDEX_OF_GOAL_TO_DELETE`
-  
+
 
 ## Contacts
 
@@ -151,10 +151,10 @@ Filter all persons according to their attributes (case-insensitive) and displays
 
 ## Details  
 
-# Viewing a contact's policies and notes
+### Viewing a contact's policies and notes
 You can view a contact's policies and notes by using the details tab: `tab details`
 
-# Selecting a contact to view details: `select`  
+### Selecting a contact to view details: `select`  
 Format: `select INDEX`  
 Selects a contact at the specified INDEX to view policies and notes
 * The index refers to the index number shown in the Contact list.
@@ -188,7 +188,7 @@ Shows all the added Events
 
 ### Add Event command: `add`
 
-Format: `[type] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS] ([recurd/DATE] or [recurw/DATE] or [recury/DATE])`
+Format: `add [type] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS] ([recurd/DATE] or [recurw/DATE] or [recury/DATE])`
 
  * recurd/DATE Event recurring daily till the given date
  * recurw/DATE Event recurring weekly till the given date
@@ -196,8 +196,8 @@ Format: `[type] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS] ([re
 
 Here are some of the examples to use the command lines.
 
- * `Adding a schedule which recur daily: add d/lesson date/16-05-2021 fr/1400 to/1600 t/important recurd/18-05-2021`
- * `Adding a schedule which recur weekly: add d/meeting date/18-05-2021 fr/1600 to/1800 t/priority recurw/15-08-2021`
+ * Adding a schedule which recur daily: `add d/lesson date/16-05-2021 fr/1400 to/1600 t/important recurd/18-05-2021`
+ * Adding a schedule which recur weekly: `add d/meeting date/18-05-2021 fr/1600 to/1800 t/priority recurw/15-08-2021`
 
 **Note:** While adding an Event, it will check if the Event given has any clashes with other Events which have already been added. The Event will be added only if there is no clash in timing with other Events which are already in the list. This applies to the recurring Event as well, if there are clashes in any of the given recurring Events, it will consider the Event as a clash, and will not proceed to adding any Events.
 
@@ -228,10 +228,10 @@ Format: `delete [INDEX]`
 
 ### Find Event command: `find`
 
-Find the Event which have the same keywords in the description
+Find the Event which has the specified keyword in the description
 
-Format: `find lesson`
- 
+Format: `find [keyword]`
+
  * Finds Events that carries the given keyword in the description
  * Events that have the keyword will be displayed in the user interface
  * Events that does not have the keyword will not be displayed
@@ -240,12 +240,12 @@ Format: `find lesson`
 
 Filters the Event according to the keywords in any of the attributes.
 
-Format: `filter [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS]`
+Format: `filter [d/TASK DESCRIPTION] [fr/TIME FROM] [to/TIME TO] [date/DATE] [t/TAGS]`
 
 Here are some of the examples to use the command lines.
 
- * `Filtering a tag in schedule: filter t/important`
- * `Filter based on a description and date in a schedule: filter d/meeting date/18-05-2021`
+ * Filtering a tag in schedule: `filter t/important`
+ * Filter based on a description and date in a schedule: `filter d/meeting date/18-05-2021`
 
 **Note:** It is not compulsory to include all fields. Only include those fields which you would like to filter.
 
@@ -364,7 +364,7 @@ Format: `help`
 
 ### Switching between Tabs: `tab`
 
-Format: `tab /TAB NAME`
+Format: `tab TAB_NAME`
 * Switches between different tabs. Tab names are as follows:
     * dashboard
     * contacts
