@@ -228,9 +228,9 @@ Format: `delete [INDEX]`
 
 ### Find Event command: `find`
 
-Find the Event which have the same keywords in the description
+Find the Event which has the specified keyword in the description
 
-Format: `find lesson`
+Format: `find [keyword]`
 
  * Finds Events that carries the given keyword in the description
  * Events that have the keyword will be displayed in the user interface
