@@ -188,7 +188,7 @@ Shows all the added Events
 
 ### Add Event command: `add`
 
-Format: `[type] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS] ([recurd/DATE] or [recurw/DATE] or [recury/DATE])`
+Format: `add [type] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS] ([recurd/DATE] or [recurw/DATE] or [recury/DATE])`
 
  * recurd/DATE Event recurring daily till the given date
  * recurw/DATE Event recurring weekly till the given date
