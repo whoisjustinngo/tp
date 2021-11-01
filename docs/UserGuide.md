@@ -364,7 +364,7 @@ Format: `help`
 
 ### Switching between Tabs: `tab`
 
-Format: `tab /TAB NAME`
+Format: `tab TAB_NAME`
 * Switches between different tabs. Tab names are as follows:
     * dashboard
     * contacts
