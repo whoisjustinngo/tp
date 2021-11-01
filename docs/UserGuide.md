@@ -88,7 +88,7 @@ Updates *the progress* of a particular custom goal by the specified value, i.e. 
 `AMOUNT_TO_INCREMENT_GOAL_BY`
 
 Example: 
-* update custom goal 1 `update 1 val/123.4`
+* To update progress of custom goal 1 by 123.4: `update 1 val/123.4`
   
 ### Deleting a Custom Goal: `delete`
 Deletes the specified Custom Goal from the dashboard.  
