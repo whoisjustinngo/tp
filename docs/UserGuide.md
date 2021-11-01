@@ -196,8 +196,8 @@ Format: `add [type] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS] 
 
 Here are some of the examples to use the command lines.
 
- * `Adding a schedule which recur daily: add d/lesson date/16-05-2021 fr/1400 to/1600 t/important recurd/18-05-2021`
- * `Adding a schedule which recur weekly: add d/meeting date/18-05-2021 fr/1600 to/1800 t/priority recurw/15-08-2021`
+ * Adding a schedule which recur daily: `add d/lesson date/16-05-2021 fr/1400 to/1600 t/important recurd/18-05-2021`
+ * Adding a schedule which recur weekly: `add d/meeting date/18-05-2021 fr/1600 to/1800 t/priority recurw/15-08-2021`
 
 **Note:** While adding an Event, it will check if the Event given has any clashes with other Events which have already been added. The Event will be added only if there is no clash in timing with other Events which are already in the list. This applies to the recurring Event as well, if there are clashes in any of the given recurring Events, it will consider the Event as a clash, and will not proceed to adding any Events.
 
@@ -244,8 +244,8 @@ Format: `filter [d/TASK DESCRIPTION] [fr/TIME FROM] [to/TIME TO] [date/DATE] [t/
 
 Here are some of the examples to use the command lines.
 
- * `Filtering a tag in schedule: filter t/important`
- * `Filter based on a description and date in a schedule: filter d/meeting date/18-05-2021`
+ * Filtering a tag in schedule: `filter t/important`
+ * Filter based on a description and date in a schedule: `filter d/meeting date/18-05-2021`
 
 **Note:** It is not compulsory to include all fields. Only include those fields which you would like to filter.
 
