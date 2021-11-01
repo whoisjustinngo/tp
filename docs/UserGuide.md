@@ -55,7 +55,7 @@ Refer to the [Features](#Features) below for more details on what Advyze can do.
 ## Dashboard
 The dashboard is the default landing page of the app and displays a summary of relevant information from the other sections of the app.
 * The dashboard by default shows:
-  * Some analytics tracking the status of clients
+  * A section that displays analytics for contacts which is updated as the user populates it with data 
   * Custom goals that can be set by the user
   * The user's schedule in chronological order
   * The user's todos, with the earliest added at the top
