@@ -240,7 +240,7 @@ Format: `find [keyword]`
 
 Filters the Event according to the keywords in any of the attributes.
 
-Format: `filter [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [date/DATE] [t/TAGS]`
+Format: `filter [d/TASK DESCRIPTION] [fr/TIME FROM] [to/TIME TO] [date/DATE] [t/TAGS]`
 
 Here are some of the examples to use the command lines.
 
