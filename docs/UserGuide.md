@@ -61,10 +61,9 @@ The dashboard is the default landing page of the app and displays a summary of r
   * The user's todos, with the earliest added at the top
 * These sections are automatically updated as the data in the respective tabs are changed.
 * The user can adjust how much of each section is to be displayed by sliding the black bars as required.
-* In future versions, the user will be able to customise what they wish to see on the dashboard.
 
-This is how the dashboard looks like as of v1.3: 
-![dashboard_tab](images/dashboard-tab-v1.3.png)
+This is how the dashboard looks like as of v1.4: 
+![dashboard_tab](images/dashboard-tab-v1.4.png)
 
 ### Adding a Custom Goal: `add`
 Adds a new custom goal.  
@@ -78,7 +77,10 @@ Example:
 * Goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2021`
 * Goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021 bytime/1200`
 
-### Updating a Custom Goal: `update`
+> :exclamation: Note: currently there is no command to edit custom goals; if the user, for example, commits a typo when entering
+> information for a custom goal, they have to delete the custom goal and repeat the adding process with the intended information.
+
+### Updating the progress of a Custom Goal: `update`
 
 Format: `update INDEX_OF_CUSTOM_GOAL val/AMOUNT_TO_INCREMENT_GOAL_BY`
 
@@ -89,6 +91,10 @@ Updates *the progress* of a particular custom goal by the specified value, i.e. 
 
 Example: 
 * To update progress of custom goal 1 by 123.4: `update 1 val/123.4`
+
+> :bulb: Tip: since the update command allows the user to enter negative values, if they, for example, enter a wrong (positive) value
+> for progress, they can correct it by updating the same goal with the difference, e.g. if the intended amount was to add 5 to progress
+> but the user specified 7, they can just correct this by updating the same goal with val = -2.
   
 ### Deleting a Custom Goal: `delete`
 Deletes the specified Custom Goal from the dashboard.  
