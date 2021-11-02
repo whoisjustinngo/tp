@@ -115,16 +115,24 @@ Examples:
 
 ## Dashboard
 The dashboard is the default landing page of the app and displays a summary of relevant information from the other sections of the app.
-* The dashboard by default shows:
+* The dashboard by default shows 4 sections:
   * A section that displays analytics for contacts which is updated as the user populates it with data 
   * Custom goals that can be set by the user
-  * The user's schedule in chronological order
-  * The user's todos, with the earliest added at the top
+  * The user's schedule in chronological order (which is synced with information in the Schedule tab)
+  * The user's todos, with the earliest added at the top (which is synced with the information in the Todos tab)
 * These sections are automatically updated as the data in the respective tabs are changed.
 * The user can adjust how much of each section is to be displayed by sliding the black bars as required.
 
 This is how the dashboard looks like as of v1.4: 
 ![dashboard_tab](images/dashboard-tab-v1.4.png)
+
+## Analytics
+The analytics section is the section at the top left of the dashboard tab, directly below the dashboard button. This feature essentially provides some analytics for
+the user's contacts, specifically counting the number of clients with the various status (whether they are fresh leads, approached, closed, etc).
+The tracking is by quarters of the year, e.g. if the current quarter is Q3, the analytics will only show fresh leads *for Q3*, clients approached *in Q3*, etc.
+
+This section is automatically updated as the status of the various contacts change in the contacts list. For more details about the various client statuses, see the contacts section below.
+
 
 ## Custom Goals
 As a financial advisor, some things that they might want to set a target for and subsequently work towards include:
