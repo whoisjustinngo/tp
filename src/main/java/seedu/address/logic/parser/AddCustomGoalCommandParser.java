@@ -26,9 +26,9 @@ public class AddCustomGoalCommandParser implements Parser<AddCustomGoalCommand> 
     public static final String DATE_FORMAT = "dd-MM-yyyy";
     public static final String TIME_FORMAT = "HHmm";
     public static final String MESSAGE_WRONG_DATETIME_FORMAT =
-            "Please use a valid date and time. Date has to be a valid calendar date in " + DATE_FORMAT + " format and" +
-                    " time in " + TIME_FORMAT + " 24hr " +
-                    "format\n";
+            "Please use a valid date and time. Date has to be a date in the calendar in " + DATE_FORMAT + 
+                    " format, and time in " + TIME_FORMAT + " 24hr format\n E.g. \".... bydate/16-05-2021 " +
+                    "bytime/1320\"";
     public static final String MESSAGE_WRONG_GOAL_FORMAT =
             "Goal has to be a number greater than 0!";
     public static final String MESSAGE_MISSING_DESCRIPTION = "Description cannot be empty!";
