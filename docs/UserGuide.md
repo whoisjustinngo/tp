@@ -65,6 +65,26 @@ The dashboard is the default landing page of the app and displays a summary of r
 This is how the dashboard looks like as of v1.4: 
 ![dashboard_tab](images/dashboard-tab-v1.4.png)
 
+## Custom Goals
+As a financial advisor, some things that they might want to set a target for and subsequently work towards include:
+* The amount of commission earned in the current month/quarter
+* The number of new clients called today  
+
+Essentially, this feature set is meant for users to track anything that is quantifiable that they want to track. Every custom goal
+will *minimally* have a description, a goal value, and a progress value, the former 2 which have to be specified by the user at the 
+point of addition, with the progress value being set by default to 0.
+
+To better understand how it is meant to work, if the user, for example, has a goal to call at least 20 new clients by the end of this week:
+1. They would first `add` that goal, with the description being something like "call 20 clients", the goal being "20", and the end date the date of the last day of this week
+2. Every time they make a new call, they would `update` the progress of that custom goal they created in step 1 by a value of 1
+3. The progress bar in between the progress and goal columns gives the user a quick visual indication of how much they have accomplished / have yet to accomplish
+4. Once they have hit their goal, i.e. progress >= 20, the value in the progress column would turn green as a visual indication of completion
+5. If it is past the end of the week and progress < 20, the value in the end date and end time columns will turn red
+6. Once the user has no need to track the goal anymore, they can `delete` it to de-clutter the space
+
+See the subsequent sections to find out how the user could go about doing this.
+
+
 ### Adding a Custom Goal: `add`
 Adds a new custom goal.  
 
@@ -73,7 +93,7 @@ Format: `add d/DESCRIPTION goal/GOAL [bydate/END_DATE] [bytime/END_TIME]`
 Note: `GOAL` has to be a number, `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format
 hhmm in 24-hour format. If `END_TIME` is specified, `END_DATE` has to be specified as well.  
 
-Example:
+Examples:
 * Goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2021`
 * Goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021 bytime/1200`
 
