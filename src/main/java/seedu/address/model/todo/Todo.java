@@ -14,6 +14,9 @@ import seedu.address.model.tag.Tag;
  * Guarantees: immutable
  */
 public class Todo {
+    public static final String MESSAGE_DESCRIPTION_CONSTRAINTS =
+            "The description of a Todo should not be more than 70 characters in length.";
+
     private final String description;
     private final Set<Tag> tags = new HashSet<>();
     private final boolean isDone;
@@ -59,6 +62,13 @@ public class Todo {
      */
     public Todo getDoneVersion() {
         return new Todo(description, tags, true);
+    }
+
+    /**
+     * Returns true if a given string is a valid description.
+     */
+    public static boolean isValidDescription(String test) {
+        return test.length() <= 70;
     }
 
     @Override
