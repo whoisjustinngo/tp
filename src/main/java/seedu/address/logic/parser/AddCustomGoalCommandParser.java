@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCustomGoalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.customGoal.CustomGoal;
+import seedu.address.model.customGoal.exceptions.InvalidDateException;
 
 /**
  * Parses input arguments and creates a new AddCustomGoalCommand object
@@ -25,7 +26,9 @@ public class AddCustomGoalCommandParser implements Parser<AddCustomGoalCommand> 
     public static final String DATE_FORMAT = "dd-MM-yyyy";
     public static final String TIME_FORMAT = "HHmm";
     public static final String MESSAGE_WRONG_DATETIME_FORMAT =
-            "Please use date in " + DATE_FORMAT + " format and time in " + TIME_FORMAT + " 24hr format\n";
+            "Please use a valid date and time. Date has to be a valid calendar date in " + DATE_FORMAT + " format and" +
+                    " time in " + TIME_FORMAT + " 24hr " +
+                    "format\n";
     public static final String MESSAGE_WRONG_GOAL_FORMAT =
             "Goal has to be a non-negative number";
 
@@ -76,9 +79,10 @@ public class AddCustomGoalCommandParser implements Parser<AddCustomGoalCommand> 
         try { // if have date
             endDate = LocalDate.parse(argMultimap.getValue(PREFIX_END_DATE).get(),
                     DateTimeFormatter.ofPattern(DATE_FORMAT));
+            checkIfSameDate(argMultimap.getValue(PREFIX_END_DATE).get(), endDate);
         } catch (NoSuchElementException nsee) { // if user didnt specify a date
             endDate = LocalDate.MAX;
-        } catch (DateTimeParseException dtpe) { // if user specified a wrong time
+        } catch (DateTimeParseException | InvalidDateException ex) { // if user specified a wrong time
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     MESSAGE_WRONG_DATETIME_FORMAT));
         }
@@ -86,6 +90,14 @@ public class AddCustomGoalCommandParser implements Parser<AddCustomGoalCommand> 
         CustomGoal customGoal = new CustomGoal(description, goal, endDate, endTime);
 
         return new AddCustomGoalCommand(customGoal);
+    }
+
+    private void checkIfSameDate(String intendedDate, LocalDate parsedDate) { // to account for java just choosing 
+        // the closest valid date 
+        String actualDate = parsedDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
+        if (!actualDate.equals(intendedDate)) {
+            throw new InvalidDateException();
+        }
     }
 
     /**
