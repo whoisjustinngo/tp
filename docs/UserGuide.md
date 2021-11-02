@@ -259,9 +259,8 @@ Adds a Todo that will be displayed on the Dashboard and the Todos tabs.
 
 Format: `add d/DESCRIPTION [t/TAG]...`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A Todo can have any number of tags (including 0)
-</div>
+* The description must not be more than 70 characters in length.
+* A Todo can have any number of tags (including 0)
 
 Examples:
 * `add d/read book`
