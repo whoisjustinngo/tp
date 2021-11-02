@@ -31,6 +31,7 @@ public class AddCustomGoalCommandParser implements Parser<AddCustomGoalCommand> 
                     "format\n";
     public static final String MESSAGE_WRONG_GOAL_FORMAT =
             "Goal has to be a non-negative number";
+    public static final String MESSAGE_MISSING_DESCRIPTION = "Description cannot be empty!";
 
     /**
      * Parses the provided string and creates a proper {@link AddCustomGoalCommand} that can be
@@ -53,6 +54,10 @@ public class AddCustomGoalCommandParser implements Parser<AddCustomGoalCommand> 
         }
 
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+        if (description.length() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_MISSING_DESCRIPTION));
+        }
+
         float goal;
         try {
             goal = Float.parseFloat(argMultimap.getValue(PREFIX_GOAL).get());
