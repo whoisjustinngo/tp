@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 
 
 * **Enhancements Implemented**: 
-    * Updated the parser to recognise commands from different tabs (Pull Request [\#43](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/43))
+    * Updated the parser to recognise commands from different tabs (PR [\#43](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/43))
 
 
 * **New Features**: Implemented the Todos tab
@@ -23,14 +23,14 @@ Given below are my contributions to the project.
 
 
 * **Contributions to team-based tasks**:
-    * Kept track of deadlines and deliverables [\#39](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/39), [\#41](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/41)
+    * Kept track of deadlines and deliverables (examples: created PRs [\#39](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/39), [\#41](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/41) to ensure deliverables are met)
     * Added milestone `v1.4` on GitHub
     * Morphed the product to recognize commands coming from different tabs
 
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features related to the Todos tab: `add` Todo, `list` Todos, `edit` Todo, `done`, `filter` Todos, `delete` Todo [\#21](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/21), [\#103](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/103)
+        * Added documentation for the features related to the Todos tab: `add` Todo, `list` Todos, `edit` Todo, `done`, `filter` Todos, `delete` Todo (PRs [\#21](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/21), [\#103](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/103))
     * Developer Guide:
         * Added implementation details of the `done` feature.
 
@@ -38,4 +38,4 @@ Given below are my contributions to the project.
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#47](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/47), [\#105](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/105), [\#109](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/109)
     * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2122S1-CS2103T-T09-3/tp/issues/195), [2](https://github.com/AY2122S1-CS2103T-T09-3/tp/issues/191), [3](https://github.com/AY2122S1-CS2103T-T09-3/tp/issues/184), [4](https://github.com/AY2122S1-CS2103T-T09-3/tp/issues/160))
-    * Suggested design alternatives for teammate's implementation, for example [\#52](https://github.com/AY2122S1-CS2103-T14-4/tp/issues/52)
+    * Suggested design alternatives for teammate's implementations (example: [\#52](https://github.com/AY2122S1-CS2103-T14-4/tp/issues/52))
