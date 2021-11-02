@@ -52,6 +52,67 @@ Refer to the [Features](#Features) below for more details on what Advyze can do.
 
 </div>
 
+## General
+
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+### Switching between Tabs: `tab`
+
+Format: `tab TAB_NAME`
+* Switches between different tabs. Tab names are as follows:
+    * dashboard
+    * contacts
+    * schedule
+    * todos
+
+Examples:
+* `tab dashboard` while in the Contacts tab changes to the Dashboard tab
+* `tab contacts` in the Contacts tab just jumps to the top of the page (returns the tab to the original landing page view)
+
+### Convenience Commands
+
+Allows users to input commands meant for a specific tab regardless of which tab they are currently viewing.
+
+Format: `/TAB NAME` [command meant to run on specified TAB_NAME]
+
+Examples:
+* When in Todos tab, input `/schedule add event d/CS2103 meeting fr/1300 to/1500` will add an event in Schedule tab instead of adding it in Todos tab.
+* When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` under the Schedule tab.
+* When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` under the Schedule tab.
+
+### Importing Schedule
+
+Allows users to import `.ics` files, similar to importing timetable from NUSMods into Google Calendars.
+
+Example:
+* In any tab, input `import` will open file browser to prompt the user for a `.ics` file.
+
+### Exiting Application: `exit`
+
+Terminates the application
+
+Format: `exit`
+
+Example:
+* exit in any tabs terminates the application.
+
+### Handling invalid commands
+
+Handles error messages thrown by tabs (in the case of invalid commands passed to said pages control), and displays a user friendly message.
+
+Examples:
+* `/schedule create` will print the error message as such:
+```
+“Looks like ‘Schedule’ does not have any commands called ‘create’. Below are the available commands:
+<!--error message that schedule returns-->
+```
+
 ## Dashboard
 The dashboard is the default landing page of the app and displays a summary of relevant information from the other sections of the app.
 * The dashboard by default shows:
@@ -376,65 +437,4 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 3` deletes the 3rd Todo in the displayed Todos list.
 * `filter d/book` followed by `delete 1` deletes the 1st Todo in the results of the `filter` command
-
-## General
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### Switching between Tabs: `tab`
-
-Format: `tab TAB_NAME`
-* Switches between different tabs. Tab names are as follows:
-    * dashboard
-    * contacts
-    * schedule
-    * todos
-
-Examples:
-* `tab dashboard` while in the Contacts tab changes to the Dashboard tab
-* `tab contacts` in the Contacts tab just jumps to the top of the page (returns the tab to the original landing page view)
-
-### Convenience Commands
-
-Allows users to input commands meant for a specific tab regardless of which tab they are currently viewing.
-
-Format: `/TAB NAME` [command meant to run on specified TAB_NAME]
-
-Examples:
-* When in Todos tab, input `/schedule add event d/CS2103 meeting fr/1300 to/1500` will add an event in Schedule tab instead of adding it in Todos tab.
-* When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` under the Schedule tab.
-* When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` under the Schedule tab.
-
-### Importing Schedule
-
-Allows users to import `.ics` files, similar to importing timetable from NUSMods into Google Calendars.
-
-Example:
-* In any tab, input `import` will open file browser to prompt the user for a `.ics` file.
-
-### Exiting Application: `exit`
-
-Terminates the application
-
-Format: `exit`
-
-Example:
-* exit in any tabs terminates the application.
-
-### Handling invalid commands
-
-Handles error messages thrown by tabs (in the case of invalid commands passed to said pages control), and displays a user friendly message.
-
-Examples:
-* `/schedule create` will print the error message as such:
-```
-“Looks like ‘Schedule’ does not have any commands called ‘create’. Below are the available commands:
-<!--error message that schedule returns-->
-```
 
