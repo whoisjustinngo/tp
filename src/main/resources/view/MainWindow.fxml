@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Advyze" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Advyze" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -52,7 +52,7 @@
                                  <children>
                                     <SplitPane fx:id="topPane" dividerPositions="0.2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" stylesheets="@AdvyzeTheme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <items>
-                                          <VBox fx:id="dashboardAnalyticsPlaceholder" prefHeight="200.0" styleClass="background" stylesheets="@AdvyzeTheme.css">
+                                          <VBox fx:id="dashboardAnalyticsPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="170.0" styleClass="background" stylesheets="@AdvyzeTheme.css">
                                              <children>
                                                 <Label fx:id="analyticsHeader" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="section-header" stylesheets="@AdvyzeTheme.css" text="\\$analyticsHeader" VBox.vgrow="NEVER">
                                                    <padding>
