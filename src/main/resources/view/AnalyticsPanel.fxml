@@ -5,86 +5,92 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="background" stylesheets="@AdvyzeTheme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
-    <ColumnConstraints hgrow="ALWAYS" />
-    <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
-  </columnConstraints>
-  <rowConstraints>
-      <RowConstraints vgrow="SOMETIMES" />
-    <RowConstraints vgrow="SOMETIMES" />
-    <RowConstraints vgrow="SOMETIMES" />
-    <RowConstraints vgrow="SOMETIMES" />
-      <RowConstraints vgrow="SOMETIMES" />
-      <RowConstraints vgrow="SOMETIMES" />
-  </rowConstraints>
+
+<VBox styleClass="background" stylesheets="@AdvyzeTheme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label styleClass="dark_text_header" stylesheets="@AdvyzeTheme.css" text="Type" GridPane.vgrow="NEVER">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <Label styleClass="dark_text_header" stylesheets="@AdvyzeTheme.css" text="Count" GridPane.columnIndex="1" GridPane.vgrow="NEVER">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Fresh Leads" GridPane.rowIndex="1">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Approached" GridPane.rowIndex="2">
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Pitched" GridPane.rowIndex="3">
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Negotiated" GridPane.rowIndex="4">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Closed" GridPane.rowIndex="5">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <Label fx:id="freshCount" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$freshCount" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <Label fx:id="approachedCount" layoutX="304.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$approachedCount" GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <Label fx:id="pitchedCount" layoutX="10.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$pitchedCount" GridPane.columnIndex="1" GridPane.rowIndex="3">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <Label fx:id="negotiatedCount" layoutX="10.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$negotiatedCount" GridPane.columnIndex="1" GridPane.rowIndex="4">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
-      <Label fx:id="closedCount" layoutX="10.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$closedCount" GridPane.columnIndex="1" GridPane.rowIndex="5">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
+      <GridPane maxHeight="200.0" maxWidth="170.0" styleClass="background" stylesheets="@AdvyzeTheme.css">
+         <columnConstraints>
+            <ColumnConstraints hgrow="NEVER" />
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+         <children>
+            <Label styleClass="dark_text_header" stylesheets="@AdvyzeTheme.css" text="Type" GridPane.vgrow="NEVER">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label styleClass="dark_text_header" stylesheets="@AdvyzeTheme.css" text="Count" GridPane.columnIndex="1" GridPane.vgrow="NEVER">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Fresh Leads" GridPane.rowIndex="1">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Approached" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Pitched" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Negotiated" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="Closed" GridPane.rowIndex="5">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="freshCount" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$freshCount" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="approachedCount" layoutX="304.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$approachedCount" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="pitchedCount" layoutX="10.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$pitchedCount" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="negotiatedCount" layoutX="10.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$negotiatedCount" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="closedCount" layoutX="10.0" layoutY="40.0" maxWidth="1.7976931348623157E308" styleClass="dark_text" stylesheets="@AdvyzeTheme.css" text="\$closedCount" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </GridPane>
    </children>
-</GridPane>
+</VBox>
