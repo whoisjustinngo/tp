@@ -5,8 +5,6 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
 ### Ricky Andrew
@@ -14,7 +12,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/rickyaandrew.png" width="200px">
 
 [[github](https://github.com/rickyaandrew)]
-[[portfolio](team/ricky.md)]
+[[portfolio](team/rickyaandrew.md)]
 
 * Role: Developer
 * Responsibilities: Debugging and Testing of Code
@@ -34,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/whoisjustinngo.png" width="200px">
 
 [[github](http://github.com/whoisjustinngo)]
-[[portfolio](team/justin.md)]
+[[portfolio](team/whoisjustinngo.md)]
 
 * Role: Developer
 * Responsibilities: UI, Documentation
@@ -44,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/kslui99.png" width="200px">
 
 [[github](https://github.com/kslui99)]
-[[portfolio](team/kaisiang.md)]
+[[portfolio](team/kslui99.md)]
 
 * Role: Developer
 * Responsibilities: Logic, Code Quality
@@ -54,8 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/spdpnd98.png" width="200px">
 
 [[github](https://github.com/SpdPnd98)]
-[[portfolio](team/bryantee.md)]
+[[portfolio](team/spdpnd98.md)]
 
 * Role: Developer
 * Responsibilities: Merge PRs
-
