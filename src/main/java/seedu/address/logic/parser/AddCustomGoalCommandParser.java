@@ -30,7 +30,7 @@ public class AddCustomGoalCommandParser implements Parser<AddCustomGoalCommand> 
                     " time in " + TIME_FORMAT + " 24hr " +
                     "format\n";
     public static final String MESSAGE_WRONG_GOAL_FORMAT =
-            "Goal has to be a non-negative number";
+            "Goal has to be a number greater than 0!";
     public static final String MESSAGE_MISSING_DESCRIPTION = "Description cannot be empty!";
 
     /**
@@ -61,7 +61,7 @@ public class AddCustomGoalCommandParser implements Parser<AddCustomGoalCommand> 
         float goal;
         try {
             goal = Float.parseFloat(argMultimap.getValue(PREFIX_GOAL).get());
-            if (goal < 0) {
+            if (goal <= 0) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_WRONG_GOAL_FORMAT));
             }
         } catch (NumberFormatException ex) {

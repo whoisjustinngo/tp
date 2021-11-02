@@ -159,7 +159,7 @@ Adds a new custom goal.
 
 Format: `add d/DESCRIPTION goal/GOAL [bydate/END_DATE] [bytime/END_TIME]`  
 
-Note: `GOAL` has to be a number, `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format
+Note: `GOAL` has to be a number (greater than 0), `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format
 hhmm in 24-hour format. If `END_TIME` is specified, `END_DATE` has to be specified as well.  
 
 Examples:
