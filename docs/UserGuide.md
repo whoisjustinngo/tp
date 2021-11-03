@@ -203,7 +203,9 @@ Format: `list`
 Format: `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]`
 
 Note:  
-Only supports adding relationships "friend" and "client" in v1.3
+* Only supports adding relationships "friend" and "client" in v1.3  
+* Add a contact as a client to add policies and notes  
+* Learn how to add notes to contacts [here](#adding-a-note-to-a-contact-note)
 
 Examples:  
 * Adding a friend: `add n/bobby r/friend p/12345678 e/example@gmail.com a/NUS`
