@@ -57,6 +57,9 @@ public class EditStatusCommand extends Command {
         }
 
         Person personToChangeStatus = lastShownList.get(targetIndex.getZeroBased());
+        if (!personToChangeStatus.getRelationship().equals("client")) {
+            throw new CommandException(Messages.MESSAGE_NOT_A_CLIENT);
+        }
         Person personWithNewStatus = createClientWithNewStatus(personToChangeStatus, newStatus);
         model.setPerson(personToChangeStatus, personWithNewStatus);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
