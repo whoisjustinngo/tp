@@ -147,7 +147,7 @@ public class AddressBookParser {
                 return new ListCommand();
 
             case SCHEDULE_TAB_ID:
-            return new ListSchedulesCommand();
+                return new ListSchedulesCommand();
 
             case TODOS_TAB_ID:
                 return new ListTodosCommand();
@@ -209,7 +209,7 @@ public class AddressBookParser {
                 return new FindCommandParser().parse(arguments);
 
             case TODOS_TAB_ID:
-            return new FindTodoCommandParser().parse(arguments);
+                return new FindTodoCommandParser().parse(arguments);
 
             case SCHEDULE_TAB_ID:
                 return new FindScheduleCommandParser().parse(arguments);
