@@ -112,7 +112,7 @@ public class ParserUtil {
      */
     public static Relationship parseRelationship(String relationship) throws ParseException {
         requireNonNull(relationship);
-        String trimmedRelationship = relationship.trim();
+        String trimmedRelationship = relationship.trim().toLowerCase();
         if (!Relationship.isValidRelationship(trimmedRelationship)) {
             throw new ParseException(Relationship.MESSAGE_CONSTRAINTS);
         }

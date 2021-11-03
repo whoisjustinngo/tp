@@ -144,10 +144,10 @@ public class AddressBookParser {
 
         case EditCommand.COMMAND_WORD:
             switch (tab) {
-
+            case DETAILS_TAB_ID:
+                //fall through
             case DASHBOARD_TAB_ID:
                 throw new ParseException(MESSAGE_INVALID_TAB);
-
             case CONTACTS_TAB_ID:
                 return new EditCommandParser().parse(arguments);
 

@@ -54,8 +54,7 @@ public interface Logic {
     /** Returns an unmodifiable view of a selected person */
     ObservableList<Person> getSelectedPersonList();
 
-    /** Returns an unmodifiable view of a selected person's index
-     * @return*/
+    /** Returns an unmodifiable view of a selected person's index*/
     IntegerProperty getSelectedPersonIndex();
 
     /** Generates schedules */

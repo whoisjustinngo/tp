@@ -3,15 +3,12 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 
 /**
@@ -32,12 +29,6 @@ public class PersonDetailedPanel extends UiPart<Region> {
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
         personIndex = index;
-        //personIndex.addListener(new ChangeListener<Number>() {
-        //    @Override
-        //    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-         //       System.out.println("Index has changed");
-         //   }
-        //});
     }
 
     /**
