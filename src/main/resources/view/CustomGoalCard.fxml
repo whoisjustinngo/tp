@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<HBox id="cardPane" fx:id="cardPane" fillHeight="false" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" fillHeight="false" prefWidth="0.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane stylesheets="@AdvyzeTheme.css" HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
@@ -26,7 +26,7 @@
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin></Label>
-   <Label fx:id="description" stylesheets="@AdvyzeTheme.css" text="\$description" wrapText="true" GridPane.columnIndex="1" GridPane.vgrow="NEVER">
+   <Label fx:id="description" stylesheets="@AdvyzeTheme.css" text="\$description" GridPane.columnIndex="1" GridPane.vgrow="NEVER">
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin></Label>
@@ -44,14 +44,14 @@
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin></ProgressBar>
-   <Label fx:id="goal" stylesheets="@AdvyzeTheme.css" text="\$goal" wrapText="true" GridPane.columnIndex="4" GridPane.vgrow="NEVER">
+   <Label fx:id="goal" stylesheets="@AdvyzeTheme.css" text="\$goal" GridPane.columnIndex="4" GridPane.vgrow="NEVER">
          <padding>
             <Insets left="5.0" />
          </padding>
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin></Label>
-   <Label fx:id="dateEnd" stylesheets="@AdvyzeTheme.css" text="\$dateEnd" wrapText="true" GridPane.columnIndex="5" GridPane.vgrow="NEVER">
+   <Label fx:id="dateEnd" stylesheets="@AdvyzeTheme.css" text="\$dateEnd" GridPane.columnIndex="5" GridPane.vgrow="NEVER">
          <GridPane.margin>
             <Insets left="5.0" />
          </GridPane.margin></Label>

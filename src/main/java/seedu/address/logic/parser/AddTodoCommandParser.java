@@ -31,7 +31,7 @@ public class AddTodoCommandParser implements Parser<AddTodoCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTodoCommand.MESSAGE_USAGE));
         }
 
-        String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+        String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Todo todo = new Todo(description, tagList);

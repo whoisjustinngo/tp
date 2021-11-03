@@ -112,7 +112,7 @@ public class CustomGoal {
     }
 
     @Override
-    public String toString() { // TODO update to a better format
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.goalDescription);
         if (!this.endDate.isEqual(LocalDate.MAX)) {
@@ -133,7 +133,7 @@ public class CustomGoal {
     /**
      * Converts the provided float to a string while truncating all trailing zeroes.
      * @param f The float to convert and truncate.
-     * @return The string representation of the given float with the trailing zeroes truncated.ß
+     * @return The string representation of the given float with the trailing zeroes truncated.
      */
     public String formatFloat(float f) {
         if (f == (long) f) {
