@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -36,6 +38,7 @@ public class ModelManager implements Model {
     private final FilteredList<CustomGoal> filteredCustomGoals;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> selectedPerson;
+    private final IntegerProperty selectedPersonIndex;
     private final FilteredList<Todo> filteredTodos;
     private final FilteredList<Schedule> filteredSchedule;
 
@@ -57,6 +60,7 @@ public class ModelManager implements Model {
         filteredTodos = new FilteredList<>(this.addressBook.getTodoList());
         filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
         selectedPerson = new FilteredList<>(this.addressBook.getPersonList());
+        selectedPersonIndex = new SimpleIntegerProperty(1);
     }
 
     public ModelManager() {
@@ -230,10 +234,25 @@ public class ModelManager implements Model {
         return selectedPerson;
     }
 
+    /**
+     * Returns an unmodifiable value of the index of the {@code Person} selected
+     * @return
+     */
+    @Override
+    public IntegerProperty getSelectedPersonIndex() {
+        return selectedPersonIndex;
+    }
+
     @Override
     public void updateSelectedPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         selectedPerson.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSelectedPersonIndex(int i) {
+        requireNonNull(i);
+        selectedPersonIndex.set(i);
     }
     // =========== Filtered Todo List Accessors
 

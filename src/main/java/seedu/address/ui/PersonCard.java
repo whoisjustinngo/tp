@@ -63,8 +63,6 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
 
         Label status = new Label(person.getStatus().name());
-        status.setBackground(new Background(new BackgroundFill(Color.rgb(33, 22, 80, 0.7),
-                new CornerRadii(5.0), new Insets(-5.0))));
         if (person.getRelationship().value.equals("client")) {
             tags.getChildren().add(status);
         }

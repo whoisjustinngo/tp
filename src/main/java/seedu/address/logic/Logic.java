@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 import net.fortuna.ical4j.data.ParserException;
 import seedu.address.commons.core.GuiSettings;
@@ -52,6 +53,10 @@ public interface Logic {
 
     /** Returns an unmodifiable view of a selected person */
     ObservableList<Person> getSelectedPersonList();
+
+    /** Returns an unmodifiable view of a selected person's index
+     * @return*/
+    IntegerProperty getSelectedPersonIndex();
 
     /** Generates schedules */
     void importSchedule(File file) throws IOException, ParserException,
