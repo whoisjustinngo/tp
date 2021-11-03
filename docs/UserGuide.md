@@ -223,6 +223,20 @@ Changing a friend to a client: `edit 1 r/client`
 Changing a contact's phone and email: `edit 1 p/12345678 e/newEmail@gmail.com`  
 Changing a contact's tags: `edit 2 t/nus t/dancer`
 
+### Client Status: `status`
+![](images/fresh-status.png)  
+Format: `status INDEX STATUS`  
+Every client has a status that shows which stage in the sales process each client is in right now.
+Status look like tags but have a dark blue background as show in the image above.
+The valid statuses are: fresh, approached, pitched, negotiated, closed, lost]  
+* New contacts created in the contacts list are given a "fresh" status to signify that the client is a fresh lead.
+* A summary of all client's statuses is shown in the [dashboard](#Dashboard) tab
+* Friends do not have statuses
+
+Examples of changing status:  
+* `status 1 approached`
+* `status 2 lost`
+
 ### Deleting a contact: `delete`
 Format: `delete INDEX`  
 Deletes the contact at the specified INDEX.  
