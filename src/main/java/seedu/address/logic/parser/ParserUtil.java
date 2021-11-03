@@ -85,12 +85,12 @@ public class ParserUtil {
     /**
      * Ensure non-null and is numeric
      */
-    public static int parsePolicyNumber(String number) throws ParseException {
+    public static long parsePolicyNumber(String number) throws ParseException {
         requireNonNull(number);
         if (!number.matches(Policy.NUMBER_VALIDATION_REGEX)) {
             throw new ParseException(INTEGER_MESSAGE_CONSTRAINTS);
         }
-        return Integer.valueOf(number);
+        return Long.valueOf(number);
     }
 
     /**
@@ -112,7 +112,7 @@ public class ParserUtil {
      */
     public static Relationship parseRelationship(String relationship) throws ParseException {
         requireNonNull(relationship);
-        String trimmedRelationship = relationship.trim();
+        String trimmedRelationship = relationship.trim().toLowerCase();
         if (!Relationship.isValidRelationship(trimmedRelationship)) {
             throw new ParseException(Relationship.MESSAGE_CONSTRAINTS);
         }

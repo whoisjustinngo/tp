@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -90,6 +91,12 @@ public class LogicManager implements Logic {
     public ObservableList<Person> getSelectedPersonList() {
         return model.getSelectedPersonList();
     }
+
+    @Override
+    public IntegerProperty getSelectedPersonIndex() {
+        return model.getSelectedPersonIndex();
+    }
+
     @Override
     public ObservableList<Todo> getFilteredTodoList() {
         return model.getFilteredTodoList();

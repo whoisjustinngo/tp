@@ -16,6 +16,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
@@ -188,6 +189,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public IntegerProperty getSelectedPersonIndex() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Todo> getFilteredTodoList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -200,6 +206,12 @@ public class AddCommandTest {
         public void updateSelectedPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateSelectedPersonIndex(int i) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void addSchedule(Schedule schedule) {
             throw new AssertionError("This method should not be called.");

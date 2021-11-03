@@ -20,7 +20,7 @@ class JsonAdaptedPolicy {
 
     public final String name;
     public final String insurer;
-    public final int number;
+    public final long number;
     public final float commission;
 
 
@@ -31,7 +31,7 @@ class JsonAdaptedPolicy {
     public JsonAdaptedPolicy(@JsonProperty("name") String name,
                                  @JsonProperty("insurer") String insurer,
                                  @JsonProperty("commission") float commission,
-                                 @JsonProperty("number") int number) {
+                                 @JsonProperty("number") long number) {
         this.name = name;
         this.insurer = insurer;
         this.commission = commission;
@@ -60,7 +60,7 @@ class JsonAdaptedPolicy {
         final Name name = new Name(this.name);
         final Name insurer = new Name(this.insurer);
         final float commission = this.commission;
-        final int number = this.number;
+        final long number = this.number;
         return new Policy(insurer, number, name, commission);
     }
 

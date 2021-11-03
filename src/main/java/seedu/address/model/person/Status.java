@@ -22,7 +22,10 @@ public enum Status {
             values.add(f.name());
         }
     }
-
+    @Override
+    public String toString() {
+        return name().toLowerCase();
+    }
     public static boolean contains(String value) {
         return values.contains(value);
     }
