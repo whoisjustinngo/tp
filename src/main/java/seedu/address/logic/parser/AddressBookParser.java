@@ -105,6 +105,11 @@ public class AddressBookParser {
 
         case AddPolicyCommand.COMMAND_WORD:
             switch (tab) {
+            case DASHBOARD_TAB_ID:
+                // fallthrough
+            case SCHEDULE_TAB_ID:
+            case TODOS_TAB_ID:
+                throw new ParseException(MESSAGE_INVALID_TAB);
             case CONTACTS_TAB_ID:
                 //fallthrough
             case DETAILS_TAB_ID:
@@ -119,6 +124,13 @@ public class AddressBookParser {
             case DASHBOARD_TAB_ID:
                 return new UpdateCustomGoalCommandParser().parse(arguments);
 
+            case SCHEDULE_TAB_ID:
+                //fallthrough
+            case TODOS_TAB_ID:
+            case CONTACTS_TAB_ID:
+            case DETAILS_TAB_ID:
+                throw new ParseException(MESSAGE_INVALID_TAB);
+
             default:
                 throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
             }
@@ -127,13 +139,15 @@ public class AddressBookParser {
             switch (tab) {
 
             case DASHBOARD_TAB_ID:
+                // fallthrough
+            case DETAILS_TAB_ID:
                 throw new ParseException(MESSAGE_INVALID_TAB);
 
             case CONTACTS_TAB_ID:
                 return new ListCommand();
 
             case SCHEDULE_TAB_ID:
-                return new ListSchedulesCommand();
+            return new ListSchedulesCommand();
 
             case TODOS_TAB_ID:
                 return new ListTodosCommand();
@@ -170,6 +184,9 @@ public class AddressBookParser {
             case CONTACTS_TAB_ID:
                 return new DeleteCommandParser().parse(arguments);
 
+            case DETAILS_TAB_ID:
+                throw new ParseException(MESSAGE_INVALID_TAB);
+
             case SCHEDULE_TAB_ID:
                 return new DeleteScheduleCommandParser().parse(arguments);
 
@@ -184,13 +201,15 @@ public class AddressBookParser {
             switch (tab) {
 
             case DASHBOARD_TAB_ID:
+                // fallthrough
+            case DETAILS_TAB_ID:
                 throw new ParseException(MESSAGE_INVALID_TAB);
 
             case CONTACTS_TAB_ID:
                 return new FindCommandParser().parse(arguments);
 
             case TODOS_TAB_ID:
-                return new FindTodoCommandParser().parse(arguments);
+            return new FindTodoCommandParser().parse(arguments);
 
             case SCHEDULE_TAB_ID:
                 return new FindScheduleCommandParser().parse(arguments);
@@ -220,7 +239,14 @@ public class AddressBookParser {
             case DETAILS_TAB_ID:
                 //fallthrough
             case CONTACTS_TAB_ID:
+                this.targetTab = toTabPrefix(DETAILS_TAB_ID);
                 return new SelectContactCommandParser().parse(arguments);
+
+            case DASHBOARD_TAB_ID:
+                // fallthrough
+            case SCHEDULE_TAB_ID:
+            case TODOS_TAB_ID:
+                throw new ParseException(MESSAGE_INVALID_TAB);
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
@@ -231,6 +257,13 @@ public class AddressBookParser {
             case CONTACTS_TAB_ID:
                 return new ClearCommand();
 
+            case DASHBOARD_TAB_ID:
+                // fallthrough
+            case DETAILS_TAB_ID:
+            case SCHEDULE_TAB_ID:
+            case TODOS_TAB_ID:
+                throw new ParseException(MESSAGE_INVALID_TAB);
+
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
@@ -240,6 +273,13 @@ public class AddressBookParser {
 
             case TODOS_TAB_ID:
                 return new DoneTodoCommandParser().parse(arguments);
+
+            case DASHBOARD_TAB_ID:
+                // fallthrough
+            case DETAILS_TAB_ID:
+            case SCHEDULE_TAB_ID:
+            case CONTACTS_TAB_ID:
+                throw new ParseException(MESSAGE_INVALID_TAB);
 
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -263,6 +303,12 @@ public class AddressBookParser {
 
         case AddNoteCommand.COMMAND_WORD:
             switch(tab) {
+            case TODOS_TAB_ID:
+                // fallthrough
+            case SCHEDULE_TAB_ID:
+            case CONTACTS_TAB_ID:
+            case DASHBOARD_TAB_ID:
+                throw new ParseException(MESSAGE_INVALID_TAB);
             case DETAILS_TAB_ID:
                 return new AddNoteCommandParser().parse(arguments);
             default:
@@ -270,6 +316,10 @@ public class AddressBookParser {
             }
         case EditStatusCommand.COMMAND_WORD:
             switch(tab) {
+            case TODOS_TAB_ID:
+            case SCHEDULE_PREFIX:
+            case DASHBOARD_TAB_ID:
+                throw new ParseException(MESSAGE_INVALID_TAB);
             case CONTACTS_TAB_ID:
                 //fallthrough
             case DETAILS_TAB_ID:
