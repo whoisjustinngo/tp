@@ -2,21 +2,23 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Tab;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.TabSwitch;
 
-public class TabSwitchCommand extends Command {
+public class TabCommand extends Command {
 
     public static final String COMMAND_WORD = "tab";
 
-    private TabSwitch.Tab tabId;
+    private Tab tabId;
 
     /**
      * Creates a TabSwitchCommand object
      * @param tabId
      */
-    public TabSwitchCommand(TabSwitch.Tab tabId) {
+    public TabCommand(Tab tabId) {
         requireNonNull(tabId);
         this.tabId = tabId;
     }
