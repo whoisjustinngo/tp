@@ -50,8 +50,7 @@ public class AnalyticsPanel extends UiPart<Region> {
         this.counts.addListener(new ListChangeListener<Integer>() {
             @Override
             public void onChanged(Change<? extends Integer> c) {
-                System.out.println("list change detected");
-                System.out.println(c);
+                updateValues();
             }
         });
         updateValues();
@@ -59,7 +58,7 @@ public class AnalyticsPanel extends UiPart<Region> {
 
     public static String getHeader() {
         int currentQuarter = LocalDateTime.now().get(IsoFields.QUARTER_OF_YEAR);
-        return "Q" + Integer.toString(currentQuarter) + " values:";
+        return "Q" + Integer.toString(currentQuarter) + " summary:";
     }
 
     private void updateValues() {

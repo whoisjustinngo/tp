@@ -2,6 +2,7 @@ package seedu.address.model.analytics;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -55,6 +56,7 @@ public class TrackedValueList {
      * @param counts Counts of the number of clients having each ClientState.
      */
     public void update(HashMap<Status, Integer> counts) {
+        Collections.fill(internalValueList, 0);
         for (Status status: counts.keySet()) {
             if (this.trackedFields.contains(status)) {
                 int index = this.getIndex(status);
