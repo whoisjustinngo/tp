@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.TabSwitch;
+import seedu.address.commons.core.Tab;
 
 /**
  * Represents the result of a command execution.
@@ -22,7 +22,7 @@ public class CommandResult {
     /** The application should switch to a new tab */
     private final boolean switchTab;
 
-    private final TabSwitch.Tab tabId;
+    private final Tab tabId;
 
     /** A new window should be shown to the user. */
     private final boolean showImport;
@@ -52,7 +52,7 @@ public class CommandResult {
      * {@code switchTab}, and {@code tabId}, and other fields set to their default
      * value.
      */
-    public CommandResult(String feedbackToUser, boolean switchTab, TabSwitch.Tab tabId) {
+    public CommandResult(String feedbackToUser, boolean switchTab, Tab tabId) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
         this.exit = false;
@@ -78,7 +78,7 @@ public class CommandResult {
         return feedbackToUser;
     }
 
-    public TabSwitch.Tab getTabId() {
+    public Tab getTabId() {
         return tabId;
     }
 
