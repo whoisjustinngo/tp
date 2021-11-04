@@ -39,7 +39,9 @@ public class SelectContactCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person personToSelect = lastShownList.get(index.getZeroBased());
+        // show the number index in PersonDetailedPanel
         Predicate<Person> predicate = person -> person.equals(personToSelect);
+        model.updateSelectedPersonIndex(index.getOneBased());
         model.updateSelectedPersonList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_SELECTED_OVERVIEW,

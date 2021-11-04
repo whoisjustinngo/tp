@@ -42,9 +42,9 @@ public class ClientAnalytics {
 
     private void updateAnalytics() {
         HashMap<Status, Integer> counts = new HashMap<Status, Integer>();
-        System.out.println("trying to update");
+        System.out.println("Update status counts");
         for (Person person: this.persons) {
-            if (person.getRelationship().value.equals("client")) { // TODO update with client
+            if (person.getRelationship().value.equals("client")) {
                 LocalDateTime lastUpdated = person.getLastUpdated();
                 Status status = person.getStatus();
                 // check if expired

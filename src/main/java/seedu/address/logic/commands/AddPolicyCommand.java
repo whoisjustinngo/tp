@@ -31,11 +31,12 @@ public class AddPolicyCommand extends Command {
 
     public static final String COMMAND_WORD = "policy";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to portfolio of client. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to portfolio of client. \n"
+            + "Parameters: `policy INDEX insurer/INSURER num/POLICY_ID n/POLICY_NAME comm/COMMISSION \n"
             + "Example: `policy 1 insurer/AIG num/1231 n/Critical illness comm/100`";
 
     public static final String MESSAGE_SUCCESS = "Policy added: %1$s";
-    public static final String MESSAGE_DUPLICATE_POLICY = "This policy number already and insurer already exists";
+    public static final String MESSAGE_DUPLICATE_POLICY = "This policy number and insurer already exists";
 
     private final Policy newPolicy;
     private final Index targetIndex;

@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMISSION_VALUE_NEGATIVE;
+import static seedu.address.commons.core.Messages.MESSAGE_NUMBER_TOO_LARGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMISSION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -39,12 +41,22 @@ public class AddPolicyCommandParser implements Parser<AddPolicyCommand> {
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPolicyCommand.MESSAGE_USAGE), pe);
         }
-
+        long policyNumber;
+        try {
+            policyNumber = ParserUtil.parsePolicyNumber(argMultimap.getValue(PREFIX_NUMBER).get());
+            if (policyNumber > Math.pow(10, 16)) {
+                throw new ParseException(MESSAGE_NUMBER_TOO_LARGE);
+            }
+        } catch (java.lang.NumberFormatException npe) {
+            throw new ParseException(MESSAGE_NUMBER_TOO_LARGE);
+        }
         Name insurer = ParserUtil.parseInsurerName(argMultimap.getValue(PREFIX_INSURER).get());
-        int policyNumber = ParserUtil.parsePolicyNumber(argMultimap.getValue(PREFIX_NUMBER).get());
         Name policyName = ParserUtil.parsePolicyName(argMultimap.getValue(PREFIX_NAME).get());
         double commission = ParserUtil.parseCommission(argMultimap.getValue(PREFIX_COMMISSION).get());
 
+        if (commission < 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMISSION_VALUE_NEGATIVE, commission));
+        }
         Policy newPolicy = new Policy(insurer, policyNumber, policyName, commission);
         return new AddPolicyCommand(index, newPolicy);
     }

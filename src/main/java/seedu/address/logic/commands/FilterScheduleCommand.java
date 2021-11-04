@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_SCHEUDLE_INPUT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FROM;
@@ -9,8 +10,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TO;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Schedule;
+import seedu.address.model.event.exceptions.InvalidScheduleInputException;
 
 public class FilterScheduleCommand extends Command {
     public static final String COMMAND_WORD = "filter";
@@ -30,11 +33,15 @@ public class FilterScheduleCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredScheduleList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_SCHEDULE_LISTED_OVERVIEW, model.getFilteredScheduleList().size()));
+        try {
+            model.updateFilteredScheduleList(predicate);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_SCHEDULE_LISTED_OVERVIEW, model.getFilteredScheduleList().size()));
+        } catch (InvalidScheduleInputException e) {
+            throw new CommandException(MESSAGE_INVALID_SCHEUDLE_INPUT);
+        }
     }
 
     @Override

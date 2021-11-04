@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_SCHEUDLE_INPUT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FROM;
@@ -17,6 +18,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Schedule;
+import seedu.address.model.event.exceptions.InvalidScheduleInputException;
 import seedu.address.model.event.exceptions.InvalidTimeException;
 import seedu.address.model.tag.Tag;
 
@@ -66,6 +68,8 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
             return new AddScheduleCommand(schedule);
         } catch (InvalidTimeException e) {
             throw new ParseException(e.getMsg());
+        } catch (InvalidScheduleInputException e) {
+            throw new ParseException(MESSAGE_INVALID_SCHEUDLE_INPUT);
         }
 
     }

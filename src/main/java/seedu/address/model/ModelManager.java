@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -28,7 +30,7 @@ import seedu.address.storage.IcsScheduleStorage;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
+    private static final Index defaultSelectedPersonIndex = Index.fromZeroBased(0);
     private final AddressBook addressBook;
     private final ClientAnalytics clientAnalytics;
     private final UserPrefs userPrefs;
@@ -36,6 +38,7 @@ public class ModelManager implements Model {
     private final FilteredList<CustomGoal> filteredCustomGoals;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> selectedPerson;
+    private final IntegerProperty selectedPersonIndex;
     private final FilteredList<Todo> filteredTodos;
     private final FilteredList<Schedule> filteredSchedule;
 
@@ -56,7 +59,9 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTodos = new FilteredList<>(this.addressBook.getTodoList());
         filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
+        selectedPersonIndex = new SimpleIntegerProperty(defaultSelectedPersonIndex.getOneBased());
         selectedPerson = new FilteredList<>(this.addressBook.getPersonList());
+        setDefaultSelection(selectedPerson);
     }
 
     public ModelManager() {
@@ -65,6 +70,15 @@ public class ModelManager implements Model {
 
     // =========== UserPrefs
     // ==================================================================================
+
+
+    private void setDefaultSelection(FilteredList<Person> selectedPerson) {
+        // set default select person to be the first person in list
+        if (selectedPerson.size() > 1) {
+            Person firstPerson = selectedPerson.get(defaultSelectedPersonIndex.getZeroBased());
+            selectedPerson.setPredicate((person)->person.equals(firstPerson));
+        }
+    }
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -230,10 +244,25 @@ public class ModelManager implements Model {
         return selectedPerson;
     }
 
+    /**
+     * Returns an unmodifiable value of the index of the {@code Person} selected
+     * @return
+     */
+    @Override
+    public IntegerProperty getSelectedPersonIndex() {
+        return selectedPersonIndex;
+    }
+
     @Override
     public void updateSelectedPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         selectedPerson.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSelectedPersonIndex(int i) {
+        requireNonNull(i);
+        selectedPersonIndex.set(i);
     }
     // =========== Filtered Todo List Accessors
 

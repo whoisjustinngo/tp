@@ -198,12 +198,16 @@ Format: `delete INDEX_OF_GOAL_TO_DELETE`
 Format: `list`  
 * Restores the contacts tab to its default view
 * Contacts are listed in alphabetical order of their names
+* Using `list` in details tab will also show full list of contacts
 
 ### Adding a contact: `add`
 Format: `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]`
 
 Note:  
-Only supports adding relationships "friend" and "client" in v1.3
+* Only supports adding relationships "friend" and "client" in v1.3
+* Tags can be at most 50 characters
+* Add a contact as a client to add policies and notes  
+* Learn how to add notes to contacts [here](#adding-a-note-to-a-contact-note)
 
 Examples:  
 * Adding a friend: `add n/bobby r/friend p/12345678 e/example@gmail.com a/NUS`
@@ -220,6 +224,20 @@ Examples:
 Changing a friend to a client: `edit 1 r/client`  
 Changing a contact's phone and email: `edit 1 p/12345678 e/newEmail@gmail.com`  
 Changing a contact's tags: `edit 2 t/nus t/dancer`
+
+### Client Status: `status`
+![](images/fresh-status.png)  
+Format: `status INDEX STATUS`  
+Every client has a status that shows which stage in the sales process each client is in right now.
+Status look like tags but have a dark blue background as show in the image above.
+The valid statuses are: [fresh, approached, pitched, negotiated, closed, lost]  
+* New contacts created in the contacts list are given a "fresh" status to signify that the client is a fresh lead.
+* A summary of all client's statuses is shown in the [dashboard](#Dashboard) tab
+* Friends do not have statuses
+
+Examples of changing status:  
+* `status 1 approached`
+* `status 2 lost`
 
 ### Deleting a contact: `delete`
 Format: `delete INDEX`  
@@ -275,15 +293,31 @@ Example:
 
 ## Scheduling an Event
 
+### Displaying of Events
+
+By default, the Schedule Tabs will **ONLY** show upcoming Events. If you would like to display all the Events in the database or show only the past events, we have the following commands to customise the your Schedule Tab.
+
 ### View all events: `list`
 
 Shows all the added Events
 
--   Events are first ordered by date, then the order of time on that day itself
+* Events will be ordered by date, then the order of time on that day itself
+
+### View all upcoming events: `showupcoming`
+
+Shows all the upcoming Events
+
+* Upcoming Events will be ordered by date, then the order of time on that day itself
+
+### View all upcoming events: `showpast`
+
+Shows all the past Events
+
+* Past Events will be ordered by date, then the order of time on that day itself
 
 ### Add Event command: `add`
 
-Format: `add [type] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS] ([recurd/DATE] or [recurw/DATE] or [recury/DATE])`
+Format: `add [type] [d/TASK DESCRIPTION] [date/DATE] [from/TIME FROM] [to/TIME TO] [t/TAGS] ([recurd/DATE] or [recurw/DATE] or [recury/DATE])`
 
  * recurd/DATE Event recurring daily till the given date
  * recurw/DATE Event recurring weekly till the given date
@@ -302,7 +336,7 @@ Next, only upcoming Events will be shown. Events which happened in the past will
 
 Edits the Event which has the respective INDEX given by the user.
 
-Format: `edit [INDEX] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS]`  
+Format: `edit [INDEX] [d/TASK DESCRIPTION] [date/DATE] [from/TIME FROM] [to/TIME TO] [t/TAGS]`  
 
 Here are some of the examples to use the command lines.
 
@@ -321,6 +355,8 @@ Format: `delete [INDEX]`
 * The index refers to the index number shown in the Event list.
 * The index must be a positive integer 1, 2, 3, ...
 
+*Potential enhancement: to delete multiple Events at once which was already added into the Schedule.*
+
 ### Find Event command: `find`
 
 Find the Event which has the specified keyword in the description
@@ -335,7 +371,7 @@ Format: `find [keyword]`
 
 Filters the Event according to the keywords in any of the attributes.
 
-Format: `filter [d/TASK DESCRIPTION] [fr/TIME FROM] [to/TIME TO] [date/DATE] [t/TAGS]`
+Format: `filter [d/TASK DESCRIPTION] [date/DATE] [fr/TIME FROM] [to/TIME TO] [date/DATE] [t/TAGS]`
 
 Here are some of the examples to use the command lines.
 

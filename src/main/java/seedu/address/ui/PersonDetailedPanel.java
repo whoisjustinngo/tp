@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -19,14 +20,15 @@ public class PersonDetailedPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Person> personListView;
-
+    private IntegerProperty personIndex;
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonDetailedPanel(ObservableList<Person> personList) {
+    public PersonDetailedPanel(ObservableList<Person> personList, IntegerProperty index) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        personIndex = index;
     }
 
     /**
@@ -40,7 +42,7 @@ public class PersonDetailedPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(person, personIndex.getValue()).getRoot());
             }
         }
     }

@@ -21,7 +21,7 @@ public class Policy {
 
     public final Name name;
     public final Name insurer;
-    public final int number;
+    public final long number;
     public final Double commission;
 
     /**
@@ -32,12 +32,12 @@ public class Policy {
      * @param name A valid policy name.
      * @param commission A valid commission.
      */
-    public Policy(Name insurer, int number, Name name, double commission) {
+    public Policy(Name insurer, long number, Name name, double commission) {
         requireAllNonNull(insurer, number, name, commission);
         this.name = name;
         this.insurer = insurer;
         this.commission = Double.valueOf(commission);
-        this.number = Integer.valueOf(number);
+        this.number = Long.valueOf(number);
     }
 
     public Name getName() {
@@ -48,7 +48,7 @@ public class Policy {
         return insurer;
     }
 
-    public int getNumber() {
+    public long getNumber() {
         return number;
     }
 

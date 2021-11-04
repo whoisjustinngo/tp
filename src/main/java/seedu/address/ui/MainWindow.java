@@ -25,7 +25,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.TabSwitch;
 
 /**
  * The Main Window. Provides the basic application layout containing a menu bar
@@ -192,7 +191,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        personDetailedPanel = new PersonDetailedPanel(logic.getSelectedPersonList());
+        personDetailedPanel = new PersonDetailedPanel(logic.getSelectedPersonList(), logic.getSelectedPersonIndex());
         personDetailedPlaceholder.getChildren().add(personDetailedPanel.getRoot());
 
         policyListPanel = new PolicyListPanel(logic.getSelectedPersonList());
@@ -288,7 +287,7 @@ public class MainWindow extends UiPart<Stage> {
 
 
     @FXML
-    private void handleSwitchTab(TabSwitch.Tab tabId) {
+    private void handleSwitchTab(seedu.address.commons.core.Tab tabId) {
         tabs.getSelectionModel().select(tabId.getIndex());
     }
 
