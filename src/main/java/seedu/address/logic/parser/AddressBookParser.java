@@ -59,15 +59,17 @@ public class AddressBookParser {
         final Matcher matcher;
         final Matcher basicMatcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         final Matcher contextualMatcher = CONTEXTUAL_COMMAND_FORMAT.matcher(userInput.trim());
+        final Tab tab;
         if (contextualMatcher.matches()) {
             matcher = contextualMatcher;
+            tab = Tab.aliasToEnum(matcher.group("tab"));
         } else if (basicMatcher.matches()) {
             matcher = basicMatcher;
+            tab = Tab.tabIdToEnum(matcher.group("tab"));
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final Tab tab = Tab.valueOf(matcher.group("tab"));
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
@@ -138,7 +140,7 @@ public class AddressBookParser {
                 return new ListCommand();
 
             case SCHEDULE:
-            return new ListSchedulesCommand();
+                return new ListSchedulesCommand();
 
             case TODOS:
                 return new ListTodosCommand();
@@ -200,7 +202,7 @@ public class AddressBookParser {
                 return new FindCommandParser().parse(arguments);
 
             case TODOS:
-            return new FindTodoCommandParser().parse(arguments);
+                return new FindTodoCommandParser().parse(arguments);
 
             case SCHEDULE:
                 return new FindScheduleCommandParser().parse(arguments);
@@ -277,8 +279,8 @@ public class AddressBookParser {
             }
 
         case TabCommand.COMMAND_WORD:
-            this.targetTab = Tab.toEnum(arguments);
-            return new TabSwitchCommandParser().parse(this.targetTab.toString());
+            this.targetTab = Tab.aliasToEnum(arguments.trim());
+            return new TabCommandParser().parse(this.targetTab.toString());
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -340,6 +342,6 @@ public class AddressBookParser {
      * @return
      */
     public Command goToContextTab() throws ParseException {
-        return new TabSwitchCommandParser().parse(this.targetTab.toString());
+        return new TabCommandParser().parse(this.targetTab.toString());
     }
 }

@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import seedu.address.commons.core.Tab;
-import seedu.address.model.TabSwitch;
 
 /**
  * Represents the result of a command execution.
