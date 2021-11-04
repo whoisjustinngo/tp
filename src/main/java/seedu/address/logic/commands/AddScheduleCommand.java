@@ -27,7 +27,7 @@ public class AddScheduleCommand extends Command {
             + "Parameters: " + PREFIX_DESCRIPTION + "DESCRIPTION " + PREFIX_DATE + "DATE " + PREFIX_FROM + "FROM "
             + PREFIX_TO + "TO " + PREFIX_TAG + "TAG (" + PREFIX_RECURR_DAILY + " or " + PREFIX_RECURR_WEEKLY + " or "
             + PREFIX_RECURR_YEARLY + "RECURR TILL)\n" + "Example: " + COMMAND_WORD + " " + PREFIX_DESCRIPTION
-            + "lesson " + PREFIX_DATE + "16-05-2021 " + PREFIX_FROM + "1400 " + PREFIX_TO + "1600 " + PREFIX_TAG
+            + "lesson " + PREFIX_DATE + "16-05-2022 " + PREFIX_FROM + "1400 " + PREFIX_TO + "1600 " + PREFIX_TAG
             + "important " + PREFIX_RECURR_DAILY + "18-05-2021";
 
     public static final String MESSAGE_SUCCESS = "New Schedule added: %1$s";
