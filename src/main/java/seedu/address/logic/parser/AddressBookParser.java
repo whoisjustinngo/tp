@@ -26,6 +26,8 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListSchedulesCommand;
 import seedu.address.logic.commands.ListTodosCommand;
 import seedu.address.logic.commands.SelectContactCommand;
+import seedu.address.logic.commands.ShowPastEventsCommand;
+import seedu.address.logic.commands.ShowUpcomingEventsCommand;
 import seedu.address.logic.commands.TabSwitchCommand;
 import seedu.address.logic.commands.UpdateCustomGoalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -324,6 +326,20 @@ public class AddressBookParser {
                 //fallthrough
             case DETAILS_TAB_ID:
                 return new EditStatusCommandParser().parse(arguments);
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
+        case ShowUpcomingEventsCommand.COMMAND_WORD:
+            switch(tab) {
+            case SCHEDULE_TAB_ID:
+                return new ShowUpcomingEventsCommand();
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
+        case ShowPastEventsCommand.COMMAND_WORD:
+            switch(tab) {
+            case SCHEDULE_TAB_ID:
+                return new ShowPastEventsCommand();
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }

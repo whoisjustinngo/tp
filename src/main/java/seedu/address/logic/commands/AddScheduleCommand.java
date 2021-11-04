@@ -118,9 +118,6 @@ public class AddScheduleCommand extends Command {
         default:
             break;
         }
-
-        // make a for loop here checking for clashes and continuous adding of the
-        // schedule
         return new CommandResult(String.format(MESSAGE_SUCCESS, schedule));
     }
 

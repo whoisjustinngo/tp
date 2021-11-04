@@ -2,6 +2,7 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -62,6 +63,7 @@ public class MainApp extends Application {
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
+        model.updateFilteredScheduleList(schedule -> LocalDateTime.now().compareTo(schedule.getTaskDateTimeTo()) < 0);
 
         logic = new LogicManager(model, storage);
 
