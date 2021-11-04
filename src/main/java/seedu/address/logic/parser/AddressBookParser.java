@@ -133,8 +133,10 @@ public class AddressBookParser {
 
             case DASHBOARD:
                 // fallthrough
-            case DETAILS:
                 throw new ParseException(MESSAGE_INVALID_TAB);
+            case DETAILS:
+                this.targetTab = Tab.CONTACTS;
+                return new ListCommand();
 
             case CONTACTS:
                 return new ListCommand();
