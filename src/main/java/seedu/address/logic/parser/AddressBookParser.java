@@ -145,7 +145,8 @@ public class AddressBookParser {
 
             case DETAILS_TAB_ID:
                 this.targetTab = toTabPrefix(CONTACTS_TAB_ID);
-                // fallthrough
+                return new ListCommand();
+
             case CONTACTS_TAB_ID:
                 return new ListCommand();
 
