@@ -31,7 +31,7 @@ public class DeleteScheduleCommand extends Command {
         List<Schedule> lastShownList = model.getFilteredScheduleList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_SCHEDULE_DISPLAYED_INDEX);
         }
 
         Schedule scheduleToDelete = lastShownList.get(targetIndex.getZeroBased());
