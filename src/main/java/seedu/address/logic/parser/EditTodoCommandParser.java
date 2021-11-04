@@ -41,7 +41,8 @@ public class EditTodoCommandParser implements Parser<EditTodoCommand> {
 
         EditTodoDescriptor editTodoDescriptor = new EditTodoDescriptor();
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editTodoDescriptor.setDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+            editTodoDescriptor.setDescription(
+                    ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTodoDescriptor::setTags);
 

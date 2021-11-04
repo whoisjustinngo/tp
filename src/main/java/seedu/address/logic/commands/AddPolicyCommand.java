@@ -35,7 +35,7 @@ public class AddPolicyCommand extends Command {
             + "Example: `policy 1 insurer/AIG num/1231 n/Critical illness comm/100`";
 
     public static final String MESSAGE_SUCCESS = "Policy added: %1$s";
-    public static final String MESSAGE_DUPLICATE_POLICY = "This policy number already and insurer already exists";
+    public static final String MESSAGE_DUPLICATE_POLICY = "This policy number and insurer already exists";
 
     private final Policy newPolicy;
     private final Index targetIndex;

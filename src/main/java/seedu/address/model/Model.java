@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
@@ -183,6 +184,12 @@ public interface Model {
     ObservableList<Person> getSelectedPersonList();
 
     /**
+     * Returns an unmodifiable value of a selected person index
+     * @return
+     */
+    IntegerProperty getSelectedPersonIndex();
+
+    /**
      * Updates the filter of the filtered person list to filter by the given
      * {@code predicate}.
      *
@@ -198,6 +205,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateSelectedPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the index of selected person
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateSelectedPersonIndex(int i);
 
     /**
      * Returns an unmodifiable view of the filtered todo list

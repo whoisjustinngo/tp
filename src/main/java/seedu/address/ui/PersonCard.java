@@ -2,17 +2,13 @@ package seedu.address.ui;
 
 
 import java.util.Comparator;
+import java.util.Locale;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import seedu.address.model.person.Person;
 
 /**
@@ -62,9 +58,8 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
 
-        Label status = new Label(person.getStatus().name());
-        status.setBackground(new Background(new BackgroundFill(Color.rgb(33, 22, 80, 0.7),
-                new CornerRadii(5.0), new Insets(-5.0))));
+        Label status = new Label(person.getStatus().name().toLowerCase(Locale.ROOT));
+        status.setStyle("-fx-background-color: darkblue;");
         if (person.getRelationship().value.equals("client")) {
             tags.getChildren().add(status);
         }

@@ -16,6 +16,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Policy;
 import seedu.address.model.person.Relationship;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.todo.Todo;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -84,12 +85,12 @@ public class ParserUtil {
     /**
      * Ensure non-null and is numeric
      */
-    public static int parsePolicyNumber(String number) throws ParseException {
+    public static long parsePolicyNumber(String number) throws ParseException {
         requireNonNull(number);
         if (!number.matches(Policy.NUMBER_VALIDATION_REGEX)) {
             throw new ParseException(INTEGER_MESSAGE_CONSTRAINTS);
         }
-        return Integer.valueOf(number);
+        return Long.valueOf(number);
     }
 
     /**
@@ -111,7 +112,7 @@ public class ParserUtil {
      */
     public static Relationship parseRelationship(String relationship) throws ParseException {
         requireNonNull(relationship);
-        String trimmedRelationship = relationship.trim();
+        String trimmedRelationship = relationship.trim().toLowerCase();
         if (!Relationship.isValidRelationship(trimmedRelationship)) {
             throw new ParseException(Relationship.MESSAGE_CONSTRAINTS);
         }
@@ -200,6 +201,21 @@ public class ParserUtil {
             policySet.add(policy);
         }
         return policySet;
+    }
+
+    /**
+     * Parses a {@code String description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static String parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Todo.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Todo.MESSAGE_DESCRIPTION_CONSTRAINTS);
+        }
+        return trimmedDescription;
     }
 
 }

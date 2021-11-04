@@ -5,8 +5,8 @@ title: User Guide
 
 Advyze is a desktop app for tech-savvy student financial advisors to keep track of their clients and their busy school schedule, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
--   Table of Contents
-    {:toc}
+* Table of Contents
+  {:toc}
 
 ---
 
@@ -52,33 +52,124 @@ Refer to the [Features](#Features) below for more details on what Advyze can do.
 
 </div>
 
+## General
+
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+### Switching between Tabs: `tab`
+
+Format: `tab TAB_NAME`
+* Switches between different tabs. Tab names are as follows:
+    * dashboard
+    * contacts
+    * schedule
+    * todos
+
+Examples:
+* `tab dashboard` while in the Contacts tab changes to the Dashboard tab
+* `tab contacts` in the Contacts tab just jumps to the top of the page (returns the tab to the original landing page view)
+
+### Convenience Commands
+
+Allows users to input commands meant for a specific tab regardless of which tab they are currently viewing.
+
+Format: `/TAB NAME` [command meant to run on specified TAB_NAME]
+
+Examples:
+* When in Todos tab, input `/schedule add event d/CS2103 meeting fr/1300 to/1500` will add an event in Schedule tab instead of adding it in Todos tab.
+* When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` under the Schedule tab.
+* When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` under the Schedule tab.
+
+### Importing Schedule
+
+Allows users to import `.ics` files, similar to importing timetable from NUSMods into Google Calendars.
+
+Example:
+* In any tab, input `import` will open file browser to prompt the user for a `.ics` file.
+
+### Exiting Application: `exit`
+
+Terminates the application
+
+Format: `exit`
+
+Example:
+* exit in any tabs terminates the application.
+
+### Handling invalid commands
+
+Handles error messages thrown by tabs (in the case of invalid commands passed to said pages control), and displays a user friendly message.
+
+Examples:
+* `/schedule create` will print the error message as such:
+```
+“Looks like ‘Schedule’ does not have any commands called ‘create’. Below are the available commands:
+<!--error message that schedule returns-->
+```
+
 ## Dashboard
 The dashboard is the default landing page of the app and displays a summary of relevant information from the other sections of the app.
-* The dashboard by default shows:
-  * Some analytics tracking the status of clients
+* The dashboard by default shows 4 sections:
+  * A section that displays analytics for contacts which is updated as the user populates it with data 
   * Custom goals that can be set by the user
-  * The user's schedule in chronological order
-  * The user's todos, with the earliest added at the top
+  * The user's schedule in chronological order (which is synced with information in the Schedule tab)
+  * The user's todos, with the earliest added at the top (which is synced with the information in the Todos tab)
 * These sections are automatically updated as the data in the respective tabs are changed.
 * The user can adjust how much of each section is to be displayed by sliding the black bars as required.
-* In future versions, the user will be able to customise what they wish to see on the dashboard.
 
-This is how the dashboard looks like as of v1.3: 
-![dashboard_tab](images/dashboard-tab-v1.3.png)
+This is how the dashboard looks like as of v1.4: 
+![dashboard_tab](images/dashboard-tab-v1.4.png)
+
+## Analytics
+The analytics section is the section at the top left of the dashboard tab, directly below the dashboard button. This feature essentially provides some analytics for
+the user's contacts, specifically counting the number of clients with the various status (whether they are fresh leads, approached, closed, etc).
+The tracking is by quarters of the year, e.g. if the current quarter is Q3, the analytics will only show fresh leads *for Q3*, clients approached *in Q3*, etc.
+
+This section is automatically updated as the status of the various contacts change in the contacts list. For more details about the various client statuses, see the contacts section below.
+
+
+## Custom Goals
+As a financial advisor, some things that they might want to set a target for and subsequently work towards include:
+* The amount of commission earned in the current month/quarter
+* The number of new clients called today  
+
+Essentially, this feature set is meant for users to track anything that is quantifiable that they want to track. Every custom goal
+will *minimally* have a description, a goal value, and a progress value, the former 2 which have to be specified by the user at the 
+point of addition, with the progress value being set by default to 0.
+
+To better understand how it is meant to work, if the user, for example, has a goal to call at least 20 new clients by the end of this week:
+1. They would first `add` that goal, with the description being something like "call 20 clients", the goal being "20", and the end date the date of the last day of this week
+2. Every time they make a new call, they would `update` the progress of that custom goal they created in step 1 by a value of 1
+3. The progress bar in between the progress and goal columns gives the user a quick visual indication of how much they have accomplished / have yet to accomplish
+4. Once they have hit their goal, i.e. progress >= 20, the value in the progress column would turn green as a visual indication of completion
+5. If it is past the end of the week and progress < 20, the value in the end date and end time columns will turn red
+6. Once the user has no need to track the goal anymore, they can `delete` it to de-clutter the space
+
+See the subsequent sections to find out how the user could go about doing this.
+
 
 ### Adding a Custom Goal: `add`
 Adds a new custom goal.  
 
 Format: `add d/DESCRIPTION goal/GOAL [bydate/END_DATE] [bytime/END_TIME]`  
 
-Note: `GOAL` has to be a number, `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format
+Note: `GOAL` has to be a number (greater than 0), `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format
 hhmm in 24-hour format. If `END_TIME` is specified, `END_DATE` has to be specified as well.  
-  
-Example:
-* Goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2021`
-* Goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021`
 
-### Updating a Custom Goal: `update`
+Examples:
+* Goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2021`
+* Goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021 bytime/1200`
+
+> :exclamation: Note: currently there is no command to edit custom goals; if the user, for example, commits a typo when entering
+> information for a custom goal, they have to delete the custom goal and repeat the adding process with the intended information.
+
+### Updating the progress of a Custom Goal: `update`
 
 Format: `update INDEX_OF_CUSTOM_GOAL val/AMOUNT_TO_INCREMENT_GOAL_BY`
 
@@ -86,15 +177,19 @@ Note: `AMOUNT_TO_INCREMENT_GOAL_BY` has to be a number (can be positive or negat
 
 Updates *the progress* of a particular custom goal by the specified value, i.e. updated progress = old progress + 
 `AMOUNT_TO_INCREMENT_GOAL_BY`
-  
+
 Example: 
-* update custom goal 1 `update 1 val/123.4`
+* To update progress of custom goal 1 by 123.4: `update 1 val/123.4`
+
+> :bulb: Tip: since the update command allows the user to enter negative values, if they, for example, enter a wrong (positive) value
+> for progress, they can correct it by updating the same goal with the difference, e.g. if the intended amount was to add 5 to progress
+> but the user specified 7, they can just correct this by updating the same goal with val = -2.
   
 ### Deleting a Custom Goal: `delete`
 Deletes the specified Custom Goal from the dashboard.  
 
 Format: `delete INDEX_OF_GOAL_TO_DELETE`
-  
+
 
 ## Contacts
 
@@ -108,7 +203,9 @@ Format: `list`
 Format: `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]`
 
 Note:  
-Only supports adding relationships "friend" and "client" in v1.3
+* Only supports adding relationships "friend" and "client" in v1.3  
+* Add a contact as a client to add policies and notes  
+* Learn how to add notes to contacts [here](#adding-a-note-to-a-contact-note)
 
 Examples:  
 * Adding a friend: `add n/bobby r/friend p/12345678 e/example@gmail.com a/NUS`
@@ -125,6 +222,20 @@ Examples:
 Changing a friend to a client: `edit 1 r/client`  
 Changing a contact's phone and email: `edit 1 p/12345678 e/newEmail@gmail.com`  
 Changing a contact's tags: `edit 2 t/nus t/dancer`
+
+### Client Status: `status`
+![](images/fresh-status.png)  
+Format: `status INDEX STATUS`  
+Every client has a status that shows which stage in the sales process each client is in right now.
+Status look like tags but have a dark blue background as show in the image above.
+The valid statuses are: [fresh, approached, pitched, negotiated, closed, lost]  
+* New contacts created in the contacts list are given a "fresh" status to signify that the client is a fresh lead.
+* A summary of all client's statuses is shown in the [dashboard](#Dashboard) tab
+* Friends do not have statuses
+
+Examples of changing status:  
+* `status 1 approached`
+* `status 2 lost`
 
 ### Deleting a contact: `delete`
 Format: `delete INDEX`  
@@ -151,10 +262,10 @@ Filter all persons according to their attributes (case-insensitive) and displays
 
 ## Details  
 
-# Viewing a contact's policies and notes
+### Viewing a contact's policies and notes
 You can view a contact's policies and notes by using the details tab: `tab details`
 
-# Selecting a contact to view details: `select`  
+### Selecting a contact to view details: `select`  
 Format: `select INDEX`  
 Selects a contact at the specified INDEX to view policies and notes
 * The index refers to the index number shown in the Contact list.
@@ -188,7 +299,7 @@ Shows all the added Events
 
 ### Add Event command: `add`
 
-Format: `[type] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS] ([recurd/DATE] or [recurw/DATE] or [recury/DATE])`
+Format: `add [type] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS] ([recurd/DATE] or [recurw/DATE] or [recury/DATE])`
 
  * recurd/DATE Event recurring daily till the given date
  * recurw/DATE Event recurring weekly till the given date
@@ -196,8 +307,8 @@ Format: `[type] [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS] ([re
 
 Here are some of the examples to use the command lines.
 
- * `Adding a schedule which recur daily: add d/lesson date/16-05-2021 fr/1400 to/1600 t/important recurd/18-05-2021`
- * `Adding a schedule which recur weekly: add d/meeting date/18-05-2021 fr/1600 to/1800 t/priority recurw/15-08-2021`
+ * Adding a schedule which recur daily: `add d/lesson date/16-05-2021 fr/1400 to/1600 t/important recurd/18-05-2021`
+ * Adding a schedule which recur weekly: `add d/meeting date/18-05-2021 fr/1600 to/1800 t/priority recurw/15-08-2021`
 
 **Note:** While adding an Event, it will check if the Event given has any clashes with other Events which have already been added. The Event will be added only if there is no clash in timing with other Events which are already in the list. This applies to the recurring Event as well, if there are clashes in any of the given recurring Events, it will consider the Event as a clash, and will not proceed to adding any Events.
 
@@ -228,10 +339,10 @@ Format: `delete [INDEX]`
 
 ### Find Event command: `find`
 
-Find the Event which have the same keywords in the description
+Find the Event which has the specified keyword in the description
 
-Format: `find lesson`
- 
+Format: `find [keyword]`
+
  * Finds Events that carries the given keyword in the description
  * Events that have the keyword will be displayed in the user interface
  * Events that does not have the keyword will not be displayed
@@ -240,12 +351,12 @@ Format: `find lesson`
 
 Filters the Event according to the keywords in any of the attributes.
 
-Format: `filter [d/TASK DESCRIPTION] [from/TIME FROM] [to/TIME TO] [t/TAGS]`
+Format: `filter [d/TASK DESCRIPTION] [fr/TIME FROM] [to/TIME TO] [date/DATE] [t/TAGS]`
 
 Here are some of the examples to use the command lines.
 
- * `Filtering a tag in schedule: filter t/important`
- * `Filter based on a description and date in a schedule: filter d/meeting date/18-05-2021`
+ * Filtering a tag in schedule: `filter t/important`
+ * Filter based on a description and date in a schedule: `filter d/meeting date/18-05-2021`
 
 **Note:** It is not compulsory to include all fields. Only include those fields which you would like to filter.
 
@@ -259,9 +370,8 @@ Adds a Todo that will be displayed on the Dashboard and the Todos tabs.
 
 Format: `add d/DESCRIPTION [t/TAG]...`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A Todo can have any number of tags (including 0)
-</div>
+* The description must not be more than 70 characters in length.
+* A Todo can have any number of tags (including 0)
 
 Examples:
 * `add d/read book`
@@ -351,65 +461,4 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 3` deletes the 3rd Todo in the displayed Todos list.
 * `filter d/book` followed by `delete 1` deletes the 1st Todo in the results of the `filter` command
-
-## General
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### Switching between Tabs: `tab`
-
-Format: `tab /TAB NAME`
-* Switches between different tabs. Tab names are as follows:
-    * dashboard
-    * contacts
-    * schedule
-    * todos
-
-Examples:
-* `tab dashboard` while in the Contacts tab changes to the Dashboard tab
-* `tab contacts` in the Contacts tab just jumps to the top of the page (returns the tab to the original landing page view)
-
-### Convenience Commands
-
-Allows users to input commands meant for a specific tab regardless of which tab they are currently viewing.
-
-Format: `/TAB NAME` [command meant to run on specified TAB_NAME]
-
-Examples:
-* When in Todos tab, input `/schedule add event d/CS2103 meeting fr/1300 to/1500` will add an event in Schedule tab instead of adding it in Todos tab.
-* When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` under the Schedule tab.
-* When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` under the Schedule tab.
-
-### Importing Schedule
-
-Allows users to import `.ics` files, similar to importing timetable from NUSMods into Google Calendars.
-
-Example:
-* In any tab, input `import` will open file browser to prompt the user for a `.ics` file.
-
-### Exiting Application: `exit`
-
-Terminates the application
-
-Format: `exit`
-
-Example:
-* exit in any tabs terminates the application.
-
-### Handling invalid commands
-
-Handles error messages thrown by tabs (in the case of invalid commands passed to said pages control), and displays a user friendly message.
-
-Examples:
-* `/schedule create` will print the error message as such:
-```
-“Looks like ‘Schedule’ does not have any commands called ‘create’. Below are the available commands:
-<!--error message that schedule returns-->
-```
 

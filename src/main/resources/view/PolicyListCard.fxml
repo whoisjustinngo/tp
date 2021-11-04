@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" prefWidth="0.0" stylesheets="@AdvyzeTheme.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="15.0" />
          <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
          <ColumnConstraints hgrow="SOMETIMES" percentWidth="25.0" />
          <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
@@ -22,11 +22,11 @@
         <Insets bottom="5.0" left="15.0" right="5.0" top="20.0" />
       </padding>
     </VBox>
-      <Label fx:id="id" styleClass="cell_small_label" text="\$id" wrapText="true" />
-   <Label fx:id="insurer" styleClass="cell_small_label" text="\$insurer" wrapText="true" GridPane.columnIndex="1" />
-   <Label fx:id="policyName" styleClass="cell_small_label" text="\$policyName" wrapText="true" GridPane.columnIndex="2" />
-   <Label fx:id="policyNumber" styleClass="cell_small_label" text="\$policyNumber" wrapText="true" GridPane.columnIndex="3" />
-   <Label fx:id="commission" styleClass="cell_small_label" text="\$commission" wrapText="true" GridPane.columnIndex="4" />
+      <Label fx:id="id" styleClass="cell_small_label" text="\$id" />
+   <Label fx:id="insurer" styleClass="cell_small_label" text="\$insurer" GridPane.columnIndex="1" />
+   <Label fx:id="policyName" styleClass="cell_small_label" text="\$policyName" GridPane.columnIndex="2" />
+   <Label fx:id="policyNumber" styleClass="cell_small_label" text="\$policyNumber" GridPane.columnIndex="3" />
+   <Label fx:id="commission" styleClass="cell_small_label" text="\$commission" GridPane.columnIndex="4" />
       <rowConstraints>
          <RowConstraints />
       </rowConstraints>
