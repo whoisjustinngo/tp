@@ -353,6 +353,8 @@ Format: `delete [INDEX]`
 * The index refers to the index number shown in the Event list.
 * The index must be a positive integer 1, 2, 3, ...
 
+*Potential enhancement: to delete multiple Events at once which was already added into the Schedule.*
+
 ### Find Event command: `find`
 
 Find the Event which has the specified keyword in the description
