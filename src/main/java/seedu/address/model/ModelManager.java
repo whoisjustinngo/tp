@@ -30,7 +30,7 @@ import seedu.address.storage.IcsScheduleStorage;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
+    private static final Index defaultSelectedPersonIndex = Index.fromZeroBased(0);
     private final AddressBook addressBook;
     private final ClientAnalytics clientAnalytics;
     private final UserPrefs userPrefs;
@@ -59,8 +59,9 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTodos = new FilteredList<>(this.addressBook.getTodoList());
         filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
+        selectedPersonIndex = new SimpleIntegerProperty(defaultSelectedPersonIndex.getOneBased());
         selectedPerson = new FilteredList<>(this.addressBook.getPersonList());
-        selectedPersonIndex = new SimpleIntegerProperty(1);
+        setDefaultSelection(selectedPerson);
     }
 
     public ModelManager() {
@@ -69,6 +70,15 @@ public class ModelManager implements Model {
 
     // =========== UserPrefs
     // ==================================================================================
+
+
+    private void setDefaultSelection(FilteredList<Person> selectedPerson) {
+        // set default select person to be the first person in list
+        if (selectedPerson.size() > 1) {
+            Person firstPerson = selectedPerson.get(defaultSelectedPersonIndex.getZeroBased());
+            selectedPerson.setPredicate((person)->person.equals(firstPerson));
+        }
+    }
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
