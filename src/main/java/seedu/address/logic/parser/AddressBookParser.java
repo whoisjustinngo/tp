@@ -141,10 +141,11 @@ public class AddressBookParser {
             switch (tab) {
 
             case DASHBOARD_TAB_ID:
-                // fallthrough
-            case DETAILS_TAB_ID:
                 throw new ParseException(MESSAGE_INVALID_TAB);
 
+            case DETAILS_TAB_ID:
+                this.targetTab = toTabPrefix(CONTACTS_TAB_ID);
+                // fallthrough
             case CONTACTS_TAB_ID:
                 return new ListCommand();
 
