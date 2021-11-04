@@ -42,7 +42,7 @@ public class ScheduleContainsDatePredicate implements Predicate<Schedule> {
         if (Integer.parseInt(date[0]) > 31 || Integer.parseInt(date[0]) < 0) {
             throw new InvalidScheduleInputException();
         }
-        if (Integer.parseInt(date[1]) > 31 || Integer.parseInt(date[1]) < 0) {
+        if (Integer.parseInt(date[1]) > 12 || Integer.parseInt(date[1]) < 0) {
             throw new InvalidScheduleInputException();
         }
         if (Integer.parseInt(date[2]) < 0) {
