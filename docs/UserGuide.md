@@ -291,6 +291,10 @@ Example:
 
 ## Scheduling an Event
 
+### Displaying of Events
+
+By default, the Schedule Tabs will **ONLY** show upcoming Events. If you would like to display all the Events in the database or show only the past events, we have the following commands to customise the your Schedule Tab.
+
 ### View all events: `list`
 
 Shows all the added Events
