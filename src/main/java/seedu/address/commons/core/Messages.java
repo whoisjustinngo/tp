@@ -22,5 +22,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_TAB = "Command entered from an invalid tab. Switch tabs and try again.";
     public static final String MESSAGE_INVALID_TODO_DISPLAYED_INDEX = "The todo index provided is invalid";
     public static final String MESSAGE_INVALID_COMMISSION_VALUE_NEGATIVE = "Commission cannot be negative:%.2f";
+    public static final String MESSAGE_INVALID_SCHEUDLE_INPUT = "Invalid input. Please check and try again.";
 
 }

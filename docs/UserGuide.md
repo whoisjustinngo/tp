@@ -295,7 +295,19 @@ Example:
 
 Shows all the added Events
 
--   Events are first ordered by date, then the order of time on that day itself
+* Events will be ordered by date, then the order of time on that day itself
+
+### View all upcoming events: `showupcoming`
+
+Shows all the upcoming Events
+
+* Upcoming Events will be ordered by date, then the order of time on that day itself
+
+### View all upcoming events: `showpast`
+
+Shows all the past Events
+
+* Past Events will be ordered by date, then the order of time on that day itself
 
 ### Add Event command: `add`
 
