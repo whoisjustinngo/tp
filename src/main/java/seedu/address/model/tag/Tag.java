@@ -8,10 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
-
+    public static final String MESSAGE_INVALID_TAG_LENGTH = "Tags names should be at most 50 characters";
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-
+    public static final int MAX_TAG_LENGTH = 50;
     public final String tagName;
 
     /**
@@ -32,6 +32,12 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if a given string is a valid tag length.
+     */
+    public static boolean isValidTagLength(String test) {
+        return test.length() <= MAX_TAG_LENGTH;
+    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

@@ -198,12 +198,14 @@ Format: `delete INDEX_OF_GOAL_TO_DELETE`
 Format: `list`  
 * Restores the contacts tab to its default view
 * Contacts are listed in alphabetical order of their names
+* Using `list` in details tab will also show full list of contacts
 
 ### Adding a contact: `add`
 Format: `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]`
 
 Note:  
-* Only supports adding relationships "friend" and "client" in v1.3  
+* Only supports adding relationships "friend" and "client" in v1.3
+* Tags can be at most 50 characters
 * Add a contact as a client to add policies and notes  
 * Learn how to add notes to contacts [here](#adding-a-note-to-a-contact-note)
 

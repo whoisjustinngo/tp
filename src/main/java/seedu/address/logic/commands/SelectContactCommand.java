@@ -40,7 +40,6 @@ public class SelectContactCommand extends Command {
         }
         Person personToSelect = lastShownList.get(index.getZeroBased());
         // show the number index in PersonDetailedPanel
-
         Predicate<Person> predicate = person -> person.equals(personToSelect);
         model.updateSelectedPersonIndex(index.getOneBased());
         model.updateSelectedPersonList(predicate);
