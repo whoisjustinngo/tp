@@ -215,8 +215,8 @@ public class ParserUtil {
     public static String parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
-        if (!Todo.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Todo.MESSAGE_DESCRIPTION_CONSTRAINTS);
+        if (!Todo.isValidDescriptionLength(trimmedDescription)) {
+            throw new ParseException(Todo.MESSAGE_INVALID_DESCRIPTION_LENGTH);
         }
         return trimmedDescription;
     }

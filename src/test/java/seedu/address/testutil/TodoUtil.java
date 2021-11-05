@@ -44,8 +44,8 @@ public class TodoUtil {
      */
     public static String getEditTodoDescriptorDetails(EditTodoCommand.EditTodoDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getDescription()
-                .ifPresent(description -> sb.append(PREFIX_DESCRIPTION).append(description).append(" "));
+        descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION).append(description)
+                .append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
