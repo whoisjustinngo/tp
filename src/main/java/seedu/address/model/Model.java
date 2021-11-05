@@ -67,6 +67,11 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
+     * Gets the {@code Analytics} object for this addressBook.
+     */
+    ClientAnalytics getAnalytics();
+
+    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
@@ -89,12 +94,6 @@ public interface Model {
     boolean hasTodo(Todo todo);
 
     /**
-     * Returns true if a CustomGoal with the same description, goal, and/or endDate and/or endTime as
-     * {@code toAdd} exists in the list of customGoals.
-     */
-    boolean hasCustomGoal(CustomGoal toAdd);
-
-    /**
      * Returns true if a Schedule with the same description, date and time as
      * {@code schedule} exists in the list of Schedule.
      */
@@ -105,6 +104,12 @@ public interface Model {
      * of schedules.
      */
     boolean hasScheduleClash(Schedule schedule);
+
+    /**
+     * Returns true if a CustomGoal with the same description, goal, and/or endDate and/or endTime as
+     * {@code toAdd} exists in the list of customGoals.
+     */
+    boolean hasCustomGoal(CustomGoal toAdd);
 
     /**
      * Deletes the given person. The person must exist in the address book.
@@ -120,11 +125,6 @@ public interface Model {
      * Deletes the given todo. The todo must exist in the address book.
      */
     void deleteSchedule(Schedule target);
-
-    /**
-     * Adds the given CustomGoal, which must not already exist in the list of customGoals.
-     */
-    void addCustomGoal(CustomGoal toAdd);
 
     /**
      * Adds the given person. {@code person} must not already exist in the address
@@ -145,17 +145,17 @@ public interface Model {
     void addSchedule(Schedule schedule);
 
     /**
+     * Adds the given CustomGoal, which must not already exist in the list of customGoals.
+     */
+    void addCustomGoal(CustomGoal toAdd);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book. The person identity of
      * {@code editedPerson} must not be the same as another existing person in the
      * address book.
      */
     void setPerson(Person target, Person editedPerson);
-
-    /**
-     * Gets the {@code Analytics} object for this addressBook.
-     */
-    ClientAnalytics getAnalytics();
 
     /**
      * Replaces the given todo {@code target} with {@code editedTodo}.
@@ -171,7 +171,6 @@ public interface Model {
      * the address book.
      */
     void setSchedule(Schedule target, Schedule editedSchedule);
-
 
     /**
      * Returns an unmodifiable view of the filtered person list
@@ -196,7 +195,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
 
     /**
      * Updates the filter of the selected person list to filter by the given
@@ -243,7 +241,6 @@ public interface Model {
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-
     void updateFilteredScheduleList(Predicate<Schedule> predicate);
 
     void updateCustomGoal(Index goalToUpdate, float valueToUpdateBy);
