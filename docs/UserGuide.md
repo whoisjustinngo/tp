@@ -392,6 +392,7 @@ Format: `add d/DESCRIPTION [t/TAG]...`
 
 * The description must not be more than 70 characters in length.
 * A Todo can have any number of tags (including 0)
+* Each tag must not be more than 50 characters in length.
 
 Examples:
 * `add d/read book`
