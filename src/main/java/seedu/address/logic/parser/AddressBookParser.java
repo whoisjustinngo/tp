@@ -4,6 +4,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_ERROR_PARSING_TAB;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TAB;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.commons.core.Tab.CONTACTS;
+import static seedu.address.commons.core.Tab.DASHBOARD;
+import static seedu.address.commons.core.Tab.SCHEDULE;
+import static seedu.address.commons.core.Tab.TODOS;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,6 +49,11 @@ public class AddressBookParser {
             .compile("(?<tab>\\S+) (?<commandWord>\\S+)(?<arguments>.*)");
     private static final Pattern CONTEXTUAL_COMMAND_FORMAT = Pattern
             .compile("(?<prefixTab>\\S+) /(?<tab>\\S+) (?<commandWord>\\S+)(?<arguments>.*)");
+
+    private static final String TABS_ALL_EXCEPT_DETAILS = "Dashboard, Contacts, Schedule or Todos";
+    private static final String TABS_ALL_EXCEPT_DASHBOARD = "Contacts, Details, Schedule or Todos";
+    private static final String TABS_CONTACTS_SCHEDULE_TODOS = "Contacts, Schedule or Todos";
+    private static final String TABS_CONTACTS_DETAILS = "Contacts or Details";
 
     private Tab targetTab;
 
@@ -170,7 +179,7 @@ public class AddressBookParser {
             return new AddCommandParser().parse(arguments);
 
         case DETAILS:
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, TABS_ALL_EXCEPT_DETAILS));
 
         case SCHEDULE:
             return new AddScheduleCommandParser().parse(arguments);
@@ -188,13 +197,13 @@ public class AddressBookParser {
         switch (tab) {
 
         case DASHBOARD:
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, TABS_ALL_EXCEPT_DASHBOARD));
 
         case CONTACTS:
             // fallthrough
 
         case DETAILS:
-            this.targetTab = Tab.CONTACTS;
+            this.targetTab = CONTACTS;
             return new ListCommand();
 
         case SCHEDULE:
@@ -209,14 +218,14 @@ public class AddressBookParser {
     }
 
     private Command handleEditCommand(Tab tab, String arguments) throws ParseException {
-        // Edit command is valid on all tabs except Dashboard and Details
+        // Edit command is valid on Contacts, Schedule and Todos tabs
         switch (tab) {
 
         case DASHBOARD:
             // fallthrough
 
         case DETAILS:
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, TABS_CONTACTS_SCHEDULE_TODOS));
 
         case CONTACTS:
             return new EditCommandParser().parse(arguments);
@@ -243,7 +252,7 @@ public class AddressBookParser {
             return new DeleteCommandParser().parse(arguments);
 
         case DETAILS:
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, TABS_ALL_EXCEPT_DETAILS));
 
         case SCHEDULE:
             return new DeleteScheduleCommandParser().parse(arguments);
@@ -257,14 +266,14 @@ public class AddressBookParser {
     }
 
     private Command handleFindCommand(Tab tab, String arguments) throws ParseException {
-        // Find command is valid on all tabs except Dashboard and Details
+        // Find command is valid on Contacts, Schedule and Todos tabs
         switch (tab) {
 
         case DASHBOARD:
             // fallthrough
 
         case DETAILS:
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, TABS_CONTACTS_SCHEDULE_TODOS));
 
         case CONTACTS:
             return new FindCommandParser().parse(arguments);
@@ -281,14 +290,14 @@ public class AddressBookParser {
     }
 
     private Command handleFilterCommand(Tab tab, String arguments) throws ParseException {
-        // Filter command is valid on all tabs except Dashboard and Details
+        // Filter command is valid on Contacts, Schedule and Todos tabs
         switch (tab) {
 
         case DASHBOARD:
             // fallthrough
 
         case DETAILS:
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, TABS_CONTACTS_SCHEDULE_TODOS));
 
         case CONTACTS:
             return new FilterCommandParser().parse(arguments);
@@ -306,7 +315,7 @@ public class AddressBookParser {
 
     private Command handleUpdateCustomGoalCommand(Tab tab, String arguments) throws ParseException {
         // Update Custom Goal command is only valid on Dashboard tab
-        switch(tab) {
+        switch (tab) {
 
         case DASHBOARD:
             return new UpdateCustomGoalCommandParser().parse(arguments);
@@ -321,7 +330,7 @@ public class AddressBookParser {
             // fallthrough
 
         case TODOS:
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, DASHBOARD));
 
         default:
             throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
@@ -346,7 +355,7 @@ public class AddressBookParser {
 
         case TODOS:
             // fallthrough
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, CONTACTS));
 
         default:
             throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
@@ -371,7 +380,7 @@ public class AddressBookParser {
             // fallthrough
 
         case TODOS:
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, TABS_CONTACTS_DETAILS));
 
         default:
             throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
@@ -380,7 +389,7 @@ public class AddressBookParser {
 
     private Command handleEditStatusCommand(Tab tab, String arguments) throws ParseException {
         // Edit Status command is only valid on Contacts and Details tabs
-        switch(tab) {
+        switch (tab) {
 
         case TODOS:
             // fallthrough
@@ -389,7 +398,7 @@ public class AddressBookParser {
             // fallthrough
 
         case DASHBOARD:
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, TABS_CONTACTS_DETAILS));
 
         case CONTACTS:
             // fallthrough
@@ -413,7 +422,7 @@ public class AddressBookParser {
             // fallthrough
 
         case TODOS:
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, TABS_CONTACTS_DETAILS));
 
         case CONTACTS:
             // fallthrough
@@ -428,7 +437,7 @@ public class AddressBookParser {
 
     private Command handleAddNoteCommand(Tab tab, String arguments) throws ParseException {
         // Add Note command is only valid on Contacts and Details tabs
-        switch(tab) {
+        switch (tab) {
 
         case TODOS:
             // fallthrough
@@ -437,7 +446,7 @@ public class AddressBookParser {
             // fallthrough
 
         case DASHBOARD:
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, TABS_CONTACTS_DETAILS));
 
         case CONTACTS:
             // fallthrough
@@ -452,7 +461,7 @@ public class AddressBookParser {
 
     private Command handleShowUpcomingEventsCommand(Tab tab) throws ParseException {
         // Show Upcoming Events command is only valid on Schedule tab
-        switch(tab) {
+        switch (tab) {
 
         case TODOS:
             // fallthrough
@@ -464,7 +473,7 @@ public class AddressBookParser {
             // fallthrough
 
         case DETAILS:
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, SCHEDULE));
 
         case SCHEDULE:
             return new ShowUpcomingEventsCommand();
@@ -476,7 +485,7 @@ public class AddressBookParser {
 
     private Command handleShowPastEventsCommand(Tab tab) throws ParseException {
         // Show Past Events command is only valid on Schedule tab
-        switch(tab) {
+        switch (tab) {
 
         case TODOS:
             // fallthrough
@@ -488,7 +497,7 @@ public class AddressBookParser {
             // fallthrough
 
         case DETAILS:
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, SCHEDULE));
 
         case SCHEDULE:
             return new ShowPastEventsCommand();
@@ -515,7 +524,7 @@ public class AddressBookParser {
             // fallthrough
 
         case CONTACTS:
-            throw new ParseException(MESSAGE_INVALID_TAB);
+            throw new ParseException(String.format(MESSAGE_INVALID_TAB, TODOS));
 
         default:
             throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
