@@ -6,7 +6,7 @@ title: User Guide
 Advyze is a desktop app for tech-savvy student financial advisors to keep track of their clients and their busy school schedule, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 ---
 
