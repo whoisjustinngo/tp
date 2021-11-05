@@ -57,8 +57,8 @@ class AddTodoCommandTest {
         AddTodoCommand addTodoCommand = new AddTodoCommand(validTodo);
         AddTodoCommandTest.ModelStub modelStub = new AddTodoCommandTest.ModelStubWithTodo(validTodo);
 
-        assertThrows(CommandException.class, AddTodoCommand.MESSAGE_DUPLICATE_TODO, () ->
-                addTodoCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddTodoCommand.MESSAGE_DUPLICATE_TODO,
+                () -> addTodoCommand.execute(modelStub));
     }
 
     @Test

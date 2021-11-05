@@ -40,8 +40,8 @@ public class AddTodoCommandParserTest {
         // multiple tags - all accepted
         Todo expectedTodoMultipleTags = new TodoBuilder(TRAVEL).withTags(VALID_TAG_LEARNING, VALID_TAG_LEISURE)
                 .build();
-        assertParseSuccess(parser, DESCRIPTION_TRAVEL
-                + TAG_DESC_LEARNING + TAG_DESC_LEISURE, new AddTodoCommand(expectedTodoMultipleTags));
+        assertParseSuccess(parser, DESCRIPTION_TRAVEL + TAG_DESC_LEARNING + TAG_DESC_LEISURE,
+                new AddTodoCommand(expectedTodoMultipleTags));
     }
 
     @Test
@@ -56,15 +56,14 @@ public class AddTodoCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTodoCommand.MESSAGE_USAGE);
 
         // missing description prefix
-        assertParseFailure(parser, VALID_DESCRIPTION_READ,
-                expectedMessage);
+        assertParseFailure(parser, VALID_DESCRIPTION_READ, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid tag
-        assertParseFailure(parser, DESCRIPTION_TRAVEL
-                + INVALID_TAG_DESC + VALID_TAG_LEISURE, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, DESCRIPTION_TRAVEL + INVALID_TAG_DESC + VALID_TAG_LEISURE,
+                Tag.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + DESCRIPTION_READ,
