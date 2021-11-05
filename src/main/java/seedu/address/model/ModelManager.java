@@ -71,7 +71,6 @@ public class ModelManager implements Model {
     // =========== UserPrefs
     // ==================================================================================
 
-
     private void setDefaultSelection(FilteredList<Person> selectedPerson) {
         // set default select person to be the first person in list
         if (selectedPerson.size() > 1) {
@@ -146,6 +145,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasSchedule(Schedule schedule) {
+        requireNonNull(schedule);
+        return addressBook.hasSchedule(schedule);
+    }
+
+    @Override
+    public boolean hasScheduleClash(Schedule schedule) {
+        requireNonNull(schedule);
+        return addressBook.hasScheduleClash(schedule);
+    }
+
+    @Override
     public boolean hasCustomGoal(CustomGoal toAdd) {
         requireNonNull(toAdd);
         return addressBook.hasCustomGoal(toAdd);
@@ -167,23 +178,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addCustomGoal(CustomGoal toAdd) {
-        addressBook.addCustomGoal(toAdd);
-    }
-
-    @Override
     public void deleteCustomGoal(Index goalToDelete) {
         addressBook.deleteCustomGoal(goalToDelete);
-    }
-
-    @Override
-    public void updateCustomGoal(Index goalToUpdate, float valueToUpdateBy) {
-        addressBook.updateCustomGoal(goalToUpdate, valueToUpdateBy);
-    }
-
-    @Override
-    public int getNumOfCustomGoals() {
-        return this.getFilteredCustomGoalList().size();
     }
 
     @Override
@@ -203,6 +199,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addCustomGoal(CustomGoal toAdd) {
+        addressBook.addCustomGoal(toAdd);
+    }
+
+    @Override
+    public int getNumOfCustomGoals() {
+        return this.getFilteredCustomGoalList().size();
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
@@ -216,8 +222,19 @@ public class ModelManager implements Model {
         addressBook.setTodo(target, editedTodo);
     }
 
-    // =========== Filtered Person List Accessors
+    @Override
+    public void setSchedule(Schedule target, Schedule editedSchedule) {
+        requireAllNonNull(target, editedSchedule);
 
+        addressBook.setSchedule(target, editedSchedule);
+    }
+
+    @Override
+    public void updateCustomGoal(Index goalToUpdate, float valueToUpdateBy) {
+        addressBook.updateCustomGoal(goalToUpdate, valueToUpdateBy);
+    }
+
+    // =========== Filtered Person List Accessors
     // =============================================================
 
     /**
@@ -264,8 +281,8 @@ public class ModelManager implements Model {
         requireNonNull(i);
         selectedPersonIndex.set(i);
     }
-    // =========== Filtered Todo List Accessors
 
+    // =========== Filtered Todo List Accessors
     // =============================================================
 
     /**
@@ -277,6 +294,15 @@ public class ModelManager implements Model {
         return filteredTodos;
     }
 
+    @Override
+    public void updateFilteredTodoList(Predicate<Todo> predicate) {
+        requireNonNull(predicate);
+        filteredTodos.setPredicate(predicate);
+    }
+
+    // =========== Filtered Schedule List Accessors
+    // =============================================================
+
     /**
      * Returns an unmodifiable view of the list of {@code Schedule} backed by the
      * internal list
@@ -287,20 +313,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<CustomGoal> getFilteredCustomGoalList() {
-        return filteredCustomGoals;
-    }
-
-    @Override
-    public void updateFilteredTodoList(Predicate<Todo> predicate) {
-        requireNonNull(predicate);
-        filteredTodos.setPredicate(predicate);
-    }
-
-    @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
         requireNonNull(predicate);
         filteredSchedule.setPredicate(predicate);
+    }
+
+    // =========== Filtered Custom Goal List Accessors
+    // =============================================================
+
+    @Override
+    public ObservableList<CustomGoal> getFilteredCustomGoalList() {
+        return filteredCustomGoals;
     }
 
     @Override
@@ -319,25 +342,6 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook) && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
-    }
-
-    @Override
-    public boolean hasSchedule(Schedule schedule) {
-        requireNonNull(schedule);
-        return addressBook.hasSchedule(schedule);
-    }
-
-    @Override
-    public boolean hasScheduleClash(Schedule schedule) {
-        requireNonNull(schedule);
-        return addressBook.hasScheduleClash(schedule);
-    }
-
-    @Override
-    public void setSchedule(Schedule target, Schedule editedSchedule) {
-        requireAllNonNull(target, editedSchedule);
-
-        addressBook.setSchedule(target, editedSchedule);
     }
 
     @Override
