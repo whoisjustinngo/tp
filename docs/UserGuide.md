@@ -197,17 +197,17 @@ Format: `delete INDEX_OF_GOAL_TO_DELETE`
 ### Viewing all contacts: `list`  
 Format: `list`  
 * Restores the contacts tab to its default view
-* Contacts are listed in alphabetical order of their names
 * Using `list` in details tab will also show full list of contacts
 
 ### Adding a contact: `add`
 Format: `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]`
 
 Note:  
-* Only supports adding relationships "friend" and "client" in v1.3
+* A contact can either have a relationship `client` or `friend`, policies can only be added for clients
 * Tags can be at most 50 characters
-* Add a contact as a client to add policies and notes  
-* Learn how to add notes to contacts [here](#adding-a-note-to-a-contact-note)
+* Add a contact with the argument `r/client` to add policies to that contact
+* Learn how to add notes for contacts [here](#adding-a-note-to-a-contact-note)
+* Learn how to add policies for clients [here](#adding-a-policy-to-a-contact-policy)
 
 Examples:  
 * Adding a friend: `add n/bobby r/friend p/12345678 e/example@gmail.com a/NUS`
@@ -224,20 +224,6 @@ Examples:
 Changing a friend to a client: `edit 1 r/client`  
 Changing a contact's phone and email: `edit 1 p/12345678 e/newEmail@gmail.com`  
 Changing a contact's tags: `edit 2 t/nus t/dancer`
-
-### Client Status: `status`
-![](images/fresh-status.png)  
-Format: `status INDEX STATUS`  
-Every client has a status that shows which stage in the sales process each client is in right now.
-Status look like tags but have a dark blue background as show in the image above.
-The valid statuses are: [fresh, approached, pitched, negotiated, closed, lost]  
-* New contacts created in the contacts list are given a "fresh" status to signify that the client is a fresh lead.
-* A summary of all client's statuses is shown in the [dashboard](#Dashboard) tab
-* Friends do not have statuses
-
-Examples of changing status:  
-* `status 1 approached`
-* `status 2 lost`
 
 ### Deleting a contact: `delete`
 Format: `delete INDEX`  
@@ -276,33 +262,54 @@ Selects a contact at the specified INDEX to view policies and notes
 
 Example: `select 2`
 
+### Client Status: `status`
+![](images/fresh-status.png)  
+Format: `status INDEX STATUS`  
+Every client has a status that shows which stage in the sales process each client is in right now.
+Status look like tags but have a dark blue background as show in the image above.
+The valid statuses are: [fresh, approached, pitched, negotiated, closed]
+* New contacts created in the contacts list are given a "fresh" status to signify that the client is a fresh lead.
+* A summary of all client's statuses is shown in the [dashboard](#Dashboard) tab
+* Friends do not have statuses
+
+Examples of changing status:
+* `status 1 approached`
+* `status 2 lost`
+
 ### Adding a policy to a contact: `policy`
 Format: `policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`  
-Add a policy to a contact at the specified INDEX  show in the Contact list  
+Adds a policy to a client at the specified INDEX as shown in the contact list
+* Commission cannot be a negative number  
+* You cannot add policies to friends, use the `edit` command to change the relationship of a `friend` to a `client`  
 Example:  
-`policy 1 insurer/AIG num/1231 n/Critical illness comm/100`
+`policy 1 insurer/AIG num/1231 n/Critical illness comm/100.99`
 
 ### Adding a note to a contact: `note`
-Format: `note INDEX MESSAGE`
-Add a note to a contact at the specified INDEX show in the Contact list  
+Format: `note INDEX MESSAGE`  
+Adds a note to a contact at the specified INDEX as shown in the contact list  
 Example:  
 `note 1 Income 100k, Coverage insufficent`
 
 ![details_tab](images/details-tab-v1.3.png)
 
+### Deleting a note from a contact: `Coming Soon`
+### Deleting a policy from a contact: `Coming Soon`  
+Deleting contact details will be implemented in future versions. For now, you can delete or edit policies and notes manually
+in the file `data/addressbook.json` if you made a mistake adding such client details.
+
 ## Summary of commands for contacts and details tab
 
-| Command      | Contacts tab | Details tab |
-| ----------- | ----------- | ---------- |
-| list | :heavy_check_mark: | :heavy_check_mark:|
-| add | :heavy_check_mark: | :x:|
-| edit   | :heavy_check_mark: |:x:|
-| delete   | :heavy_check_mark:        |:x:|
-| filter  | :heavy_check_mark:       |:x:|
-| status   | :heavy_check_mark:        |:heavy_check_mark:|
-| select   | :heavy_check_mark:       |:heavy_check_mark:|
-| policy   | :heavy_check_mark:        |:heavy_check_mark:|
-| note   | :heavy_check_mark:        |:heavy_check_mark:|
+| Command      | Format |Contacts tab | Details tab |
+| ----------- | ----------- | ----------- | ---------- |
+| list | `list`|:heavy_check_mark: | :heavy_check_mark:|
+| add | `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]`|:heavy_check_mark: | :x:|
+| edit |`edit INDEX [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`| :heavy_check_mark: |:x:|
+| delete |`delete INDEX`| :heavy_check_mark:|:x:|
+| filter  |`filter [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`| :heavy_check_mark:|:x:|
+| select   |`select INDEX` | :heavy_check_mark:|:heavy_check_mark:|
+| status  |`status INDEX STATUS`  | :heavy_check_mark:|:heavy_check_mark:|
+| policy   |`policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`| :heavy_check_mark:|:heavy_check_mark:|
+| note   |`note INDEX MESSAGE` | :heavy_check_mark:|:heavy_check_mark:|
 
 
 
