@@ -27,9 +27,6 @@ Given below are my contributions to the project.
     1. `find` - to find Events which contains the given keyword in the description attribute.
     1. `delete` - to delete an Event which was added into the schedule.
 
-<!-- * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys. -->
-
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=rickyaandrew&tabRepo=AY2122S1-CS2103-T14-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Enhancements to existing features**:
@@ -46,7 +43,8 @@ Given below are my contributions to the project.
     * Added implementation for `add` Event into the schedule (Pull requests [\#90](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/90))
     * Added implementation for `find` Event, `edit` Event, Add tags in Events, `filter` Events and Add recurring Events (Pull requests [\#108](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/108)).
     * Added implementation viewing past and upcoming Events only (Pull requests [\#196](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/196)).
+    * Added implementation for `Storage` (Pull requests [\#200](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/200)).
 
 * **Community**:
-  * Included some test cases and removed unused files (Pull requests [\#195](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/195)). Increased coverage by 4.13%.
+  * Included some test cases and remove unused files (Pull requests [\#195](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/195)). Increased coverage by 4.13%.
   * Resolved various bug issues (Pull requests [\#185](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/185)).
