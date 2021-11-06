@@ -260,7 +260,8 @@ Filter all persons according to their attributes (case-insensitive) and displays
 * Filter for attribute: name must match whole word
   * All other attributes are simple keyword matches
 
-![contacts_tab](images/contacts-tab-v1.3.png)  
+Expected result of `filter r/client`:
+![contacts_tab](images/filter-contacts-v1.4.png)  
 
 ## Details  
 
@@ -380,7 +381,8 @@ Here are some of the examples to use the command lines.
 
 **Note:** It is not compulsory to include all fields. Only include those fields which you would like to filter.
 
-![schedule_tab](images/schedule-tab-v1.3.png)
+Expected result of `filter t/school`:
+![schedule_tab](images/filter-events-v1.4.png)
 
 ## Todos
 

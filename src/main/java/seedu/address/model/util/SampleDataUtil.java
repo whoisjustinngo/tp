@@ -33,10 +33,10 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Relationship("client"), new Phone("87438807"),
                     new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                    getTagSet("neighbours")),
+                    getTagSet("dancer", "NUS")),
             new Person(new Name("Bernice Yu"), new Relationship("client"), new Phone("99272758"),
                     new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getTagSet("colleagues"),
+                    getTagSet("McKinsey"),
                     getPolicySet(
                             new Policy(new Name("Prudential"), 2231, new Name("Hospitalisation"), 100)),
                     Status.valueOf("FRESH"),
@@ -46,10 +46,10 @@ public class SampleDataUtil {
                     getTagSet("relatives")),
             new Person(new Name("David Li"), new Relationship("friend"), new Phone("91031282"),
                     new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getTagSet("classmates")),
+                    getTagSet("NTU")),
             new Person(new Name("Irfan Ibrahim"), new Relationship("friend"), new Phone("92492021"),
                     new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                    getTagSet("classmates")),
+                    getTagSet("SMU")),
             new Person(new Name("Roy Balakrishnan"), new Relationship("friend"), new Phone("92624417"),
                     new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
                     getTagSet("colleagues", "AIG"))
