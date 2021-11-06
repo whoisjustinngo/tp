@@ -155,6 +155,7 @@ public class AddressBookParser {
         }
     }
 
+    //@@author SpdPnd98
     /**
      * Always switches to where it last ran the context.
      * @return
@@ -168,6 +169,7 @@ public class AddressBookParser {
         return new TabCommandParser().parse(this.targetTab.toString());
     }
 
+    //@@author kslui99
     private Command handleAddCommand(Tab tab, String arguments) throws ParseException {
         // Add command is valid on all tabs except Details
         switch (tab) {
