@@ -187,14 +187,14 @@ On top of that, `Schedule` will all be arranged in the order starting from the e
 
 #### Implementation
 The `ModelManager` will create a new `ClientAnalytics` object and pass in the `AddressBook` in the `ModelManager`
-as an argument. The `ClientAnalytics` object will then attach a listener to the `UniquePersonList` that corresponds to
+as an argument. The `ClientAnalytics` object will then attach a listener to the `UniquePersonList` (which it will access via the `AddressBook` that was passed in) that corresponds to
 the list of all entries in the contacts book. The `ClientAnalytics` object has an internal `TrackedValueList` which is essentially a 
-wrapper class for the `ObservableList<Integer>` that contains the counts of each status.
+wrapper class for the `ObservableList<Integer>` that contains the counts of each `Status`.
 
-Subsequently, on the front-end an `AnalyticsPanel` is created which is essentially just a simple table with the various `Status` as the headings
+Subsequently, on the front-end an `AnalyticsPanel` is created which essentially just depicts (on the front end side) a simple table with the various `Status` as the headings
 and the counts of the number `Person`s that have the corresponding `Status`. The `AnalyticsPanel` calls the `getValues()` method of the
 `AddressBook`'s `ClientAnalytics` to obtain the internal `ObservableList<Integer>` that tracks the counts of each status. The `AnalyticsPanel`
-then attaches a listener to this `ObservableList<Integer>`
+then attaches a listener to this `ObservableList<Integer>`.
 
 Upon any change to the list of `Person`s (new person added, existing person edited, existing person deleted), the `ClientAnalytics#updateAnalytics()` method
 will be automatically called (because of the listener). The update essentially involves parsing the entire list of contacts again and
@@ -208,11 +208,11 @@ The *observer design pattern* was heavily used here so that any update front-end
 other sections like the `ToDo`s, `Person`s, and `Event`s, it also ensured that every update to any status in the client list was updated and displayed
 immediately on the dashboard. This also reduced the need for classes relying on other classes telling them to update the values before doing so.
 
-Updating the values was also designed to be a re-counting instead of manually checking what has changed and just make the necessary changes to the few affected
+Updating the values was also designed to be re-counting instead of manually checking what has changed and just make the necessary changes to the few affected
 `Status`(es) because it is less prone to bugs where the counts of the `Status` are inaccurate. If the check and change approach was adopted instead of the re-count approach the code for updating would be
 a lot more complicated since now there needs to be more checks, for example for what was the previous `Status` and what is the new `Status` in the case of edit, and
 what was the `Status` of the deleted contact in the case where contacts are deleted. Thus,the decision was made to use the simpler, cleaner approach, which,
-although seemingly inefficient since it runs in O(number of people in persons list) vs O(1) for the check and update approach, the time spent is negligible and hence
+although less efficient since it runs in O(number of people in persons list) vs O(1) for the check and update approach, the time spent is negligible and hence
 does not warrant the optimisation.
 
 
