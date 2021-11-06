@@ -318,13 +318,13 @@ Shows all the added Events
 
 * Events will be ordered by date, then the order of time on that day itself
 
-### View all upcoming events: `showupcoming`
+### View all upcoming events: `showupcoming` (possible future implementation)
 
 Shows all the upcoming Events
 
 * Upcoming Events will be ordered by date, then the order of time on that day itself
 
-### View all upcoming events: `showpast`
+### View all upcoming events: `showpast` (possible future implementation)
 
 Shows all the past Events
 

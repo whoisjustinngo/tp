@@ -312,7 +312,7 @@ Once a date is given to recur daily, weekly or yearly, it will first check for a
 
  * This is done implementing another attribute for the `Event`, which is the recurring date. If the recurring date is present, then `Event` is a recurring `Event` otherwise it need not recur. Another attribute called `recurType` will determine if it recurs daily (D), weekly (W) or yearly (Y). `Event` will recur until it reaches the recur date.
 
-### \[Proposed for v1.3\] Viewing only past or future Events
+### \[Proposed for future implementation\] Viewing only past or future Events
 
 In the event when user only want to look at he past Events, user will be able to do so using the command line `showpast`. This command line helps to retrieve only those Events which have already in the past (comparing to today's date). 
 
