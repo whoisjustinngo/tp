@@ -272,17 +272,23 @@ Expected result of `filter r/client`:
 
 ## Details tab
 
+This tab allows the user to view detailed policy information and notes for their clients.
+
 ### Viewing a contact's policies and notes
 You can view a contact's policies and notes by using the details tab: `tab details` or `list`
 
-### Selecting a contact to view details: `select`  
+### Selecting a contact to view their details: `select`  
+
+Selects a contact (who is a client) at a specified INDEX to view their policies and notes that you have written on them.
+
 Format: `select INDEX`  
-Selects a contact at the specified INDEX to view policies and notes
 
 * The index refers to the index number shown in the Contact list.
 * The index must be a positive integer 1, 2, 3, … and a valid index in the contact list
 
-Example: `select 2`
+Example:
+
+* `select 2`
 
 ### Adding a policy to a contact: `policy`
 Format: `policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`  
