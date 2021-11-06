@@ -260,12 +260,13 @@ Filter all persons according to their attributes (case-insensitive) and displays
 * Filter for attribute: name must match whole word
   * All other attributes are simple keyword matches
 
-![contacts_tab](images/contacts-tab-v1.3.png)  
+Expected result of `filter r/client`:
+![contacts_tab](images/filter-contacts-v1.4.png)  
 
-## Details  
+## Contact Details  
 
 ### Viewing a contact's policies and notes
-You can view a contact's policies and notes by using the details tab: `tab details`
+You can view a contact's policies and notes by using the details tab: `tab details` or `list`
 
 ### Selecting a contact to view details: `select`  
 Format: `select INDEX`  
@@ -288,8 +289,22 @@ Example:
 `note 1 Income 100k, Coverage insufficent`
 
 ![details_tab](images/details-tab-v1.3.png)
-### Deleting a note from a contact: `Coming Soon`
-### Deleting a policy from a contact: `Coming Soon`
+
+## Summary of commands for contacts and details tab
+
+| Command      | Contacts tab | Details tab |
+| ----------- | ----------- | ---------- |
+| list | :heavy_check_mark: | :heavy_check_mark:|
+| add | :heavy_check_mark: | :x:|
+| edit   | :heavy_check_mark: |:x:|
+| delete   | :heavy_check_mark:        |:x:|
+| filter  | :heavy_check_mark:       |:x:|
+| status   | :heavy_check_mark:        |:heavy_check_mark:|
+| select   | :heavy_check_mark:       |:heavy_check_mark:|
+| policy   | :heavy_check_mark:        |:heavy_check_mark:|
+| note   | :heavy_check_mark:        |:heavy_check_mark:|
+
+
 
 ## Scheduling an Event
 
@@ -357,16 +372,6 @@ Format: `delete [INDEX]`
 
 *Potential enhancement: to delete multiple Events at once which was already added into the Schedule.*
 
-### Find Event command: `find`
-
-Find the Event which has the specified keyword in the description
-
-Format: `find [keyword]`
-
- * Finds Events that carries the given keyword in the description
- * Events that have the keyword will be displayed in the user interface
- * Events that does not have the keyword will not be displayed
-
 ### Filter Event command: `filter`
 
 Filters the Event according to the keywords in any of the attributes.
@@ -380,7 +385,8 @@ Here are some of the examples to use the command lines.
 
 **Note:** It is not compulsory to include all fields. Only include those fields which you would like to filter.
 
-![schedule_tab](images/schedule-tab-v1.3.png)
+Expected result of `filter t/school`:
+![schedule_tab](images/filter-events-v1.4.png)
 
 ## Todos
 
@@ -392,6 +398,7 @@ Format: `add d/DESCRIPTION [t/TAG]...`
 
 * The description must not be more than 70 characters in length.
 * A Todo can have any number of tags (including 0)
+* Each tag must not be more than 50 characters in length.
 
 Examples:
 * `add d/read book`
@@ -448,14 +455,14 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Todos matching at least one keyword will be returned (i.e. `OR` search). e.g. `Read Buy` will return `Read Book`, `Buy Jeans`
 
 Examples:
-* `find book` returns all Todos with `book` in its description, i.e. `read book` and `return book`
-* `find book buy` returns all Todos with `book`, `buy`, or `book buy` in its description, i.e. `read book` and `buy jeans`
+* `find book` returns all Todos with `book` in its description, e.g. `read book` and `read book : Steve Jobs autobiography`
+* `find book buy` returns all Todos with `book` or `buy` in its description, e.g. `read book` and `buy new jeans`
 
 ### Filtering Todos by attributes while on the Todos tab : `filter`
 
 Filters Todos according to any of its attributes (description, tags, and whether it is marked as done).
 
-Format: `filter [d/DESCRIPTION KEYWORDS]... [t/TAG KEYWORDS]... [done/yes OR done/no]`
+Format: `filter [d/DESCRIPTION] [t/TAG] [done/yes OR done/no]`
 
 * The keywords are case-insensitive. e.g `read book` will match `Read Book`
 * The order of the keywords does not matter. e.g. `Book Read` will match `Read Book`
@@ -463,9 +470,9 @@ Format: `filter [d/DESCRIPTION KEYWORDS]... [t/TAG KEYWORDS]... [done/yes OR don
 * At least one of the optional fields must be provided, i.e. you must filter by 1 or more attributes.
 
 Examples:
-* `filter d/book` returns all Todos with `book` in its description, i.e. `read book` and `return book`
-* `filter d/book done/yes` returns all Todos with `book` in its description and are marked as done, i.e. `read book`
-* `filter t/learning d/read book` returns all Todos with `learning` as a tag and `read book` in its description, i.e. `read book`
+* `filter d/book` returns all Todos with `book` in its description, e.g. `read book` and `read book : Steve Jobs autobiography`
+* `filter d/book done/yes` returns all Todos with `book` in its description and are marked as done
+* `filter t/finance d/read` returns all Todos with `finance` as a tag and `read` in its description
 * `filter done/no` returns all Todos which are not marked as done.
 
 ### Deleting a Todo while on the Todos tab : `delete`

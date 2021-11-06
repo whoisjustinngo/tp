@@ -16,7 +16,7 @@ import seedu.address.model.todo.exceptions.TodoNotFoundException;
  * A todo is considered unique by comparing using {@code Todo#equals(Object)}. As such, adding and updating of
  * todos uses Todo#equals(Object) for equality so as to ensure that the todo being added or updated is
  * unique in the UniqueTodoList. Also, the removal of a todo uses Todo#equals(Object) so
- * as to ensure that the todo with exactly the same fields will be removed.
+ * as to ensure that the correct Todo is removed.
  *
  * Supports a minimal set of list operations.
  *

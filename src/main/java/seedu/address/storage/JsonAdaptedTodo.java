@@ -63,6 +63,7 @@ class JsonAdaptedTodo {
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
         }
+
         final String modelDescription = description;
 
         final Set<Tag> modelTags = new HashSet<>(todoTags);

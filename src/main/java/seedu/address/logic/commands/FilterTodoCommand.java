@@ -23,12 +23,12 @@ public class FilterTodoCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all todos according to their attributes "
             + "(case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION KEYWORDS]... "
-            + "[" + PREFIX_TAG + "TAG KEYWORDS]... "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_DONE + "yes OR " + PREFIX_DONE + "no]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "read "
-            + PREFIX_TAG + "personalDevelopment nonUrgent "
+            + PREFIX_TAG + "finance "
             + PREFIX_DONE + "yes";
 
     private final Predicate<Todo> predicate;

@@ -20,9 +20,9 @@ public class AddTodoCommand extends Command {
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DESCRIPTION + "read book "
-            + PREFIX_TAG + "personalDevelopment "
-            + PREFIX_TAG + "nonUrgent";
+            + PREFIX_DESCRIPTION + "buy new jeans "
+            + PREFIX_TAG + "urgent "
+            + PREFIX_TAG + "shopping";
 
     public static final String MESSAGE_SUCCESS = "New Todo added: %1$s";
     public static final String MESSAGE_DUPLICATE_TODO = "This Todo already exists in your list of Todos";

@@ -24,9 +24,11 @@ Given below are my contributions to the project.
 
 * **Contributions to team-based tasks**:
     * Kept track of deadlines and deliverables (examples: created PRs [\#39](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/39), [\#41](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/41) to ensure deliverables are met)
+    * Morphed the product to recognize commands coming from different tabs    
     * Added milestone `v1.4` on GitHub
-    * Morphed the product to recognize commands coming from different tabs
-
+    * Refactored the classes that were heavily edited by different team members (the parser and model manager) in v1.4 so that there is overall coherence in the code for these classes
+    * Updated sections in the Developer Guide that are not specific to a feature for v1.4
+    * Updated sample data in the app
 
 * **Documentation**:
     * User Guide:
