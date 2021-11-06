@@ -15,7 +15,7 @@ Advyze is a desktop app for tech-savvy student financial advisors to keep track 
 1. Ensure you have Java `11` or above installed in your computer.
 2. Download the latest `advyze.jar` release from [this link](https://github.com/AY2122S1-CS2103-T14-4/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for Advyze.
-4. Double-click the file to start the app. You should see the `dashboard` tab displayed (refer to the [Dashboard tab](#dashboard tab) section to see how it is supposed to look like).
+4. Double-click the file to start the app. You should see the `dashboard` tab displayed (refer to the [Dashboard tab](#dashboard-tab) section to see how it is supposed to look like).
 5. At this point, you are good to go! You can now begin running the commands detailed in this guide for any of the tabs.
 
 ---
@@ -26,7 +26,7 @@ This guide is sectioned by tabs. Under the sections for each tab, the reader wil
 
 > :exclamation: Note: 
 >
-> The commands described in the various tab specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specifed in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience commands), or if it is the contacts and details tabs which are highly related, see [summary of commands for contacts and details tab](#Summary of commands for contacts and details tab)). 
+> The commands described in the various tab specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specifed in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience-commands), or if it is the contacts and details tabs which are highly related, see [summary of commands for contacts and details tab](#Summary-of-commands-for-contacts-and-details-tab)). 
 >
 > It is hence implied that any command in the tab-specific sections describes the behaviour when running that command when on that tab in particular.
 
