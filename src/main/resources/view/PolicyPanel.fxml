@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox styleClass="background-with-border-dark" stylesheets="@AdvyzeTheme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="832.0" prefWidth="498.0" styleClass="background-with-border-dark" stylesheets="@AdvyzeTheme.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane minHeight="-Infinity" prefHeight="40.0" styleClass="table-header" stylesheets="@AdvyzeTheme.css">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0" />
