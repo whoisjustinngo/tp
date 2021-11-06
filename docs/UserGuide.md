@@ -306,9 +306,7 @@ Example:
 Deleting contact details will be implemented in future versions. For now, you can delete or edit policies and notes manually
 in the file `data/addressbook.json` if you made a mistake adding such client details.
 
-## Summary of commands for contacts and details tab
->>>>>>> 02c6a1e79e4bc2dca829f7b6f3c8e95f21016314
-
+### Summary of commands for contacts and details tab
 | Command      | Format |Contacts tab | Details tab |
 | ----------- | ----------- | ----------- | ---------- |
 | list | `list`|:heavy_check_mark: | :heavy_check_mark:|
@@ -325,82 +323,79 @@ in the file `data/addressbook.json` if you made a mistake adding such client det
 
 ## Schedule tab
 
-### Displaying of Events
+The schedule tab shows all of the user's events in chronological order.
 
-By default, the Schedule Tabs will **ONLY** show upcoming Events. If you would like to display all the Events in the database or show only the past events, we have the following commands to customise the your Schedule Tab.
+> :exclamation:Note: By default, the Schedule Tabs will **ONLY** show upcoming Events. The user can use some of the following commands to customise the kind of events to display.
 
-### View all events: `list`
+### Viewing all events: `list`
 
-Shows all the added Events
+Shows all the added Events. Events will be ordered by date, then by time.
 
-* Events will be ordered by date, then the order of time on that day itself
-
-### View all upcoming events: `showupcoming`
+### Viewing all upcoming events: `showupcoming` // TODO
 
 Shows all the upcoming Events
 
 * Upcoming Events will be ordered by date, then the order of time on that day itself
 
-### View all upcoming events: `showpast`
+### View all upcoming events: `showpast` // TODO
 
 Shows all the past Events
 
 * Past Events will be ordered by date, then the order of time on that day itself
 
-### Add Event command: `add`
+### Adding an event: `add`
+
+Adds a new event to the schedule.
 
 Format: `add [type] [d/TASK DESCRIPTION] [date/DATE] [from/TIME FROM] [to/TIME TO] [t/TAGS] ([recurd/DATE] or [recurw/DATE] or [recury/DATE])`
 
- * recurd/DATE Event recurring daily till the given date
- * recurw/DATE Event recurring weekly till the given date
- * recury/DATE Event recurring yearly till the given date
+ * recurd/DATE Event recurring daily until the given date
+ * recurw/DATE Event recurring weekly until the given date
+ * recury/DATE Event recurring yearly until  the given date
 
-Here are some of the examples to use the command lines.
+> :exclamation: Note:
+>
+> * While adding an event, it will check if the event to add has any clashes with existing events. The event will only be added if there are no clashes. This applies to adding recurring events as well – if there are clashes for any of the recurring events, no events will be added at all.
+> * **Only upcoming Events will be shown.** Past events will be stored in the database, but will not be displayed to the user.
 
- * Adding a schedule which recur daily: `add d/lesson date/16-05-2021 fr/1400 to/1600 t/important recurd/18-05-2021`
- * Adding a schedule which recur weekly: `add d/meeting date/18-05-2021 fr/1600 to/1800 t/priority recurw/15-08-2021`
+Examples:
 
-**Note:** While adding an Event, it will check if the Event given has any clashes with other Events which have already been added. The Event will be added only if there is no clash in timing with other Events which are already in the list. This applies to the recurring Event as well, if there are clashes in any of the given recurring Events, it will consider the Event as a clash, and will not proceed to adding any Events.
+ * Adding an event which recurs daily: `add d/lesson date/16-05-2021 fr/1400 to/1600 t/important recurd/18-05-2021`
+ * Adding an event which recurs weekly: `add d/meeting date/18-05-2021 fr/1600 to/1800 t/priority recurw/15-08-2021`
 
-Next, only upcoming Events will be shown. Events which happened in the past will be stored in the database, but will not be shown in the user interface.
+### Editing an existing event: `edit`
 
-### Edit Event command: `edit`
+Edits the event at the specified INDEX.
 
-Edits the Event which has the respective INDEX given by the user.
+Format: `edit INDEX [d/TASK DESCRIPTION] [date/DATE] [from/TIME FROM] [to/TIME TO] [t/TAGS]`  
 
-Format: `edit [INDEX] [d/TASK DESCRIPTION] [date/DATE] [from/TIME FROM] [to/TIME TO] [t/TAGS]`  
+* `INDEX` is the only compulsory field
 
-Here are some of the examples to use the command lines.
+Examples:
 
- * `Editing a tag in schedule: edit 1 t/important`
- * `Editing a description and date in a schedule: edit 2 d/meeting date/18-05-2021`
+ * Editing the tag of event 1: `edit 1 t/important`
+ * Editing the description and date of event 2: `edit 2 d/meeting date/18-05-2021`
 
-**Note:** It is not compulsory to include all fields. Only include those fields which you would like to edit.
+### Deleting an event: `delete`
 
-### Delete Event command: `delete`
-
-Deletes the Event which has the respective INDEX given by the user.
+Deletes the event at the specified INDEX.
 
 Format: `delete [INDEX]`
 
-* Deletes an event at the specified INDEX.
-* The index refers to the index number shown in the Event list.
-* The index must be a positive integer 1, 2, 3, ...
+* The index refers to the index number of the event on the Schedule tab .
 
 *Potential enhancement: to delete multiple Events at once which was already added into the Schedule.*
 
-### Filter Event command: `filter`
+### Filtering events: `filter`
 
-Filters the Event according to the keywords in any of the attributes.
+Filters the schedule according to the specified keywords and attributes.
 
 Format: `filter [d/TASK DESCRIPTION] [date/DATE] [fr/TIME FROM] [to/TIME TO] [date/DATE] [t/TAGS]`
 
-Here are some of the examples to use the command lines.
+Examples:
 
- * Filtering a tag in schedule: `filter t/important`
- * Filter based on a description and date in a schedule: `filter d/meeting date/18-05-2021`
-
-**Note:** It is not compulsory to include all fields. Only include those fields which you would like to filter.
+ * Filtering by tags: `filter t/important`
+ * Filtering by description and date: `filter d/meeting date/18-05-2021`
 
 Expected result of `filter t/school`:
 ![schedule_tab](images/filter-events-v1.4.png)
