@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package DATA  <<Rectangle>>{
+Class Schedule
+Class Tag
+Class CustomGoal
+Class Todo
+}
+Class AddressBook
+
+
+AddressBook *-> "1" UniqueScheduleList
+AddressBook *-> "1" UniqueCustomGoalList
+AddressBook *-> "1" UniqueTodoList
+
+UniqueScheduleList --> Schedule
+UniqueTodoList --> Todo
+UniqueCustomGoalList --> CustomGoal
+Todo *--> "*" Tag
+Schedule *--> "*" Tag
+
+
+@enduml

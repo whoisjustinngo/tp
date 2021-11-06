@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package DATA  <<Rectangle>>{
+Class Person
+Class Name
+Class Phone
+Class Relationship
+Class Email
+Class Address
+Class Status
+Class Tag
+Class Policy
+Class Insurer
+Class Number
+Class Name2 as "Name"
+Class Commission
+}
+AddressBook *-right-> "1" UniquePersonList
+UniquePersonList -right-> Person
+
+Person *--> Name
+Person *--> Phone
+Person *--> Relationship
+Person *--> Email
+Person *--> Address
+Person *--> Status
+Person *--> "*" Tag
+Person *--> "*" Policy
+
+
+Policy *--> Insurer
+Policy *--> Number
+Policy *--> Name2
+Policy *--> Commission
+
+Name -[hidden]right-> Relationship
+Relationship -[hidden]right-> Phone
+Phone -[hidden]right-> Address
+Status -[hidden]right-> Tag
+Address -[hidden]right-> Email
+Policy -[hidden]right-> Status
+@enduml

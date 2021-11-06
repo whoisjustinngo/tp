@@ -119,18 +119,30 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data
+  * all `Person` objects (which are contained in a `UniquePersonList` object)
+  * all `Todo` objects (which are contained in a `UniqueTodoList` object)
+  * all `CustomGoal` objects (which are contained in a `UniqueCustomGoalList` object)
+  * all `Schedule` objects (which are contained in a `UniqueScheduleList` object)
+  * For the sake of brevity, let's call such objects we are using to store data `DATA` objects
+* stores the currently 'selected' `DATA` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<DATA>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+:bulb: Each `Person` object can store client related information such as `Status`, `Policies` and notes as a `String` 
 
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** A more detailed model on each DATA object is given below.  
+  
+`Person` objects:  
+<img src="images/PersonModelClassDiagram.png" width="450" />  
+  
+`Schedule`, `Todo`, `CustomGoal` objects:
+<img src="images/ScheduleTodogoalModelClassDiagram.png" width="450" />
 </div>
 
 
