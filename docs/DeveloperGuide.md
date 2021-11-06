@@ -284,7 +284,17 @@ Once a date is given to recur daily, weekly or yearly, it will first check for a
 
 **Aspect on how recurring of Event is done**
 
- * This is done implementing another attribute for the `Event`, which is the recurring date. If the recurring date is present, then `Event` is a recurring `Event` otherwise it need not recur. Another attribute called `recurrType` will determine if it recurs daily (D), weekly (W) or yearly (Y). `Event` will recur until it reaches the recur date.
+ * This is done implementing another attribute for the `Event`, which is the recurring date. If the recurring date is present, then `Event` is a recurring `Event` otherwise it need not recur. Another attribute called `recurType` will determine if it recurs daily (D), weekly (W) or yearly (Y). `Event` will recur until it reaches the recur date.
+
+### \[Proposed for v1.3\] Viewing only past or future Events
+
+In the event when user only want to look at he past Events, user will be able to do so using the command line `showpast`. This command line helps to retrieve only those Events which have already in the past (comparing to today's date). 
+
+For future Events, user is able to key in the command line `showupcoming`. This command line will help user to filter out and display those Events which are upcoming. All dates here are compared to the current date.
+
+**Aspect on how viewing only past Events is done**
+
+Both `showpast` and `showupcoming` is done by passing down a `Predicate` into a function which is available in `Model`. This function `Model#updateFilteredScheduleList()` will then filter out and show all the events which satisfies the `Predicate` given. In the event when `Predicate` is not satisfied by the Event, the Event will not be displayed.
 
 ### Mark `Todo` as done
 
