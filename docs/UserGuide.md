@@ -24,8 +24,9 @@ Advyze is a desktop app for tech-savvy student financial advisors to keep track 
 
 This guide is sectioned by tabs. Under the sections for each tab, the reader will find information regarding the commands that can be ran on that tab specifically, as well as a brief description of the intended purpose of the tab. In addition, there is a general section that explains commands that are not tab specific, and can be ran while on any tab. There is also a command summary table at the end of this document.
 
-<div markdown="block" class="alert alert-info">
+> :exclamation: Note: the commands described in the various tab specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specifed in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience commands)). It is hence implied that any command in the tab-specific sections means running that command when on that tab in particular.
 
+<div markdown="block" class="alert alert-info">
 **:information_source: Notes about the command format:**<br>
 
 -   Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
