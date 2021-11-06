@@ -49,7 +49,6 @@ public class DoneTodoCommand extends Command {
         Todo markedTodo = todoToMark.getDoneVersion();
 
         model.setTodo(todoToMark, markedTodo);
-        model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TODOS);
         return new CommandResult(String.format(MESSAGE_DONE_TODO_SUCCESS, markedTodo));
     }
 

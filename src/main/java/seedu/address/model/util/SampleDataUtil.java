@@ -71,8 +71,8 @@ public class SampleDataUtil {
     public static Todo[] getSampleTodos() {
         return new Todo[] {
             new Todo("read up on cryptocurrencies", getTagSet("finance", "urgent"), true),
-            new Todo("read book: The Intelligent Investor", getTagSet("finance")),
-            new Todo("read book: Steve Jobs biography", getTagSet("leisure"))
+            new Todo("read book : The Intelligent Investor", getTagSet("finance")),
+            new Todo("read book : Steve Jobs biography", getTagSet("leisure"))
         };
     }
 
