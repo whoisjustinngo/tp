@@ -49,7 +49,9 @@ This guide is sectioned by tabs. Under the sections for each tab, the reader wil
 
 </div>
 
-## General commands
+## General Commands
+
+> :exclamation: All the commands in this section can be ran while on any tab.
 
 ### Viewing help : `help`
 
@@ -61,54 +63,49 @@ Format: `help`
 
 ### Switching between Tabs: `tab`
 
+Switches between different tabs.
+
 Format: `tab TAB_NAME`
-* Switches between different tabs. Tab names are as follows:
-    * dashboard
-    * contacts
-    * schedule
-    * todos
+
+> :bulb: Tip: the various `TAB_NAME`s are:
+>
+> * dashboard
+> * contacts
+> * details
+> * schedule
+> * todos
 
 Examples:
-* `tab dashboard` while in the Contacts tab changes to the Dashboard tab
-* `tab contacts` in the Contacts tab just jumps to the top of the page (returns the tab to the original landing page view)
+* `tab dashboard` while on the Contacts tab changes to the Dashboard tab
+* `tab contacts` while on the Contacts tab has no effect – the user just remains on the Contacts tab
 
-### Convenience Commands
+### Convenience commands
 
-Allows users to input commands meant for a specific tab regardless of which tab they are currently viewing.
+To prevent extra tab switches in order to execute commands, convenience commands allows users to execute commands meant for some other tab regardless of which tab they are currently on.
 
-Format: `/TAB NAME` [command meant to run on specified TAB_NAME]
+Format: `/TAB NAME` [command meant to run on specified TAB_NAME] 
+
+(see the :bulb: tip under the "switching between tabs: tab" section for the various `TAB_NAME`s)
 
 Examples:
-* When in Todos tab, input `/schedule add event d/CS2103 meeting fr/1300 to/1500` will add an event in Schedule tab instead of adding it in Todos tab.
-* When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` under the Schedule tab.
-* When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` under the Schedule tab.
+* When on Todos tab, input `/schedule add event d/CS2103 meeting fr/1300 to/1500` will add a new event (akin to executing the `add` command on the schedule tab) instead of adding a new Todo.
+* When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` on the Schedule tab.
+* When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` on the Schedule tab.
 
-### Importing Schedule
+### Importing .ics files for schedule: `import`
 
 Allows users to import `.ics` files, similar to importing timetable from NUSMods into Google Calendars.
 
+Format: import
+
 Example:
-* In any tab, input `import` will open file browser to prompt the user for a `.ics` file.
+* On any tab, executing `import` will open the file browser for the user to select the `.ics` file to import.
 
-### Exiting Application: `exit`
+### Exiting the application: `exit`
 
-Terminates the application
+Terminates the application.
 
 Format: `exit`
-
-Example:
-* exit in any tabs terminates the application.
-
-### Handling invalid commands
-
-Handles error messages thrown by tabs (in the case of invalid commands passed to said pages control), and displays a user friendly message.
-
-Examples:
-* `/schedule create` will print the error message as such:
-```
-“Looks like ‘Schedule’ does not have any commands called ‘create’. Below are the available commands:
-<!--error message that schedule returns-->
-```
 
 ## Dashboard tab
 The dashboard is the default landing page of the app and displays a summary of relevant information from the other sections of the app.
