@@ -260,7 +260,8 @@ Filter all persons according to their attributes (case-insensitive) and displays
 * Filter for attribute: name must match whole word
   * All other attributes are simple keyword matches
 
-![contacts_tab](images/contacts-tab-v1.3.png)  
+Expected result of `filter r/client`:
+![contacts_tab](images/filter-contacts-v1.4.png)  
 
 ## Details  
 
@@ -380,7 +381,8 @@ Here are some of the examples to use the command lines.
 
 **Note:** It is not compulsory to include all fields. Only include those fields which you would like to filter.
 
-![schedule_tab](images/schedule-tab-v1.3.png)
+Expected result of `filter t/school`:
+![schedule_tab](images/filter-events-v1.4.png)
 
 ## Todos
 
@@ -449,14 +451,14 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Todos matching at least one keyword will be returned (i.e. `OR` search). e.g. `Read Buy` will return `Read Book`, `Buy Jeans`
 
 Examples:
-* `find book` returns all Todos with `book` in its description, i.e. `read book` and `return book`
-* `find book buy` returns all Todos with `book`, `buy`, or `book buy` in its description, i.e. `read book` and `buy jeans`
+* `find book` returns all Todos with `book` in its description, e.g. `read book` and `read book : Steve Jobs autobiography`
+* `find book buy` returns all Todos with `book` or `buy` in its description, e.g. `read book` and `buy new jeans`
 
 ### Filtering Todos by attributes while on the Todos tab : `filter`
 
 Filters Todos according to any of its attributes (description, tags, and whether it is marked as done).
 
-Format: `filter [d/DESCRIPTION KEYWORDS]... [t/TAG KEYWORDS]... [done/yes OR done/no]`
+Format: `filter [d/DESCRIPTION] [t/TAG] [done/yes OR done/no]`
 
 * The keywords are case-insensitive. e.g `read book` will match `Read Book`
 * The order of the keywords does not matter. e.g. `Book Read` will match `Read Book`
@@ -464,9 +466,9 @@ Format: `filter [d/DESCRIPTION KEYWORDS]... [t/TAG KEYWORDS]... [done/yes OR don
 * At least one of the optional fields must be provided, i.e. you must filter by 1 or more attributes.
 
 Examples:
-* `filter d/book` returns all Todos with `book` in its description, i.e. `read book` and `return book`
-* `filter d/book done/yes` returns all Todos with `book` in its description and are marked as done, i.e. `read book`
-* `filter t/learning d/read book` returns all Todos with `learning` as a tag and `read book` in its description, i.e. `read book`
+* `filter d/book` returns all Todos with `book` in its description, e.g. `read book` and `read book : Steve Jobs autobiography`
+* `filter d/book done/yes` returns all Todos with `book` in its description and are marked as done
+* `filter t/finance d/read` returns all Todos with `finance` as a tag and `read` in its description
 * `filter done/no` returns all Todos which are not marked as done.
 
 ### Deleting a Todo while on the Todos tab : `delete`
