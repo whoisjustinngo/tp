@@ -263,10 +263,10 @@ Filter all persons according to their attributes (case-insensitive) and displays
 Expected result of `filter r/client`:
 ![contacts_tab](images/filter-contacts-v1.4.png)  
 
-## Details  
+## Contact Details  
 
 ### Viewing a contact's policies and notes
-You can view a contact's policies and notes by using the details tab: `tab details`
+You can view a contact's policies and notes by using the details tab: `tab details` or `list`
 
 ### Selecting a contact to view details: `select`  
 Format: `select INDEX`  
@@ -289,8 +289,22 @@ Example:
 `note 1 Income 100k, Coverage insufficent`
 
 ![details_tab](images/details-tab-v1.3.png)
-### Deleting a note from a contact: `Coming Soon`
-### Deleting a policy from a contact: `Coming Soon`
+
+## Summary of commands for contacts and details tab
+
+| Command      | Contacts tab | Details tab |
+| ----------- | ----------- | ---------- |
+| list | :heavy_check_mark: | :heavy_check_mark:|
+| add | :heavy_check_mark: | :x:|
+| edit   | :heavy_check_mark: |:x:|
+| delete   | :heavy_check_mark:        |:x:|
+| filter  | :heavy_check_mark:       |:x:|
+| status   | :heavy_check_mark:        |:heavy_check_mark:|
+| select   | :heavy_check_mark:       |:heavy_check_mark:|
+| policy   | :heavy_check_mark:        |:heavy_check_mark:|
+| note   | :heavy_check_mark:        |:heavy_check_mark:|
+
+
 
 ## Scheduling an Event
 
@@ -357,16 +371,6 @@ Format: `delete [INDEX]`
 * The index must be a positive integer 1, 2, 3, ...
 
 *Potential enhancement: to delete multiple Events at once which was already added into the Schedule.*
-
-### Find Event command: `find`
-
-Find the Event which has the specified keyword in the description
-
-Format: `find [keyword]`
-
- * Finds Events that carries the given keyword in the description
- * Events that have the keyword will be displayed in the user interface
- * Events that does not have the keyword will not be displayed
 
 ### Filter Event command: `filter`
 
