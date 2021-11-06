@@ -290,6 +290,11 @@ Example:
 
 ![details_tab](images/details-tab-v1.3.png)
 
+### Deleting a note from a contact: `Coming Soon`
+### Deleting a policy from a contact: `Coming Soon`  
+Deleting contact details will be implemented in future versions. For now, you can delete or edit policies and notes manually
+in the file `data/addressbook.json` if you made a mistake adding such client details.
+
 ## Summary of commands for contacts and details tab
 
 | Command      | Contacts tab | Details tab |
