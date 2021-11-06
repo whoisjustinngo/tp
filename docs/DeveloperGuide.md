@@ -83,7 +83,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person`, `Todo`, `CustomGoal` etc. objects residing in the `Model`.
 
 ### Logic component
 
@@ -200,29 +200,38 @@ On top of that, `Schedule` will all be arranged in the order starting from the e
     * Pros: Operation does not need to take O(n) time when it comes to checking if the `Event` clashes, since we only check if there are clashes on that particular given date.
     * Cons: Decreases overall code consistency.
 
-### \[Proposed for v1.3\] Display analytics on the Dashboard tab to facilitate goal setting
+### Client analytics
 
-A large portion of the income of financial advisors is from the commissions they earn from closing sales. This makes having
-personal goals an integral part of their workflow, as they need to know what they are working towards at the end of the day, 
-and how far they have left to go. Apart from being able to set their own ad hoc goals (feature coming soon), the dashboard
-will display general analytics so that the user can monitor their progress. Some fields that will be (tentatively) tracked are:
-* Total Commission Earned This Month
-* Total Number of Fresh Contacts this month
-* Total Number of Closing Contacts
-* Total Number of Closed Contacts This Month
-* Pending Claims
-* Contacts moved from fresh to closing to closed
-Note that there is no goal setting here, just monitoring of various statistics.
+#### Implementation
+The `ModelManager` will create a new `ClientAnalytics` object and pass in the `AddressBook` in the `ModelManager`
+as an argument. The `ClientAnalytics` object will then attach a listener to the `UniquePersonList` (which it will access via the `AddressBook` that was passed in) that corresponds to
+the list of all entries in the contacts book. The `ClientAnalytics` object has an internal `TrackedValueList` which is essentially a 
+wrapper class for the `ObservableList<Integer>` that contains the counts of each `Status`.
 
-#### Proposed Implementation
-The fields related to status of contacts will track changes in the contacts tab. For example for the number of fresh contacts
-this month, whenever the user adds a new contact with the `client` tag, the relevant section on the dashboard notices this 
-and increments the count by 1. When it is detected that a new month has begun (from reading system time), the count 
-would be reset.
+Subsequently, on the front-end an `AnalyticsPanel` is created which essentially just depicts (on the front end side) a simple table with the various `Status` as the headings
+and the counts of the number `Person`s that have the corresponding `Status`. The `AnalyticsPanel` calls the `getValues()` method of the
+`AddressBook`'s `ClientAnalytics` to obtain the internal `ObservableList<Integer>` that tracks the counts of each status. The `AnalyticsPanel`
+then attaches a listener to this `ObservableList<Integer>`.
 
-Integrating contacts and dashboard this way would reduce the amount of work the user needs to do.
+Upon any change to the list of `Person`s (new person added, existing person edited, existing person deleted), the `ClientAnalytics#updateAnalytics()` method
+will be automatically called (because of the listener). The update essentially involves parsing the entire list of contacts again and
+recounting the values for each status. The new values are then updated in the `ClientAnalytics`'s `TrackedValueList`'s own `ObservableList<Integer>`, 
+which is listened to by the `AnalyticsPanel`. Because of this listener, any change will cause the `AnalyticsPanel#updateValues()` method to be called,
+which retrieves the counts of each status using the `ClientAnalytics#getValueOfTrackedField()` method. This method essentially gets the `ClientAnalytics`
+to retrieve the count of a particular given `Status` and return it to the `AnalyticsPanel` to display on the dashboard to the user.
 
-That being said, some fields like the total commission earned this month will have to be input manually.
+#### Design Considerations
+The *observer design pattern* was heavily used here so that any update front-end update would be automatic. This is not only for consistency with the 
+other sections like the `ToDo`s, `Person`s, and `Event`s, it also ensured that every update to any status in the client list was updated and displayed
+immediately on the dashboard. This also reduced the need for classes relying on other classes telling them to update the values before doing so.
+
+Updating the values was also designed to be re-counting instead of manually checking what has changed and just make the necessary changes to the few affected
+`Status`(es) because it is less prone to bugs where the counts of the `Status` are inaccurate. If the check and change approach was adopted instead of the re-count approach the code for updating would be
+a lot more complicated since now there needs to be more checks, for example for what was the previous `Status` and what is the new `Status` in the case of edit, and
+what was the `Status` of the deleted contact in the case where contacts are deleted. Thus,the decision was made to use the simpler, cleaner approach, which,
+although less efficient since it runs in O(number of people in persons list) vs O(1) for the check and update approach, the time spent is negligible and hence
+does not warrant the optimisation.
+
 
 ### \[Proposed for v1.3\] Import .ics Schedules
 For student financial advisors, they might have a portal that can generate calendar files that can be imported into google calendar,

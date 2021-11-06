@@ -33,7 +33,6 @@ public class ClientAnalytics {
         this.persons.addListener(new ListChangeListener<Person>() { // listen for changes in contacts
             @Override
             public void onChanged(Change<? extends Person> c) {
-                System.out.println("change: " + c);
                 updateAnalytics();
             }
         });
