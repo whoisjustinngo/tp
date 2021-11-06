@@ -26,7 +26,7 @@ Refer to the [Features](#Features) below for more details on what Advyze can do.
 
 ---
 
-## Features
+## Using this guide
 
 <div markdown="block" class="alert alert-info">
 
@@ -52,7 +52,7 @@ Refer to the [Features](#Features) below for more details on what Advyze can do.
 
 </div>
 
-## General
+## General commands
 
 ### Viewing help : `help`
 
@@ -113,7 +113,7 @@ Examples:
 <!--error message that schedule returns-->
 ```
 
-## Dashboard
+## Dashboard tab
 The dashboard is the default landing page of the app and displays a summary of relevant information from the other sections of the app.
 * The dashboard by default shows 4 sections:
   * A section that displays analytics for contacts which is updated as the user populates it with data 
@@ -126,7 +126,7 @@ The dashboard is the default landing page of the app and displays a summary of r
 This is how the dashboard looks like as of v1.4: 
 ![dashboard_tab](images/dashboard-tab-v1.4.png)
 
-## Analytics
+### Analytics
 The analytics section is the section at the top left of the dashboard tab, directly below the dashboard button. This feature essentially provides some analytics for
 the user's contacts, specifically counting the number of clients with the various status (whether they are fresh leads, approached, closed, etc).
 The tracking is by quarters of the year, e.g. if the current quarter is Q3, the analytics will only show fresh leads *for Q3*, clients approached *in Q3*, etc.
@@ -134,7 +134,7 @@ The tracking is by quarters of the year, e.g. if the current quarter is Q3, the 
 This section is automatically updated as the status of the various contacts change in the contacts list. For more details about the various client statuses, see the contacts section below.
 
 
-## Custom Goals
+### Custom Goals
 As a financial advisor, some things that they might want to set a target for and subsequently work towards include:
 * The amount of commission earned in the current month/quarter
 * The number of new clients called today  
@@ -154,7 +154,7 @@ To better understand how it is meant to work, if the user, for example, has a go
 See the subsequent sections to find out how the user could go about doing this.
 
 
-### Adding a Custom Goal: `add`
+#### Adding a Custom Goal: `add`
 Adds a new custom goal.  
 
 Format: `add d/DESCRIPTION goal/GOAL [bydate/END_DATE] [bytime/END_TIME]`  
@@ -169,7 +169,7 @@ Examples:
 > :exclamation: Note: currently there is no command to edit custom goals; if the user, for example, commits a typo when entering
 > information for a custom goal, they have to delete the custom goal and repeat the adding process with the intended information.
 
-### Updating the progress of a Custom Goal: `update`
+#### Updating the progress of a Custom Goal: `update`
 
 Format: `update INDEX_OF_CUSTOM_GOAL val/AMOUNT_TO_INCREMENT_GOAL_BY`
 
@@ -184,14 +184,14 @@ Example:
 > :bulb: Tip: since the update command allows the user to enter negative values, if they, for example, enter a wrong (positive) value
 > for progress, they can correct it by updating the same goal with the difference, e.g. if the intended amount was to add 5 to progress
 > but the user specified 7, they can just correct this by updating the same goal with val = -2.
-  
-### Deleting a Custom Goal: `delete`
+
+#### Deleting a Custom Goal: `delete`
 Deletes the specified Custom Goal from the dashboard.  
 
 Format: `delete INDEX_OF_GOAL_TO_DELETE`
 
 
-## Contacts
+## Contacts tab
 
 
 ### Viewing all contacts: `list`  
@@ -231,6 +231,7 @@ Format: `status INDEX STATUS`
 Every client has a status that shows which stage in the sales process each client is in right now.
 Status look like tags but have a dark blue background as show in the image above.
 The valid statuses are: [fresh, approached, pitched, negotiated, closed, lost]  
+
 * New contacts created in the contacts list are given a "fresh" status to signify that the client is a fresh lead.
 * A summary of all client's statuses is shown in the [dashboard](#Dashboard) tab
 * Friends do not have statuses
@@ -242,6 +243,7 @@ Examples of changing status:
 ### Deleting a contact: `delete`
 Format: `delete INDEX`  
 Deletes the contact at the specified INDEX.  
+
 * The index refers to the index number shown in the Contact list.
 * The index must be a positive integer 1, 2, 3, … and a valid index in the contact list
 
@@ -263,7 +265,7 @@ Filter all persons according to their attributes (case-insensitive) and displays
 Expected result of `filter r/client`:
 ![contacts_tab](images/filter-contacts-v1.4.png)  
 
-## Contact Details  
+## Details tab
 
 ### Viewing a contact's policies and notes
 You can view a contact's policies and notes by using the details tab: `tab details` or `list`
@@ -271,6 +273,7 @@ You can view a contact's policies and notes by using the details tab: `tab detai
 ### Selecting a contact to view details: `select`  
 Format: `select INDEX`  
 Selects a contact at the specified INDEX to view policies and notes
+
 * The index refers to the index number shown in the Contact list.
 * The index must be a positive integer 1, 2, 3, … and a valid index in the contact list
 
@@ -290,7 +293,7 @@ Example:
 
 ![details_tab](images/details-tab-v1.3.png)
 
-## Summary of commands for contacts and details tab
+### Summary of commands for contacts and details tab
 
 | Command      | Contacts tab | Details tab |
 | ----------- | ----------- | ---------- |
@@ -306,7 +309,7 @@ Example:
 
 
 
-## Scheduling an Event
+## Schedule tab
 
 ### Displaying of Events
 
@@ -388,7 +391,7 @@ Here are some of the examples to use the command lines.
 Expected result of `filter t/school`:
 ![schedule_tab](images/filter-events-v1.4.png)
 
-## Todos
+## Todos tab
 
 ### Adding a Todo while on the Todos tab : `add`
 
@@ -488,4 +491,8 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 3` deletes the 3rd Todo in the displayed Todos list.
 * `filter d/book` followed by `delete 1` deletes the 1st Todo in the results of the `filter` command
+
+
+
+## Command Summary
 
