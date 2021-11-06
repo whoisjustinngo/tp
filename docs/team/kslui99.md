@@ -28,7 +28,7 @@ Given below are my contributions to the project.
     * Added milestone `v1.4` on GitHub
     * Refactored the classes that were heavily edited by different team members (the parser and model manager) in v1.4 so that there is overall coherence in the code for these classes
     * Updated sections in the Developer Guide that are not specific to a feature for v1.4
-
+    * Updated sample data in the app
 
 * **Documentation**:
     * User Guide:

@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TODOS;
 
 import java.util.List;
 
@@ -49,7 +48,6 @@ public class DoneTodoCommand extends Command {
         Todo markedTodo = todoToMark.getDoneVersion();
 
         model.setTodo(todoToMark, markedTodo);
-        model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TODOS);
         return new CommandResult(String.format(MESSAGE_DONE_TODO_SUCCESS, markedTodo));
     }
 

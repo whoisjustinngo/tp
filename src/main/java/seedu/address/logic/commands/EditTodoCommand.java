@@ -32,7 +32,7 @@ public class EditTodoCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DESCRIPTION + "read book ";
+            + PREFIX_DESCRIPTION + "Read The Intelligent Investor ";
 
     public static final String MESSAGE_EDIT_TODO_SUCCESS = "Edited Todo: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
