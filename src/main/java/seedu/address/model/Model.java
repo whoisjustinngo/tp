@@ -66,6 +66,13 @@ public interface Model {
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
+    //@@author whoisjustinngo
+    /**
+     * Gets the {@code Analytics} object for this addressBook.
+     */
+    ClientAnalytics getAnalytics();
+
+    //@@author
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
@@ -82,18 +89,14 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
+    //@@author kslui99
     /**
      * Returns true if a Todo with the same description as {@code todo} exists in
      * the list of todos.
      */
     boolean hasTodo(Todo todo);
 
-    /**
-     * Returns true if a CustomGoal with the same description, goal, and/or endDate and/or endTime as
-     * {@code toAdd} exists in the list of customGoals.
-     */
-    boolean hasCustomGoal(CustomGoal toAdd);
-
+    //@@author rickyaandrew
     /**
      * Returns true if a Schedule with the same description, date and time as
      * {@code schedule} exists in the list of Schedule.
@@ -106,44 +109,59 @@ public interface Model {
      */
     boolean hasScheduleClash(Schedule schedule);
 
+    //@@author whoisjustinngo
+    /**
+     * Returns true if a CustomGoal with the same description, goal, and/or endDate and/or endTime as
+     * {@code toAdd} exists in the list of customGoals.
+     */
+    boolean hasCustomGoal(CustomGoal toAdd);
+
+    //@@author
     /**
      * Deletes the given person. The person must exist in the address book.
      */
     void deletePerson(Person target);
 
+    //@@author kslui99
     /**
      * Deletes the given todo. The todo must exist in the address book.
      */
     void deleteTodo(Todo target);
 
+    //@@author rickyaandrew
     /**
      * Deletes the given todo. The todo must exist in the address book.
      */
     void deleteSchedule(Schedule target);
 
-    /**
-     * Adds the given CustomGoal, which must not already exist in the list of customGoals.
-     */
-    void addCustomGoal(CustomGoal toAdd);
-
+    //@@author
     /**
      * Adds the given person. {@code person} must not already exist in the address
      * book.
      */
     void addPerson(Person person);
 
+    //@@author kslui99
     /**
      * Adds the given Todo. {@code todo} must not already exist in the list of
      * todos.
      */
     void addTodo(Todo todo);
 
+    //@@author rickyaandrew
     /**
      * Adds the given Schedule. {@code schedule} must not already exist in the list
      * of schedules.
      */
     void addSchedule(Schedule schedule);
 
+    //@@author whoisjustinngo
+    /**
+     * Adds the given CustomGoal, which must not already exist in the list of customGoals.
+     */
+    void addCustomGoal(CustomGoal toAdd);
+
+    //@@author
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book. The person identity of
@@ -152,11 +170,7 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /**
-     * Gets the {@code Analytics} object for this addressBook.
-     */
-    ClientAnalytics getAnalytics();
-
+    //@@author kslui99
     /**
      * Replaces the given todo {@code target} with {@code editedTodo}.
      * {@code target} must exist in the address book. The
@@ -164,6 +178,7 @@ public interface Model {
      */
     void setTodo(Todo target, Todo editedTodo);
 
+    //@@author rickyaandrew
     /**
      * Replaces the given schedule {@code target} with {@code editedSchedule}.
      * {@code target} must exist in the address book. The schedule identity of
@@ -172,7 +187,7 @@ public interface Model {
      */
     void setSchedule(Schedule target, Schedule editedSchedule);
 
-
+    //@@author
     /**
      * Returns an unmodifiable view of the filtered person list
      */
@@ -197,7 +212,6 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-
     /**
      * Updates the filter of the selected person list to filter by the given
      * {@code predicate}.
@@ -213,21 +227,25 @@ public interface Model {
      */
     void updateSelectedPersonIndex(int i);
 
+    //@@author kslui99
     /**
      * Returns an unmodifiable view of the filtered todo list
      */
     ObservableList<Todo> getFilteredTodoList();
 
+    //@@author rickyaandrew
     /**
      * Returns an unmodifiable view of the filtered schedule list
      */
     ObservableList<Schedule> getFilteredScheduleList();
 
+    //@@author whoisjustinngo
     /**
      * Returns an unmodifiable view of the filtered custom goal list
      */
     ObservableList<CustomGoal> getFilteredCustomGoalList();
 
+    //@@author kslui99
     /**
      * Updates the filter of the filtered todo list to filter by the given
      * {@code predicate}.
@@ -237,20 +255,22 @@ public interface Model {
 
     void updateFilteredTodoList(Predicate<Todo> predicate);
 
+    //@@author rickyaandrew
     /**
      * Updates the filter of the filtered schedule list to filter by the given
      * {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-
     void updateFilteredScheduleList(Predicate<Schedule> predicate);
 
+    //@@author whoisjustinngo
     void updateCustomGoal(Index goalToUpdate, float valueToUpdateBy);
 
     int getNumOfCustomGoals();
 
     void deleteCustomGoal(Index goalToDelete);
 
+    //@@author SpdPnd98
     List<Schedule> importSchedule(File file) throws IOException, ParseException;
 }

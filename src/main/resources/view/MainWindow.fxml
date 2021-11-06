@@ -52,7 +52,7 @@
                                  <children>
                                     <SplitPane fx:id="topPane" dividerPositions="0.2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" stylesheets="@AdvyzeTheme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <items>
-                                          <VBox fx:id="dashboardAnalyticsPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="170.0" styleClass="background" stylesheets="@AdvyzeTheme.css">
+                                          <VBox fx:id="dashboardAnalyticsPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="170.0" minHeight="0.0" styleClass="background" stylesheets="@AdvyzeTheme.css">
                                              <children>
                                                 <Label fx:id="analyticsHeader" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="section-header" stylesheets="@AdvyzeTheme.css" text="\\$analyticsHeader" VBox.vgrow="NEVER">
                                                    <padding>

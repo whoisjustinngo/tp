@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.event.exceptions.InvalidScheduleInputException;
 import seedu.address.model.event.exceptions.InvalidTimeException;
 import seedu.address.model.tag.Tag;
 
@@ -35,13 +36,14 @@ public class Schedule extends Event<Schedule> {
      * @param isDone      if this {@code Schedule} is completed.
      */
     public Schedule(String description, String date, String timeFrom, String timeTo, boolean isDone, Set<Tag> tags,
-            String recurrType, String recurDate) {
+            String recurrType, String recurDate) throws InvalidScheduleInputException {
         super(description, date, isDone);
         this.checkTimeRangeAndFormatting(timeFrom, timeTo);
         String dateCopy = date;
         if (dateCopy.contains("/")) {
             dateCopy = dateCopy.replace("/", "-");
         }
+        this.checkDateFormatting(dateCopy);
         this.taskDateTimeFrom = this.getLocalDateTime(dateCopy, timeFrom);
         this.taskDateTimeTo = this.getLocalDateTime(dateCopy, timeTo);
         this.timeFrom = Integer.parseInt(timeFrom);
@@ -52,6 +54,7 @@ public class Schedule extends Event<Schedule> {
         if (!recurrType.equals("N")) {
             String recurrDateCopy = recurDate;
             recurrDateCopy = recurrDateCopy.replace("/", "-");
+            this.checkDateFormatting(recurrDateCopy);
             this.recurrDate = recurrDateCopy;
             recurrDateTo = this.getLocalDateTime(recurrDateCopy, timeTo);
         } else {
@@ -221,6 +224,26 @@ public class Schedule extends Event<Schedule> {
     private void checkTimeRange(String timeFrom, String timeTo) {
         if (Integer.parseInt(timeFrom) > Integer.parseInt(timeTo)) {
             throw new InvalidTimeException(ERROR_MSG_INVALID_TIME_SQEUENCE);
+        }
+    }
+
+    private void checkDateFormatting(String str) {
+        String copy = str;
+        if (!copy.contains("-")) {
+            throw new InvalidScheduleInputException();
+        }
+        String[] date = copy.split("-");
+        if (date.length != 3) {
+            throw new InvalidScheduleInputException();
+        }
+        if (Integer.parseInt(date[0]) > 31 || Integer.parseInt(date[0]) < 0) {
+            throw new InvalidScheduleInputException();
+        }
+        if (Integer.parseInt(date[1]) > 12 || Integer.parseInt(date[1]) < 0) {
+            throw new InvalidScheduleInputException();
+        }
+        if (Integer.parseInt(date[2]) < 0) {
+            throw new InvalidScheduleInputException();
         }
     }
 

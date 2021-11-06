@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.model.TabSwitch.Tab.CONTACTS;
-import static seedu.address.model.TabSwitch.Tab.DASHBOARD;
-import static seedu.address.model.TabSwitch.Tab.TODOS;
+import static seedu.address.commons.core.Tab.CONTACTS;
+import static seedu.address.commons.core.Tab.DASHBOARD;
+import static seedu.address.commons.core.Tab.TODOS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 

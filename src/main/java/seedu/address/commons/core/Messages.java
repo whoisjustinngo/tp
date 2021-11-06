@@ -19,8 +19,10 @@ public class Messages {
     public static final String MESSAGE_TODOS_LISTED_OVERVIEW = "%1$d todos listed!";
     public static final String MESSAGE_SCHEDULE_LISTED_OVERVIEW = "%1$d schedules listed!";
     public static final String MESSAGE_ERROR_PARSING_TAB = "There was an error parsing your command: error parsing tab";
-    public static final String MESSAGE_INVALID_TAB = "Command entered from an invalid tab. Switch tabs and try again.";
+    public static final String MESSAGE_INVALID_TAB = "Command entered from an invalid tab. "
+            + "Switch to the %1$s tab and try again.";
     public static final String MESSAGE_INVALID_TODO_DISPLAYED_INDEX = "The todo index provided is invalid";
     public static final String MESSAGE_INVALID_COMMISSION_VALUE_NEGATIVE = "Commission cannot be negative:%.2f";
+    public static final String MESSAGE_INVALID_SCHEUDLE_INPUT = "Invalid input. Please check and try again.";
 
 }
