@@ -107,37 +107,35 @@ Terminates the application.
 
 Format: `exit`
 
-## Dashboard tab
-The dashboard is the default landing page of the app and displays a summary of relevant information from the other sections of the app.
-* The dashboard by default shows 4 sections:
-  * A section that displays analytics for contacts which is updated as the user populates it with data 
-  * Custom goals that can be set by the user
-  * The user's schedule in chronological order (which is synced with information in the Schedule tab)
-  * The user's todos, with the earliest added at the top (which is synced with the information in the Todos tab)
+## Dashboard Tab
+The dashboard tab is the default landing page of the app. It displays a summary of relevant information from the other sections of the app in addition to having some features of its own.
+* The dashboard by default has 4 sections:
+  * The analytics for contacts, which is automatically updated as the user populates the app with data (top left)
+  * The user's custom goals, which they can add and update (top right)
+  * The user's schedule in chronological order (which is synced with information in the Schedule tab) (middle)
+  * The user's todos, with the earliest added at the top (which is synced with the information in the Todos tab) (bottom)
 * These sections are automatically updated as the data in the respective tabs are changed.
-* The user can adjust how much of each section is to be displayed by sliding the black bars as required.
+* The user can adjust how much of each section is to be displayed by sliding the black bars up and down or left and right as required.
 
 This is how the dashboard looks like as of v1.4: 
 ![dashboard_tab](images/dashboard-tab-v1.4.png)
 
 ### Analytics
-The analytics section is the section at the top left of the dashboard tab, directly below the dashboard button. This feature essentially provides some analytics for
-the user's contacts, specifically counting the number of clients with the various status (whether they are fresh leads, approached, closed, etc).
+The analytics section is the section at the top left of the dashboard tab, directly below the dashboard button. This feature provides some analytics for the user's contacts, specifically counting the number of clients with the various `status` (whether they are fresh leads, approached, closed, etc).
+
 The tracking is by quarters of the year, e.g. if the current quarter is Q3, the analytics will only show fresh leads *for Q3*, clients approached *in Q3*, etc.
 
 This section is automatically updated as the status of the various contacts change in the contacts list. For more details about the various client statuses, see the contacts section below.
 
 
 ### Custom Goals
-As a financial advisor, some things that they might want to set a target for and subsequently work towards include:
+As a financial advisor, they might want to set a target for and subsequently work towards things like:
 * The amount of commission earned in the current month/quarter
 * The number of new clients called today  
 
-Essentially, this feature set is meant for users to track anything that is quantifiable that they want to track. Every custom goal
-will *minimally* have a description, a goal value, and a progress value, the former 2 which have to be specified by the user at the 
-point of addition, with the progress value being set by default to 0.
+Essentially, this feature set is meant for users to track anything that is quantifiable that they want to track. Every custom goal will *minimally* have a description, a goal value, and a progress value, the former 2 which have to be specified by the user at the point of addition, with the progress value being set by default to 0.
 
-To better understand how it is meant to work, if the user, for example, has a goal to call at least 20 new clients by the end of this week:
+To better understand how this is meant to work, if the user, for example, has a goal to call at least 20 new clients by the end of this week:
 1. They would first `add` that goal, with the description being something like "call 20 clients", the goal being "20", and the end date the date of the last day of this week
 2. Every time they make a new call, they would `update` the progress of that custom goal they created in step 1 by a value of 1
 3. The progress bar in between the progress and goal columns gives the user a quick visual indication of how much they have accomplished / have yet to accomplish
@@ -148,41 +146,36 @@ To better understand how it is meant to work, if the user, for example, has a go
 See the subsequent sections to find out how the user could go about doing this.
 
 
-#### Adding a Custom Goal: `add`
+#### Adding a custom goal: `add`
 Adds a new custom goal.  
 
 Format: `add d/DESCRIPTION goal/GOAL [bydate/END_DATE] [bytime/END_TIME]`  
 
-Note: `GOAL` has to be a number (greater than 0), `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format
-hhmm in 24-hour format. If `END_TIME` is specified, `END_DATE` has to be specified as well.  
+> :exclamation: Note: `GOAL` has to be a number (greater than 0), `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format hhmm in 24-hour format. If `END_TIME` is specified, `END_DATE` has to be specified as well.  
 
 Examples:
-* Goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2021`
-* Goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021 bytime/1200`
+* Adding a goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2021`
+* Adding a goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021 bytime/1200`
 
-> :exclamation: Note: currently there is no command to edit custom goals; if the user, for example, commits a typo when entering
-> information for a custom goal, they have to delete the custom goal and repeat the adding process with the intended information.
+> :exclamation: Note: currently there is no command to edit custom goals; if the user, for example, commits a typo when creating a custom goal, they have to delete the custom goal and repeat the adding process with the correct information.
 
-#### Updating the progress of a Custom Goal: `update`
+#### Updating the progress of a custom goal: `update`
+
+Updates *the progress* of a particular custom goal by the specified value, i.e. updated progress = old progress + `AMOUNT_TO_INCREMENT_GOAL_BY`
 
 Format: `update INDEX_OF_CUSTOM_GOAL val/AMOUNT_TO_INCREMENT_GOAL_BY`
 
-Note: `AMOUNT_TO_INCREMENT_GOAL_BY` has to be a number (can be positive or negative).  
-
-Updates *the progress* of a particular custom goal by the specified value, i.e. updated progress = old progress + 
-`AMOUNT_TO_INCREMENT_GOAL_BY`
+> :exclamation: Note: `AMOUNT_TO_INCREMENT_GOAL_BY` has to be a number (can be positive or negative).  
 
 Example: 
-* To update progress of custom goal 1 by 123.4: `update 1 val/123.4`
+* To update progress of custom goal 1 by an amount of 123.4: `update 1 val/123.4`
 
-> :bulb: Tip: since the update command allows the user to enter negative values, if they, for example, enter a wrong (positive) value
-> for progress, they can correct it by updating the same goal with the difference, e.g. if the intended amount was to add 5 to progress
-> but the user specified 7, they can just correct this by updating the same goal with val = -2.
+> :bulb: Tip: since the update command allows the user to enter negative values, if they, for example, enter a wrong (positive) value for progress, they can correct it by updating the same goal with the difference, e.g. if the intended amount was to add 5 to progress but the user specified 7, they can just correct this by updating the same goal and specifying val = -2.
 
-#### Deleting a Custom Goal: `delete`
+#### Deleting a custom goal: `delete`
 Deletes the specified Custom Goal from the dashboard.  
 
-Format: `delete INDEX_OF_GOAL_TO_DELETE`
+Format: `delete INDEX_OF_GOAL_TO_DELETE` (INDEX_OF_GOAL_TO_DELETE has to be a valid index)
 
 
 ## Contacts tab
