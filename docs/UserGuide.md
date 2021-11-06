@@ -28,6 +28,8 @@ Refer to the [Features](#Features) below for more details on what Advyze can do.
 
 ## Using this guide
 
+This guide is sectioned by tabs. Under the sections for each tab, the reader will find information regarding the commands that can be ran on that tab specifically, as well as a brief description of the intended purpose of the tab. In addition, there is a general section that explains commands that are not tab specific, and can be ran while on any tab. There is also a command summary table at the end of this document.
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
