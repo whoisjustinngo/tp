@@ -92,13 +92,24 @@ CustomGoalCard ...> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
 PersonListPanel -[hidden]left- AnalyticsPanel
+PersonListPanel -[hidden]left- PersonDetailedPanel
 PersonListPanel -[hidden]left- NotesPanel
-PersonListPanel -[hidden]left- ImportWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+PersonListPanel -[hidden]left- ScheduleListPanel
+PersonListPanel -[hidden]left- CustomGoalListPanel
+PersonListPanel -[hidden]left- TodoListPanel
+
+PersonListPanel -[hidden]down- PersonCard
+PolicyListPanel -[hidden]down- PolicyListCard
+ScheduleListPanel -[hidden]down- ScheduleCard
+CustomGoalListPanel -[hidden]down- CustomGoalCard
+
+HelpWindow -[hidden]down- TodoListPanel
+
+'CustomGoalCard -[hidden]down- ImportWindow
+'HelpWindow -[hidden]left- CommandBox
+'CommandBox -[hidden]left- ResultDisplay
+'ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml
