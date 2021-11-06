@@ -48,7 +48,7 @@ If you plan to use Intellij IDEA (highly recommended):
    When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [Advyze’s architecture](DeveloperGuide.md#architecture).
 
 1. **Do the tutorials**
-   These tutorials will help you get acquainted with the codebase.
+   These tutorials will help you get acquainted with the AB3 codebase that this project was built upon. Fork and clone the [AB3 codebase](https://github.com/se-edu/addressbook-level3) before attempting these tutorials to follow along with them.
 
    * [Tracing code](tutorials/TracingCode.md)
    * [Adding a new command](tutorials/AddRemark.md)
