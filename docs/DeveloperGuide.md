@@ -166,16 +166,21 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-### Filter `Persons`
+###\[Proposed for v1.3\] Filter `Persons`
 
 #### Implementation
 
-The `ModelManager` manages all in-memory data which allows us to easily parse in a `Predicate` to filter Persons based on a `Person's` atrribute. To allow the user to filter for any attribute of a `Person`, a `Predicate` class is created for each attribute.  
+The `ModelManager` manages all in-memory data which allows us to easily parse in a `Predicate` to filter Persons based
+on a `Person's` atrribute. To allow the user to filter for any attribute of a `Person`, a `Predicate` class is created
+for each attribute.
 
-A `Predicate` takes in a keyword which applies a filter onto the model.      
+A `Predicate` takes in a keyword which applies a filter onto the model.
+Some examples are: `AddressContainsKeywordsPredicate`, `EmailContainsKeywordsPredicate`, .. etc
 #### Design considerations
-`FilteredList<Person>` is used to keep store in-memory data which wraps an `ObservableList<Person>` which is fed to the Ui for display of the filtered persons to the user. This design provides a clean way for us to filter data using `Predicate`. 
+Since the architecture follows a Model-view-controller design pattern, we have `FilteredList<Person>` wrapping an `ObservableList<Person>`
+which is used to keep store in-memory data of `Person` objects. Our UI Views constantly listens for changes triggered by
+`FilterCommand#execute` which updates the `FilteredList<Person>` with a new predicate which then reflects an updated view
+on the UI of the filtered persons. This design provides a clean way for us to filter data using `Predicate`s.
 
 ### \[Proposed for v1.2\] Scheduling an Event
 
