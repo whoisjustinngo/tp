@@ -12,17 +12,11 @@ Advyze is a desktop app for tech-savvy student financial advisors to keep track 
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
-
+1. Ensure you have Java `11` or above installed in your computer.
 2. Download the latest `advyze.jar` release from [this link](https://github.com/AY2122S1-CS2103-T14-4/tp/releases).
-
 3. Copy the file to the folder you want to use as the _home folder_ for Advyze.
-
-4. Double-click the file to start the app. You should see the `dashboard` tab displayed (refer to the [Dashboard](#dashboard) to see how it is supposed to look like)
-
-**More details coming soon**
-
-Refer to the [Features](#Features) below for more details on what Advyze can do.
+4. Double-click the file to start the app. You should see the `dashboard` tab displayed (refer to the [Dashboard tab](#dashboard tab) section to see how it is supposed to look like).
+5. At this point, you are good to go! You can now begin running the commands detailed in this guide for any of the tabs.
 
 ---
 
