@@ -165,7 +165,7 @@ Updates *the progress* of a particular custom goal by the specified value, i.e. 
 
 Format: `update INDEX_OF_CUSTOM_GOAL val/AMOUNT_TO_INCREMENT_GOAL_BY`
 
-> :exclamation: Note: `AMOUNT_TO_INCREMENT_GOAL_BY` has to be a number (can be positive or negative).  
+* `AMOUNT_TO_INCREMENT_GOAL_BY` has to be a number (can be positive or negative)
 
 Example: 
 * To update progress of custom goal 1 by an amount of 123.4: `update 1 val/123.4`
@@ -175,26 +175,31 @@ Example:
 #### Deleting a custom goal: `delete`
 Deletes the specified Custom Goal from the dashboard.  
 
-Format: `delete INDEX_OF_GOAL_TO_DELETE` (INDEX_OF_GOAL_TO_DELETE has to be a valid index)
+Format: `delete INDEX_OF_GOAL_TO_DELETE` 
 
+* `INDEX_OF_GOAL_TO_DELETE` has to be a valid index
 
 ## Contacts tab
 
+This tab contains all the user's added contacts and their information.
+
 
 ### Viewing all contacts: `list`  
-Format: `list`  
 * Restores the contacts tab to its default view
-* Contacts are listed in alphabetical order of their names
+* Contacts will (always) be listed in alphabetical order of their names
 * Using `list` in details tab will also show full list of contacts
 
+Format: `list`  
+
 ### Adding a contact: `add`
+
+Adds a new contact into the list of all contacts.
+
 Format: `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]`
 
-Note:  
 * Only supports adding relationships "friend" and "client" in v1.3
 * Tags can be at most 50 characters
-* Add a contact as a client to add policies and notes  
-* Learn how to add notes to contacts [here](#adding-a-note-to-a-contact-note)
+* Specifying the `RELATIONSHIP` as client would allow adding of notes and policies to the contact (learn how to add notes to contacts [here](#adding-a-note-to-a-contact-note))
 
 Examples:  
 * Adding a friend: `add n/bobby r/friend p/12345678 e/example@gmail.com a/NUS`
@@ -202,51 +207,64 @@ Examples:
 * Adding a friend with 2 tags: `add n/darren r/friend p/12345678 e/example@gmail.com a/Heng Mui Kiat Street 32 t/classmate t/SOC`  
 
 ### Editing a contact: `edit`
+
+Edits an existing contact.
+
 Format: `edit INDEX [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`  
-Edits the contact at the specified INDEX.
-* The index refers to the index number shown in the Contact list.
+* The index refers to the contact's index number shown on the contacts tab
 * The index must be a positive integer 1, 2, 3, … and a valid index in the contact list
 
 Examples:  
-Changing a friend to a client: `edit 1 r/client`  
-Changing a contact's phone and email: `edit 1 p/12345678 e/newEmail@gmail.com`  
-Changing a contact's tags: `edit 2 t/nus t/dancer`
 
-### Client Status: `status`
-![](images/fresh-status.png)  
-Format: `status INDEX STATUS`  
-Every client has a status that shows which stage in the sales process each client is in right now.
-Status look like tags but have a dark blue background as show in the image above.
+* Changing a friend to a client: `edit 1 r/client`  
+* Changing a contact's phone and email: `edit 1 p/12345678 e/newEmail@gmail.com`  
+* Changing a contact's tags: `edit 2 t/nus t/dancer`
+
+### Changing a client's status: `status`
+![](images/fresh-status.png)    
+
+Every client has a `status` that shows which stage in the sales process the client is at right now.
+Status look like tags but have a dark blue background, as show in the image above.
 The valid statuses are: [fresh, approached, pitched, negotiated, closed, lost]  
 
 * New contacts created in the contacts list are given a "fresh" status to signify that the client is a fresh lead.
-* A summary of all client's statuses is shown in the [dashboard](#Dashboard) tab
+* The total number of contacts with each status is shown in the analytics section of the [dashboard](#Dashboard) tab
 * Friends do not have statuses
 
+Format: `status INDEX STATUS`
+
+* `INDEX` is the index of the contact (which has to be a client) to change the status of in the contacts tab
+* `STATUS` is the new status to assign to the client
+
 Examples of changing status:  
-* `status 1 approached`
-* `status 2 lost`
+* Change status of contact 1 to "approached":  `status 1 approached`
+* Change status of contact 2 to "lost": `status 2 lost`
 
 ### Deleting a contact: `delete`
-Format: `delete INDEX`  
-Deletes the contact at the specified INDEX.  
 
-* The index refers to the index number shown in the Contact list.
-* The index must be a positive integer 1, 2, 3, … and a valid index in the contact list
+Deletes the contact at a specified `INDEX`.  
+
+Format: `delete INDEX`  
+
+* The index refers to the contact's index number shown on the contacts tab
 
 Example:  
-`delete 2`
 
-### Filtering contact according to attributes: `filter`
+* Delete contact 2: `delete 2`
+
+### Filtering contacts according to attributes: `filter`
+
+Filter all contacts according to their attributes (case-insensitive) and displays them as a list with index numbers.
+
 Format: `filter [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`  
-Filter all persons according to their attributes (case-insensitive) and displays them as a list with index numbers.
+
 * Multiple filters are supported
   * Example: `filter r/client e/@gmail` 
-    * Filters for all clients that has the keyword: "gmail" in their email
+    * Filters for all clients that has the keyword: "@gmail" in their email
 * Multiple keywords are supported
   * Example: `filter n/Alex Charlotte`
     * Filters all clients with names Alex OR Charlotte
-* Filter for attribute: name must match whole word
+* Filtering by name only shows whole-word matches
   * All other attributes are simple keyword matches
 
 Expected result of `filter r/client`:
