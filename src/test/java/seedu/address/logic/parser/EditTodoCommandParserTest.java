@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_READ;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_TRAVEL;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -49,10 +50,10 @@ public class EditTodoCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + DESCRIPTION_READ, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + DESCRIPTION_READ, MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + DESCRIPTION_READ, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + DESCRIPTION_READ, MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);

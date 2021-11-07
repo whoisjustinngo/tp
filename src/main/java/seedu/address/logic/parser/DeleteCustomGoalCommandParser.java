@@ -29,6 +29,8 @@ public class DeleteCustomGoalCommandParser implements Parser<DeleteCustomGoalCom
         try {
             Index index = ParserUtil.parseIndex(args.trim().split(" ")[0]);
             return new DeleteCustomGoalCommand(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new ParseException(MESSAGE_INVALID_INDEX, e);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INDEX));
         }
