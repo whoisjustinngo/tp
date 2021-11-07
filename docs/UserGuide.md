@@ -328,17 +328,17 @@ Example:
 Deleting contact details will be implemented in future versions. For now, you can delete or edit policies and notes manually in the file `data/addressbook.json` if you made a mistake adding such client details.
 
 ### Summary of commands for Contacts and Details tab
-| Command      | Format |Contacts tab | Details tab |
+| Command | Format | Contacts tab | Details tab |
 | ----------- | ----------- | ----------- | ---------- |
-| list | `list`|:heavy_check_mark: | :heavy_check_mark:|
-| add | `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]`|:heavy_check_mark: | :x:|
-| edit |`edit INDEX [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`| :heavy_check_mark: |:x:|
-| delete |`delete INDEX`| :heavy_check_mark:|:x:|
-| filter  |`filter [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`| :heavy_check_mark:|:x:|
-| select   |`select INDEX` | :heavy_check_mark:|:heavy_check_mark:|
-| status  |`status INDEX STATUS`  | :heavy_check_mark:|:heavy_check_mark:|
-| policy   |`policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`| :heavy_check_mark:|:heavy_check_mark:|
-| note   |`note INDEX MESSAGE` | :heavy_check_mark:|:heavy_check_mark:|
+| list | `list` | :heavy_check_mark: | :heavy_check_mark: |
+| add | `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]` | :heavy_check_mark: | :x: |
+| edit | `edit INDEX [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]` | :heavy_check_mark: | :x: |
+| delete | `delete INDEX` | :heavy_check_mark: | :x: |
+| filter | `filter [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]` | :heavy_check_mark: | :x: |
+| select | `select INDEX` | :heavy_check_mark: | :heavy_check_mark: |
+| status | `status INDEX STATUS` | :heavy_check_mark: | :heavy_check_mark: |
+| policy | `policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION` | :heavy_check_mark: | :heavy_check_mark: |
+| note | `note INDEX MESSAGE` | :heavy_check_mark: | :heavy_check_mark: |
 
 ## Schedule Tab
 
