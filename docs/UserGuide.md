@@ -22,11 +22,11 @@ Advyze is a desktop app for tech-savvy student financial advisors to keep track 
 
 ## Using This Guide
 
-This guide is sectioned by tabs. Under the sections for each tab, the reader will find information regarding the commands that can be ran on that tab specifically, as well as a brief description of the intended purpose of the tab. In addition, there is a general section that explains commands that are not tab specific, and can be ran while on any tab. There is also a command summary table at the end of this document.
+This guide is sectioned by tabs. Under the sections for each tab, the reader will find information regarding the commands that can be ran on that tab specifically, as well as a brief description of the intended purpose of the tab. In addition, there is a general section that explains commands that are not tab specific, and can be ran while on any tab.
 
 > :exclamation: Note: 
 >
-> The commands described in the various tab-specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specified in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience-commands), or if it is the Contacts and Details tabs which are highly related, see [Summary of commands for Contacts and Details tab](#Summary-of-commands-for-Contacts-and-Details-tab)). For example, the command to mark a todo as done will work only while the user is on the Todos tab.
+> The commands described in the various tab-specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specified in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience-commands), or if it is the Contacts and Details tabs which are highly related, see [Summary of commands for Contacts and Details tab](#summary-of-commands-for-contacts-and-details-tab)). For example, the command to mark a todo as done will work only while the user is on the Todos tab.
 >
 > It is hence implied that any command in the tab-specific sections describes the behaviour when running that command when on that tab in particular.
 
@@ -122,6 +122,7 @@ The Dashboard tab is the default landing page of the app. It displays a summary 
 * The user can adjust how much of each section is to be displayed by sliding the black bars up and down or left and right as required.
 
 This is how the Dashboard tab looks like as of v1.4: 
+
 ![dashboard_tab](images/dashboard-tab-v1.4.png)
 
 ### Analytics
@@ -254,13 +255,14 @@ Format: `filter [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG
   * All other attributes are simple keyword matches
 
 Expected result of `filter r/client`:
+
 ![contacts_tab](images/filter-contacts-v1.4.png)  
 
 ## Details Tab
 
 This tab allows the user to view detailed policy information and notes for their clients.
 
-> :bulb: Note: the Details tab and Contacts tab have some overlapping commands, i.e. there are some commands that can be ran on both the Details and Contacts tabs. See the [Summary of commands for Contacts and Details tab](#Summary-of-commands-for-Contacts-and-Details-tab) for more details.
+> :bulb: Note: the Details tab and Contacts tab have some overlapping commands, i.e. there are some commands that can be ran on both the Details and Contacts tabs. See the [Summary of commands for Contacts and Details tab](#summary-of-commands-for-contacts-and-details-tab) for more details.
 
 ### Selecting a contact to view their details: `select`  
 
@@ -321,8 +323,8 @@ Example:
 
 ![details_tab](images/details-tab-v1.3.png)
 
-### Deleting a note from a contact: `coming soon`
-### Deleting a policy from a contact: `coming soon`  
+### Deleting a note from a contact: `(coming soon)`
+### Deleting a policy from a contact: `(coming soon)`  
 Deleting contact details will be implemented in future versions. For now, you can delete or edit policies and notes manually in the file `data/addressbook.json` if you made a mistake adding such client details.
 
 ### Summary of commands for Contacts and Details tab
@@ -338,29 +340,27 @@ Deleting contact details will be implemented in future versions. For now, you ca
 | policy   |`policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`| :heavy_check_mark:|:heavy_check_mark:|
 | note   |`note INDEX MESSAGE` | :heavy_check_mark:|:heavy_check_mark:|
 
-
-
 ## Schedule Tab
 
 The Schedule tab shows all of the user's events in chronological order.
 
-> :exclamation:Note: By default, the Schedule tab will **ONLY** show upcoming events. The user can use some of the following commands to customise the kind of events to display and view past Events.
+> :exclamation:Note: By default, the Schedule tab will **ONLY** show upcoming events. The user can use the `list` command to show all events, future and past.
 
 ### Viewing all events: `list`
 
 Shows all the added events. Events will be ordered by date, then by time.
 
-### Viewing all upcoming events: `showupcoming` (possible future implementation)
+### Viewing all upcoming events: `(coming soon)` 
 
-Shows all the upcoming events
+Shows all upcoming events only
 
-* Upcoming events will be ordered by date, then the order of time on that day itself
+* Upcoming events will be ordered by date, then by time
 
-### Viewing all past events: `showpast` (possible future implementation)
+### Viewing all past events: `(coming soon)`
 
-Shows all the past events
+Shows all past events only
 
-* Past events will be ordered by date, then the order of time on that day itself
+* Past events will be ordered by date, then by time
 
 ### Adding an event: `add`
 
@@ -375,7 +375,7 @@ Format: `add [type] [d/TASK DESCRIPTION] [date/DATE] [from/TIME FROM] [to/TIME T
 > :exclamation: Note:
 >
 > * While adding an event, it will check if the event to add has any clashes with existing events. The event will only be added if there are no clashes. This applies to adding recurring events as well – if there are clashes for any of the recurring events, no events will be added at all.
-> * **Only upcoming events will be shown.** Past events will be stored in the database, but will not be displayed to the user. If you would like to see the past events added, please enter the `list` command.
+> * **By default, only upcoming events will be shown.** Past events will be stored in the database, but will not be displayed to the user. If you would like to see the past events added, please enter the `list` command.
 
 Examples:
 
@@ -407,6 +407,7 @@ Examples:
  * Filtering by description and date: `filter d/meeting date/18-05-2022`
 
 Expected result of `filter t/school`:
+
 ![schedule_tab](images/filter-events-v1.4.png)
 
 ### Deleting an event: `delete`
@@ -416,8 +417,7 @@ Deletes the event at the specified INDEX.
 Format: `delete [INDEX]`
 
 * The index refers to the index number of the event on the Schedule tab.
-
-> *Potential enhancement: to delete multiple events at once which was already added into the schedule.*
+* Deletion of multiple events is a possible future enhancement.
 
 ## Todos Tab
 
@@ -519,8 +519,4 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 3` deletes the 3rd todo in the displayed todos list.
 * `filter d/book` followed by `delete 1` deletes the 1st todo in the results of the `filter` command
-
-
-
-## Command Summary
 
