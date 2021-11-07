@@ -344,19 +344,19 @@ Deleting contact details will be implemented in future versions. For now, you ca
 
 The Schedule tab shows all of the user's events in chronological order.
 
-> :exclamation:Note: By default, the Schedule tab will **ONLY** show upcoming events. The user can use some of the following commands to customise the kind of events to display.
+> :exclamation:Note: By default, the Schedule tab will **ONLY** show upcoming events. The user can use some of the following commands to customise the kind of events to display and view past Events.
 
 ### Viewing all events: `list`
 
 Shows all the added events. Events will be ordered by date, then by time.
 
-### Viewing all upcoming events: `showupcoming` // TODO
+### Viewing all upcoming events: `showupcoming` (possible future implementation)
 
 Shows all the upcoming events
 
 * Upcoming events will be ordered by date, then the order of time on that day itself
 
-### View all upcoming events: `showpast` // TODO
+### Viewing all past events: `showpast` (possible future implementation)
 
 Shows all the past events
 
@@ -375,12 +375,12 @@ Format: `add [type] [d/TASK DESCRIPTION] [date/DATE] [from/TIME FROM] [to/TIME T
 > :exclamation: Note:
 >
 > * While adding an event, it will check if the event to add has any clashes with existing events. The event will only be added if there are no clashes. This applies to adding recurring events as well – if there are clashes for any of the recurring events, no events will be added at all.
-> * **Only upcoming events will be shown.** Past events will be stored in the database, but will not be displayed to the user.
+> * **Only upcoming events will be shown.** Past events will be stored in the database, but will not be displayed to the user. If you would like to see the past events added, please enter the `list` command.
 
 Examples:
 
- * Adding an event which recurs daily: `add d/lesson date/16-05-2021 fr/1400 to/1600 t/important recurd/18-05-2021`
- * Adding an event which recurs weekly: `add d/meeting date/18-05-2021 fr/1600 to/1800 t/priority recurw/15-08-2021`
+ * Adding an event which recurs daily: `add d/lesson date/16-05-2021 fr/1400 to/1600 t/important recurd/18-05-2022`
+ * Adding an event which recurs weekly: `add d/meeting date/18-05-2021 fr/1600 to/1800 t/priority recurw/15-08-2022`
 
 ### Editing an existing event: `edit`
 
@@ -393,7 +393,7 @@ Format: `edit INDEX [d/TASK DESCRIPTION] [date/DATE] [from/TIME FROM] [to/TIME T
 Examples:
 
  * Editing the tag of event 1: `edit 1 t/important`
- * Editing the description and date of event 2: `edit 2 d/meeting date/18-05-2021`
+ * Editing the description and date of event 2: `edit 2 d/meeting date/18-05-2022`
 
 ### Filtering events: `filter`
 
@@ -404,7 +404,7 @@ Format: `filter [d/TASK DESCRIPTION] [date/DATE] [fr/TIME FROM] [to/TIME TO] [da
 Examples:
 
  * Filtering by tags: `filter t/important`
- * Filtering by description and date: `filter d/meeting date/18-05-2021`
+ * Filtering by description and date: `filter d/meeting date/18-05-2022`
 
 Expected result of `filter t/school`:
 ![schedule_tab](images/filter-events-v1.4.png)
@@ -417,7 +417,7 @@ Format: `delete [INDEX]`
 
 * The index refers to the index number of the event on the Schedule tab.
 
-*Potential enhancement: to delete multiple events at once which was already added into the schedule.*
+> *Potential enhancement: to delete multiple events at once which was already added into the schedule.*
 
 ## Todos Tab
 
