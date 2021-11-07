@@ -122,6 +122,7 @@ The Dashboard tab is the default landing page of the app. It displays a summary 
 * The user can adjust how much of each section is to be displayed by sliding the black bars up and down or left and right as required.
 
 This is how the Dashboard tab looks like as of v1.4: 
+
 ![dashboard_tab](images/dashboard-tab-v1.4.png)
 
 ### Analytics
@@ -254,6 +255,7 @@ Format: `filter [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG
   * All other attributes are simple keyword matches
 
 Expected result of `filter r/client`:
+
 ![contacts_tab](images/filter-contacts-v1.4.png)  
 
 ## Details Tab
@@ -407,6 +409,7 @@ Examples:
  * Filtering by description and date: `filter d/meeting date/18-05-2022`
 
 Expected result of `filter t/school`:
+
 ![schedule_tab](images/filter-events-v1.4.png)
 
 ### Deleting an event: `delete`
@@ -416,8 +419,7 @@ Deletes the event at the specified INDEX.
 Format: `delete [INDEX]`
 
 * The index refers to the index number of the event on the Schedule tab.
-
-> *Potential enhancement: to delete multiple events at once which was already added into the schedule.*
+* Deletion of multiple events is a possible future enhancement.
 
 ## Todos Tab
 
