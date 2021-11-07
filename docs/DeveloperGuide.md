@@ -10,7 +10,8 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * Advyze is built using the [AddressBook Level 3 project template](https://github.com/se-edu/addressbook-level3) from [SE-EDU](https://se-education.org/).
-* Third-party libraries used: [iCal4j](https://github.com/ical4j/ical4j)
+* Third-party libraries used: [iCal4j](https://github.com/ical4j/ical4j).
+* Method to remove unnecessary 0s from floats taken from [stack overflow](https://stackoverflow.com/a/14126736).
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -130,6 +130,8 @@ public class CustomGoal {
         return sb.toString();
     }
 
+    // @@author whoisjustinngo-reused
+    // function to truncate trailing 0s when printing adapted from https://stackoverflow.com/a/14126736
     /**
      * Converts the provided float to a string while truncating all trailing zeroes.
      * @param f The float to convert and truncate.
@@ -142,6 +144,7 @@ public class CustomGoal {
             return String.format("%s", f);
         }
     }
+    // @@author
 
     public String getDescription() {
         return this.goalDescription;

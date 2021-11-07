@@ -61,6 +61,8 @@ public class UpdateCustomGoalCommand extends Command {
         }
     }
 
+    // @@author whoisjustinngo-reused
+    // function to truncate trailing 0s when printing adapted from https://stackoverflow.com/a/14126736
     /**
      * Converts the provided float to a string while truncating all trailing zeroes.
      * @param f The float to convert and truncate.
@@ -73,6 +75,7 @@ public class UpdateCustomGoalCommand extends Command {
             return String.format("%s", f);
         }
     }
+    // @@author
 
     @Override
     public boolean equals(Object other) {
