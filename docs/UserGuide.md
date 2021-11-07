@@ -340,8 +340,6 @@ Deleting contact details will be implemented in future versions. For now, you ca
 | policy   |`policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`| :heavy_check_mark:|:heavy_check_mark:|
 | note   |`note INDEX MESSAGE` | :heavy_check_mark:|:heavy_check_mark:|
 
-
-
 ## Schedule Tab
 
 The Schedule tab shows all of the user's events in chronological order.
