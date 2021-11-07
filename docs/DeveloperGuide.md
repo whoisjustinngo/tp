@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* Advyze is built by using the [AddressBook Level 3 project template](https://github.com/se-edu/addressbook-level3) from [SE-EDU](https://se-education.org/).
+* Advyze is built using the [AddressBook Level 3 project template](https://github.com/se-edu/addressbook-level3) from [SE-EDU](https://se-education.org/).
 * Third-party libraries used: [iCal4j](https://github.com/ical4j/ical4j)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -23,7 +23,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
-
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
@@ -74,7 +73,11 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+> :exclamation: Note: In the diagram, XYZ is a placeholder for the different classes. The values of XYZ are `CustomGoal, ` `Schedule`, `Todo`, and `Person`.
+
+
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -95,9 +98,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-2. This results in 2 `Command` objects (more precisely, the first is a `TabCommand`, the second is an object of one of its subclasses e.g., `AddCommand`) which both executed by the `LogicManager`.
-3. The first `Command` is used to change to the tabs the user wishes to execute their command on.
-4. The second command can communicate with the `Model` when it is executed (e.g. to add a person).
+2. This results in 2 `Command` objects (the first is a `TabCommand` object, the second object is from a subclass of `Command` e.g., `AddCommand`) which are both executed by the `LogicManager`.
+3. The first (`TabCommand`) is used to change to the tabs the user wishes to execute their command on.
+4. The second command then communicates with the `Model` when it is executed (e.g. to add a person).
 5. The result of each of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -122,13 +125,13 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data
+* stores the address book data, which consists of:
   * all `Person` objects (which are contained in a `UniquePersonList` object)
   * all `Todo` objects (which are contained in a `UniqueTodoList` object)
   * all `CustomGoal` objects (which are contained in a `UniqueCustomGoalList` object)
   * all `Schedule` objects (which are contained in a `UniqueScheduleList` object)
-  * For the sake of brevity, let's call such objects we are using to store data `DATA` objects
-* stores the currently 'selected' `DATA` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<DATA>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+  * for the sake of brevity, let's call such objects that are used to store data (`Todo`, `Person`, `CustomGoal`, `Schedule`) `DATA` objects
+* stores the currently 'selected' `DATA` objects (for example, the results of a search query or filter command) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<DATA>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -138,10 +141,10 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** A more detailed model on each DATA object is given below.  
-  
+
 `Person` objects:  
 <img src="images/PersonModelClassDiagram.png" width="450" />  
-  
+
 `Schedule`, `Todo`, `CustomGoal` objects:
 <img src="images/ScheduleTodogoalModelClassDiagram.png" width="450" />
 </div>
@@ -542,13 +545,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1. Advyze shows an error message.
     
     Use case ends.
-    
+  
 * 1b. The given details are invalid (e.g. missing details, invalid format).
   
   * 1b1. Advyze shows an error message.
     
     Use case ends.
- 
+
 > **Use case 02: Deleting an event**
 
 **Actor**: User
@@ -575,7 +578,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 > **Use case 03: Switching between tabs**
- 
+
 **Actor**: User
 
 **MSS**
