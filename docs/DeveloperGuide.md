@@ -132,10 +132,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-
-:bulb: Each `Person` object can store client related information such as `Status`, `Policies` and notes as a `String` 
-
-
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** A more detailed model on each DATA object is given below.  
   
