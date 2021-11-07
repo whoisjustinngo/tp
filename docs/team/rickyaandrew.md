@@ -21,8 +21,6 @@ Given below are my contributions to the project.
         * Allows user to: add tags and recurring Events.
     1. `edit` - to edit the Events which have been previously added into schedule.
     1. `list` - to view all past and upcoming Events.
-    1. `showpast` - to view all the past Events.
-    1. `showupcoming` - to view all the upcoming Events.
     1. `filter` - to filter out Events which have the given keywords in the respective attributes.
     1. `find` - to find Events which contains the given keyword in the description attribute.
     1. `delete` - to delete an Event which was added into the schedule.

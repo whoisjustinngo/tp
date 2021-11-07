@@ -10,23 +10,23 @@ Advyze is a desktop app for tech-savvy student financial advisors to keep track 
 
 ---
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your computer.
 2. Download the latest `advyze.jar` release from [this link](https://github.com/AY2122S1-CS2103-T14-4/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for Advyze.
-4. Double-click the file to start the app. You should see the `dashboard` tab displayed (refer to the [Dashboard tab](#dashboard-tab) section to see how it is supposed to look like).
+4. Double-click the file to start the app. You should see the Dashboard tab displayed (refer to the [Dashboard Tab](#dashboard-tab) section to see how it is supposed to look like).
 5. At this point, you are good to go! You can now begin running the commands detailed in this guide for any of the tabs.
 
 ---
 
-## Using this guide
+## Using This Guide
 
-This guide is sectioned by tabs. Under the sections for each tab, the reader will find information regarding the commands that can be ran on that tab specifically, as well as a brief description of the intended purpose of the tab. In addition, there is a general section that explains commands that are not tab specific, and can be ran while on any tab. There is also a command summary table at the end of this document.
+This guide is sectioned by tabs. Under the sections for each tab, the reader will find information regarding the commands that can be ran on that tab specifically, as well as a brief description of the intended purpose of the tab. In addition, there is a general section that explains commands that are not tab specific, and can be ran while on any tab.
 
 > :exclamation: Note: 
 >
-> The commands described in the various tab specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specifed in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience-commands), or if it is the contacts and details tabs which are highly related, see [summary of commands for contacts and details tab](#Summary-of-commands-for-contacts-and-details-tab)). 
+> The commands described in the various tab-specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specified in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience-commands), or if it is the Contacts and Details tabs which are highly related, see [Summary of commands for Contacts and Details tab](#summary-of-commands-for-contacts-and-details-tab)). For example, the command to mark a todo as done will work only while the user is on the Todos tab.
 >
 > It is hence implied that any command in the tab-specific sections describes the behaviour when running that command when on that tab in particular.
 
@@ -59,13 +59,13 @@ This guide is sectioned by tabs. Under the sections for each tab, the reader wil
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
-### Switching between Tabs: `tab`
+### Switching between tabs: `tab`
 
 Switches between different tabs.
 
@@ -89,10 +89,10 @@ To prevent extra tab switches in order to execute commands, convenience commands
 
 Format: `/TAB NAME` [command meant to run on specified TAB_NAME] 
 
-(see the :bulb: tip under the "switching between tabs: tab" section for the various `TAB_NAME`s)
+(see the :bulb: tip under the [Switching between Tabs](#switching-between-tabs-tab) section above for the various `TAB_NAME`s)
 
 Examples:
-* When on Todos tab, input `/schedule add event d/CS2103 meeting fr/1300 to/1500` will add a new event (akin to executing the `add` command on the schedule tab) instead of adding a new Todo.
+* When on Todos tab, input `/schedule add d/CS2103 Meeting date/20-12-2021 fr/1300 to/1500` will add a new event (akin to executing the `add` command on the Schedule tab) instead of adding a new todo.
 * When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` on the Schedule tab.
 * When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` on the Schedule tab.
 
@@ -112,8 +112,8 @@ Terminates the application.
 Format: `exit`
 
 ## Dashboard Tab
-The dashboard tab is the default landing page of the app. It displays a summary of relevant information from the other sections of the app in addition to having some features of its own.
-* The dashboard by default has 4 sections:
+The Dashboard tab is the default landing page of the app. It displays a summary of relevant information from the other sections of the app in addition to having some features of its own.
+* The Dashboard tab by default has 4 sections:
   * The analytics for contacts, which is automatically updated as the user populates the app with data (top left)
   * The user's custom goals, which they can add and update (top right)
   * The user's schedule in chronological order (which is synced with information in the Schedule tab) (middle)
@@ -121,11 +121,12 @@ The dashboard tab is the default landing page of the app. It displays a summary 
 * These sections are automatically updated as the data in the respective tabs are changed.
 * The user can adjust how much of each section is to be displayed by sliding the black bars up and down or left and right as required.
 
-This is how the dashboard looks like as of v1.4: 
+This is how the Dashboard tab looks like as of v1.4: 
+
 ![dashboard_tab](images/dashboard-tab-v1.4.png)
 
 ### Analytics
-The analytics section is the section at the top left of the dashboard tab, directly below the dashboard button. This feature provides some analytics for the user's contacts, specifically counting the number of clients with the various `status` (whether they are fresh leads, approached, closed, etc).
+The analytics section is the section at the top left of the Dashboard tab, directly below the Dashboard button. This feature provides some analytics for the user's contacts, specifically counting the number of clients with the various `status` (whether they are fresh leads, approached, closed, etc).
 
 The tracking is by quarters of the year, e.g. if the current quarter is Q3, the analytics will only show fresh leads *for Q3*, clients approached *in Q3*, etc.
 
@@ -158,8 +159,8 @@ Format: `add d/DESCRIPTION goal/GOAL [bydate/END_DATE] [bytime/END_TIME]`
 > :exclamation: Note: `GOAL` has to be a number (greater than 0), `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format hhmm in 24-hour format. If `END_TIME` is specified, `END_DATE` has to be specified as well.  
 
 Examples:
-* Adding a goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2021`
-* Adding a goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021 bytime/1200`
+* Adding a goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2022`
+* Adding a goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2022 bytime/1200`
 
 > :exclamation: Note: currently there is no command to edit custom goals; if the user, for example, commits a typo when creating a custom goal, they have to delete the custom goal and repeat the adding process with the correct information.
 
@@ -177,13 +178,13 @@ Example:
 > :bulb: Tip: since the update command allows the user to enter negative values, if they, for example, enter a wrong (positive) value for progress, they can correct it by updating the same goal with the difference, e.g. if the intended amount was to add 5 to progress but the user specified 7, they can just correct this by updating the same goal and specifying val = -2.
 
 #### Deleting a custom goal: `delete`
-Deletes the specified Custom Goal from the dashboard.  
+Deletes the specified custom goal from the Dashboard.  
 
 Format: `delete INDEX_OF_GOAL_TO_DELETE` 
 
 * `INDEX_OF_GOAL_TO_DELETE` has to be a valid index
 
-## Contacts tab
+## Contacts Tab
 
 This tab contains all the user's added contacts and their information.
 
@@ -193,7 +194,7 @@ Restores the contacts tab to its default view
 
 Format: `list`  
 
-* Using `list` in details tab will also show full list of contacts
+* Using `list` in Details tab will also show full list of contacts
 
 ### Adding a contact: `add`
 
@@ -202,7 +203,6 @@ Adds a new contact into the list of all contacts.
 Format: `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]`
 
 * Tags can be at most 50 characters
-
 * A contact can either have a relationship `client` or `friend`
 * Policies can only be added for clients, add a contact with the argument `r/client` to add policies to that contact
 * Learn how to add notes for contacts [here](#adding-a-note-to-a-contact-note)
@@ -218,7 +218,7 @@ Examples:
 Edits an existing contact.
 
 Format: `edit INDEX [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`  
-* The index refers to the contact's index number shown on the contacts tab
+* The index refers to the contact's index number shown on the Contacts tab
 * The index must be a positive integer 1, 2, 3, … and a valid index in the contact list
 
 Examples:  
@@ -233,7 +233,7 @@ Deletes the contact at a specified `INDEX`.
 
 Format: `delete INDEX`  
 
-* The index refers to the contact's index number shown on the contacts tab
+* The index refers to the contact's index number shown on the Contacts tab
 
 Example:  
 
@@ -255,13 +255,14 @@ Format: `filter [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG
   * All other attributes are simple keyword matches
 
 Expected result of `filter r/client`:
+
 ![contacts_tab](images/filter-contacts-v1.4.png)  
 
-## Details tab
+## Details Tab
 
 This tab allows the user to view detailed policy information and notes for their clients.
 
-> :bulb: Note: the details tab and contacts tab have some overlapping commands, i.e. there are some commands that can be ran on both the details and contacts tabs. See the [summary of commands for contacts and details tab](#Summary of commands for contacts and details tab) for more details.
+> :bulb: Note: the Details tab and Contacts tab have some overlapping commands, i.e. there are some commands that can be ran on both the Details and Contacts tabs. See the [Summary of commands for Contacts and Details tab](#summary-of-commands-for-contacts-and-details-tab) for more details.
 
 ### Selecting a contact to view their details: `select`  
 
@@ -269,7 +270,7 @@ Selects a contact (who is a client) at a specified INDEX to view their policies 
 
 Format: `select INDEX`  
 
-* The index refers to the index number shown in the Contact list.
+* The index refers to the index number shown in the contact list.
 * The index must be a positive integer 1, 2, 3, … and a valid index in the contact list
 
 Example:
@@ -285,7 +286,7 @@ Statuses look like tags but have a dark blue background, as show in the image ab
 The valid statuses are: [fresh, approached, pitched, negotiated, closed]
 
 * New contacts created in the contacts list are given a "fresh" status to signify that the client is a fresh lead
-* The total number of clients with a particular status is shown in the analytics section of the [dashboard](#Dashboard) tab
+* The total number of clients with a particular status is shown in the analytics section of the [Dashboard](#dashboard-tab) tab
 * Friends do not have statuses
 
 Format: `status INDEX STATUS`  
@@ -303,8 +304,7 @@ Adds a policy to the client corresponding to the specified INDEX in the contact 
 
 Format: `policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`  
 
-* Commission cannot be a negative number  
-
+* Commission cannot be a negative number
 * You cannot add policies to friends, but you can use the `edit` command to change the relationship of a `friend` to a `client` 
 
 Example:  
@@ -323,46 +323,45 @@ Example:
 
 ![details_tab](images/details-tab-v1.3.png)
 
-### Deleting a note from a contact: `coming soon`
-### Deleting a policy from a contact: `coming soon`  
+### Deleting a note from a contact: `(coming soon)`
+### Deleting a policy from a contact: `(coming soon)`  
 Deleting contact details will be implemented in future versions. For now, you can delete or edit policies and notes manually in the file `data/addressbook.json` if you made a mistake adding such client details.
 
-### Summary of commands for contacts and details tab
-| Command      | Format |Contacts tab | Details tab |
+### Summary of commands for Contacts and Details tab
+
+| Command | Format | Contacts tab | Details tab |
 | ----------- | ----------- | ----------- | ---------- |
-| list | `list`|:heavy_check_mark: | :heavy_check_mark:|
-| add | `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]`|:heavy_check_mark: | :x:|
-| edit |`edit INDEX [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`| :heavy_check_mark: |:x:|
-| delete |`delete INDEX`| :heavy_check_mark:|:x:|
-| filter  |`filter [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`| :heavy_check_mark:|:x:|
-| select   |`select INDEX` | :heavy_check_mark:|:heavy_check_mark:|
-| status  |`status INDEX STATUS`  | :heavy_check_mark:|:heavy_check_mark:|
-| policy   |`policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`| :heavy_check_mark:|:heavy_check_mark:|
-| note   |`note INDEX MESSAGE` | :heavy_check_mark:|:heavy_check_mark:|
+| list | `list` | :heavy_check_mark: | :heavy_check_mark: |
+| add | `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]` | :heavy_check_mark: | :x: |
+| edit | `edit INDEX [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]` | :heavy_check_mark: | :x: |
+| delete | `delete INDEX` | :heavy_check_mark: | :x: |
+| filter | `filter [n/NAME] [r/RELATIONSHIP] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]` | :heavy_check_mark: | :x: |
+| select | `select INDEX` | :heavy_check_mark: | :heavy_check_mark: |
+| status | `status INDEX STATUS` | :heavy_check_mark: | :heavy_check_mark: |
+| policy | `policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION` | :heavy_check_mark: | :heavy_check_mark: |
+| note | `note INDEX MESSAGE` | :heavy_check_mark: | :heavy_check_mark: |
 
+## Schedule Tab
 
+The Schedule tab shows all of the user's events in chronological order.
 
-## Schedule tab
-
-The schedule tab shows all of the user's events in chronological order.
-
-> :exclamation:Note: By default, the Schedule Tabs will **ONLY** show upcoming Events. The user can use some of the following commands to customise the kind of events to display.
+> :exclamation:Note: By default, the Schedule tab will **ONLY** show upcoming events. The user can use the `list` command to show all events, future and past.
 
 ### Viewing all events: `list`
 
-Shows all the added Events. Events will be ordered by date, then by time.
+Shows all the added events. Events will be ordered by date, then by time.
 
-### Viewing all upcoming events: `showupcoming` // TODO
+### Viewing all upcoming events: `(coming soon)` 
 
-Shows all the upcoming Events
+Shows all upcoming events only
 
-* Upcoming Events will be ordered by date, then the order of time on that day itself
+* Upcoming events will be ordered by date, then by time
 
-### View all upcoming events: `showpast` // TODO
+### Viewing all past events: `(coming soon)`
 
-Shows all the past Events
+Shows all past events only
 
-* Past Events will be ordered by date, then the order of time on that day itself
+* Past events will be ordered by date, then by time
 
 ### Adding an event: `add`
 
@@ -377,12 +376,12 @@ Format: `add [type] [d/TASK DESCRIPTION] [date/DATE] [from/TIME FROM] [to/TIME T
 > :exclamation: Note:
 >
 > * While adding an event, it will check if the event to add has any clashes with existing events. The event will only be added if there are no clashes. This applies to adding recurring events as well – if there are clashes for any of the recurring events, no events will be added at all.
-> * **Only upcoming Events will be shown.** Past events will be stored in the database, but will not be displayed to the user.
+> * **By default, only upcoming events will be shown.** Past events will be stored in the database, but will not be displayed to the user. If you would like to see the past events added, please enter the `list` command.
 
 Examples:
 
- * Adding an event which recurs daily: `add d/lesson date/16-05-2021 fr/1400 to/1600 t/important recurd/18-05-2021`
- * Adding an event which recurs weekly: `add d/meeting date/18-05-2021 fr/1600 to/1800 t/priority recurw/15-08-2021`
+ * Adding an event which recurs daily: `add d/lesson date/16-05-2021 fr/1400 to/1600 t/important recurd/18-05-2022`
+ * Adding an event which recurs weekly: `add d/meeting date/18-05-2021 fr/1600 to/1800 t/priority recurw/15-08-2022`
 
 ### Editing an existing event: `edit`
 
@@ -395,7 +394,7 @@ Format: `edit INDEX [d/TASK DESCRIPTION] [date/DATE] [from/TIME FROM] [to/TIME T
 Examples:
 
  * Editing the tag of event 1: `edit 1 t/important`
- * Editing the description and date of event 2: `edit 2 d/meeting date/18-05-2021`
+ * Editing the description and date of event 2: `edit 2 d/meeting date/18-05-2022`
 
 ### Filtering events: `filter`
 
@@ -406,9 +405,10 @@ Format: `filter [d/TASK DESCRIPTION] [date/DATE] [fr/TIME FROM] [to/TIME TO] [da
 Examples:
 
  * Filtering by tags: `filter t/important`
- * Filtering by description and date: `filter d/meeting date/18-05-2021`
+ * Filtering by description and date: `filter d/meeting date/18-05-2022`
 
 Expected result of `filter t/school`:
+
 ![schedule_tab](images/filter-events-v1.4.png)
 
 ### Deleting an event: `delete`
@@ -417,68 +417,66 @@ Deletes the event at the specified INDEX.
 
 Format: `delete [INDEX]`
 
-* The index refers to the index number of the event on the Schedule tab .
+* The index refers to the index number of the event on the Schedule tab.
+* Deletion of multiple events is a possible future enhancement.
 
-*Potential enhancement: to delete multiple Events at once which was already added into the Schedule.*
+## Todos Tab
 
-## Todos tab
-
-The todos tab shows all the user's todos.
+The Todos tab shows all the user's todos.
 
 ### Listing all todos: `list`
 
-Shows a list of all Todos.
+Shows a list of all todos.
 
 Format: `list`
 
-* The list is sorted in chronological order, according to the time at which the Todo was created.
-* By default, the list of all Todos will be shown upon navigating to the Todos tab.
+* The list is sorted in chronological order, according to the time at which the todo was created.
 
 ### Adding a todo: `add`
 
-Adds a Todo.
+Adds a todo.
 
 Format: `add d/DESCRIPTION [t/TAG]...`
 
 * The description must not be more than 70 characters in length.
-* A Todo can have any number of tags (including 0)
+* A todo can have any number of tags (including 0)
 * Each tag must not be more than 50 characters in length.
 
 Examples:
 * `add d/read book`
 * `add d/buy new jeans t/urgent t/shopping`
 
-### Editing a todo while on the todos tab : `edit`
+### Editing a todo: `edit`
 
-Edits an existing Todo.
+Edits an existing todo.
 
 Format: `edit INDEX [d/DESCRIPTION] [t/TAG]…​`
 
-* Edits the Todo at the specified `INDEX`. The index refers to the index number shown in the displayed Todos list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the todo at the specified `INDEX`. The index refers to the index number shown in the displayed todos list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, any existing tags of the secified todo will be removed i.e adding of tags is not cumulative.
-* You can remove all the Todo’s tags by typing `t/` without specifying any tags after.
+* When editing tags, any existing tags of the specified todo will be removed i.e adding of tags is not cumulative.
+* You can remove all the todo’s tags by typing `t/` without specifying any tags after.
 
 Examples:
-*  Edit the description of the 1st Todo to be "Read The Intelligent Investor": `edit 1 d/Read The Intelligent Investor` 
-*  Edit the description of the 2nd Todo to be "Travel to Germany" and clear all existing tags: `edit 2 d/Travel to Germany t/` 
+*  Edit the description of the 1st todo to be "Read The Intelligent Investor": `edit 1 d/Read The Intelligent Investor` 
+*  Edit the description of the 2nd todo to be "Travel to Germany" and clear all existing tags: `edit 2 d/Travel to Germany t/` 
 
 ### Marking a todo as done: `done`
 
-Marks the specified Todo as done.
+Marks the specified todo as done.
 
-* Marks the Todo at the specified `INDEX` as done.
-* The index refers to the index number shown in the displayed Todos list.
+* Marks the todo at the specified `INDEX` as done.
+* The index refers to the index number shown in the displayed todos list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `done 3` marks the 3rd Todo in the displayed Todos list as done.
-* `filter d/book` followed by `done 1` marks the 1st Todo in the results of the `filter` command as done.
+* `list` followed by `done 3` marks the 3rd todo in the displayed todos list as done.
+* `filter d/book` followed by `done 1` marks the 1st todo in the results of the `filter` command as done.
 
 ### Searching todos by description: `find`
 
-Finds Todos whose descriptions contain any of the given keywords.
+Finds todos whose descriptions contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -489,12 +487,12 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Todos matching at least one keyword will be returned (i.e. `OR` search). e.g. `Read Buy` will return `Read Book`, `Buy Jeans`
 
 Examples:
-* `find book` returns all Todos with `book` in its description, e.g. `read book` and `read book : Steve Jobs autobiography`
-* `find book buy` returns all Todos with `book` or `buy` in its description, e.g. `read book` and `buy new jeans`
+* `find book` returns all todos with `book` in its description, e.g. `read book` and `read book : Steve Jobs autobiography`
+* `find book buy` returns all todos with `book` or `buy` in its description, e.g. `read book` and `buy new jeans`
 
-### Filtering Todos by attributes: `filter`
+### Filtering todos by attributes: `filter`
 
-Filters Todos according to any of its attributes (description, tags, and whether it is marked as done).
+Filters todos according to any of its attributes (description, tags, and whether it is marked as done).
 
 Format: `filter [d/DESCRIPTION] [t/TAG] [done/yes OR done/no]`
 
@@ -504,26 +502,22 @@ Format: `filter [d/DESCRIPTION] [t/TAG] [done/yes OR done/no]`
 * At least one of the optional fields must be provided, i.e. you must filter by 1 or more attributes.
 
 Examples:
-* `filter d/book` returns all Todos with `book` in its description, e.g. `read book` and `read book : Steve Jobs autobiography`
-* `filter d/book done/yes` returns all Todos with `book` in its description and are marked as done
-* `filter t/finance d/read` returns all Todos with `finance` as a tag and `read` in its description
-* `filter done/no` returns all Todos which are not marked as done.
+* `filter d/book` returns all todos with `book` in its description, e.g. `read book` and `read book : Steve Jobs autobiography`
+* `filter d/book done/yes` returns all todos with `book` in its description and are marked as done
+* `filter t/finance d/read` returns all todos with `finance` as a tag and `read` in its description
+* `filter done/no` returns all todos which are not marked as done.
 
 ### Deleting a todo: `delete`
 
-Deletes a specified Todo.
+Deletes a specified todo.
 
 Format: `delete INDEX`
 
-* Deletes the Todo at the specified `INDEX`.
-* The index refers to the index number shown in the displayed Todos list.
+* Deletes the todo at the specified `INDEX`.
+* The index refers to the index number shown in the displayed todos list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 3` deletes the 3rd Todo in the displayed Todos list.
-* `filter d/book` followed by `delete 1` deletes the 1st Todo in the results of the `filter` command
-
-
-
-## Command Summary
+* `list` followed by `delete 3` deletes the 3rd todo in the displayed todos list.
+* `filter d/book` followed by `delete 1` deletes the 1st todo in the results of the `filter` command
 

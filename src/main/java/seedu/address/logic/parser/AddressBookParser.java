@@ -31,8 +31,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListSchedulesCommand;
 import seedu.address.logic.commands.ListTodosCommand;
 import seedu.address.logic.commands.SelectContactCommand;
-import seedu.address.logic.commands.ShowPastEventsCommand;
-import seedu.address.logic.commands.ShowUpcomingEventsCommand;
 import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.UpdateCustomGoalCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -138,13 +136,6 @@ public class AddressBookParser {
 
         case AddNoteCommand.COMMAND_WORD:
             return handleAddNoteCommand(tab, arguments);
-
-        // Schedule tab commands that only work on Schedule tab
-        case ShowUpcomingEventsCommand.COMMAND_WORD:
-            return handleShowUpcomingEventsCommand(tab);
-
-        case ShowPastEventsCommand.COMMAND_WORD:
-            return handleShowPastEventsCommand(tab);
 
         // Todos Tab commands that only work on Todos tab
         case DoneTodoCommand.COMMAND_WORD:
@@ -455,54 +446,6 @@ public class AddressBookParser {
 
         case DETAILS:
             return new AddNoteCommandParser().parse(arguments);
-
-        default:
-            throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
-        }
-    }
-
-    private Command handleShowUpcomingEventsCommand(Tab tab) throws ParseException {
-        // Show Upcoming Events command is only valid on Schedule tab
-        switch (tab) {
-
-        case TODOS:
-            // fallthrough
-
-        case DASHBOARD:
-            // fallthrough
-
-        case CONTACTS:
-            // fallthrough
-
-        case DETAILS:
-            throw new ParseException(String.format(MESSAGE_INVALID_TAB, SCHEDULE));
-
-        case SCHEDULE:
-            return new ShowUpcomingEventsCommand();
-
-        default:
-            throw new ParseException(MESSAGE_ERROR_PARSING_TAB);
-        }
-    }
-
-    private Command handleShowPastEventsCommand(Tab tab) throws ParseException {
-        // Show Past Events command is only valid on Schedule tab
-        switch (tab) {
-
-        case TODOS:
-            // fallthrough
-
-        case DASHBOARD:
-            // fallthrough
-
-        case CONTACTS:
-            // fallthrough
-
-        case DETAILS:
-            throw new ParseException(String.format(MESSAGE_INVALID_TAB, SCHEDULE));
-
-        case SCHEDULE:
-            return new ShowPastEventsCommand();
 
         default:
             throw new ParseException(MESSAGE_ERROR_PARSING_TAB);

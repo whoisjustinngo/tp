@@ -19,8 +19,8 @@ Class Number
 Class Name2 as "Name"
 Class Commission
 }
-AddressBook *-right-> "1" UniquePersonList
-UniquePersonList -right-> Person
+AddressBook *-down-> "1" UniquePersonList
+UniquePersonList -down-> Person
 
 Person *--> Name
 Person *--> Phone
