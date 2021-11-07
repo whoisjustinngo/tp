@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_SCHEDULE_DISPLAYED_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteScheduleCommand;
@@ -20,6 +21,8 @@ public class DeleteScheduleCommandParser implements Parser<DeleteScheduleCommand
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteScheduleCommand(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new ParseException(MESSAGE_INVALID_SCHEDULE_DISPLAYED_INDEX, e);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteScheduleCommand.MESSAGE_USAGE),
                     pe);

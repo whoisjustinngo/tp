@@ -39,6 +39,8 @@ public class UpdateCustomGoalCommandParser implements Parser<UpdateCustomGoalCom
             Index index = ParserUtil.parseIndex(args.trim().split(" ")[0]);
             float valueToUpdateBy = Float.parseFloat(argMultimap.getValue(PREFIX_VALUE).get());
             return new UpdateCustomGoalCommand(index, valueToUpdateBy);
+        } catch (IndexOutOfBoundsException e) {
+            throw new ParseException(MESSAGE_INVALID_INDEX, e);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INDEX));
         } catch (NumberFormatException nfe) {

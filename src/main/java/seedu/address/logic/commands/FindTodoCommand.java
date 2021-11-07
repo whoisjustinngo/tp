@@ -16,7 +16,7 @@ public class FindTodoCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all todos whose descriptions contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]\n"
             + "Example: " + COMMAND_WORD + " book buy";
 
     private final DescriptionContainsKeywordsPredicate predicate;
