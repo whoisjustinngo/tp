@@ -3,12 +3,6 @@ layout: page
 title: Developer Guide
 ---
 
-<style type="text/css">
-    .customClass {
-        width: 1000px;
-    }
-</style>
-
 * Table of Contents
 {:toc}
 
@@ -120,7 +114,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="900" class="customClass"/>
+<img src="images/ParserClasses.png" width="900"/>
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.

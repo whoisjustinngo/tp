@@ -1,6 +1,9 @@
 @startuml
 !include style.puml
 
+skinparam arrowFontSize 40
+skinparam participantFontSize 40
+
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
@@ -16,10 +19,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("\n/dasboardTab /contacts delete 1")
+[-> LogicManager : execute("\n/dasboardTab \n/contacts \ndelete 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(\n"/dashboardTab /contacts delete 1")
+LogicManager -> AddressBookParser : parseCommand(\n"/dashboardTab \n/contacts \ndelete 1")
 activate AddressBookParser
 
 create DeleteCommandParser
@@ -49,8 +52,9 @@ AddressBookParser --> LogicManager : d
 LogicManager -> AddressBookParser : goToContextTab()
 
 create TabCommandParser
-AddressBookParser -> TabCommandParser : parse("\n/dasboardTab tab contacts")
+AddressBookParser -> TabCommandParser
 activate TabCommandParser
+
 
 TabCommandParser --> AddressBookParser
 deactivate TabCommandParser
