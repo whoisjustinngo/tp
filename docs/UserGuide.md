@@ -15,7 +15,7 @@ Advyze is a desktop app for tech-savvy student financial advisors to keep track 
 1. Ensure you have Java `11` or above installed in your computer.
 2. Download the latest `advyze.jar` release from [this link](https://github.com/AY2122S1-CS2103-T14-4/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for Advyze.
-4. Double-click the file to start the app. You should see the Dashboard tab displayed (refer to the [Dashboard tab](#dashboard-tab) section to see how it is supposed to look like).
+4. Double-click the file to start the app. You should see the Dashboard tab displayed (refer to the [Dashboard Tab](#dashboard-tab) section to see how it is supposed to look like).
 5. At this point, you are good to go! You can now begin running the commands detailed in this guide for any of the tabs.
 
 ---
@@ -26,7 +26,7 @@ This guide is sectioned by tabs. Under the sections for each tab, the reader wil
 
 > :exclamation: Note: 
 >
-> The commands described in the various tab specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specified in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience-commands), or if it is the Contacts and Details tabs which are highly related, see [Summary of commands for Contacts and Details tab](#Summary-of-commands-for-Contacts-and-Details-tab)). For example, the command to mark a todo as done will work only while the user is on the Todos tab.
+> The commands described in the various tab-specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specified in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience-commands), or if it is the Contacts and Details tabs which are highly related, see [Summary of commands for Contacts and Details tab](#Summary-of-commands-for-Contacts-and-Details-tab)). For example, the command to mark a todo as done will work only while the user is on the Todos tab.
 >
 > It is hence implied that any command in the tab-specific sections describes the behaviour when running that command when on that tab in particular.
 
@@ -89,7 +89,7 @@ To prevent extra tab switches in order to execute commands, convenience commands
 
 Format: `/TAB NAME` [command meant to run on specified TAB_NAME] 
 
-(see the :bulb: tip under the "Switching between Tabs" section above for the various `TAB_NAME`s)
+(see the :bulb: tip under the [Switching between Tabs](#switching-between-tabs-tab) section above for the various `TAB_NAME`s)
 
 Examples:
 * When on Todos tab, input `/schedule add d/CS2103 Meeting date/20-12-2021 fr/1300 to/1500` will add a new event (akin to executing the `add` command on the Schedule tab) instead of adding a new todo.
@@ -177,7 +177,7 @@ Example:
 > :bulb: Tip: since the update command allows the user to enter negative values, if they, for example, enter a wrong (positive) value for progress, they can correct it by updating the same goal with the difference, e.g. if the intended amount was to add 5 to progress but the user specified 7, they can just correct this by updating the same goal and specifying val = -2.
 
 #### Deleting a custom goal: `delete`
-Deletes the specified Custom Goal from the Dashboard.  
+Deletes the specified custom goal from the Dashboard.  
 
 Format: `delete INDEX_OF_GOAL_TO_DELETE` 
 
@@ -202,7 +202,6 @@ Adds a new contact into the list of all contacts.
 Format: `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]`
 
 * Tags can be at most 50 characters
-
 * A contact can either have a relationship `client` or `friend`
 * Policies can only be added for clients, add a contact with the argument `r/client` to add policies to that contact
 * Learn how to add notes for contacts [here](#adding-a-note-to-a-contact-note)
@@ -303,8 +302,7 @@ Adds a policy to the client corresponding to the specified INDEX in the contact 
 
 Format: `policy INDEX insurer/INSURER num/POLICY_NUMBER n/POLICY_NAME comm/COMMISSION`  
 
-* Commission cannot be a negative number  
-
+* Commission cannot be a negative number
 * You cannot add policies to friends, but you can use the `edit` command to change the relationship of a `friend` to a `client` 
 
 Example:  
@@ -346,23 +344,23 @@ Deleting contact details will be implemented in future versions. For now, you ca
 
 The Schedule tab shows all of the user's events in chronological order.
 
-> :exclamation:Note: By default, the Schedule tab will **ONLY** show upcoming Events. The user can use some of the following commands to customise the kind of events to display.
+> :exclamation:Note: By default, the Schedule tab will **ONLY** show upcoming events. The user can use some of the following commands to customise the kind of events to display.
 
 ### Viewing all events: `list`
 
-Shows all the added Events. Events will be ordered by date, then by time.
+Shows all the added events. Events will be ordered by date, then by time.
 
 ### Viewing all upcoming events: `showupcoming` // TODO
 
-Shows all the upcoming Events
+Shows all the upcoming events
 
-* Upcoming Events will be ordered by date, then the order of time on that day itself
+* Upcoming events will be ordered by date, then the order of time on that day itself
 
 ### View all upcoming events: `showpast` // TODO
 
-Shows all the past Events
+Shows all the past events
 
-* Past Events will be ordered by date, then the order of time on that day itself
+* Past events will be ordered by date, then the order of time on that day itself
 
 ### Adding an event: `add`
 
@@ -377,7 +375,7 @@ Format: `add [type] [d/TASK DESCRIPTION] [date/DATE] [from/TIME FROM] [to/TIME T
 > :exclamation: Note:
 >
 > * While adding an event, it will check if the event to add has any clashes with existing events. The event will only be added if there are no clashes. This applies to adding recurring events as well – if there are clashes for any of the recurring events, no events will be added at all.
-> * **Only upcoming Events will be shown.** Past events will be stored in the database, but will not be displayed to the user.
+> * **Only upcoming events will be shown.** Past events will be stored in the database, but will not be displayed to the user.
 
 Examples:
 
@@ -419,7 +417,7 @@ Format: `delete [INDEX]`
 
 * The index refers to the index number of the event on the Schedule tab.
 
-*Potential enhancement: to delete multiple Events at once which was already added into the schedule.*
+*Potential enhancement: to delete multiple events at once which was already added into the schedule.*
 
 ## Todos Tab
 
