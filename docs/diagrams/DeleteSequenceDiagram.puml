@@ -16,10 +16,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("/dasboardTab /contacts delete 1")
+[-> LogicManager : execute("\n/dasboardTab /contacts delete 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("/dashboardTab /contacts delete 1")
+LogicManager -> AddressBookParser : parseCommand(\n"/dashboardTab /contacts delete 1")
 activate AddressBookParser
 
 create DeleteCommandParser
@@ -49,7 +49,7 @@ AddressBookParser --> LogicManager : d
 LogicManager -> AddressBookParser : goToContextTab()
 
 create TabCommandParser
-AddressBookParser -> TabCommandParser : parse("/dasboardTab tab contacts")
+AddressBookParser -> TabCommandParser : parse("\n/dasboardTab tab contacts")
 activate TabCommandParser
 
 TabCommandParser --> AddressBookParser
