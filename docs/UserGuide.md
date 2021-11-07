@@ -323,8 +323,8 @@ Example:
 
 ![details_tab](images/details-tab-v1.3.png)
 
-### Deleting a note from a contact: `coming soon`
-### Deleting a policy from a contact: `coming soon`  
+### Deleting a note from a contact: `(coming soon)`
+### Deleting a policy from a contact: `(coming soon)`  
 Deleting contact details will be implemented in future versions. For now, you can delete or edit policies and notes manually in the file `data/addressbook.json` if you made a mistake adding such client details.
 
 ### Summary of commands for Contacts and Details tab
@@ -346,23 +346,23 @@ Deleting contact details will be implemented in future versions. For now, you ca
 
 The Schedule tab shows all of the user's events in chronological order.
 
-> :exclamation:Note: By default, the Schedule tab will **ONLY** show upcoming events. The user can use some of the following commands to customise the kind of events to display and view past Events.
+> :exclamation:Note: By default, the Schedule tab will **ONLY** show upcoming events. The user can use the `list` command to show all events, future and past.
 
 ### Viewing all events: `list`
 
 Shows all the added events. Events will be ordered by date, then by time.
 
-### Viewing all upcoming events: `showupcoming` (possible future implementation)
+### Viewing all upcoming events: `(coming soon)` 
 
-Shows all the upcoming events
+Shows all upcoming events only
 
-* Upcoming events will be ordered by date, then the order of time on that day itself
+* Upcoming events will be ordered by date, then by time
 
-### Viewing all past events: `showpast` (possible future implementation)
+### Viewing all past events: `(coming soon)`
 
-Shows all the past events
+Shows all past events only
 
-* Past events will be ordered by date, then the order of time on that day itself
+* Past events will be ordered by date, then by time
 
 ### Adding an event: `add`
 
@@ -377,7 +377,7 @@ Format: `add [type] [d/TASK DESCRIPTION] [date/DATE] [from/TIME FROM] [to/TIME T
 > :exclamation: Note:
 >
 > * While adding an event, it will check if the event to add has any clashes with existing events. The event will only be added if there are no clashes. This applies to adding recurring events as well – if there are clashes for any of the recurring events, no events will be added at all.
-> * **Only upcoming events will be shown.** Past events will be stored in the database, but will not be displayed to the user. If you would like to see the past events added, please enter the `list` command.
+> * **By default, only upcoming events will be shown.** Past events will be stored in the database, but will not be displayed to the user. If you would like to see the past events added, please enter the `list` command.
 
 Examples:
 
