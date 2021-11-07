@@ -10,7 +10,7 @@ Advyze is a desktop app for tech-savvy student financial advisors to keep track 
 
 ---
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your computer.
 2. Download the latest `advyze.jar` release from [this link](https://github.com/AY2122S1-CS2103-T14-4/tp/releases).
@@ -20,7 +20,7 @@ Advyze is a desktop app for tech-savvy student financial advisors to keep track 
 
 ---
 
-## Using this guide
+## Using This Guide
 
 This guide is sectioned by tabs. Under the sections for each tab, the reader will find information regarding the commands that can be ran on that tab specifically, as well as a brief description of the intended purpose of the tab. In addition, there is a general section that explains commands that are not tab specific, and can be ran while on any tab. There is also a command summary table at the end of this document.
 
@@ -65,7 +65,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Switching between Tabs: `tab`
+### Switching between tabs: `tab`
 
 Switches between different tabs.
 
