@@ -328,6 +328,7 @@ Example:
 Deleting contact details will be implemented in future versions. For now, you can delete or edit policies and notes manually in the file `data/addressbook.json` if you made a mistake adding such client details.
 
 ### Summary of commands for Contacts and Details tab
+
 | Command | Format | Contacts tab | Details tab |
 | ----------- | ----------- | ----------- | ---------- |
 | list | `list` | :heavy_check_mark: | :heavy_check_mark: |
