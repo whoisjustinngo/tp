@@ -22,7 +22,7 @@ Advyze is a desktop app for tech-savvy student financial advisors to keep track 
 
 ## Using This Guide
 
-This guide is sectioned by tabs. Under the sections for each tab, the reader will find information regarding the commands that can be ran on that tab specifically, as well as a brief description of the intended purpose of the tab. In addition, there is a general section that explains commands that are not tab specific, and can be ran while on any tab. There is also a command summary table at the end of this document.
+This guide is sectioned by tabs. Under the sections for each tab, the reader will find information regarding the commands that can be ran on that tab specifically, as well as a brief description of the intended purpose of the tab. In addition, there is a general section that explains commands that are not tab specific, and can be ran while on any tab.
 
 > :exclamation: Note: 
 >
@@ -519,8 +519,4 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 3` deletes the 3rd todo in the displayed todos list.
 * `filter d/book` followed by `delete 1` deletes the 1st todo in the results of the `filter` command
-
-
-
-## Command Summary
 
