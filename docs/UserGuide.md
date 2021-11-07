@@ -100,7 +100,7 @@ Examples:
 
 Allows users to import `.ics` files, similar to importing timetable from NUSMods into Google Calendars.
 
-Format: import
+Format: `import`
 
 Example:
 * On any tab, executing `import` will open the file browser for the user to select the `.ics` file to import.
