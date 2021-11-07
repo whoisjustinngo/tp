@@ -26,7 +26,7 @@ This guide is sectioned by tabs. Under the sections for each tab, the reader wil
 
 > :exclamation: Note: 
 >
-> The commands described in the various tab specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specifed in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience-commands), or if it is the contacts and details tabs which are highly related, see [summary of commands for contacts and details tab](#Summary-of-commands-for-contacts-and-details-tab)). 
+> The commands described in the various tab specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specified in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience-commands), or if it is the contacts and details tabs which are highly related, see [summary of commands for contacts and details tab](#Summary-of-commands-for-contacts-and-details-tab)). For example, the command to mark a Todo as done will work only while the user is on the Todos tab.
 >
 > It is hence implied that any command in the tab-specific sections describes the behaviour when running that command when on that tab in particular.
 
@@ -59,7 +59,7 @@ This guide is sectioned by tabs. Under the sections for each tab, the reader wil
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -89,10 +89,10 @@ To prevent extra tab switches in order to execute commands, convenience commands
 
 Format: `/TAB NAME` [command meant to run on specified TAB_NAME] 
 
-(see the :bulb: tip under the "switching between tabs: tab" section for the various `TAB_NAME`s)
+(see the :bulb: tip under the [Switching between Tabs](#Switching-between-Tabs:-tab) section for the various `TAB_NAME`s)
 
 Examples:
-* When on Todos tab, input `/schedule add event d/CS2103 meeting fr/1300 to/1500` will add a new event (akin to executing the `add` command on the schedule tab) instead of adding a new Todo.
+* When on Todos tab, input `/schedule add d/CS2103 Meeting date/20-12-2021 fr/1300 to/1500` will add a new event (akin to executing the `add` command on the schedule tab) instead of adding a new Todo.
 * When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` on the Schedule tab.
 * When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` on the Schedule tab.
 
@@ -158,8 +158,8 @@ Format: `add d/DESCRIPTION goal/GOAL [bydate/END_DATE] [bytime/END_TIME]`
 > :exclamation: Note: `GOAL` has to be a number (greater than 0), `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format hhmm in 24-hour format. If `END_TIME` is specified, `END_DATE` has to be specified as well.  
 
 Examples:
-* Adding a goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2021`
-* Adding a goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2021 bytime/1200`
+* Adding a goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2022`
+* Adding a goal with both a date and time: `add d/earn $1000 in commissions goal/1000 bydate/23-07-2022 bytime/1200`
 
 > :exclamation: Note: currently there is no command to edit custom goals; if the user, for example, commits a typo when creating a custom goal, they have to delete the custom goal and repeat the adding process with the correct information.
 
@@ -261,7 +261,7 @@ Expected result of `filter r/client`:
 
 This tab allows the user to view detailed policy information and notes for their clients.
 
-> :bulb: Note: the details tab and contacts tab have some overlapping commands, i.e. there are some commands that can be ran on both the details and contacts tabs. See the [summary of commands for contacts and details tab](#Summary of commands for contacts and details tab) for more details.
+> :bulb: Note: the details tab and contacts tab have some overlapping commands, i.e. there are some commands that can be ran on both the details and contacts tabs. See the [summary of commands for contacts and details tab](#Summary-of-commands-for-contacts-and-details-tab) for more details.
 
 ### Selecting a contact to view their details: `select`  
 
@@ -285,7 +285,7 @@ Statuses look like tags but have a dark blue background, as show in the image ab
 The valid statuses are: [fresh, approached, pitched, negotiated, closed]
 
 * New contacts created in the contacts list are given a "fresh" status to signify that the client is a fresh lead
-* The total number of clients with a particular status is shown in the analytics section of the [dashboard](#Dashboard) tab
+* The total number of clients with a particular status is shown in the analytics section of the [dashboard](#dashboard-tab) tab
 * Friends do not have statuses
 
 Format: `status INDEX STATUS`  
@@ -432,7 +432,6 @@ Shows a list of all Todos.
 Format: `list`
 
 * The list is sorted in chronological order, according to the time at which the Todo was created.
-* By default, the list of all Todos will be shown upon navigating to the Todos tab.
 
 ### Adding a todo: `add`
 
@@ -448,7 +447,7 @@ Examples:
 * `add d/read book`
 * `add d/buy new jeans t/urgent t/shopping`
 
-### Editing a todo while on the todos tab : `edit`
+### Editing a todo: `edit`
 
 Edits an existing Todo.
 
@@ -457,7 +456,7 @@ Format: `edit INDEX [d/DESCRIPTION] [t/TAG]…​`
 * Edits the Todo at the specified `INDEX`. The index refers to the index number shown in the displayed Todos list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, any existing tags of the secified todo will be removed i.e adding of tags is not cumulative.
+* When editing tags, any existing tags of the specified todo will be removed i.e adding of tags is not cumulative.
 * You can remove all the Todo’s tags by typing `t/` without specifying any tags after.
 
 Examples:
