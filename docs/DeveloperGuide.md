@@ -477,50 +477,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ----------------------------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | student working as a financial advisor      | add new event to schedule                             | I can keep track of my client meetings, school commitments and other time-sensitive activities |
 | `* * *`  | student working as a financial advisor      | view events in schedule                               | I can have a better understanding of my schedule |
-| `* *`    | student working as a financial advisor      | edit an event in schedule                             | I can edit details of a previously added event |
 | `* * *`  | student working as a financial advisor      | delete an event in schedule                           | I can delete a previously added event |
-| `* * *`  | student working as a financial advisor      | add a new Todo                                        | I can keep track of my things to do (i.e. tasks that can be completed any time) |
-| `* * *`  | student working as a financial advisor      | view current Todos                                    | I can see what I have left to do |
-| `* *`    | student working as a financial advisor      | edit a previously added Todo                          | I can edit details of a previously added todo |
-| `* * *`  | student working as a financial advisor      | delete a previously added Todo                        | I can remove Todos that I no longer need to complete or have completed |
 | `* * *`  | person juggling multiple responsibilities	| be able to sort my tasks based on how soon they are due | I know how I should assign my time |
-| `*`      | student working as a financial advisor	    | toggle the schedule to show only either school or work related events | I can see how events in each category |
-| `* *`    | user with a busy schedule	                | be able to set recurring tasks                        | I do not need to explicitly enter the same tasks one by one |
-| `* *`    | user	                                    | easily re-add previously completed tasks	            | I do not need to type out all the details again | 
-| `*`      | financial advisor	                        | keep track of state of claims of clients and relevant tasks | I can manage claims of all clients effectively|
-| `*`      | financial advisor who wants to build a personal connection with my clients | I can see all upcoming important client-related events (such as birthdays) | remember to send greetings and congratulations to them |
-| `*`      | user	                                    | set reminders for myself	                            | whenever I use the application I will be reminded on the important things which I need to do today |
-| `* *`    | user who needs to schedule events          | view public holidays	                                | I am aware when I can/can't schedule a time to meet clients, as well as know when are the relevant school off-days |
-| `*`      | expert user	                            | import school calendar automatically	                | I can schedule my school timetable automatically |
-| `* * *`  | person juggling multiple responsibilities  | view dashboard to see events occurring today          | I have an idea of what my day would be like |
+| `* * *`  | student working as a financial advisor      | add a new todo                                        | I can keep track of my things to do (i.e. tasks that can be completed any time) |
+| `* * *`  | student working as a financial advisor      | view current todos                                    | I can see what I have left to do |
+| `* * *`  | student working as a financial advisor      | delete a previously added todo                        | I can remove todos that I no longer need to complete or have completed |
 | `* * *`  | student working as a financial advisor      | add a new contact                                     | I can keep track of all my contacts |
 | `* * *`  | student working as a financial advisor      | view all contacts                                     | I can scroll through to see who I want to catch up with |
-| `* *`    | student working as a financial advisor      | update details of a previously added contact          | I can edit a contact's details when they change | 
 | `* * *`  | student working as a financial advisor      | delete an existing contact                            | I can remove entries that I no longer need |
-| `* * *`  | financial advisor who wants to build a personal connection with my clients | maintain a detailed profile of the client which includes their birthday, email, current financial plans, job, age, monthly income etc. | I can understand my clients on a more personal level |
-| `* * *`  | financial advisor who wants to decide which client to meet next | be able to tag clients based on their status (fresh, approached, pitched, negotiated, closed, lost)	| I can make informed decisions about prioritising clients in order to maximize my earnings |
-| `* *`    | financial advisor	                        | delete multiple clients from my contact book in a single command | I can save time instead of deleting them one by one |
-| `* *`    | user                                       | filter based on attributes of each contact	            | I can view different groups of contacts separately |
-| `* *`    | financial advisor	                        | keep track of the minutes of the meetings with each client | I have a record of what was discussed |
-| `* *`    | financial advisor	                        | sort potential leads by probability of conversion	    | I can prioritise which clients to meet |
-| `* *`    | expert user	                            | sort clients based on value of lead or urgency	    | I can effectively prioritise work schedule to maximise performance |
-| `*`      | user 	                                    | see how much time I have spent in each category of my responsibilities (e.g. work, school, personal) | I can try to have a better work-school-life balance |
+| `* * *`  | financial advisor who wants to decide which client to meet next | be able to tag clients based on their status (fresh, approached, pitched, negotiated, closed)	| I can make informed decisions about prioritising clients in order to maximize my earnings |
+| `* * *`  | person juggling multiple responsibilities  | view dashboard to see events occurring today          | I have an idea of what my day would be like |
+| `* * *`  | user	                                    | have keyboard commands to switch tabs	                | I can see different tabs |
+| `* * *`  | user	                                    | import / export all of my data	                    | I can transfer my data to another device / back up my data |
+| `* * *`  | student working as a financial advisor      | add tags to data                                      | I can see which contacts / events / todos are school-related and which are work-related |
+| `* *`    | student working as a financial advisor      | edit an event in schedule                             | I can update details of a previously added event |
+| `* *`    | student working as a financial advisor      | edit a previously added todo                          | I can update details of a previously added todo |
+| `* *`    | student working as a financial advisor      | edit details of a previously added contact          | I can update a contact's details when they change | 
 | `* *`    | user                                       | set my targets and goals                              | I know what I am working towards |
 | `* *`    | user                                       | view my targets and goals                             | I can see my progress | 
 | `* *`    | user                                       | edit my current targets and goals                     | I can update my progress or change my previously set goals / targets |
 | `* *`    | user                                       | delete a previously set target                        | I can remove targets that are outdated or reached |
-| `* * *`  | user	                                    | import / export all of my data	                    | I can transfer my data to another device / back up my data |
-| `* * *`  | financial advisor who currently has all my client data on Excel | import data from an Excel spreadsheet | I can add all current clients I have without spending time to input the data row-by-row |
-| `* * *`  | careful user who is afraid of all my data being locked in the app | export all data onto an Excel spreadsheet or pdf | I can have access to my data in a familiar format that I can read and edit |
+| `* *`    | user                                       | filter based on attributes of each contact	            | I can view different groups of contacts separately |
+| `* *`    | potential user exploring Advyze            | see the app populated with sample data	            | I can see how the app will look like when it is in use |
+| `* *`      | expert user	                            | import school calendar automatically	                | I can schedule my school timetable automatically |
+| `* *`    | user with a busy schedule	                | be able to set recurring tasks                        | I do not need to explicitly enter the same tasks one by one |
+| `* *`    | user	                                    | easily re-add previously completed tasks	            | I do not need to type out all the details again | 
+| `* *`    | user who needs to schedule events          | view public holidays	                                | I am aware when I can/can't schedule a time to meet clients, as well as know when are the relevant school off-days |
+| `* *`    | financial advisor	                        | keep track of the minutes of the meetings with each client | I have a record of what was discussed |
+| `* *`    | financial advisor	                        | delete multiple clients from my contact book in a single command | I can save time instead of deleting them one by one |
+| `* *`    | financial advisor	                        | sort potential leads by probability of conversion	    | I can prioritise which clients to meet |
+| `* *`    | expert user	                            | sort clients based on value of lead or urgency	    | I can effectively prioritise work schedule to maximise performance |
+| `* *`  | financial advisor who wants to build a personal connection with my clients | maintain a detailed profile of the client which includes their birthday, email, current financial plans, job, age, monthly income etc. | I can understand my clients on a more personal level |
+| `* *`  | financial advisor who currently has all my client data on Excel | import data from an Excel spreadsheet | I can add all current clients I have without spending time to input the data row-by-row |
+| `* *`  | careful user who is afraid of all my data being locked in the app | export all data onto an Excel spreadsheet or pdf | I can have access to my data in a familiar format that I can read and edit |
+| `* *`    | user                                       | delete data according to tags	                        | I can clear all data in a category easily |
+| `* *`    | user                                       | set item priority	                                    | I will know which actions, tasks, or clients I need to prioritise |
+| `* *`    | beginner user	                            | be introduced to key features of Advyze	            | I can start to maximise the potential of Advyze |
+| `*`      | user 	                                    | see how much time I have spent in each category of my responsibilities (e.g. work, school, personal) | I can try to have a better work-school-life balance |
+| `*`      | user	                                    | set reminders for myself	                            | whenever I use the application I will be reminded on the important things which I need to do today |
+| `*`      | financial advisor who wants to build a personal connection with my clients | I can see all upcoming important client-related events (such as birthdays) | remember to send greetings and congratulations to them |
+| `*`      | financial advisor	                        | keep track of state of claims of clients and relevant tasks | I can manage claims of all clients effectively |
+| `*`      | student working as a financial advisor	    | toggle the schedule to show only either school or work related events | I can see events in each category |
 | `*`      | potential user exploring Advyze	        | link Advyze to third party email applications interfaces | I can seamlessly send and/or receive emails through Advyze |
 | `*`      | financial advisor	                        | hide student features                                 | I will not be mixed up between features for students and financial advisors when I do not need them |
-| `* * *`  | student working as a financial advisor      | add tags to data                                      | I can see which contacts / events / todos are school-related and which are work-related |
-| `* *`    | user                                       | delete data according to tags	                        | I can clear all data in a category easily |
 | `*`      | user	                                    | have a quick reference available on my mobile phone	| I do not need to keep referring to my computer or carry my computer everywhere |
-| `* *`    | user                                       | set item priority	                                    | I will know which actions, tasks, or clients I need to prioritise |
-| `* *`    | potential user exploring Advyze            | see the app populated with sample data	            | I can see how the app will look like when it is in use |
-| `* *`    | beginner user	                            | be introduced to key features of Advyze	            | I can start to maximise the potential of Advyze |
-| `* * *`  | user	                                    | have keyboard commands to switch tabs	                | I can see different tabs |
 
 ### Use cases
 
