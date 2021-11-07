@@ -139,7 +139,7 @@ The `Model` component,
 <img src="images/PersonModelClassDiagram.png" width="450" />  
   
 `Schedule`, `Todo`, `CustomGoal` objects:
-<img src="images/ScheduleTodogoalModelClassDiagram.png" width="450" />  
+<img src="images/ScheduleTodoGoalModelClassDiagram.png" width="450" />  
 
 </div>
 
