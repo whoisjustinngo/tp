@@ -432,12 +432,7 @@ Format: `delete [INDEX]`
 * The index refers to the index number of the event on the Schedule tab.
 * Deletion of multiple events is a possible future enhancement.
 
-### Deleting multiple events: `(coming soon)`
 
-Deletes multiple or all events in one command line.
-
-* Users will be able to select a number of indexes and delete it in one command.
-* Users will be able to delete all events in one command.
 
 ## Todos Tab
 
