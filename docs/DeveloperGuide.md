@@ -114,7 +114,7 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 6. `LogicManager` will then call the `execute` method of object `d` to interact with the Model of Contacts, and deletes the contact index indicated by the user.
 
 
-<img src="images/DeleteSequenceDiagram.png" width="1000" />
+<img src="images/DeleteSequenceDiagram.png" class="sequenceDiagramImg" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` and `TabCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
