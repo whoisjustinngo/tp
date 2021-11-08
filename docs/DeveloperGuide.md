@@ -138,13 +138,9 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">
-<<<<<<< HEAD
-:information_source: **Note:** More detailed (partial) class diagrams of each DATA class are given below.  
-  
-=======
+
 :information_source: **Note:** More detailed models of each DATA object are given below.  
 
->>>>>>> a3f2f741a62c90b7f1f3159bb0236b5e40ec6a14
 `Person` objects:  
 <img src="images/PersonModelClassDiagram.png"/>  
 
