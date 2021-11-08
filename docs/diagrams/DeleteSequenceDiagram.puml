@@ -1,112 +1,26 @@
 @startuml
 !include style.puml
 
-skinparam arrowFontSize 48
-skinparam participantFontSize 48
+skinparam arrowFontSize 15
+skinparam participantFontSize  15
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
-participant ":TabCommandParser" as TabCommandParser LOGIC_COLOR
-participant ":TabCommand" as TabCommand LOGIC_COLOR
-participant "r1:CommandResult" as CommandResult1 LOGIC_COLOR
-participant "r2:CommandResult" as CommandResult2 LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("\n/dasboardTab \n/contacts \ndelete 1")
+[-> LogicManager : execute("\n/contactsTab \ndelete 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(\n"/dashboardTab \n/contacts \ndelete 1")
 activate AddressBookParser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
-
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
-
-AddressBookParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
-
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
-
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
-
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
-
-AddressBookParser --> LogicManager : d
-LogicManager -> AddressBookParser : goToContextTab()
-
-create TabCommandParser
-AddressBookParser -> TabCommandParser
-activate TabCommandParser
-
-
-TabCommandParser --> AddressBookParser
-deactivate TabCommandParser
-
-AddressBookParser -> TabCommandParser : parse("contactsTab")
-activate TabCommandParser
-
-create TabCommand
-TabCommandParser ->TabCommand
-activate TabCommand
-
-TabCommand --> TabCommandParser : t
-deactivate TabCommand
-
-TabCommandParser --> AddressBookParser : t
-deactivate TabCommandParser
-destroy TabCommandParser
-
-AddressBookParser --> LogicManager : t
-deactivate AddressBookParser
-
-LogicManager -> TabCommand : execute()
-activate TabCommand
-
-create CommandResult1
-TabCommand -> CommandResult1
-activate CommandResult1
-
-CommandResult1 --> TabCommand: r1
-deactivate CommandResult1
-
-TabCommand --> LogicManager : r1
-deactivate TabCommand
-
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
-
-DeleteCommand -> Model : deletePerson(1)
-activate Model
-
-Model --> DeleteCommand
-deactivate Model
-
-create CommandResult2
-DeleteCommand -> CommandResult2
-activate CommandResult2
-
-CommandResult2 --> DeleteCommand : r2
-deactivate CommandResult2
-
-DeleteCommand --> LogicManager : r2
-deactivate DeleteCommand
+ref over LogicManager, AddressBookParser, Model
+    delete contacts
+end ref
 
 [<--LogicManager
 deactivate LogicManager
