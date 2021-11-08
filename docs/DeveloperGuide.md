@@ -105,7 +105,7 @@ How the `Logic` component works:
 4. The second command then communicates with the `Model` when it is executed (e.g. to add a person).
 5. The result of each of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`, of which the second command execution result is displayed to the user.
 
-The Sequence Diagram below illustrates the interactions within the Logic component for the execute("/dashboardTab /contacts delete 1") API call, which represents a command to delete the first contact, issued from the Dashboard tab.
+The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("/dashboardTab /contacts delete 1")` API call, which represents a command to delete the first contact, issued from the Dashboard tab.
 1. User enters the command `/contacts delete 1` from Dashboard tab.
 2. `LogicManager` issues a `parseCommand` to the `AddressBookParser`, prefixing the user input with the `tabId` the command was entered from, which is `/dashboardTab`, passing in `/dashboardTab /contacts delete 1` as the argument of `parseCommand`.
 3. `AddressBookParser` instantiates `DeleteCommandParser`, and calls the `parse` method, the method will return an object `d` of type `DeleteCommand`, which inherits from the `Command` interface. Object `d` is eventually returned to `LogicManager`.
