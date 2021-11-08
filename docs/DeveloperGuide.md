@@ -114,7 +114,7 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 6. `LogicManager` will then call the `execute` method of object `d` to interact with the Model of Contacts, and deletes the contact index indicated by the user.
 
 
-<img src="images/DeleteSequenceDiagram.png" width="1000" />
+<img src="images/DeleteSequenceDiagram.png" class="sequenceDiagramImg" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` and `TabCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -168,8 +168,8 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 The `ScheduleStorage` component,
-* helps with the importing of the ics calendar. Application will take in ics Components, which will then be converted into Schedule model in this application.
-* adds schedules from ics component into `Schedule` in this application.
+* helps with the importing of the ICS calendar. User will select an ICS file to feed into the application, which will then convert it into `Schedule` model in this application.
+* adds schedules from ICS Component into `Schedule` in this application.
 
 ### Common classes
 
