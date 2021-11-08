@@ -22,15 +22,15 @@ Given below are my contributions to the project:
 
 * **New Features**: 
   * Implemented the Dashboard Tab
-      * What it does: Gives the user a quick overview of their upcoming schedule and pending todos, in addition to having sections for new Custom Goals and ANalytics features
-      * Justification: This enhances the user experience because it gives them a convenient place where they can quickly see important information (like what events they have that day). This way, they do not need to navigate to another tab, and can do so only when they want to view a longer list of items.
-      * Highlights: Building the Dashboard Tab involved a lot of trial and error and experimentation with javaFX in order to realise the envisioned front end layout. This came in handy as it gave me a better understanding of javaFX that I could, and in fact did, use to help other group members with front end issues. 
+      * What it does: Gives the user a quick overview of their upcoming schedule and pending todos, in addition to having sections for new Custom Goals and Analytics features
+      * Justification: This enhances the user's experience because it gives them a convenient place where they can quickly see important information (like what events they have going on that day). This way, they do not need to navigate to another tab just to see these details, and can choose to do so only when they want to view a longer list of items.
+      * Highlights: Building the Dashboard Tab involved a lot of trial and error and experimentation with javaFX in order to realise the envisioned front-end layout. This came in handy as it gave me a better understanding of javaFX that I could, and in fact did, use to help other group members with front-end issues. 
   * Implemented the analytics feature on the Dashboard Tab
-    * What it does: Simply sums up the number of contacts that have specific statuses, for example "fresh" for new contacts, "pitched" for contacts that the user has called and attempted to make a sale to.
-    * Justification: So that the user can understand how they are doing in terms of clientele numbers for the current quarter
-    * Highlights: Had to work closely with the person implementing the Contacts tab in order to get the feature to work properly.
+    * What it does: Simply sums up the number of contacts that have specific statuses, for example "fresh" for new contacts, or "pitched" for contacts that the user has called and attempted to make a sale to (see our [User Guide](https://ay2122s1-cs2103-t14-4.github.io/tp/UserGuide.html) for more informtion).
+    * Justification: This helps the user understand how they are doing in terms of clientele numbers for the current quarter, which is important since their job is commissions-based and client volume matters.
+    * Highlights: Had to work closely with the person implementing the Contacts tab in order to get the feature to work properly, and required a lot of coordination.
   * Implemented the Custom Goals feature on the Dashboard Tab
-    * What it does: Allows the user to set and track the progress of custom goals, for example the goal could be to call 20 clients by the end of the week and the user can set a custom goal with description "call 20 clients" and 20 as the goal, and update the progress of the goal every time they make a call. 
+    * What it does: Allows the user to set and track the progress of custom goals, for example the goal could be to call 20 clients by the end of the week, and the user can set a custom goal with description being "call 20 clients" and the goal being 20, and update the progress of the goal every time they make a call (see our [User Guide](https://ay2122s1-cs2103-t14-4.github.io/tp/UserGuide.html) for more informtion).
     * Justification: This not only helps them to keep track of things, but also helps them become better at their job as goal setting and knowing what they are working towards is important, especially for a commissions-based job like theirs.
 
 
@@ -48,11 +48,11 @@ Given below are my contributions to the project:
   
     * In-charge of documentation for the team
     * User Guide:
-        * Added documentation to the UserGuide for the features I implemented: [\#102](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/102/commits/d96b12bdf9529a94580ab132bcf959ca3cc169cb)
+        * Added documentation to the User Guide for the features I implemented: [\#102](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/102/commits/d96b12bdf9529a94580ab132bcf959ca3cc169cb)
         * Edited sections written by other group members for consistency and formatting: [#211](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/211)
     * Developer Guide:
     
-        * Added documentation to the DeveloperGuide for the featuers I implemented: [#203](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/203)
+        * Added documentation to the Developer Guide for the featuers I implemented: [#203](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/203)
         * Heavily edited sections written by other group members for consitency and formatting: [#237](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/237), [#219](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/219).
     
 
