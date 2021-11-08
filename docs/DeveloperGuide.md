@@ -288,19 +288,33 @@ show feedback to user.
 
 #### Implementation
 
-The data on the `schedule`, `contacts` and `todos`  tabs can be filtered. The underlying implmentation of the `filter` commnds on each of these tabs are the same, and involves `predicate`s that looks for entries that match the keyword(s) specified by the user. 
+The data on the `schedule`, `contacts` and `todos`  tabs can be filtered. The underlying implmentation of the `filter` commnds on each of these tabs are the same, and involves `Predicate`s that looks for entries that match the keyword(s) specified by the user. 
 
-Let us refer to `Schedule`, `Person` and `Todo` as `data types`. Each `data type` has certain fields which it encapsulates in its model, for example, the `Person` model has the fields `Name`, `Relationship`, `Email` etc. Each field will have a corresponding `predicate` that specifically "checks" those fields. For example, the `Name` field in the `Person` model will have the `NameContainsKeywordsPredicate`, the `isDone` field in the `Todo` model has the `TodoIsDonePredicate` and `TodoIsNotDonePredicate`. All these `Predicate`s implement Java's own `Predicate<data type>` interface.
+Let us refer to `Schedule`, `Person` and `Todo` as `data types`. Each `data type` has certain fields which it encapsulates in its model, for example, the `Person` model has the fields `Name`, `Relationship`, `Email` etc. Each field will have a corresponding `Predicate` that specifically "checks" those fields. For example, the `Name` field in the `Person` model will have the `NameContainsKeywordsPredicate`, the `isDone` field in the `Todo` model has the `TodoIsDonePredicate` and `TodoIsNotDonePredicate`. All these `Predicate`s implement Java's own `Predicate<data type>` interface.
 
 When the user enters the `filter` command, they will have to specify the field that they want to filter by, along with keywords to indicate the entries they want to keep. For example, if the user specifies to filter the  `Schedule`s in the schedule tab by their `Date` field, they will (have to) specify the date of the entries they want to keep, e.g. if they are looking for entries that have the date "12-11-2021", they will specify to `filter` `Date`s with "12-11-2021". Let us refer to this ""12-11-2021" as the `keyword(s)`. 
 
-As such, each `Predicate` is meant to apply a filter a particular field of a specific `data type`, and keep only the entries that have the field matching the `keyword(s)` specified by the user. After the user has specified the field and keyword(s) to filter by, a corresponding `predicate` will be passed as an argument into the `Model#updateFiltered<data type>List()` methods for the corresponding `data type`, which in turn makes use of the built-in `setPredicate(Predicate)` method of the javafx `FilteredList<data type>` class, which is a wrapper class for the `ObservableList<data type>` which all the data types use to store all their entries. This method filters the list based on the predicate supplied, and the resulting filtered list with only the entries that the user wants is displayed to the user.
+As such, each `Predicate` is meant to apply a filter a particular field of a specific `data type`, and keep only the entries that have the field matching the `keyword(s)` specified by the user. After the user has specified the field and keyword(s) to filter by, a corresponding `Predicate` will be passed as an argument into the `Model#updateFiltered<data type>List()` methods for the corresponding `data type`, which in turn makes use of the built-in `setPredicate(Predicate)` method of the javafx `FilteredList<data type>` class, which is the wrapper class for the `ObservableList<data type>` which all the data types use to store all their entries. This method filters the list based on the predicate supplied, and the resulting filtered list with only the entries that the user wants is displayed to the user.
+
+> :bulb: The `find` command for the schedule and todos tabs also follows a similar implementation, except that the `find` command only looks at the `description` fields of the the `schedule` and `todo` data types. The `find` command can hence be thought of as "filtering by description". The existence of a `find` command in addition to the `filter` command which has greater functionality is not only meant to give the user a simple command if they just want to find entries with a specific description, but also meant to appeal to the user's intuitions: for example, if the user wants to look for all their lessons they would be more likely to think of "finding lessons" instead of "filtering entries by description and looking for entries with the word lesson in description".
 
 #### Design Considerations
 
 Since the architecture follows a Model-view-controller design pattern, `FilteredList<data type>` wraps around an `ObservableList<data type>`, the latter of which is used to store in-memory data of `data type` objects. On the front-end, our Ui constantly listens for changes triggered by `FilterCommand#execute` which updates the `FilteredList<data type>` after filtering based on the specified `Predicate`, which then reflects the newly filtered information on the Ui to the user. This design provides a clean way for us to filter data.
 
 
+
+### Adding Tags to Entries
+
+#### Implementation
+
+Tags can be added to the entries on the `schedule`, `contacts` and `todos`  tabs.
+
+These tags have lists that hold `Schedule`, `Person` and `Todo` classes respectively. Let us refer to these as `data type`s. Each of these has a model that encapsulates information for multiple fields. For example, the `Person` model has the fields `Name`, `Relationship`, `Email` etc. that holds the information for each `Person` entry. In addition to these fields, each of these models also has a field called `tags` that tracks the tags that have been applied to that entry. 
+
+`tags` is implemented as a `HashSet<Tag>`, where `Tag` is a class that specifies a tag. Each `Tag` object has a `tagName` which identifies it; two tags are considered to be the same when they have the same `tagName`. The use of a `HashSet<Tag>` not only allows an entry to have multiple tags, but also guarantees that no duplicate tags can be applied to an entry. 
+
+Given that `tags` is a field in the `model`s, the user can also apply the aforementioned `filter` commands on tags to look for entries that have similar tags. An entry's `tags` can either be specified at the point of addition, i.e. when doing an `add` command, or added on and modified after the fact using the various `edit` commands.
 
 ### Adding Events
 
@@ -313,6 +327,7 @@ On top of that, `Schedule` will all be arranged based on the date and then time 
 #### Design Considerations
 
 **Aspect: How add schedule executes:**
+
 * **Alternative 1 (current choice) Add Schedule into one UnqiueScheduleList**
     * Pros: All the unique schedules are added into one list, which makes it easier to navigate. It also makes the code look cleaner and more understandable. This is also consistent with the other data classes which also use an underlying list implementation.
     * Cons: Any iteration will always be O(n) since sorting and checking if there are clashes in `Schedule` happens in this `UniqueScheduleList`
@@ -321,30 +336,6 @@ On top of that, `Schedule` will all be arranged based on the date and then time 
     * Cons: Decreases overall code consistency.
 
 &nbsp;
-
-### Finding and Editing existing Events
-
-#### Implementation
-
-The proposed feature of finding and editing existing `Events` is parsed by `FindScheduleCommandParser` and `EditScheduleCommandParser` respectively. Once parsed, those command will be executed by the `FindScheduleCommand` and `EditScheduleCommand` respectively. 
-
-For `FindScheduleCommand` a `Predicate<Schedule>` takes in keyword that are given by the user. Then it will then set a `Predicate<Schedule>` in the `FilteredList<Schedule>` which are located in the `ModelManager`. The `FilteredList<Schedule>` will then filtered those `Event`s which satisfies the `Predicate<Schedule>`. Once done, it will return a `FilteredList<Schedule>` of all the `Events` which have the same keywords as the one given by the user which will be shown on the Ui.
-
-For `EditScheduleCommand` the user will need to input the index of the `Event` to be edited, along by specifying the fields which the user would like to edit, and the new information to edit to. Once completed, the old `Event` will be replaced with the new `Event` with the updated information.
-
-Since `Schedule` is immutable in the current implementation, the `EditScheduleCommand` will not edit the `Schedule`. Instead, a new `Schedule` will be created keeping all the attributes the same, and changing the respective attributes which the user would like to change.
-
-
-
-### Adding Tags to Events
-
-Tags can be added to new or existing events in the schedule so as to categorise different `Events` and allow the user to easily `Fitler` out `Events`  with the same tags.
-
-**Aspect: How tagging is implemented:**
-
- * In each `Event`, there is a `List<Tag>` which carries all the `Tag`s which the user has added for the `Event`. All the `Tags` which are present in this `List<Tag>` will be displayed in the user interface. 
-
-
 
 ### Adding Recurring Events
 
