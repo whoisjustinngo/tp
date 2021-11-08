@@ -89,7 +89,6 @@ CommandBox-[hidden]down- XYZListPanel
 ImportWindow -[hidden]down- XYZListPanel
 HelpWindow -[hidden]down- NotesPanel
 
-
 'HelpWindow -[hidden]left- CommandBox
 'CommandBox -[hidden]left- ResultDisplay
 'ResultDisplay -[hidden]left- StatusBarFooter

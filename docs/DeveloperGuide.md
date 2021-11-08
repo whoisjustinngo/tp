@@ -284,19 +284,23 @@ show feedback to user.
 
 
 
-### Filtering Persons
+### Filtering Data
 
 #### Implementation
 
-To allow the user to filter based on any attributes of a `Person`, a `Predicate` class is created
-for each attribute. The `ModelManager` manages all data, which allows us to easily filter `Person`s based
-on their atrributes by passing in the correspionding `Predicate`. 
+The data on the `schedule`, `contacts` and `todos`  tabs can be filtered. The underlying implmentation of the `filter` commnds on each of these tabs are the same, and involves `predicate`s that looks for entries that match the keyword(s) specified by the user. 
 
-A `Predicate` takes in a keyword, which is then used to filter the models.
-Some examples are: `AddressContainsKeywordsPredicate`, `EmailContainsKeywordsPredicate`, .. etc
+Let us refer to `Schedule`, `Person` and `Todo` as `data types`. Each `data type` has certain fields which it encapsulates in its model, for example, the `Person` model has the fields `Name`, `Relationship`, `Email` etc. Each field will have a corresponding `predicate` that specifically "checks" those fields. For example, the `Name` field in the `Person` model will have the `NameContainsKeywordsPredicate`, the `isDone` field in the `Todo` model has the `TodoIsDonePredicate` and `TodoIsNotDonePredicate`. All these `Predicate`s implement Java's own `Predicate<data type>` interface.
+
+When the user enters the `filter` command, they will have to specify the field that they want to filter by, along with keywords to indicate the entries they want to keep. For example, if the user specifies to filter the  `Schedule`s in the schedule tab by their `Date` field, they will (have to) specify the date of the entries they want to keep, e.g. if they are looking for entries that have the date "12-11-2021", they will specify to `filter` `Date`s with "12-11-2021". Let us refer to this ""12-11-2021" as the `keyword(s)`. 
+
+As such, each `Predicate` is meant to apply a filter a particular field of a specific `data type`, and keep only the entries that have the field matching the `keyword(s)` specified by the user. After the user has specified the field and keyword(s) to filter by, a corresponding `predicate` will be passed as an argument into the `Model#updateFiltered<data type>List()` methods for the corresponding `data type`, which in turn makes use of the built-in `setPredicate(Predicate)` method of the javafx `FilteredList<data type>` class, which is a wrapper class for the `ObservableList<data type>` which all the data types use to store all their entries. This method filters the list based on the predicate supplied, and the resulting filtered list with only the entries that the user wants is displayed to the user.
 
 #### Design Considerations
-Since the architecture follows a Model-view-controller design pattern, we have `FilteredList<Person>` wrapping an `ObservableList<Person>` which is used to store in-memory data of `Person` objects. Our Ui constantly listens for changes triggered by `FilterCommand#execute` which updates the `FilteredList<Person>` with a new predicate which then reflects displays the list of filtered persons on the Ui. This design provides a clean way for us to filter data using `Predicate`s.
+
+Since the architecture follows a Model-view-controller design pattern, `FilteredList<data type>` wraps around an `ObservableList<data type>`, the latter of which is used to store in-memory data of `data type` objects. On the front-end, our Ui constantly listens for changes triggered by `FilterCommand#execute` which updates the `FilteredList<data type>` after filtering based on the specified `Predicate`, which then reflects the newly filtered information on the Ui to the user. This design provides a clean way for us to filter data.
+
+
 
 ### Adding Events
 
@@ -330,6 +334,8 @@ For `EditScheduleCommand` the user will need to input the index of the `Event` t
 
 Since `Schedule` is immutable in the current implementation, the `EditScheduleCommand` will not edit the `Schedule`. Instead, a new `Schedule` will be created keeping all the attributes the same, and changing the respective attributes which the user would like to change.
 
+
+
 ### Adding Tags to Events
 
 Tags can be added to new or existing events in the schedule so as to categorise different `Events` and allow the user to easily `Fitler` out `Events`  with the same tags.
@@ -338,12 +344,7 @@ Tags can be added to new or existing events in the schedule so as to categorise 
 
  * In each `Event`, there is a `List<Tag>` which carries all the `Tag`s which the user has added for the `Event`. All the `Tags` which are present in this `List<Tag>` will be displayed in the user interface. 
 
-### Filtering Events
 
-The implementation for filtering `Event`s is similar to finding an `Event`. The command is first parsed by the `FilterScheduleCommandParser` and then executed by the `FilterScheduleCommand`. The parser will utilise a `Predicate<Schedule>` to filter the `FilteredList<Schedule>` which is located in `ModelManager` based on any attribute and keywords which the user specifiesd. The `Predicate<Schedule>` takes in a keyword of the respective attribute, and only the `Event`s which satisfy the `Predicate<Schedule>` will be displayed to the user in the UI.
-
-**Aspect: How filtering is done**
-`UniqueScheduleList` is used to keep store in-memory data which wraps an `ObservableList<Schedule>`. It is then fed to the Ui to display the filtered `Event` to the user. This design provides a clean way for us to filter data using Predicate.
 
 ### Adding Recurring Events
 
