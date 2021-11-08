@@ -161,8 +161,8 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 The `ScheduleStorage` component,
-* helps with the importing of the ics calendar. Application will take in ics Components, which will then be converted into Schedule model in this application.
-* adds schedules from ics component into `Schedule` in this application.
+* helps with the importing of the ICS calendar. User will select an ICS file to feed into the application, which will then convert it into `Schedule` model in this application.
+* adds schedules from ICS Component into `Schedule` in this application.
 
 ### Common classes
 
