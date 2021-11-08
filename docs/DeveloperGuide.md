@@ -12,7 +12,7 @@ title: Developer Guide
 
 * Advyze is built using the [AddressBook Level 3 project template](https://github.com/se-edu/addressbook-level3) from [SE-EDU](https://se-education.org/).
 * Third-party libraries used: [iCal4j](https://github.com/ical4j/ical4j).
-* Method to remove unnecessary 0s from floats taken from [stack overflow](https://stackoverflow.com/a/14126736).
+* Method to remove unnecessary 0s from floats taken from [StackOverflow](https://stackoverflow.com/a/14126736).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -38,7 +38,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -61,7 +61,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside components being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -71,17 +71,17 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-> :exclamation: Note: In the diagram, XYZ is a placeholder for the different classes. The values of XYZ are `CustomGoal, ` `Schedule`, `Todo`, and `Person`.
+> :exclamation: Note: In the diagram, XYZ is a placeholder for the different classes. The values of XYZ are `CustomGoal,` `Schedule`, `Todo`, and `Person`.
 
 
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -92,7 +92,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -101,7 +101,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 2. This results in 2 `Command` objects (the first is a `TabCommand` object, the second object is from a subclass of `Command` e.g., `AddCommand`) which are both executed by the `LogicManager`.
-3. The first (`TabCommand`) is used to change to the tabs the user wishes to execute their command on.
+3. The first (`TabCommand`) is used to change to the tab the user wishes to execute their command on.
 4. The second command then communicates with the `Model` when it is executed (e.g. to add a person).
 5. The result of each of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -121,7 +121,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -151,7 +151,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103-T14-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png"/>
 
@@ -214,7 +214,7 @@ does not warrant the optimisation.
 
 ### Importing .ics Schedules
 
-For student financial advisors, they might have a portal that can generate calendar files that can be imported into google calendar,
+For student financial advisors, they might have a portal that can generate calendar files that can be imported into Google calendar,
 such as NUSMods. NUSMods has a download `.ics` button that generates a `.ics` file for the users. These fields can be programmatically 
 added into Advyze.
 
@@ -260,7 +260,7 @@ with the same message as when they add a single clashing schedule. No imports wi
 ### Convenience Commands
 
 To not have to go to a specific tab in order to run commands for the said tab, users can add
-a tab name to indicate which tab to run the command in. To give the users visual feedback, we need to switch to the tab the command was intended for afte the command is executed.
+a tab name to indicate which tab to run the command in. To give the users visual feedback, we need to switch to the tab the command was intended for after the command is executed.
 
 #### Implementation
 
@@ -283,10 +283,10 @@ show feedback to user.
 
 To allow the user to filter based on any attributes of a `Person`, a `Predicate` class is created
 for each attribute. The `ModelManager` manages all data, which allows us to easily filter `Person`s based
-on their atrributes by passing in the correspionding `Predicate`. 
+on their attributes by passing in the corresponding `Predicate`. 
 
 A `Predicate` takes in a keyword, which is then used to filter the models.
-Some examples are: `AddressContainsKeywordsPredicate`, `EmailContainsKeywordsPredicate`, .. etc
+Some examples are: `AddressContainsKeywordsPredicate`, `EmailContainsKeywordsPredicate`, ... etc.
 
 #### Design Considerations
 Since the architecture follows a Model-view-controller design pattern, we have `FilteredList<Person>` wrapping an `ObservableList<Person>` which is used to store in-memory data of `Person` objects. Our Ui constantly listens for changes triggered by `FilterCommand#execute` which updates the `FilteredList<Person>` with a new predicate which then reflects displays the list of filtered persons on the Ui. This design provides a clean way for us to filter data using `Predicate`s.
@@ -302,7 +302,7 @@ On top of that, `Schedule` will all be arranged based on the date and then time 
 #### Design Considerations
 
 **Aspect: How add schedule executes:**
-* **Alternative 1 (current choice) Add Schedule into one UnqiueScheduleList**
+* **Alternative 1 (current choice) Add Schedule into one UniqueScheduleList**
     * Pros: All the unique schedules are added into one list, which makes it easier to navigate. It also makes the code look cleaner and more understandable. This is also consistent with the other data classes which also use an underlying list implementation.
     * Cons: Any iteration will always be O(n) since sorting and checking if there are clashes in `Schedule` happens in this `UniqueScheduleList`
 * **Alternative 2 use HashMap<Date, ScheduleList>**
@@ -317,7 +317,7 @@ On top of that, `Schedule` will all be arranged based on the date and then time 
 
 The proposed feature of finding and editing existing `Events` is parsed by `FindScheduleCommandParser` and `EditScheduleCommandParser` respectively. Once parsed, those command will be executed by the `FindScheduleCommand` and `EditScheduleCommand` respectively. 
 
-For `FindScheduleCommand` a `Predicate<Schedule>` takes in keyword that are given by the user. Then it will then set a `Predicate<Schedule>` in the `FilteredList<Schedule>` which are located in the `ModelManager`. The `FilteredList<Schedule>` will then filtered those `Event`s which satisfies the `Predicate<Schedule>`. Once done, it will return a `FilteredList<Schedule>` of all the `Events` which have the same keywords as the one given by the user which will be shown on the Ui.
+For `FindScheduleCommand` a `Predicate<Schedule>` takes in keywords that are given by the user. Then it will then set a `Predicate<Schedule>` in the `FilteredList<Schedule>` which are located in the `ModelManager`. The `FilteredList<Schedule>` will then filtered those `Event`s which satisfies the `Predicate<Schedule>`. Once done, it will return a `FilteredList<Schedule>` of all the `Events` which have the same keywords as the one given by the user which will be shown on the Ui.
 
 For `EditScheduleCommand` the user will need to input the index of the `Event` to be edited, along by specifying the fields which the user would like to edit, and the new information to edit to. Once completed, the old `Event` will be replaced with the new `Event` with the updated information.
 
@@ -333,7 +333,7 @@ Tags can be added to new or existing events in the schedule so as to categorise 
 
 ### Filtering Events
 
-The implementation for filtering `Event`s is similar to finding an `Event`. The command is first parsed by the `FilterScheduleCommandParser` and then executed by the `FilterScheduleCommand`. The parser will utilise a `Predicate<Schedule>` to filter the `FilteredList<Schedule>` which is located in `ModelManager` based on any attribute and keywords which the user specifiesd. The `Predicate<Schedule>` takes in a keyword of the respective attribute, and only the `Event`s which satisfy the `Predicate<Schedule>` will be displayed to the user in the UI.
+The implementation for filtering `Event`s is similar to finding an `Event`. The command is first parsed by the `FilterScheduleCommandParser` and then executed by the `FilterScheduleCommand`. The parser will utilise a `Predicate<Schedule>` to filter the `FilteredList<Schedule>` which is located in `ModelManager` based on any attribute and keywords which the user specified. The `Predicate<Schedule>` takes in a keyword of the respective attribute, and only the `Event`s which satisfy the `Predicate<Schedule>` will be displayed to the user in the UI.
 
 **Aspect: How filtering is done**
 `UniqueScheduleList` is used to keep store in-memory data which wraps an `ObservableList<Schedule>`. It is then fed to the Ui to display the filtered `Event` to the user. This design provides a clean way for us to filter data using Predicate.
@@ -342,7 +342,7 @@ The implementation for filtering `Event`s is similar to finding an `Event`. The 
 
 Adding recurring `Event`s allows user to add `Event`s, such that this `Event` will recur until the given date which it will stop. User is able to choose to recur daily, weekly or yearly.
 
-If there are no clashes (including all the recurring Events), new `Event`s will be added until the specified recur date in a specified weekly, yealy or monthly basis, otherwise none will be added.
+If there are no clashes (including all the recurring Events), new `Event`s will be added until the specified recur date in a specified weekly, yearly or monthly basis, otherwise none will be added.
 
 **Aspect: How recurring of Event is done**
 
@@ -352,7 +352,7 @@ This is done by implementing another attribute in the `AddScheduleCommand`, whic
 
 ### \[Proposed\] Viewing only past or future Events
 
-In the event when user only want to look at he past `Event`s, user should be able to do so using the command line such as `showpast`. This command line will help to feed in a `Predicate<Schedule>` to the `FilteredList<Schedule>` located in the `ModelManager`. Past `Event`s will pass the `Predicate<Schedule>` will then be displayed in the UI, otherwise it will not be shown. 
+In the event when user only want to look at the past `Event`s, user should be able to do so using the command line such as `showpast`. This command line will help to feed in a `Predicate<Schedule>` to the `FilteredList<Schedule>` located in the `ModelManager`. Past `Event`s will pass the `Predicate<Schedule>` will then be displayed in the UI, otherwise it will not be shown. 
 
 For future `Event`s, procedure is similar to past `Event`s, just that the `Predicate<Schedule>` passed in is different. 
 
