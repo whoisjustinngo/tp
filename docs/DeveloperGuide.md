@@ -105,12 +105,12 @@ How the `Logic` component works:
 4. The second command then communicates with the `Model` when it is executed (e.g. to add a person).
 5. The result of the execution of each command is encapsulated as a `CommandResult` object which is returned back from `Logic`, of which the result of the second command execution is displayed to the user.
 
-The sequence diagrams below illustrates the interactions within the Logic component for the `execute("/contactsTab delete 1")` API call, which represents a command to delete the first contact, issued from the Contacts tab. Here is an explanation of the diagrams:
+The sequence diagrams below illustrates the interactions within the Logic component for the `execute("/contactsTab delete 1")` API call, a command to delete the first contact, issued from the Contacts tab. Here is an explanation of the diagrams:
 1. User enters the command `delete 1` from the Contacts tab. Because the UI component knows that the user is on the Contacts tab, the UI component receives the user's input and prefixes it with "/contactsTab" before calling `LogicManager#execute()`, passing in `"/contactsTab delete 1"` as the argument.
 2. `LogicManager` forwards the prefixed user input to `AddressBookParser#parseCommand()` for parsing.
-3. `AddressBookParser` looks at the prefixed user input `"/contactsTab delete 1"` it receives and understands that it should parse the user input into a `Command` to delete the first contact. It does this by instantiating `DeleteCommandParser`, and calling its `parse()` method. `DeleteCommandParser#parse()` returns an object `d` of type `DeleteCommand`, which inherits from the `Command` interface. Object `d` is eventually returned to `LogicManager`.
-4. (Referring now to the "go to contacts tab" sequence frame) The `LogicManager` always creates and executes a `TabCommand` first (this is to facilitate commands that result in switching tabs – for example, entering the command `list` while on the Details tab, results in switching to the Contacts tab). To do this, `LogicManager` calls `AddressBookParser#goToContextTab()`, which instantiates a `TabCommandParser`. `TabCommandParser` creates a `TabCommand` object `t`, which is eventually returned to `LogicManager`. `LogicManager` will then call the `execute()` method of object `t` first in order to switch to the correct tab to display to the user. In this case, `t` represents a command to switch to the Contacts tab.
-6. `LogicManager` will then call the `execute()` method of object `d`, which interacts with the Model component to delete the first contact.
+3. `AddressBookParser` looks at the prefixed user input `"/contactsTab delete 1"` it receives and understands that it should parse the user input into a `Command` to delete the first contact (since it is prefixed with `/contactsTab`). It does this by instantiating `DeleteCommandParser`, and calling its `parse()` method. `DeleteCommandParser#parse()` returns an object `d` of type `DeleteCommand`, which inherits from the `Command` interface. Object `d` is eventually returned to `LogicManager`, but is not yet executed.
+4. (Referring now to the "go to contacts tab" sequence frame) The `LogicManager` always creates and executes a `TabCommand` first (this is to facilitate commands that result in switching tabs like entering `list` while on the Details tab which results in switching to the Contacts tab). To do this, `LogicManager` calls `AddressBookParser#goToContextTab()`, which instantiates a `TabCommandParser`. `TabCommandParser` creates a `TabCommand` object `t`, which is eventually returned to `LogicManager`. `LogicManager` will then call the `execute()` method of object `t` first in order to switch to the correct tab to display to the user. In this case, `t` represents a command to switch to the Contacts tab.
+6. `LogicManager` will then finally call the `execute()` method of object `d`, which interacts with the Model component to delete the first contact.
 
 ![`deleteSequenceImage`](images/DeleteSequenceDiagram.png)
 
@@ -205,7 +205,7 @@ to retrieve the count of a particular given `Status` and return it to the `Analy
 #### Design Considerations
 
 The *observer design pattern* was heavily used here so that any update front-end update would be automatic. This is not only for consistency with the 
-other sections like the `ToDo`s, `Person`s, and `Event`s, it also ensured that every update to any status in the client list was updated and displayed
+other data types like the `ToDo`s, `Person`s, and `Event`s, it also ensured that every update to any status in the client list was updated and displayed
 immediately on the dashboard. This also reduced the need for classes relying on other classes telling them to update the values before they do so.
 
 Updating the values was also designed to be re-counting instead of manually checking what has changed and then just making the necessary changes to the few affected
@@ -219,9 +219,7 @@ does not warrant the optimisation.
 
 ### Importing .ics Schedules
 
-For student financial advisors, they might have a portal that can generate calendar files that can be imported into Google calendar,
-such as NUSMods. NUSMods has a download `.ics` button that generates a `.ics` file for the users. These fields can be programmatically 
-added into Advyze.
+Student financial advisors might have access to portals that give them the option of generating calendar files, which can be subsequently imported into apps like Google calendar for display. For example, NUSMods has a "download `.ics`" button that generates a `.ics` file for the users. These fields specified in the `.ics` file can be programmatically added into Advyze.
 
 The basic structure of an `.ics` file is as follows
 
@@ -258,14 +256,14 @@ The current implementation is a minimal version that includes the following visi
 Each `VEVENT` will be represented as a `Schedule`, and each recurrence specified (if applicable) in `RRULE` are independent 
 `Schedules` with different start and end times. The import will not be made if there are exceptions thrown in the process of 
 parsing errors or fails during verification of whether the schedule has conflicts. If clashes exist, users will be prompted
-with the same message as when they add a single clashing schedule. No imports will be made. This is to get the user to do manual conflict resolution, where they need to discover and deconflict clashing schedules until the import is successful.
+with the same message as when they add a single clashing schedule. No imports will be made. This is to get the user to do manual conflict resolution, where they need to discover and deconflict clashing schedules until the import is successful. (see [adding recurring entries to the schedule](#adding-recurring-entries-to-the-schedule))
 
 
 
 ### Convenience Commands
 
 To not have to go to a specific tab in order to run commands for the said tab, users can add
-a tab name to indicate which tab to run the command in. To give the users visual feedback, we need to switch to the tab the command was intended for after the command is executed.
+a tab name to indicate which tab to run the command in. To give the users visual feedback, the app will switch to the tab the command was intended for after the command is executed.
 
 #### Implementation
 
@@ -278,7 +276,7 @@ Both of these implementations require major overhauls, but the latter requires a
 how to `execute` 2 commands. To achieve this, instead of returning a `Command`, return a `List<Command>` and execute all of the Commands.
 
 However, we only need to return the last `CommandResult` as that is what the user entered. Therefore, we always assign the last `CommandResult` to 
-show feedback to user.
+show feedback to user. (see sequence diagram in [logic component](#logic-component) for more info)
 
 
 
