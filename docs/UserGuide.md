@@ -26,7 +26,7 @@ This guide is sectioned by tabs. Under the sections for each tab, the reader wil
 
 > :exclamation: Note: 
 >
-> The commands described in the various tab-specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specified in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience-commands), or if it is the [Contacts and Details tabs which are highly related](#summary-of-commands-for-contacts-and-details-tab)). For example, the command to mark a todo as done will work only while the user is on the Todos tab.
+> The commands described in the various tab-specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specified in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience-commands), or if it is the Contacts and Details tabs which are highly related, see [summary of commands for contacts and details tab](#summary-of-commands-for-contacts-and-details-tab)). For example, the command to mark a todo as done will work only while the user is on the Todos tab.
 >
 > It is hence implied that any command in the tab-specific sections describes the behaviour when running that command when on that tab in particular.
 
