@@ -113,13 +113,11 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 5. `LogicManager` will then call the `execute` method of object `t` first in order to switch to the correct tab to display to the user.
 6. `LogicManager` will then call the `execute` method of object `d` to interact with the Model of Contacts, and deletes the contact index indicated by the user.
 
-![`logic`](images/DeleteSequenceDiagram.png)
+![`deleteSequenceImage`](images/DeleteSequenceDiagram.png)
 
 ![`delete command parser`](images/DeleteCommandParserSequenceDiagram.png)
 
 ![`tab command parser`](images/TabCommandParserSequenceDiagram.png)
-
-<img src="images/DeleteSequenceDiagram.png" class="sequenceDiagramImg" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` and `TabCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
