@@ -330,6 +330,27 @@ The `Schedule` specified will only be added if the `Schedule` does not clash wit
 
 
 
+### Marking Todos as Done
+
+#### Implementation
+
+Marking a `Todo` as done is implemented as a `DoneTodoCommand`, which is similar in many ways with an `EditTodoCommand`. This similarity lies in the fact that both commands alter an attribute of the `Todo` model: the `EditTodoCommand` alters the description attribute of the `Todo`, while the `DoneTodoCommand` alters the `isDone` attribute of the `Todo`.
+
+Since `Todos` are guaranteed to be immutable in the current implementation of the `Todo` model, the `DoneTodoCommand` applied to a `Todo` will not edit the `Todo`. Instead, a new `Todo` will be created with the same `description` but with the `isDone` attribute toggled to `true`.
+
+#### Design Considerations
+
+**Aspect: How mark as done executes:**
+
+* **Alternative 1 (current choice):** Replaces the current `Todo` with a new instance of `Todo`.
+    * Pros: Consistent with the current implementation of the commands for editing a model, and thus increases consistency across the entire codebase.
+    * Cons: May take up more computational resources since a new `Todo` is created every time it is marked as done. Nevertheless, the impact of this implementation on memory space is expected to be negligible, given that Java's garbage collection mechanism will automatically remove the de-referenced Todo.
+* **Alternative 2:** Edits the current instance of `Todo`.
+    * Pros: Might be faster and less wasteful, since there is no need to create a new `Todo` instance.
+    * Cons: Decreased consistency across the codebase, and no longer guarantees that `Todo`s are immutable.
+
+
+
 ### \[Proposed\] Toggling Between Viewing Past and Future Entries in the Schedule Tab
 
 In the event the user only wants to look at expired entries in the Schedule tab, i.e. entries that have a date and time earlier than the current system date and time, the user can use the `showpast` command. This command will feed in a `Predicate<Schedule>` to the `FilteredList<Schedule>` located in the `ModelManager`, similar to [how filtering is done](#filtering-data). The `Predicate<Schedule>` will be specified such that all `Schedule`s which are not expired will be filtered out and consequently not displayed to the user.
@@ -349,27 +370,6 @@ There are two possible features for deletion of multiple entries:
   A new `delete all` command, which deletes all the `Schedule`s that are currently stored in the app.
 * Possible feature #2:
   Modify the format of the `delete` command to be `delete INDEX [MORE_INDEXES]`, where the users can specify more than one indexes of the `Schedule`s to delete.
-
-
-
-### Marking Todos as Done
-
-#### Implementation
-
-Marking a `Todo` as done is implemented as a `DoneTodoCommand`, which is similar in many ways with an `EditTodoCommand`. This similarity lies in the fact that both commands alter an attribute of the `Todo` model: the `EditTodoCommand` alters the description attribute of the `Todo`, while the `DoneTodoCommand` alters the `isDone` attribute of the `Todo`.
-
-Since `Todos` are guaranteed to be immutable in the current implementation of the `Todo` model, the `DoneTodoCommand` applied to a `Todo` will not edit the `Todo`. Instead, a new `Todo` will be created with the same `description` but with the `isDone` attribute toggled to `true`.
-
-#### Design Considerations
-
-**Aspect: How mark as done executes:**
-
-* **Alternative 1 (current choice):** Replaces the current `Todo` with a new instance of `Todo`.
-    * Pros: Consistent with the current implementation of the commands for editing a model, and thus increases consistency across the entire codebase.
-    * Cons: May take up more computational resources since a new `Todo` is created every time it is marked as done. Nevertheless, the impact of this implementation on memory space is expected to be negligible, given that Java's garbage collection mechanism will automatically remove the de-referenced Todo.
-* **Alternative 2:** Edits the current instance of `Todo`.
-    * Pros: Might be faster and less wasteful, since there is no need to create a new `Todo` instance.
-    * Cons: Decreased consistency across the codebase, and no longer guarantees that `Todo`s are immutable.
 
 
 
