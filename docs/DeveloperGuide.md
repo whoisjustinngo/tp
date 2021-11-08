@@ -291,6 +291,7 @@ Let us refer to `Schedule`, `Person` and `Todo` as `data types`. Each `data type
 * the `Name` field in the `Person` model will have the `NameContainsKeywordsPredicate`
 * the `isDone` field in the `Todo` model has the `TodoIsDonePredicate` and `TodoIsNotDonePredicate`. 
   
+
 All these `Predicate`s implement Java's own `Predicate<data type>` interface.
 
 When the user enters the `filter` command, they will have to specify the field that they want to filter by, along with keywords to indicate the entries they want to keep. For example, if the user specifies to filter the  `Schedule`s in the Schedule tab by their `Date` field, they will (have to) specify the date of the entries they want to keep, e.g. if they are looking for entries that have the date "12-11-2021", they will specify to `filter` `Date`s with "12-11-2021". Let us refer to this "12-11-2021" as the `keyword(s)`.
@@ -305,7 +306,7 @@ To understand how this works, let us consider the example where the user enters 
 
 The above steps can be generalised from just the `Person` model to the `Todo` and `Schedule` models.
 
-> :bulb: The `find` command for the Schedule and Todos tabs also follows a similar implementation, except that the `find` command only looks at the `description` fields of the `schedule` and `todo` data types. The `find` command can hence be thought of as "filtering by description". The existence of a `find` command in addition to the `filter` command which has greater functionality is not only meant to give the user a simple command if they just want to find entries with a specific description, but also meant to appeal to the user's intuitions: for example, if the user wants to look for all their lessons they would be more likely to think of "finding lessons" instead of "filtering entries by description and looking for entries with the word lesson in description".
+> :bulb: The `find` command for the Schedule and Todos tabs also follows a similar implementation, except that the `find` command only looks at the `description` fields of the `Schedule` and `Todo` data types. The `find` command can hence be thought of as "filtering by description". The existence of a `find` command in addition to the `filter` command which has greater functionality is not only meant to give the user a simple command if they just want to find entries with a specific description, but also meant to appeal to the user's intuitions: for example, if the user wants to look for all their lessons they would be more likely to think of "finding lessons" instead of "filtering entries by description and looking for entries with the word lesson in description".
 
 #### Design Considerations
 
@@ -331,11 +332,11 @@ Given that `tags` is a field in the `model`s, the user can also apply the aforem
 
 #### Implementation
 
-The data on the Schedule tab is contained in an `ObservableList<Schedule>`. As such, I will be referring to the individual entries in the Schedule as `schedule`s.
+The data on the Schedule tab is contained in an `ObservableList<Schedule>`. As such, I will be referring to the individual entries in the Schedule tab as `Schedule`s.
 
-To allow the user to add recurring `schedule`s, the `AddScheduleCommand` created by the `AddScheduleCommandParser` indicates if the `schedule` to add is recurring or not by the `recurrType` field.  The various `recurrType`s are "N" for no recurrence, "D" for daily recurrence, "W" for weekly recurrence  and "Y" for yearly recurrence. If the user has specified that it is a recurring event (i.e. `recurrType` is not "N"), then they would have also been required to specify an end date that the recurrence stops.
+To allow the user to add recurring `Schedule`s, the `AddScheduleCommand` created by the `AddScheduleCommandParser` indicates if the `Schedule` to add is recurring or not by the `recurrType` field.  The various `recurrType`s are "N" for no recurrence, "D" for daily recurrence, "W" for weekly recurrence  and "Y" for yearly recurrence. If the user has specified that it is a recurring event (i.e. `recurrType` is not "N"), then they would have also been required to specify an end date that the recurrence stops.
 
-The `Schedule` specified will only be added if the `Schedule` does not clash with any other existing `Schedule`s. This is true for recurring `Schedule`s as well. What happens when the `AddScheduleCommand#execute()` is called is that a temporary list containing all `schedule`s to be added is generated. For example if some `Schedule` that recurs weekly is specified with an end date 4 weeks into the future, and the specified date is a Tuesday, and the time that is specified is from 1500 to 1600, then the temporary list generated will contain 4 `Schedule`s, each on consecutive Tuesdays from 1500 to 1600. This temporary list is then compared to the current schedule to check if there are any clashes. If there are no clashes, the command will execute normally and all requested `Schedule`s will be added. If there are clashes, then **no `Schedule`s will be added**, not even those that do not clash.
+The `Schedule` specified will only be added if the `Schedule` does not clash with any other existing `Schedule`s. This is true for recurring `Schedule`s as well. What happens when the `AddScheduleCommand#execute()` is called is that a temporary list containing all `Schedule`s to be added is generated. For example if some `Schedule` that recurs weekly is specified with an end date 4 weeks into the future, and the specified date is a Tuesday, and the time that is specified is from 1500 to 1600, then the temporary list generated will contain 4 `Schedule`s, each on consecutive Tuesdays from 1500 to 1600. This temporary list is then compared to the current schedule to check if there are any clashes. If there are no clashes, the command will execute normally and all requested `Schedule`s will be added. If there are clashes, then **no `Schedule`s will be added**, not even those that do not clash.
 
 
 
