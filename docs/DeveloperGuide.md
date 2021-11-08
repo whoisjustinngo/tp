@@ -105,17 +105,17 @@ How the `Logic` component works:
 4. The second command then communicates with the `Model` when it is executed (e.g. to add a person).
 5. The result of each of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`, of which the second command execution result is displayed to the user.
 
-The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("/dashboardTab /contacts delete 1")` API call, which represents a command to delete the first contact, issued from the Dashboard tab. Here is an explanation for the diagram:
-1. User enters the command `/contacts delete 1` while he is on the Dashboard tab.
-2. The `UI` component calls the `execute()` method of `LogicManager`. Because the `UI` knows that the user issued this command from the Dashboard tab, the `UI` prefixes the user input with "/dashboardTab", and thus passes in `"/dashboardTab /contacts delete 1"` as the argument to the `execute()` method.
-3. `LogicManager` delegates the prefixed user input to `parseCommand()` to the `AddressBookParser`, prefixing the user input with the tab the command was entered from (`/dashboardTab`), and hence passing in `/dashboardTab /contacts delete 1` as the argument of `parseCommand()`.
-4. `AddressBookParser` instantiates `DeleteCommandParser`, and calls its `parse()` method. `parse()` returns an object `d` of type `DeleteCommand`, which inherits from the `Command` interface. Object `d` is eventually returned to `LogicManager`.
-5. `LogicManager` then calls the `goToContextTab()` method in `AddressBookParser` to instantiate a `TabCommandParser`. `TabCommandParser` creates a `TabCommand` object `t`, which is eventually returned to `LogicManager`.
-6. `LogicManager` will then call the `execute` method of object `t` first in order to switch to the correct tab to display to the user.
-7. `LogicManager` will then call the `execute` method of object `d` to interact with the Model of Contacts, and deletes the contact index indicated by the user.
+The sequence diagrams below illustrate the interactions within the Logic component for the `execute("/contactsTab delete 1")` API call, which represents a command to delete the first contact, issued from the Contacts tab. Here is an explanation of the diagrams below:
+1. User enters the command `delete 1` from the Contacts tab. Because the UI component knows that the user is on the Contacts tab, the UI component receives the user's input and prefixes it with "/contactsTab" before calling `LogicManager#execute()`, passing in `"/contactsTab delete 1"` as the argument.
+2. `LogicManager` forwards the prefixed user input to `AddressBookParser#parseCommand()` for parsing.
+3. `AddressBookParser` looks at the prefixed user input `"/contactsTab delete 1"` it receives and understands that it should parse the user input into a `Command` to delete the first contact. It does this by instantiating `DeleteCommandParser`, and calling its `parse()` method. `DeleteCommandParser#parse()` returns an object `d` of type `DeleteCommand`, which inherits from the `Command` interface. Object `d` is eventually returned to `LogicManager`.
+4. (In "go to contacts tab" sequence frame) To facilitate commands that result in switching tabs (for example, the command `list` entered from the Details tab, which results in switching to the Contacts tab), `LogicManager` always creates and executes a `TabCommand` first. To do this, `LogicManager` calls `AddressBookParser#goToContextTab()`, which instantiates a `TabCommandParser`. `TabCommandParser` creates a `TabCommand` object `t`, which is eventually returned to `LogicManager`.
+5. (In "go to contacts tab" sequence frame) `LogicManager` will then call the `execute()` method of object `t` first in order to switch to the correct tab to display to the user. In this case, `t` represents a command to switch to the Contacts tab.
+6. `LogicManager` will then call the `execute()` method of object `d`, which interacts with the Model component to delete the first contact.
 
+![`deleteSequenceImage`](images/DeleteSequenceDiagram.png)
 
-<img src="images/DeleteSequenceDiagram.png" class="sequenceDiagramImg" />
+![`tab command parser`](images/TabCommandParserSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` and `TabCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>

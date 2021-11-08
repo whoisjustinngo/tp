@@ -73,3 +73,9 @@ skinparam packageStyle Rectangle
 hide footbox
 hide members
 hide circle
+
+
+skinparam sequenceReferenceBorderColor red
+skinparam sequenceReferenceBackgroundColor #FCEBEB
+skinparam sequenceReferencesHeaderBackgroundColor white
+
