@@ -237,7 +237,7 @@ For more details, look up the definition of fields of `.ics` files at [RFC2445](
 
 #### Implementation
 
-The current iplementation is a minimal version that includes the following visible fields:
+The current implementation is a minimal version that includes the following visible fields:
 
 - `VEVENT`
   - `DTSTART`
