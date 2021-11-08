@@ -33,8 +33,8 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueDATAList
-UniqueDATAList --> "~* all" DATA
-ModelManager -->"~* filtered" DATA
+UniqueDATAList -left-> "~* all" DATA
+ModelManager -right->"~* filtered" DATA
 
 
 
