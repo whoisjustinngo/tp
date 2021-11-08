@@ -12,7 +12,7 @@ title: Developer Guide
 
 * Advyze is built using the [AddressBook Level 3 project template](https://github.com/se-edu/addressbook-level3) from [SE-EDU](https://se-education.org/).
 * Third-party libraries used: [iCal4j](https://github.com/ical4j/ical4j).
-* Method to remove unnecessary 0s from floats taken from [stack overflow](https://stackoverflow.com/a/14126736).
+* Method to remove unnecessary zeroes from floats taken from [StackOverflow](https://stackoverflow.com/a/14126736).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -38,7 +38,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -61,7 +61,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside components being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -71,19 +71,19 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-> :exclamation: Note: In the diagram, XYZ is a placeholder for the different classes. The values of XYZ are `CustomGoal, ` `Schedule`, `Todo`, and `Person`.
+> :exclamation: Note: In the diagram, XYZ is a placeholder for the different classes. The values of XYZ are `CustomGoal,` `Schedule`, `Todo`, and `Person`.
 
 
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `UI` component:
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
@@ -92,7 +92,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -101,17 +101,16 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 2. This results in 2 `Command` objects (the first is a `TabCommand` object, the second object is from a subclass of `Command` e.g., `AddCommand`) which are both executed by the `LogicManager`.
-3. The first (`TabCommand`) is used to change to the tabs the user wishes to execute their command on.
+3. The first (`TabCommand`) is used to change to the tab the user wishes to execute their command on.
 4. The second command then communicates with the `Model` when it is executed (e.g. to add a person).
-5. The result of each of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`, of which the second command execution result is displayed to the user.
+5. The result of the execution of each command is encapsulated as a `CommandResult` object which is returned back from `Logic`, of which the result of the second command execution is displayed to the user.
 
-The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("/contactsTab delete 1")` API call, which represents a command to delete the first contact, issued from the Contacts tab.
-1. User enters the command `delete 1` from Contacts tab, and is prefixed with the `tabId` the command was entered from, which is `/contactsTab`, passing in `/contactsTab delete 1` as the argument of `execute`.
-2. `LogicManager` issues a `parseCommand` to the `AddressBookParser`.
-3. `AddressBookParser` instantiates `DeleteCommandParser`, and calls the `parse` method, the method will return an object `d` of type `DeleteCommand`, which inherits from the `Command` interface. Object `d` is eventually returned to `LogicManager`.
-4. (In "go to contacts tab" sequence frame) `LogicManager` then calls the `goToContext` method in `AddressBookParser` to instantiate a `TabCommandParser`. `TabCommandParser` creates a `TabCommand` object `t`, which is eventually returned to `LogicManager`.
-5. (In "go to contacts tab" sequence frame) `LogicManager` will then call the `execute` method of object `t` first in order to switch to the correct tab to display to the user.
-6. `LogicManager` will then call the `execute` method of object `d` to interact with the Model of Contacts, and deletes the contact index indicated by the user.
+The sequence diagrams below illustrates the interactions within the Logic component for the `execute("/contactsTab delete 1")` API call, a command to delete the first contact, issued from the Contacts tab. Here is an explanation of the diagrams:
+1. User enters the command `delete 1` from the Contacts tab. Because the UI component knows that the user is on the Contacts tab, the UI component receives the user's input and prefixes it with "/contactsTab" before calling `LogicManager#execute()`, passing in `"/contactsTab delete 1"` as the argument.
+2. `LogicManager` forwards the prefixed user input to `AddressBookParser#parseCommand()` for parsing.
+3. `AddressBookParser` looks at the prefixed user input `"/contactsTab delete 1"` it receives and understands that it should parse the user input into a `Command` to delete the first contact (since it is prefixed with `/contactsTab`). It does this by instantiating `DeleteCommandParser`, and calling its `parse()` method. `DeleteCommandParser#parse()` returns an object `d` of type `DeleteCommand`, which inherits from the `Command` interface. Object `d` is eventually returned to `LogicManager`, but is not yet executed.
+4. (Referring now to the "go to contacts tab" sequence frame) The `LogicManager` always creates and executes a `TabCommand` first (this is to facilitate commands that result in switching tabs like entering `list` while on the Details tab which results in switching to the Contacts tab). To do this, `LogicManager` calls `AddressBookParser#goToContextTab()`, which instantiates a `TabCommandParser`. `TabCommandParser` creates a `TabCommand` object `t`, which is eventually returned to `LogicManager`. `LogicManager` will then call the `execute()` method of object `t` first in order to switch to the correct tab to display to the user. In this case, `t` represents a command to switch to the Contacts tab.
+6. `LogicManager` will then finally call the `execute()` method of object `d`, which interacts with the Model component to delete the first contact.
 
 ![`deleteSequenceImage`](images/DeleteSequenceDiagram.png)
 
@@ -129,7 +128,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -148,10 +147,10 @@ The `Model` component,
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** More detailed (partial) class diagrams of each DATA class are given below.  
 
-`Person` objects:  
+`Person`:  
 <img src="images/PersonModelClassDiagram.png"/>  
 
-`Schedule`, `Todo`, `CustomGoal` objects:
+`Schedule`, `Todo`, `CustomGoal`:
 <img src="images/ScheduleTodoGoalModelClassDiagram.png"/>  
 
 </div>
@@ -159,18 +158,16 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103-T14-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png"/>
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
-The `ScheduleStorage` component,
-* helps with the importing of the ics calendar. Application will take in ics Components, which will then be converted into Schedule model in this application.
-* adds schedules from ics component into `Schedule` in this application.
+In particular, the `ScheduleStorage` component helps with the importing of `.ics` calendar files. Users can select a `.ics` file to import into the application, which `IcsScheduleStorage` will convert into corresponding `Schedule` objects to be used in the application.
 
 ### Common classes
 
@@ -208,7 +205,7 @@ to retrieve the count of a particular given `Status` and return it to the `Analy
 #### Design Considerations
 
 The *observer design pattern* was heavily used here so that any update front-end update would be automatic. This is not only for consistency with the 
-other sections like the `ToDo`s, `Person`s, and `Event`s, it also ensured that every update to any status in the client list was updated and displayed
+other data types like the `ToDo`s, `Person`s, and `Event`s, it also ensured that every update to any status in the client list was updated and displayed
 immediately on the dashboard. This also reduced the need for classes relying on other classes telling them to update the values before they do so.
 
 Updating the values was also designed to be re-counting instead of manually checking what has changed and then just making the necessary changes to the few affected
@@ -222,9 +219,7 @@ does not warrant the optimisation.
 
 ### Importing .ics Schedules
 
-For student financial advisors, they might have a portal that can generate calendar files that can be imported into google calendar,
-such as NUSMods. NUSMods has a download `.ics` button that generates a `.ics` file for the users. These fields can be programmatically 
-added into Advyze.
+Student financial advisors might have access to portals that give them the option of generating calendar files, which can be subsequently imported into apps like Google calendar for display. For example, NUSMods has a "download `.ics`" button that generates a `.ics` file for the users. These fields specified in the `.ics` file can be programmatically added into Advyze.
 
 The basic structure of an `.ics` file is as follows
 
@@ -261,14 +256,14 @@ The current implementation is a minimal version that includes the following visi
 Each `VEVENT` will be represented as a `Schedule`, and each recurrence specified (if applicable) in `RRULE` are independent 
 `Schedules` with different start and end times. The import will not be made if there are exceptions thrown in the process of 
 parsing errors or fails during verification of whether the schedule has conflicts. If clashes exist, users will be prompted
-with the same message as when they add a single clashing schedule. No imports will be made. This is to get the user to do manual conflict resolution, where they need to discover and deconflict clashing schedules until the import is successful.
+with the same message as when they add a single clashing schedule. No imports will be made. This is to get the user to do manual conflict resolution, where they need to discover and deconflict clashing schedules until the import is successful. (see [adding recurring entries to the schedule](#adding-recurring-entries-to-the-schedule))
 
 
 
 ### Convenience Commands
 
 To not have to go to a specific tab in order to run commands for the said tab, users can add
-a tab name to indicate which tab to run the command in. To give the users visual feedback, we need to switch to the tab the command was intended for afte the command is executed.
+a tab name to indicate which tab to run the command in. To give the users visual feedback, the app will switch to the tab the command was intended for after the command is executed.
 
 #### Implementation
 
@@ -281,106 +276,59 @@ Both of these implementations require major overhauls, but the latter requires a
 how to `execute` 2 commands. To achieve this, instead of returning a `Command`, return a `List<Command>` and execute all of the Commands.
 
 However, we only need to return the last `CommandResult` as that is what the user entered. Therefore, we always assign the last `CommandResult` to 
-show feedback to user.
+show feedback to user. (see sequence diagram in [logic component](#logic-component) for more info)
 
 
 
-### Filtering Persons
-
-#### Implementation
-
-To allow the user to filter based on any attributes of a `Person`, a `Predicate` class is created
-for each attribute. The `ModelManager` manages all data, which allows us to easily filter `Person`s based
-on their atrributes by passing in the correspionding `Predicate`. 
-
-A `Predicate` takes in a keyword, which is then used to filter the models.
-Some examples are: `AddressContainsKeywordsPredicate`, `EmailContainsKeywordsPredicate`, .. etc
-
-#### Design Considerations
-Since the architecture follows a Model-view-controller design pattern, we have `FilteredList<Person>` wrapping an `ObservableList<Person>` which is used to store in-memory data of `Person` objects. Our Ui constantly listens for changes triggered by `FilterCommand#execute` which updates the `FilteredList<Person>` with a new predicate which then reflects displays the list of filtered persons on the Ui. This design provides a clean way for us to filter data using `Predicate`s.
-
-### Adding Events
+### Filtering Data
 
 #### Implementation
 
-The proposed feature of scheduling is parsed by `AddScheduleCommandParser`, and executed by the `AddScheduleCommand`, where it will add the new Event into the list of Events in the users schedule. While adding a new `Event` into the `Schedule`, it will help to check if the given `Event` clashes with the Events which are already in the `Schedule`. 
+The data on the Schedule, Contacts and Todos tabs can be filtered. The underlying implementation of the `filter` commands on each of these tabs are the same, and involves `Predicate`s that looks for entries that match the keyword(s) specified by the user. 
 
-On top of that, `Schedule` will all be arranged based on the date and then time order (from earliest to the latest) with the aid of the `Comparator<Schedule>` which is declared in `UniqueScheduleList`.
+Let us refer to `Schedule`, `Person` and `Todo` as `data types`. Each `data type` has certain fields which it encapsulates in its model, for example, the `Person` model has the fields `Name`, `Relationship`, `Email` etc. Each field will have a corresponding `Predicate` that specifically "checks" those fields. For example, the `Name` field in the `Person` model will have the `NameContainsKeywordsPredicate`, the `isDone` field in the `Todo` model has the `TodoIsDonePredicate` and `TodoIsNotDonePredicate`. All these `Predicate`s implement Java's own `Predicate<data type>` interface.
+
+When the user enters the `filter` command, they will have to specify the field that they want to filter by, along with keywords to indicate the entries they want to keep. For example, if the user specifies to filter the  `Schedule`s in the schedule tab by their `Date` field, they will (have to) specify the date of the entries they want to keep, e.g. if they are looking for entries that have the date "12-11-2021", they will specify to `filter` `Date`s with "12-11-2021". Let us refer to this ""12-11-2021" as the `keyword(s)`. 
+
+As such, each `Predicate` is meant to apply a filter to a particular field of a specific `data type`, and keep only the entries that have the field matching the `keyword(s)` specified by the user. After the user has specified the field and keyword(s) to filter by, a corresponding `Predicate` will be passed as an argument into the `Model#updateFiltered<data type>List()` methods for the corresponding `data type`, which in turn makes use of the built-in `setPredicate(Predicate)` method of the javafx `FilteredList<data type>` class, which is the wrapper class for the `ObservableList<data type>` which all the data types use to store all their entries. This method filters the list based on the predicate supplied, and the resulting filtered list with only the entries that the user wants is displayed to the user.
+
+> :bulb: The `find` command for the schedule and todos tabs also follows a similar implementation, except that the `find` command only looks at the `description` fields of the the `schedule` and `todo` data types. The `find` command can hence be thought of as "filtering by description". The existence of a `find` command in addition to the `filter` command which has greater functionality is not only meant to give the user a simple command if they just want to find entries with a specific description, but also meant to appeal to the user's intuitions: for example, if the user wants to look for all their lessons they would be more likely to think of "finding lessons" instead of "filtering entries by description and looking for entries with the word lesson in description".
 
 #### Design Considerations
 
-**Aspect: How add schedule executes:**
-* **Alternative 1 (current choice) Add Schedule into one UnqiueScheduleList**
-    * Pros: All the unique schedules are added into one list, which makes it easier to navigate. It also makes the code look cleaner and more understandable. This is also consistent with the other data classes which also use an underlying list implementation.
-    * Cons: Any iteration will always be O(n) since sorting and checking if there are clashes in `Schedule` happens in this `UniqueScheduleList`
-* **Alternative 2 use HashMap<Date, ScheduleList>**
-    * Pros: Operation does not need to take O(n) time when it comes to checking if the `Event` clashes, since we only check if there are clashes on that particular given date.
-    * Cons: Decreases overall code consistency.
+Since the architecture follows a Model-view-controller design pattern, `FilteredList<data type>` wraps around an `ObservableList<data type>`, the latter of which is used to store in-memory data of `data type` objects. On the front-end, our Ui constantly listens for changes triggered by `FilterCommand#execute` which updates the `FilteredList<data type>` after filtering based on the specified `Predicate`, which then reflects the newly filtered information on the Ui to the user. This design provides a clean way for us to filter data.
+
+
+
+### Adding Tags to Entries
+
+#### Implementation
+
+Tags can be added to the entries on the Schedule, Contacts and Todos tabs.
+
+The information shown on these tabs are from `ObservableList<>`s that hold `Schedule`, `Person` and `Todo` objects respectively. Let us refer to these different objects as `data type`s. Each of these has a model that encapsulates information for multiple fields. For example, the `Person` model has the fields `Name`, `Relationship`, `Email` etc. that holds the information for each `Person` entry. In addition to these fields, each of these models also has a field called `tags` that tracks the tags that have been applied to that entry. 
+
+`tags` is implemented as a `HashSet<Tag>`, where `Tag` is a class that specifies a tag. Each `Tag` object has a `tagName` which identifies it; two tags are considered to be the same when they have the same `tagName`. The use of a `HashSet<Tag>` not only allows an entry to have multiple tags, but also guarantees that no duplicate tags can be applied to an entry. 
+
+Given that `tags` is a field in the `model`s, the user can also apply the aforementioned `filter` commands on tags to look for entries that have similar tags. An entry's `tags` can either be specified at the point of addition, i.e. when doing an `add` command, or added on and modified after the fact using the various `edit` commands.
 
 &nbsp;
 
-### Finding and Editing existing Events
+### Adding Recurring Entries to the Schedule
 
 #### Implementation
 
-The proposed feature of finding and editing existing `Events` is parsed by `FindScheduleCommandParser` and `EditScheduleCommandParser` respectively. Once parsed, those command will be executed by the `FindScheduleCommand` and `EditScheduleCommand` respectively. 
+The data on the Schedule tab is contained in an `ObservableList<Schedule>`. As such, I will be referring to the indivdual entries in the Schedule as `schedule`s.
 
-For `FindScheduleCommand` a `Predicate<Schedule>` takes in keyword that are given by the user. Then it will then set a `Predicate<Schedule>` in the `FilteredList<Schedule>` which are located in the `ModelManager`. The `FilteredList<Schedule>` will then filtered those `Event`s which satisfies the `Predicate<Schedule>`. Once done, it will return a `FilteredList<Schedule>` of all the `Events` which have the same keywords as the one given by the user which will be shown on the Ui.
+To allow the user to add recurring `schedule`s, the `AddScheduleCommand` created by the `AddScheduleCommandParser` indicates if the `schedule` to add is recurring or not by the `recurrType` field.  The various `recurrType`s are "N" for no recurrence, "D" for daily recurrence, "W" for monthly recurrence  and "Y" for yearly recurrence. If the user has specified that it is a recurring event (i.e. `recurrType` is not "N"), then they would have also (been required to) specify an end date that the recurrence stops.
 
-For `EditScheduleCommand` the user will need to input the index of the `Event` to be edited, along by specifying the fields which the user would like to edit, and the new information to edit to. Once completed, the old `Event` will be replaced with the new `Event` with the updated information.
+The `Schedule` specified will only be added if the `Schedule` does not clash with any other existing `Schedule`s. This is true for recurring `Schedule`s as well. What happens when the `AddScheduleCommand#execute()` is called is that a temporary list containing all `schedule`s to be added is generated. For example if some `Schedule` the recurs weekly is specified with an end date 4 weeks into the future, and the specified date is a Tuesday, and the time that is specified is from 1500 to 1600, then the temporary list generated will contain 4 `Schedule`s, each on consecutive Tuesdays from 1500 to 1600. This temporary list is then compared to the current schedule to check if there are any clashes. If there are no clashes, the command will execute normally and all requested `Schedule`s will be added. If there are clashes, then **no `Schedule`s will be added**, not even those that do not clash.
 
-Since `Schedule` is immutable in the current implementation, the `EditScheduleCommand` will not edit the `Schedule`. Instead, a new `Schedule` will be created keeping all the attributes the same, and changing the respective attributes which the user would like to change.
 
-### Adding Tags to Events
-
-Tags can be added to new or existing events in the schedule so as to categorise different `Events` and allow the user to easily `Fitler` out `Events`  with the same tags.
-
-**Aspect: How tagging is implemented:**
-
- * In each `Event`, there is a `List<Tag>` which carries all the `Tag`s which the user has added for the `Event`. All the `Tags` which are present in this `List<Tag>` will be displayed in the user interface. 
-
-### Filtering Events
-
-The implementation for filtering `Event`s is similar to finding an `Event`. The command is first parsed by the `FilterScheduleCommandParser` and then executed by the `FilterScheduleCommand`. The parser will utilise a `Predicate<Schedule>` to filter the `FilteredList<Schedule>` which is located in `ModelManager` based on any attribute and keywords which the user specifiesd. The `Predicate<Schedule>` takes in a keyword of the respective attribute, and only the `Event`s which satisfy the `Predicate<Schedule>` will be displayed to the user in the UI.
-
-**Aspect: How filtering is done**
-`UniqueScheduleList` is used to keep store in-memory data which wraps an `ObservableList<Schedule>`. It is then fed to the Ui to display the filtered `Event` to the user. This design provides a clean way for us to filter data using Predicate.
-
-### Adding Recurring Events
-
-Adding recurring `Event`s allows user to add `Event`s, such that this `Event` will recur until the given date which it will stop. User is able to choose to recur daily, weekly or yearly.
-
-If there are no clashes (including all the recurring Events), new `Event`s will be added until the specified recur date in a specified weekly, yealy or monthly basis, otherwise none will be added.
-
-**Aspect: How recurring of Event is done**
-
-This is done by implementing another attribute in the `AddScheduleCommand`, which is the recurring end date. If the recurring date is present, then `Event` is a recurring `Event` otherwise it is not. Another attribute called `recurType` will determine if this `Event` recurs daily (D), weekly (W) or yearly (Y).
-
-`Event` will recur until it reaches the recur date in the `AddScheduleCommand`.
-
-### \[Proposed\] Viewing only past or future Events
-
-In the event when user only want to look at he past `Event`s, user should be able to do so using the command line such as `showpast`. This command line will help to feed in a `Predicate<Schedule>` to the `FilteredList<Schedule>` located in the `ModelManager`. Past `Event`s will pass the `Predicate<Schedule>` will then be displayed in the UI, otherwise it will not be shown. 
-
-For future `Event`s, procedure is similar to past `Event`s, just that the `Predicate<Schedule>` passed in is different. 
-
-`Predicate<Schedule>` for `showpast`: `Schedule#getTaskDateTimeTo() < LocalDateTime#now()`
-`Predicate<Schedule>` for `showupcoming`: `Schedule#getTaskDateTimeTo() > LocalDateTime#now()`
-
-### \[Proposed\] To delete multiple Events using one command line
-
-While users may be overwhelmed by the number of past or future `Event`s and would like to delete multiple `Event`s at ease.
-
-* Possible implementation #1:
-`delete all` command, which deletes all the `Event`s that are present in the current schedule.
-
-* Possible implementation #2:
-`delete 1 2 5 2 12 4` command, where users are able to key in multiple indexes which are tied to the `Event`s and delete them in one command line.
 
 ### Marking Todos as Done
 
 #### Implementation
-
 Marking a `Todo` as done is implemented as a `DoneTodoCommand`, which is similar in many ways with an `EditTodoCommand`. This similarity lies in the fact that both commands alter an attribute of the `Todo` model: the `EditTodoCommand` alters the description attribute of the `Todo`, while the `DoneTodoCommand` alters the `isDone` attribute of the `Todo`.
 
 Since `Todos` are guaranteed to be immutable in the current implementation of the `Todo` model, the `DoneTodoCommand` applied to a `Todo` will not edit the `Todo`. Instead, a new `Todo` will be created with the same `description` but with the `isDone` attribute toggled to `true`.
@@ -388,13 +336,38 @@ Since `Todos` are guaranteed to be immutable in the current implementation of th
 #### Design Considerations
 
 **Aspect: How mark as done executes:**
-
 * **Alternative 1 (current choice):** Replaces the current `Todo` with a new instance of `Todo`.
     * Pros: Consistent with the current implementation of the commands for editing a model, and thus increases consistency across the entire codebase.
     * Cons: May take up more computational resources since a new `Todo` is created every time it is marked as done. Nevertheless, the impact of this implementation on memory space is expected to be negligible, given that Java's garbage collection mechanism will automatically remove the de-referenced Todo.
 * **Alternative 2:** Edits the current instance of `Todo`.
     * Pros: Might be faster and less wasteful, since there is no need to create a new `Todo` instance.
     * Cons: Decreased consistency across the codebase, and no longer guarantees that `Todo`s are immutable.
+
+
+
+### \[Proposed\] Toggling Between Viewing Past and Future Entries in the Schedule Tab
+
+#### Proposed Implementation
+
+In the event the user only wants to look at expired entries in the Schedule tab, i.e. entries that have a date and time earlier than the current system date and time, the user can use the `showpast` command. This command will feed in a `Predicate<Schedule>` to the `FilteredList<Schedule>` located in the `ModelManager`, similar to [how filtering is done](#filtering-data). The `Predicate<Schedule>` will be specified such that all `Schedule`s which are not expired will be filtered out and consequently not displayed to the user.
+
+The implementation for only showing upcoming `Schedule`s  (`showupcoming` command) is similar, except that the `Predicate<Schedule>` passed in filters out the opposite. For example: 
+
+* `Predicate<Schedule>` for `showpast`: `Schedule#getTaskDateTimeTo() < LocalDateTime#now()`
+* `Predicate<Schedule>` for `showupcoming`: `Schedule#getTaskDateTimeTo() > LocalDateTime#now()`
+
+
+
+### \[Proposed\] Deleting Multiple Entries in the Schedule Tab
+
+#### Proposed Implementation
+
+There are two possible features for deletion of multiple entries:
+
+* Possible feature #1:
+  A new `delete all` command, which deletes all the `Schedule`s that are currently stored in the app.
+* Possible feature #2:
+  Modify the format of the `delete` command to be `delete INDEX [MORE_INDEXES]`, where the users can specify more than one indexes of the `Schedule`s to delete.
 
 
 
@@ -650,7 +623,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Contacts (tab):** a tab where a list of the user’s contacts are displayed
 * **Details (tab):** a tab where details of a single contact are displayed
 * **Schedule (tab):** a tab where the user’s events are displayed
-  * **Event:** a task that is tied to a timeline, for example lessons, deadlines or meetings.
+  * **Event:** a task that is tied to a timeline, for example lessons, deadlines or meetings. (As on the back-end the `Schedule` class is used to represent these events, this DeveloperGuide uses `Schedule` instead to refer to entries in the Schedule tab)
 * **Todos (tab):** a tab where the user’s todos are displayed
   * **Todo (task):** a task that does not have a time element bound to it
 

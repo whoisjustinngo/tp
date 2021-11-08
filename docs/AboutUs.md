@@ -17,7 +17,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Debugging and Testing of Code
 
-### Darren Mok
+### Mok Kai Wen Darren
 
 <img src="images/mokdarren.png" width="200px">
 
@@ -27,7 +27,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: Task scheduling, Contacts feature
 
-### Justin Ngo
+### Ngo Xian Yi Justin
 
 <img src="images/whoisjustinngo.png" width="200px">
 
@@ -37,7 +37,7 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities: UI, Documentation
 
-### Kai Siang
+### Lui Kai Siang
 
 <img src="images/kslui99.png" width="200px">
 
