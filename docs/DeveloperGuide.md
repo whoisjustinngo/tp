@@ -353,6 +353,8 @@ Since `Todos` are guaranteed to be immutable in the current implementation of th
 
 ### \[Proposed\] Toggling Between Viewing Past and Future Entries in the Schedule Tab
 
+#### Proposed Implementation
+
 In the event the user only wants to look at expired entries in the Schedule tab, i.e. entries that have a date and time earlier than the current system date and time, the user can use the `showpast` command. This command will feed in a `Predicate<Schedule>` to the `FilteredList<Schedule>` located in the `ModelManager`, similar to [how filtering is done](#filtering-data). The `Predicate<Schedule>` will be specified such that all `Schedule`s which are not expired will be filtered out and consequently not displayed to the user.
 
 The implementation for only showing upcoming `Schedule`s  (`showupcoming` command) is similar, except that the `Predicate<Schedule>` passed in filters out the opposite. For example: 
@@ -363,6 +365,8 @@ The implementation for only showing upcoming `Schedule`s  (`showupcoming` comman
 
 
 ### \[Proposed\] Deleting Multiple Entries in the Schedule Tab
+
+#### Proposed Implementation
 
 There are two possible features for deletion of multiple entries:
 
