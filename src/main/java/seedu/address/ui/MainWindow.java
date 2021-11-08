@@ -267,6 +267,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    // @@author spdpnd98-reused
+    // the built in method setMaximized from javafx does not work on MacOS, reused solution from stack overflow:
+    // https://stackoverflow.com/questions/30049503/javafx-setmaximized-on-osx/30052801
     void show() {
         Screen screen = Screen.getPrimary();
         Rectangle2D visualBounds = screen.getVisualBounds();
