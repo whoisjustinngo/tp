@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
@@ -17,6 +18,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import net.fortuna.ical4j.data.ParserException;
 import seedu.address.commons.core.GuiSettings;
@@ -265,7 +267,16 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    // @@author spdpnd98-reused
+    // the built in method setMaximized from javafx does not work on MacOS, reused solution from stack overflow:
+    // https://stackoverflow.com/questions/30049503/javafx-setmaximized-on-osx/30052801
     void show() {
+        Screen screen = Screen.getPrimary();
+        Rectangle2D visualBounds = screen.getVisualBounds();
+        double width = visualBounds.getWidth();
+        double height = visualBounds.getHeight();
+        primaryStage.setWidth(width);
+        primaryStage.setHeight(height);
         primaryStage.show();
     }
 
