@@ -15,7 +15,7 @@ activate logic LOGIC_COLOR
 
 logic --[LOGIC_COLOR]> ui:
 
-ui -[UI_COLOR]> logic : execute("delete 1")
+ui -[UI_COLOR]> logic : execute("/contactsTab delete 1")
 
 
 logic -[LOGIC_COLOR]> model : deletePerson(p)
