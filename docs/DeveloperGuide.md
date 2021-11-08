@@ -103,11 +103,18 @@ How the `Logic` component works:
 2. This results in 2 `Command` objects (the first is a `TabCommand` object, the second object is from a subclass of `Command` e.g., `AddCommand`) which are both executed by the `LogicManager`.
 3. The first (`TabCommand`) is used to change to the tab the user wishes to execute their command on.
 4. The second command then communicates with the `Model` when it is executed (e.g. to add a person).
-5. The result of each of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+5. The result of each of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`, of which the second command execution result is displayed to the user.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("/dashboardTab /contacts delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("/dashboardTab /contacts delete 1")` API call, which represents a command to delete the first contact, issued from the Dashboard tab.
+1. User enters the command `/contacts delete 1` from Dashboard tab.
+2. `LogicManager` issues a `parseCommand` to the `AddressBookParser`, prefixing the user input with the `tabId` the command was entered from, which is `/dashboardTab`, passing in `/dashboardTab /contacts delete 1` as the argument of `parseCommand`.
+3. `AddressBookParser` instantiates `DeleteCommandParser`, and calls the `parse` method, the method will return an object `d` of type `DeleteCommand`, which inherits from the `Command` interface. Object `d` is eventually returned to `LogicManager`.
+4. `LogicManager` then calls the `goToContext` method in `AddressBookParser` to instantiate a `TabCommandParser`. `TabCommandParser` creates a `TabCommand` object `t`, which is eventually returned to `LogicManager`.
+5. `LogicManager` will then call the `execute` method of object `t` first in order to switch to the correct tab to display to the user.
+6. `LogicManager` will then call the `execute` method of object `d` to interact with the Model of Contacts, and deletes the contact index indicated by the user.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
+<img src="images/DeleteSequenceDiagram.png" width="1000" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` and `TabCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -138,7 +145,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** More detailed models of each DATA object are given below.  
+:information_source: **Note:** More detailed (partial) class diagrams of each DATA class are given below.  
 
 `Person` objects:  
 <img src="images/PersonModelClassDiagram.png"/>  
