@@ -13,6 +13,7 @@ title: Developer Guide
 * Advyze is built using the [AddressBook Level 3 project template](https://github.com/se-edu/addressbook-level3) from [SE-EDU](https://se-education.org/).
 * Third-party libraries used: [iCal4j](https://github.com/ical4j/ical4j).
 * Method to remove unnecessary zeroes from floats taken from [StackOverflow](https://stackoverflow.com/a/14126736).
+* Code block to maximise screen upon application startup taken from [StackOverflow](https://stackoverflow.com/questions/30049503/javafx-setmaximized-on-osx/30052801).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -286,17 +287,29 @@ show feedback to user. (see sequence diagram in [logic component](#logic-compone
 
 The data on the Schedule, Contacts and Todos tabs can be filtered. The underlying implementation of the `filter` commands on each of these tabs are the same, and involves `Predicate`s that looks for entries that match the keyword(s) specified by the user. 
 
-Let us refer to `Schedule`, `Person` and `Todo` as `data types`. Each `data type` has certain fields which it encapsulates in its model, for example, the `Person` model has the fields `Name`, `Relationship`, `Email` etc. Each field will have a corresponding `Predicate` that specifically "checks" those fields. For example, the `Name` field in the `Person` model will have the `NameContainsKeywordsPredicate`, the `isDone` field in the `Todo` model has the `TodoIsDonePredicate` and `TodoIsNotDonePredicate`. All these `Predicate`s implement Java's own `Predicate<data type>` interface.
+Let us refer to `Schedule`, `Person` and `Todo` as `data types`. Each `data type` has certain fields which it encapsulates in its model, for example, the `Person` model has the fields `Name`, `Relationship`, `Email` etc. Each field will have a corresponding `Predicate` that specifically "checks" those fields. For example, 
+* the `Name` field in the `Person` model will have the `NameContainsKeywordsPredicate`
+* the `isDone` field in the `Todo` model has the `TodoIsDonePredicate` and `TodoIsNotDonePredicate`. 
+  
+All these `Predicate`s implement Java's own `Predicate<data type>` interface.
 
-When the user enters the `filter` command, they will have to specify the field that they want to filter by, along with keywords to indicate the entries they want to keep. For example, if the user specifies to filter the  `Schedule`s in the schedule tab by their `Date` field, they will (have to) specify the date of the entries they want to keep, e.g. if they are looking for entries that have the date "12-11-2021", they will specify to `filter` `Date`s with "12-11-2021". Let us refer to this "12-11-2021" as the `keyword(s)`. 
+When the user enters the `filter` command, they will have to specify the field that they want to filter by, along with keywords to indicate the entries they want to keep. For example, if the user specifies to filter the  `Schedule`s in the Schedule tab by their `Date` field, they will (have to) specify the date of the entries they want to keep, e.g. if they are looking for entries that have the date "12-11-2021", they will specify to `filter` `Date`s with "12-11-2021". Let us refer to this "12-11-2021" as the `keyword(s)`.
 
-As such, each `Predicate` is meant to apply a filter to a particular field of a specific `data type`, and keep only the entries that have the field matching the `keyword(s)` specified by the user. After the user has specified the field and keyword(s) to filter by, a corresponding `Predicate` will be passed as an argument into the `Model#updateFiltered<data type>List()` methods for the corresponding `data type`, which in turn makes use of the built-in `setPredicate(Predicate)` method of the javafx `FilteredList<data type>` class, which is the wrapper class for the `ObservableList<data type>` which all the data types use to store all their entries. This method filters the list based on the predicate supplied, and the resulting filtered list with only the entries that the user wants is displayed to the user.
+As such, each `Predicate` is meant to apply a filter to a particular field of a specific `data type`, and keep only the entries that have the field matching the `keyword(s)` specified by the user. 
 
-> :bulb: The `find` command for the schedule and todos tabs also follows a similar implementation, except that the `find` command only looks at the `description` fields of the the `schedule` and `todo` data types. The `find` command can hence be thought of as "filtering by description". The existence of a `find` command in addition to the `filter` command which has greater functionality is not only meant to give the user a simple command if they just want to find entries with a specific description, but also meant to appeal to the user's intuitions: for example, if the user wants to look for all their lessons they would be more likely to think of "finding lessons" instead of "filtering entries by description and looking for entries with the word lesson in description".
+To understand how this works, let us consider the example where the user enters the command `filter n/Tan a/Street` on the Contacts tab to display all contacts with "Tan" in their name *and* "Street" in their address:
+1. As with all commands, the `UI` component will pass the user input to the `Logic` component.
+2. The `Logic` component will then route the user input to `FilterCommandParser` to parse the user input into a `FilterCommand` object. In the `FilterCommandParser#parse()` method, since the user has specified the field `Name` with keyword `Tan`, and the field `Address` with keyword `Street` to filter by, the corresponding `Predicate`s (`NameContainsKeywordsPredicate` and `AddressContainsKeywordsPredicate`) will be created. The logical AND of these two `Predicate`s will then be used by `FilterCommandParser#parse()` to create the `FilterCommand` object.
+3. The actual filtering is then performed in `FilterCommand#execute()`, which calls `Model#updateFilteredPersonList()`, passing in the combined predicate (the logical AND of `NameContainsKeywordsPredicate` and `AddressContainsKeywordsPredicate`) as the argument.
+4. Finally, `Model#updateFilteredPersonList()` in turn makes use of the built-in `setPredicate(Predicate)` method of the javaFX `FilteredList<Person>` class, which is the wrapper class for the `ObservableList<Person>` which is used to store all Person entries. This method filters the list based on the predicate supplied, and the resulting filtered list with only the entries that the user wants is displayed to the user.
+
+The above steps can be generalised from just the `Person` model to the `Todo` and `Schedule` models.
+
+> :bulb: The `find` command for the Schedule and Todos tabs also follows a similar implementation, except that the `find` command only looks at the `description` fields of the `schedule` and `todo` data types. The `find` command can hence be thought of as "filtering by description". The existence of a `find` command in addition to the `filter` command which has greater functionality is not only meant to give the user a simple command if they just want to find entries with a specific description, but also meant to appeal to the user's intuitions: for example, if the user wants to look for all their lessons they would be more likely to think of "finding lessons" instead of "filtering entries by description and looking for entries with the word lesson in description".
 
 #### Design Considerations
 
-Since the architecture follows a Model-view-controller design pattern, `FilteredList<data type>` wraps around an `ObservableList<data type>`, the latter of which is used to store in-memory data of `data type` objects. On the front-end, our Ui constantly listens for changes triggered by `FilterCommand#execute` which updates the `FilteredList<data type>` after filtering based on the specified `Predicate`, which then reflects the newly filtered information on the Ui to the user. This design provides a clean way for us to filter data.
+Since the architecture follows a Model-View-Controller design pattern, `FilteredList<data type>` wraps around an `ObservableList<data type>`, the latter of which is used to store in-memory data of `data type` objects. On the front-end, our UI constantly listens for changes triggered by `Filter<data type>Command#execute()` which updates the `FilteredList<data type>` after filtering based on the specified `Predicate`, which then reflects the newly filtered information on the UI to the user. This design provides a clean way for us to filter data.
 
 
 
@@ -320,9 +333,9 @@ Given that `tags` is a field in the `model`s, the user can also apply the aforem
 
 The data on the Schedule tab is contained in an `ObservableList<Schedule>`. As such, I will be referring to the individual entries in the Schedule as `schedule`s.
 
-To allow the user to add recurring `schedule`s, the `AddScheduleCommand` created by the `AddScheduleCommandParser` indicates if the `schedule` to add is recurring or not by the `recurrType` field.  The various `recurrType`s are "N" for no recurrence, "D" for daily recurrence, "W" for monthly recurrence  and "Y" for yearly recurrence. If the user has specified that it is a recurring event (i.e. `recurrType` is not "N"), then they would have also (been required to) specify an end date that the recurrence stops.
+To allow the user to add recurring `schedule`s, the `AddScheduleCommand` created by the `AddScheduleCommandParser` indicates if the `schedule` to add is recurring or not by the `recurrType` field.  The various `recurrType`s are "N" for no recurrence, "D" for daily recurrence, "W" for weekly recurrence  and "Y" for yearly recurrence. If the user has specified that it is a recurring event (i.e. `recurrType` is not "N"), then they would have also been required to specify an end date that the recurrence stops.
 
-The `Schedule` specified will only be added if the `Schedule` does not clash with any other existing `Schedule`s. This is true for recurring `Schedule`s as well. What happens when the `AddScheduleCommand#execute()` is called is that a temporary list containing all `schedule`s to be added is generated. For example if some `Schedule` the recurs weekly is specified with an end date 4 weeks into the future, and the specified date is a Tuesday, and the time that is specified is from 1500 to 1600, then the temporary list generated will contain 4 `Schedule`s, each on consecutive Tuesdays from 1500 to 1600. This temporary list is then compared to the current schedule to check if there are any clashes. If there are no clashes, the command will execute normally and all requested `Schedule`s will be added. If there are clashes, then **no `Schedule`s will be added**, not even those that do not clash.
+The `Schedule` specified will only be added if the `Schedule` does not clash with any other existing `Schedule`s. This is true for recurring `Schedule`s as well. What happens when the `AddScheduleCommand#execute()` is called is that a temporary list containing all `schedule`s to be added is generated. For example if some `Schedule` that recurs weekly is specified with an end date 4 weeks into the future, and the specified date is a Tuesday, and the time that is specified is from 1500 to 1600, then the temporary list generated will contain 4 `Schedule`s, each on consecutive Tuesdays from 1500 to 1600. This temporary list is then compared to the current schedule to check if there are any clashes. If there are no clashes, the command will execute normally and all requested `Schedule`s will be added. If there are clashes, then **no `Schedule`s will be added**, not even those that do not clash.
 
 
 
@@ -367,7 +380,7 @@ There are two possible features for deletion of multiple entries:
 * Possible feature #1:
   A new `delete all` command, which deletes all the `Schedule`s that are currently stored in the app.
 * Possible feature #2:
-  Modify the format of the `delete` command to be `delete INDEX [MORE_INDEXES]`, where the users can specify more than one indexes of the `Schedule`s to delete.
+  Modify the format of the `delete` command to be `delete INDEX [MORE_INDICES]`, where the users can specify more than one `Schedule` to delete.
 
 
 
