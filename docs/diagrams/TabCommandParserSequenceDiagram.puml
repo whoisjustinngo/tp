@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+
+skinparam arrowFontSize 15
+skinparam participantFontSize  15
+
+mainframe **sd**    go to contacts tab
+box  Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TabCommandParser" as TabCommandParser LOGIC_COLOR
+participant "t:TabCommand" as TabCommand LOGIC_COLOR
+participant "t_result:CommandResult" as CommandResult1 LOGIC_COLOR
+end box
+
+LogicManager-> AddressBookParser : goToContextTab()
+activate LogicManager
+
+activate AddressBookParser
+
+
+create TabCommandParser
+AddressBookParser-> TabCommandParser
+activate TabCommandParser
+
+AddressBookParser <-- TabCommandParser
+deactivate TabCommandParser
+
+
+AddressBookParser -> TabCommandParser : parse("contactsTab")
+activate TabCommandParser
+
+create TabCommand
+TabCommandParser -> TabCommand
+activate TabCommand
+
+TabCommand --> TabCommandParser : t
+deactivate TabCommand
+
+AddressBookParser<-- TabCommandParser : t
+deactivate TabCommandParser
+destroy TabCommandParser
+
+AddressBookParser --> LogicManager : t
+deactivate AddressBookParser
+
+LogicManager -> TabCommand : t.execute()
+activate TabCommand
+
+create CommandResult1
+TabCommand -> CommandResult1
+activate CommandResult1
+
+CommandResult1 --> TabCommand: t_result
+deactivate CommandResult1
+
+TabCommand --> LogicManager: t_result
+
+@enduml

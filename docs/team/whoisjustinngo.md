@@ -29,17 +29,23 @@ Given below are my contributions to the project:
     * What it does: Allows the user to set and track the progress of custom goals, for example the goal could be to call 20 clients by the end of the week and the user can set a custom goal with description "call 20 clients" and 20 as the goal, and update the progress of the goal every time they make a call. 
     * Justification: This not only helps them to keep track of things, but also helps them become better at their job as goal setting and knowing what they are working towards is important, especially for a commissions-based job like theirs.
   
-
 * **Contributions to team-based tasks**:
     * Released v1.2
     * Sorted through and allocated issues to respective stakeholders after PE dry run
     * Updated the Developer Guide with the general project requirements like the use cases and user stories: [\#22](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/22)
-  
+
 
 * **Documentation**:
+    
+    * In-charge of documentation for the team
     * User Guide:
-        * In-charge of documentation for the team
         * Added documentation to the UserGuide for the features I implemented: [\#102](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/102/commits/d96b12bdf9529a94580ab132bcf959ca3cc169cb)
+        * Edited sections written by other group members for consistency and formatting: [#211](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/211)
+    * Developer Guide:
+    
+        * Added documentation to the DeveloperGuide for the featuers I implemented: [#203](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/203)
+        * Heavily edited sections written by other group members for consitency and formatting: [#237](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/237), [#219](https://github.com/AY2122S1-CS2103-T14-4/tp/pull/219).
+    
 
 
 * **Community**:
