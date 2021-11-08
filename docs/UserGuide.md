@@ -130,7 +130,7 @@ The analytics section is the section at the top left of the Dashboard tab, direc
 
 The tracking is by quarters of the year, e.g. if the current quarter is Q3, the analytics will only show fresh leads *for Q3*, clients approached *in Q3*, etc.
 
-This section is automatically updated as the status of the various contacts change in the contacts list. For more details about the various client statuses, see the [section on statuses](#changing-a-client's-status-status) below.
+This section is automatically updated as the status of the various contacts change in the contacts list. For more details about the various client statuses, see the [section on statuses](#changing-a-clients-status-status) below.
 
 
 ### Custom Goals
