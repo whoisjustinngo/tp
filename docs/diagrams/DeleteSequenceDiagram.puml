@@ -18,9 +18,8 @@ activate LogicManager
 
 activate AddressBookParser
 
-ref over LogicManager, AddressBookParser, Model
-    delete contacts
-end ref
+
+ref over LogicManager, AddressBookParser, Model : delete contacts
 
 [<--LogicManager
 deactivate LogicManager
