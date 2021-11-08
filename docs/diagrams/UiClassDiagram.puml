@@ -10,23 +10,18 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class AnalyticsPanel
-Class CustomGoalListPanel
-Class CustomGoalCard
-Class PersonListPanel
-Class PersonCard
 Class PersonDetailedPanel
 Class PolicyListPanel
 Class PolicyListCard
 Class NotesPanel
-Class TodoListPanel
-Class TodoCard
-Class ScheduleListPanel
-Class ScheduleCard
 Class ResultDisplay
 Class StatusBarFooter
 Class CommandBox
 Class HelpWindow
 Class ImportWindow
+Class XYZListPanel
+Class XYZCard
+Class PersonCard
 }
 
 package Model <<Rectangle>> {
@@ -44,69 +39,56 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow *-down-> "1" AnalyticsPanel
-MainWindow *-down-> "1" CustomGoalListPanel
 MainWindow *-down-> "1" PersonDetailedPanel
 MainWindow *-down-> "1" PolicyListPanel
 MainWindow *-down-> "1" NotesPanel
-MainWindow *-down-> "1" TodoListPanel
-MainWindow *-down-> "1" ScheduleListPanel
+MainWindow *-down-> "1" XYZListPanel
 MainWindow --> "0..1" HelpWindow
 MainWindow --> "0..1" ImportWindow
 
-PersonListPanel -down-> "*" PersonCard
-CustomGoalListPanel -down-> "*" CustomGoalCard
-PersonDetailedPanel -down-> "*" PersonCard
 PolicyListPanel -down-> "*" PolicyListCard
-TodoListPanel -down-> "*" TodoCard
-ScheduleListPanel -down-> "*" ScheduleCard
+XYZListPanel -down-> "*" XYZCard
+PersonDetailedPanel -down-> "*" PersonCard
 
 MainWindow -left-|> UiPart
 
+PersonCard --|> UiPart
+PersonDetailedPanel --|> UiPart
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 AnalyticsPanel --|> UiPart
-CustomGoalCard --|> UiPart
-CustomGoalListPanel--|> UiPart
 PolicyListPanel --|> UiPart
 PolicyListCard--|> UiPart
 NotesPanel --|> UiPart
-TodoListPanel --|> UiPart
-TodoCard --|> UiPart
-ScheduleListPanel --|> UiPart
-ScheduleCard --|> UiPart
 ImportWindow--|> UiPart
+XYZListPanel--|> UiPart
+XYZCard--|> UiPart
 
 PersonCard ...> Model
 AnalyticsPanel ...> Model
-ScheduleCard ...> Model
-TodoCard ...> Model
 PolicyListCard ...> Model
-CustomGoalCard ...> Model
+XYZCard ...> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- AnalyticsPanel
-PersonListPanel -[hidden]left- PersonDetailedPanel
-PersonListPanel -[hidden]left- NotesPanel
-PersonListPanel -[hidden]left- ScheduleListPanel
-PersonListPanel -[hidden]left- CustomGoalListPanel
-PersonListPanel -[hidden]left- TodoListPanel
-
-PersonListPanel -[hidden]down- PersonCard
 PolicyListPanel -[hidden]down- PolicyListCard
-ScheduleListPanel -[hidden]down- ScheduleCard
-CustomGoalListPanel -[hidden]down- CustomGoalCard
+XYZListPanel -[hidden]left- PolicyListPanel
+XYZListPanel -[hidden]left- NotesPanel
+XYZListPanel -[hidden]left- PersonDetailedPanel
+XYZListPanel -[hidden]left- AnalyticsPanel
+XYZListPanel -[hidden]left- NotesPanel
 
-HelpWindow -[hidden]down- TodoListPanel
+HelpWindow -[hidden]down- XYZListPanel
+StatusBarFooter -[hidden]down- XYZListPanel
+ResultDisplay -[hidden]down- XYZListPanel
+CommandBox-[hidden]down- XYZListPanel
+ImportWindow -[hidden]down- XYZListPanel
+HelpWindow -[hidden]down- NotesPanel
 
-'CustomGoalCard -[hidden]down- ImportWindow
 'HelpWindow -[hidden]left- CommandBox
 'CommandBox -[hidden]left- ResultDisplay
 'ResultDisplay -[hidden]left- StatusBarFooter

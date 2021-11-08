@@ -100,7 +100,7 @@ Examples:
 
 Allows users to import `.ics` files, similar to importing timetable from NUSMods into Google Calendars.
 
-Format: import
+Format: `import`
 
 Example:
 * On any tab, executing `import` will open the file browser for the user to select the `.ics` file to import.
@@ -345,7 +345,7 @@ Deleting contact details will be implemented in future versions. For now, you ca
 
 The Schedule tab shows all of the user's events in chronological order.
 
-> :exclamation:Note: By default, the Schedule tab will **ONLY** show upcoming events. The user can use the `list` command to show all events, future and past.
+> :exclamation:Note: By default, the Schedule tab will **ONLY** show upcoming events. The user can use the `list` command to show all events, which includes past and future events.
 
 ### Viewing all events: `list`
 
@@ -396,11 +396,23 @@ Examples:
  * Editing the tag of event 1: `edit 1 t/important`
  * Editing the description and date of event 2: `edit 2 d/meeting date/18-05-2022`
 
-### Filtering events: `filter`
+### Searching events by description: `find`
+
+Finds the event according to the description of the event.
+
+Format: `find KEYWORDS`
+
+Examples:
+
+ * Finding all events with "lesson" in its description: `find lesson`
+
+### Filtering events by attributes: `filter`
 
 Filters the schedule according to the specified keywords and attributes.
 
 Format: `filter [d/TASK DESCRIPTION] [date/DATE] [fr/TIME FROM] [to/TIME TO] [date/DATE] [t/TAGS]`
+
+* Fields are optional depending on which field the user would like to filter.
 
 Examples:
 
@@ -419,6 +431,13 @@ Format: `delete [INDEX]`
 
 * The index refers to the index number of the event on the Schedule tab.
 * Deletion of multiple events is a possible future enhancement.
+
+### Deleting multiple events: `(coming soon)`
+
+Deletes multiple or all events in one command line.
+
+* Users will be able to select a number of indexes and delete it in one command.
+* Users will be able to delete all events in one command.
 
 ## Todos Tab
 
