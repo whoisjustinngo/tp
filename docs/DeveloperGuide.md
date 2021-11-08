@@ -83,7 +83,7 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103-T14-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `UI` component:
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
@@ -164,7 +164,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 In particular, the `ScheduleStorage` component helps with the importing of `.ics` calendar files. Users can select a `.ics` file to import into the application, which `IcsScheduleStorage` will convert into corresponding `Schedule` objects to be used in the application.
@@ -300,6 +300,8 @@ As such, each `Predicate` is meant to apply a filter to a particular field of a 
 
 Since the architecture follows a Model-view-controller design pattern, `FilteredList<data type>` wraps around an `ObservableList<data type>`, the latter of which is used to store in-memory data of `data type` objects. On the front-end, our Ui constantly listens for changes triggered by `FilterCommand#execute` which updates the `FilteredList<data type>` after filtering based on the specified `Predicate`, which then reflects the newly filtered information on the Ui to the user. This design provides a clean way for us to filter data.
 
+
+
 ### Adding Tags to Entries
 
 #### Implementation
@@ -324,6 +326,8 @@ To allow the user to add recurring `schedule`s, the `AddScheduleCommand` created
 
 The `Schedule` specified will only be added if the `Schedule` does not clash with any other existing `Schedule`s. This is true for recurring `Schedule`s as well. What happens when the `AddScheduleCommand#execute()` is called is that a temporary list containing all `schedule`s to be added is generated. For example if some `Schedule` the recurs weekly is specified with an end date 4 weeks into the future, and the specified date is a Tuesday, and the time that is specified is from 1500 to 1600, then the temporary list generated will contain 4 `Schedule`s, each on consecutive Tuesdays from 1500 to 1600. This temporary list is then compared to the current schedule to check if there are any clashes. If there are no clashes, the command will execute normally and all requested `Schedule`s will be added. If there are clashes, then **no `Schedule`s will be added**, not even those that do not clash.
 
+
+
 ### Marking Todos as Done
 
 #### Implementation
@@ -340,6 +344,8 @@ Since `Todos` are guaranteed to be immutable in the current implementation of th
 * **Alternative 2:** Edits the current instance of `Todo`.
     * Pros: Might be faster and less wasteful, since there is no need to create a new `Todo` instance.
     * Cons: Decreased consistency across the codebase, and no longer guarantees that `Todo`s are immutable.
+
+
 
 ### \[Proposed\] Toggling Between Viewing Past and Future Entries in the Schedule Tab
 
@@ -619,7 +625,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Contacts (tab):** a tab where a list of the user’s contacts are displayed
 * **Details (tab):** a tab where details of a single contact are displayed
 * **Schedule (tab):** a tab where the user’s events are displayed
-  * **Event:** a task that is tied to a timeline, for example lessons, deadlines or meetings.
+  * **Event:** a task that is tied to a timeline, for example lessons, deadlines or meetings. (As on the back-end the `Schedule` class is used to represent these events, this DeveloperGuide uses `Schedule` instead to refer to entries in the Schedule tab)
 * **Todos (tab):** a tab where the user’s todos are displayed
   * **Todo (task):** a task that does not have a time element bound to it
 
