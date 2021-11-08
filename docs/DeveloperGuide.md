@@ -316,11 +316,13 @@ These tags have lists that hold `Schedule`, `Person` and `Todo` classes respecti
 
 Given that `tags` is a field in the `model`s, the user can also apply the aforementioned `filter` commands on tags to look for entries that have similar tags. An entry's `tags` can either be specified at the point of addition, i.e. when doing an `add` command, or added on and modified after the fact using the various `edit` commands.
 
-### Adding Events
+
+
+### Adding to the Schedule
 
 #### Implementation
 
-The proposed feature of scheduling is parsed by `AddScheduleCommandParser`, and executed by the `AddScheduleCommand`, where it will add the new Event into the list of Events in the users schedule. While adding a new `Event` into the `Schedule`, it will help to check if the given `Event` clashes with the Events which are already in the `Schedule`. 
+The schedule tab contains the user's schedule. There is a `Schedule` class which extends the abstract `Event` class. For the purposes of this section, let us refer to them as `Schedule`s The list of data in the schedule tab is an `ObservableList<Schedule>`, where each item in the list is an.The proposed feature of scheduling is parsed by `AddScheduleCommandParser`, and executed by the `AddScheduleCommand`, where it will add the new Event into the list of Events in the users schedule. While adding a new `Event` into the `Schedule`, it will help to check if the given `Event` clashes with the Events which are already in the `Schedule`. 
 
 On top of that, `Schedule` will all be arranged based on the date and then time order (from earliest to the latest) with the aid of the `Comparator<Schedule>` which is declared in `UniqueScheduleList`.
 
@@ -348,6 +350,8 @@ If there are no clashes (including all the recurring Events), new `Event`s will 
 This is done by implementing another attribute in the `AddScheduleCommand`, which is the recurring end date. If the recurring date is present, then `Event` is a recurring `Event` otherwise it is not. Another attribute called `recurType` will determine if this `Event` recurs daily (D), weekly (W) or yearly (Y).
 
 `Event` will recur until it reaches the recur date in the `AddScheduleCommand`.
+
+
 
 ### \[Proposed\] Viewing only past or future Events
 
