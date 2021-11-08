@@ -19,7 +19,7 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("\n/dasboardTab \n/contacts \ndelete 1")
+[-> LogicManager : execute("\n/dashboardTab \n/contacts \ndelete 1")
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand(\n"/dashboardTab \n/contacts \ndelete 1")

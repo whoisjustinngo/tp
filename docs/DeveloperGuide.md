@@ -105,13 +105,14 @@ How the `Logic` component works:
 4. The second command then communicates with the `Model` when it is executed (e.g. to add a person).
 5. The result of each of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`, of which the second command execution result is displayed to the user.
 
-The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("/dashboardTab /contacts delete 1")` API call, which represents a command to delete the first contact, issued from the Dashboard tab.
-1. User enters the command `/contacts delete 1` from Dashboard tab.
-2. `LogicManager` issues a `parseCommand` to the `AddressBookParser`, prefixing the user input with the `tabId` the command was entered from, which is `/dashboardTab`, passing in `/dashboardTab /contacts delete 1` as the argument of `parseCommand`.
-3. `AddressBookParser` instantiates `DeleteCommandParser`, and calls the `parse` method, the method will return an object `d` of type `DeleteCommand`, which inherits from the `Command` interface. Object `d` is eventually returned to `LogicManager`.
-4. `LogicManager` then calls the `goToContext` method in `AddressBookParser` to instantiate a `TabCommandParser`. `TabCommandParser` creates a `TabCommand` object `t`, which is eventually returned to `LogicManager`.
-5. `LogicManager` will then call the `execute` method of object `t` first in order to switch to the correct tab to display to the user.
-6. `LogicManager` will then call the `execute` method of object `d` to interact with the Model of Contacts, and deletes the contact index indicated by the user.
+The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("/dashboardTab /contacts delete 1")` API call, which represents a command to delete the first contact, issued from the Dashboard tab. Here is an explanation for the diagram:
+1. User enters the command `/contacts delete 1` while he is on the Dashboard tab.
+2. The `UI` component calls the `execute()` method of `LogicManager`. Because the `UI` knows that the user issued this command from the Dashboard tab, the `UI` prefixes the user input with "/dashboardTab", and thus passes in `"/dashboardTab /contacts delete 1"` as the argument to the `execute()` method.
+3. `LogicManager` delegates the prefixed user input to `parseCommand()` to the `AddressBookParser`, prefixing the user input with the tab the command was entered from (`/dashboardTab`), and hence passing in `/dashboardTab /contacts delete 1` as the argument of `parseCommand()`.
+4. `AddressBookParser` instantiates `DeleteCommandParser`, and calls its `parse()` method. `parse()` returns an object `d` of type `DeleteCommand`, which inherits from the `Command` interface. Object `d` is eventually returned to `LogicManager`.
+5. `LogicManager` then calls the `goToContextTab()` method in `AddressBookParser` to instantiate a `TabCommandParser`. `TabCommandParser` creates a `TabCommand` object `t`, which is eventually returned to `LogicManager`.
+6. `LogicManager` will then call the `execute` method of object `t` first in order to switch to the correct tab to display to the user.
+7. `LogicManager` will then call the `execute` method of object `d` to interact with the Model of Contacts, and deletes the contact index indicated by the user.
 
 
 <img src="images/DeleteSequenceDiagram.png" class="sequenceDiagramImg" />
@@ -147,10 +148,10 @@ The `Model` component,
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** More detailed (partial) class diagrams of each DATA class are given below.  
 
-`Person` objects:  
+`Person`:  
 <img src="images/PersonModelClassDiagram.png"/>  
 
-`Schedule`, `Todo`, `CustomGoal` objects:
+`Schedule`, `Todo`, `CustomGoal`:
 <img src="images/ScheduleTodoGoalModelClassDiagram.png"/>  
 
 </div>
@@ -167,9 +168,7 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
-The `ScheduleStorage` component,
-* helps with the importing of the ICS calendar. User will select an ICS file to feed into the application, which will then convert it into `Schedule` model in this application.
-* adds schedules from ICS Component into `Schedule` in this application.
+In particular, the `ScheduleStorage` component helps with the importing of `.ics` calendar files. Users can select a `.ics` file to import into the application, which `IcsScheduleStorage` will convert into corresponding `Schedule` objects to be used in the application.
 
 ### Common classes
 
