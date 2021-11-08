@@ -26,7 +26,7 @@ This guide is sectioned by tabs. Under the sections for each tab, the reader wil
 
 > :exclamation: Note: 
 >
-> The commands described in the various tab-specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specified in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience-commands), or if it is the Contacts and Details tabs which are highly related, see [Summary of commands for Contacts and Details tab](#summary-of-commands-for-contacts-and-details-tab)). For example, the command to mark a todo as done will work only while the user is on the Todos tab.
+> The commands described in the various tab-specific sections (Dashboard tab, Todos tab etc) are only meant to run as intended when the user is on the correct tab. This means that if some command X with effect Y is specified in the 'Z tab' section, the user will only get intended effect Y when X is executed *when on the Z tab* (unless the user uses [convenience commands](#convenience-commands), or if it is the [Contacts and Details tabs which are highly related](#summary-of-commands-for-contacts-and-details-tab)). For example, the command to mark a todo as done will work only while the user is on the Todos tab.
 >
 > It is hence implied that any command in the tab-specific sections describes the behaviour when running that command when on that tab in particular.
 
@@ -87,14 +87,14 @@ Examples:
 
 To prevent extra tab switches in order to execute commands, convenience commands allows users to execute commands meant for some other tab regardless of which tab they are currently on.
 
-Format: `/TAB NAME` [command meant to run on specified TAB_NAME] 
+Format: `/TAB NAME [command meant to run on TAB_NAME tab] `
 
 (see the :bulb: tip under the [Switching between Tabs](#switching-between-tabs-tab) section above for the various `TAB_NAME`s)
 
 Examples:
-* When on Todos tab, input `/schedule add d/CS2103 Meeting date/20-12-2021 fr/1300 to/1500` will add a new event (akin to executing the `add` command on the Schedule tab) instead of adding a new todo.
-* When in Dashboard tab, input `/schedule delete 2` will remove the event at index `2` on the Schedule tab.
-* When in Schedule tab, input `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` on the Schedule tab.
+* When on Todos tab, entering `/schedule add d/CS2103 Meeting date/20-12-2021 fr/1300 to/1500` will add a new event (akin to executing the `add` command on the Schedule tab) instead of adding a new todo.
+* When on the Dashboard tab, entering `/schedule delete 2` will remove the event at index `2` on the Schedule tab.
+* When on the Schedule tab, entering `/schedule delete 2` and `delete 2` produces the same effect, removing the event at index `2` on the Schedule tab.
 
 ### Importing .ics files for schedule: `import`
 
@@ -118,7 +118,7 @@ The Dashboard tab is the default landing page of the app. It displays a summary 
   * The user's custom goals, which they can add and update (top right)
   * The user's schedule in chronological order (which is synced with information in the Schedule tab) (middle)
   * The user's todos, with the earliest added at the top (which is synced with the information in the Todos tab) (bottom)
-* These sections are automatically updated as the data in the respective tabs are changed.
+* The latter two sections are automatically updated as the data in the respective tabs are changed.
 * The user can adjust how much of each section is to be displayed by sliding the black bars up and down or left and right as required.
 
 This is how the Dashboard tab looks like as of v1.4: 
@@ -130,7 +130,7 @@ The analytics section is the section at the top left of the Dashboard tab, direc
 
 The tracking is by quarters of the year, e.g. if the current quarter is Q3, the analytics will only show fresh leads *for Q3*, clients approached *in Q3*, etc.
 
-This section is automatically updated as the status of the various contacts change in the contacts list. For more details about the various client statuses, see the contacts section below.
+This section is automatically updated as the status of the various contacts change in the contacts list. For more details about the various client statuses, see the [section on statuses](#changing-a-client's-status-status) below.
 
 
 ### Custom Goals
@@ -140,23 +140,25 @@ As a financial advisor, they might want to set a target for and subsequently wor
 
 Essentially, this feature set is meant for users to track anything that is quantifiable that they want to track. Every custom goal will *minimally* have a description, a goal value, and a progress value, the former 2 which have to be specified by the user at the point of addition, with the progress value being set by default to 0.
 
-To better understand how this is meant to work, if the user, for example, has a goal to call at least 20 new clients by the end of this week:
+To better understand how this is meant to be useful, if the user, for example, has a goal to call at least 20 new clients by the end of this week:
 1. They would first `add` that goal, with the description being something like "call 20 clients", the goal being "20", and the end date the date of the last day of this week
 2. Every time they make a new call, they would `update` the progress of that custom goal they created in step 1 by a value of 1
 3. The progress bar in between the progress and goal columns gives the user a quick visual indication of how much they have accomplished / have yet to accomplish
-4. Once they have hit their goal, i.e. progress >= 20, the value in the progress column would turn green as a visual indication of completion
+4. Once they have hit their goal, i.e. progress >= 20 in this example, the value in the progress column would turn green as a visual indication of completion
 5. If it is past the end of the week and progress < 20, the value in the end date and end time columns will turn red
 6. Once the user has no need to track the goal anymore, they can `delete` it to de-clutter the space
 
-See the subsequent sections to find out how the user could go about doing this.
+See the subsequent sections to find out how the user could go about doing these.
 
 
 #### Adding a custom goal: `add`
-Adds a new custom goal.  
+Adds a new custom goal. The progress of the custom goal will be set to 0 by default.
 
 Format: `add d/DESCRIPTION goal/GOAL [bydate/END_DATE] [bytime/END_TIME]`  
 
-> :exclamation: Note: `GOAL` has to be a number (greater than 0), `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format hhmm in 24-hour format. If `END_TIME` is specified, `END_DATE` has to be specified as well.  
+* `GOAL` has to be a number (greater than 0)
+* `END_DATE` has to be in the format dd-mm-yyyy and `END_TIME` has to have the format hhmm in 24-hour format
+*  If `END_TIME` is specified, `END_DATE` has to be specified as well
 
 Examples:
 * Adding a goal with a date but no time: `add d/call 20 clients goal/20 bydate/16-05-2022`
@@ -186,7 +188,7 @@ Format: `delete INDEX_OF_GOAL_TO_DELETE`
 
 ## Contacts Tab
 
-This tab contains all the user's added contacts and their information.
+This tab contains all the user's added contacts along with the contacts' information.
 
 
 ### Viewing all contacts: `list`  
@@ -194,7 +196,7 @@ Restores the contacts tab to its default view
 
 Format: `list`  
 
-* Using `list` in Details tab will also show full list of contacts
+> :bulb: Note: using `list` in the Details tab will also show full list of contacts
 
 ### Adding a contact: `add`
 
@@ -203,8 +205,8 @@ Adds a new contact into the list of all contacts.
 Format: `add n/NAME r/RELATIONSHIP p/PHONE e/EMAIL a/ADDRESS [t/TAG]`
 
 * Tags can be at most 50 characters
-* A contact can either have a relationship `client` or `friend`
-* Policies can only be added for clients, add a contact with the argument `r/client` to add policies to that contact
+* A contact can either have the relationship of `client` or `friend`
+* Policies can only be added for clients; add a contact with `r/client` to add policies to that contact
 * Learn how to add notes for contacts [here](#adding-a-note-to-a-contact-note)
 * Learn how to add policies for clients [here](#adding-a-policy-to-a-contact-policy)
 
@@ -227,18 +229,6 @@ Examples:
 * Changing a contact's phone and email: `edit 1 p/12345678 e/newEmail@gmail.com`  
 * Changing a contact's tags: `edit 2 t/nus t/dancer`
 
-### Deleting a contact: `delete`
-
-Deletes the contact at a specified `INDEX`.  
-
-Format: `delete INDEX`  
-
-* The index refers to the contact's index number shown on the Contacts tab
-
-Example:  
-
-* Delete contact 2: `delete 2`
-
 ### Filtering contacts: `filter`
 
 Filters all contacts according to specified attributes (case-insensitive) and displays them as a list with index numbers.
@@ -258,6 +248,18 @@ Expected result of `filter r/client`:
 
 ![contacts_tab](images/filter-contacts-v1.4.png)  
 
+### Deleting a contact: `delete`
+
+Deletes the contact at the specified `INDEX`.  
+
+Format: `delete INDEX`  
+
+* The index refers to the contact's index number shown on the Contacts tab
+
+Example:  
+
+* Delete contact 2: `delete 2`
+
 ## Details Tab
 
 This tab allows the user to view detailed policy information and notes for their clients.
@@ -266,7 +268,7 @@ This tab allows the user to view detailed policy information and notes for their
 
 ### Selecting a contact to view their details: `select`  
 
-Selects a contact (who is a client) at a specified INDEX to view their policies and notes that you have written on them.
+Selects the contact (who is a client) at a specified INDEX to view their policies and notes that you have written on them.
 
 Format: `select INDEX`  
 
@@ -286,7 +288,7 @@ Statuses look like tags but have a dark blue background, as show in the image ab
 The valid statuses are: [fresh, approached, pitched, negotiated, closed]
 
 * New contacts created in the contacts list are given a "fresh" status to signify that the client is a fresh lead
-* The total number of clients with a particular status is shown in the analytics section of the [Dashboard](#dashboard-tab) tab
+* The total number of clients with a particular status is shown in the [analytics](#analytics) section of the Dashboard tab
 * Friends do not have statuses
 
 Format: `status INDEX STATUS`  
@@ -389,7 +391,7 @@ Edits the event at the specified INDEX.
 
 Format: `edit INDEX [d/TASK DESCRIPTION] [date/DATE] [from/TIME FROM] [to/TIME TO] [t/TAGS]`  
 
-* `INDEX` is the only compulsory field
+* `INDEX` is the only compulsory field, but at least one other field to edit must be specified.
 
 Examples:
 
@@ -412,7 +414,7 @@ Filters the schedule according to the specified keywords and attributes.
 
 Format: `filter [d/TASK DESCRIPTION] [date/DATE] [fr/TIME FROM] [to/TIME TO] [date/DATE] [t/TAGS]`
 
-* Fields are optional depending on which field the user would like to filter.
+* Fields are optional depending on which field the user would like to filter (if no fields are specified, all entries are shown)
 
 Examples:
 
@@ -432,12 +434,7 @@ Format: `delete [INDEX]`
 * The index refers to the index number of the event on the Schedule tab.
 * Deletion of multiple events is a possible future enhancement.
 
-### Deleting multiple events: `(coming soon)`
 
-Deletes multiple or all events in one command line.
-
-* Users will be able to select a number of indexes and delete it in one command.
-* Users will be able to delete all events in one command.
 
 ## Todos Tab
 
