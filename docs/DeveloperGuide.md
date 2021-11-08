@@ -316,61 +316,41 @@ The information shown on these tabs are from `ObservableList<>`s that hold `Sche
 
 Given that `tags` is a field in the `model`s, the user can also apply the aforementioned `filter` commands on tags to look for entries that have similar tags. An entry's `tags` can either be specified at the point of addition, i.e. when doing an `add` command, or added on and modified after the fact using the various `edit` commands.
 
+&nbsp;
 
-
-### Adding to the Schedule
+### Adding Recurring Entries to the Schedule
 
 #### Implementation
 
-The schedule tab contains the user's schedule. There is a `Schedule` class which extends the abstract `Event` class. In this section, I will refer to the entries in the list on the schedule tab as `schedules`.  The list of data in the schedule tab is an `ObservableList<Schedule>`, where each item in the list is a `Schedule` object.The proposed feature of scheduling is parsed by `AddScheduleCommandParser`, and executed by the `AddScheduleCommand`, where it will add the new Event into the list of Events in the users schedule. While adding a new `Event` into the `Schedule`, it will help to check if the given `Event` clashes with the Events which are already in the `Schedule`. 
+The data on the Schedule tab is contained in an `ObservableList<Schedule>`. As such, I will be referring to the indivdual entries in the Schedule as `schedule`s.
 
-On top of that, `Schedule` will all be arranged based on the date and then time order (from earliest to the latest) with the aid of the `Comparator<Schedule>` which is declared in `UniqueScheduleList`.
+To allow the user to add recurring `schedule`s, the `AddScheduleCommand` created by the `AddScheduleCommandParser` indicates if the `schedule` to add is recurring or not by the `recurrType` field.  The various `recurrType`s are "N" for no recurrence, "D" for daily recurrence, "W" for monthly recurrence  and "Y" for yearly recurrence. If the user has specified that it is a recurring event (i.e. `recurrType` is not "N"), then they would have also (been required to) specify an end date that the recurrence stops.
 
-#### Design Considerations
-
-**Aspect: How add schedule executes:**
-
-* **Alternative 1 (current choice) Add Schedule into one UnqiueScheduleList**
-    * Pros: All the unique schedules are added into one list, which makes it easier to navigate. It also makes the code look cleaner and more understandable. This is also consistent with the other data classes which also use an underlying list implementation.
-    * Cons: Any iteration will always be O(n) since sorting and checking if there are clashes in `Schedule` happens in this `UniqueScheduleList`
-* **Alternative 2 use HashMap<Date, ScheduleList>**
-    * Pros: Operation does not need to take O(n) time when it comes to checking if the `Event` clashes, since we only check if there are clashes on that particular given date.
-    * Cons: Decreases overall code consistency.
-
-&nbsp;
-
-### Adding Recurring Events
-
-Adding recurring `Event`s allows user to add `Event`s, such that this `Event` will recur until the given date which it will stop. User is able to choose to recur daily, weekly or yearly.
-
-If there are no clashes (including all the recurring Events), new `Event`s will be added until the specified recur date in a specified weekly, yealy or monthly basis, otherwise none will be added.
-
-**Aspect: How recurring of Event is done**
-
-This is done by implementing another attribute in the `AddScheduleCommand`, which is the recurring end date. If the recurring date is present, then `Event` is a recurring `Event` otherwise it is not. Another attribute called `recurType` will determine if this `Event` recurs daily (D), weekly (W) or yearly (Y).
-
-`Event` will recur until it reaches the recur date in the `AddScheduleCommand`.
+The `Schedule` specified will only be added if the `Schedule` does not clash with any other existing `Schedule`s. This is true for recurring `Schedule`s as well. What happens when the `AddScheduleCommand#execute()` is called is that a temporary list containing all `schedule`s to be added is generated. For example if some `Schedule` the recurs weekly is specified with an end date 4 weeks into the future, and the specified date is a Tuesday, and the time that is specified is from 1500 to 1600, then the temporary list generated will contain 4 `Schedule`s, each on consecutive Tuesdays from 1500 to 1600. This temporary list is then compared to the current schedule to check if there are any clashes. If there are no clashes, the command will execute normally and all requested `Schedule`s will be added. If there are clashes, then **no `Schedule`s will be added**, not even those that do not clash.
 
 
 
-### \[Proposed\] Viewing only past or future Events
+### \[Proposed\] Toggling Between Viewing Past and Future Entries in the Schedule Tab
 
-In the event when user only want to look at he past `Event`s, user should be able to do so using the command line such as `showpast`. This command line will help to feed in a `Predicate<Schedule>` to the `FilteredList<Schedule>` located in the `ModelManager`. Past `Event`s will pass the `Predicate<Schedule>` will then be displayed in the UI, otherwise it will not be shown. 
+In the event the user only wants to look at expired entries in the Schedule tab, i.e. entries that have a date and time earlier than the current system date and time, the user can use the `showpast` command. This command will feed in a `Predicate<Schedule>` to the `FilteredList<Schedule>` located in the `ModelManager`, similar to [how filtering is done](#filtering-data). The `Predicate<Schedule>` will be specified such that all `Schedule`s which are not expired will be filtered out and consequently not displayed to the user.
 
-For future `Event`s, procedure is similar to past `Event`s, just that the `Predicate<Schedule>` passed in is different. 
+The implementation for only showing upcoming `Schedule`s  (`showupcoming` command) is similar, except that the `Predicate<Schedule>` passed in filters out the opposite. For example: 
 
-`Predicate<Schedule>` for `showpast`: `Schedule#getTaskDateTimeTo() < LocalDateTime#now()`
-`Predicate<Schedule>` for `showupcoming`: `Schedule#getTaskDateTimeTo() > LocalDateTime#now()`
+* `Predicate<Schedule>` for `showpast`: `Schedule#getTaskDateTimeTo() < LocalDateTime#now()`
+* `Predicate<Schedule>` for `showupcoming`: `Schedule#getTaskDateTimeTo() > LocalDateTime#now()`
 
-### \[Proposed\] To delete multiple Events using one command line
 
-While users may be overwhelmed by the number of past or future `Event`s and would like to delete multiple `Event`s at ease.
 
-* Possible implementation #1:
-`delete all` command, which deletes all the `Event`s that are present in the current schedule.
+### \[Proposed\] Deleting Multiple Entries in the Schedule Tab
 
-* Possible implementation #2:
-`delete 1 2 5 2 12 4` command, where users are able to key in multiple indexes which are tied to the `Event`s and delete them in one command line.
+There are two possible features for deletion of multiple entries:
+
+* Possible feature #1:
+  A new `delete all` command, which deletes all the `Schedule`s that are currently stored in the app.
+* Possible feature #2:
+  Modify the format of the `delete` command to be `delete INDEX [MORE_INDEXES]`, where the users can specify more than one indexes of the `Schedule`s to delete.
+
+
 
 ### Marking Todos as Done
 
