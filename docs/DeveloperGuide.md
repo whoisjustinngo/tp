@@ -109,8 +109,8 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 1. User enters the command `/contacts delete 1` from Dashboard tab.
 2. `LogicManager` issues a `parseCommand` to the `AddressBookParser`, prefixing the user input with the `tabId` the command was entered from, which is `/contactsTab`, passing in `/contactsTab delete 1` as the argument of `parseCommand`.
 3. `AddressBookParser` instantiates `DeleteCommandParser`, and calls the `parse` method, the method will return an object `d` of type `DeleteCommand`, which inherits from the `Command` interface. Object `d` is eventually returned to `LogicManager`.
-4. `LogicManager` then calls the `goToContext` method in `AddressBookParser` to instantiate a `TabCommandParser`. `TabCommandParser` creates a `TabCommand` object `t`, which is eventually returned to `LogicManager`.
-5. `LogicManager` will then call the `execute` method of object `t` first in order to switch to the correct tab to display to the user.
+4. (In "go to contacts tab" sequence frame) `LogicManager` then calls the `goToContext` method in `AddressBookParser` to instantiate a `TabCommandParser`. `TabCommandParser` creates a `TabCommand` object `t`, which is eventually returned to `LogicManager`.
+5. (In "go to contacts tab" sequence frame) `LogicManager` will then call the `execute` method of object `t` first in order to switch to the correct tab to display to the user.
 6. `LogicManager` will then call the `execute` method of object `d` to interact with the Model of Contacts, and deletes the contact index indicated by the user.
 
 ![`deleteSequenceImage`](images/DeleteSequenceDiagram.png)
