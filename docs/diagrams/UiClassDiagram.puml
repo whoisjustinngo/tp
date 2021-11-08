@@ -37,14 +37,14 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
-MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" StatusBarFooter
-MainWindow *-down-> "1" AnalyticsPanel
-MainWindow *-down-> "1" PersonDetailedPanel
-MainWindow *-down-> "1" PolicyListPanel
-MainWindow *-down-> "1" NotesPanel
-MainWindow *-down-> "1" XYZListPanel
+MainWindow *-down-->  "1" CommandBox
+MainWindow *-down--> "1" ResultDisplay
+MainWindow *-down--> "1" StatusBarFooter
+MainWindow *-down--> "1" AnalyticsPanel
+MainWindow *-down--> "1" PersonDetailedPanel
+MainWindow *-down--> "1" PolicyListPanel
+MainWindow *-down--> "1" NotesPanel
+MainWindow *-down--> "1" XYZListPanel
 MainWindow --> "0..1" HelpWindow
 MainWindow --> "0..1" ImportWindow
 
@@ -88,6 +88,7 @@ ResultDisplay -[hidden]down- XYZListPanel
 CommandBox-[hidden]down- XYZListPanel
 ImportWindow -[hidden]down- XYZListPanel
 HelpWindow -[hidden]down- NotesPanel
+
 
 'HelpWindow -[hidden]left- CommandBox
 'CommandBox -[hidden]left- ResultDisplay
