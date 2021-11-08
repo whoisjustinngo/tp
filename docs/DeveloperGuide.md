@@ -191,7 +191,7 @@ the list of all entries in the contacts book. The `ClientAnalytics` object has a
 wrapper class for the `ObservableList<Integer>` that contains the counts of each `Status`.
 
 Subsequently, on the front-end, an `AnalyticsPanel` is created, which essentially just depicts (on the front end side) a simple headings-values table with the various `Status` as the headings
-and the counts of the number `Person`s that have the corresponding `Status` as the values. The `AnalyticsPanel` calls the `getValues()` method of the
+and the counts of the number of `Person`s that have the corresponding `Status` as the values. The `AnalyticsPanel` calls the `getValues()` method of the
 `AddressBook`'s `ClientAnalytics` to obtain the internal `ObservableList<Integer>` that tracks the counts of each status. The `AnalyticsPanel`
 then attaches a listener to this `ObservableList<Integer>`.
 
@@ -204,14 +204,14 @@ to retrieve the count of a particular given `Status` and return it to the `Analy
 
 #### Design Considerations
 
-The *observer design pattern* was heavily used here so that any update front-end update would be automatic. This is not only for consistency with the 
-other data types like the `ToDo`s, `Person`s, and `Event`s, it also ensured that every update to any status in the client list was updated and displayed
+The *observer design pattern* was heavily used here so that any front-end update would be automatic. This is not only for consistency with the 
+other data types like the `Todo`s, `Person`s, and `Schedule`s, it also ensured that every update to any status in the client list was updated and displayed
 immediately on the dashboard. This also reduced the need for classes relying on other classes telling them to update the values before they do so.
 
 Updating the values was also designed to be re-counting instead of manually checking what has changed and then just making the necessary changes to the few affected
 `Status`(es) because it is less prone to bugs such as where the counts of the `Status` are inaccurate. If the check and change approach was adopted instead of the re-count approach the code for updating would be
 a lot more complicated since now there needs to be more checks, for example, for what was the previous `Status` and what is the new `Status` in the case of edit, and
-what was the `Status` of the deleted contact in the case where contacts are deleted. Thus,the decision was made to use the simpler, cleaner approach, which,
+what was the `Status` of the deleted contact in the case where contacts are deleted. Thus, the decision was made to use the simpler, cleaner approach, which,
 although less efficient since it runs in O(number of people in persons list) vs O(1) for the check and update approach, the time spent is negligible and hence
 does not warrant the optimisation.
 
@@ -255,7 +255,7 @@ The current implementation is a minimal version that includes the following visi
 
 Each `VEVENT` will be represented as a `Schedule`, and each recurrence specified (if applicable) in `RRULE` are independent 
 `Schedules` with different start and end times. The import will not be made if there are exceptions thrown in the process of 
-parsing errors or fails during verification of whether the schedule has conflicts. If clashes exist, users will be prompted
+parsing or verifying whether the schedule has conflicts. If clashes exist, users will be prompted
 with the same message as when they add a single clashing schedule. No imports will be made. This is to get the user to do manual conflict resolution, where they need to discover and deconflict clashing schedules until the import is successful. (see [adding recurring entries to the schedule](#adding-recurring-entries-to-the-schedule))
 
 
@@ -288,7 +288,7 @@ The data on the Schedule, Contacts and Todos tabs can be filtered. The underlyin
 
 Let us refer to `Schedule`, `Person` and `Todo` as `data types`. Each `data type` has certain fields which it encapsulates in its model, for example, the `Person` model has the fields `Name`, `Relationship`, `Email` etc. Each field will have a corresponding `Predicate` that specifically "checks" those fields. For example, the `Name` field in the `Person` model will have the `NameContainsKeywordsPredicate`, the `isDone` field in the `Todo` model has the `TodoIsDonePredicate` and `TodoIsNotDonePredicate`. All these `Predicate`s implement Java's own `Predicate<data type>` interface.
 
-When the user enters the `filter` command, they will have to specify the field that they want to filter by, along with keywords to indicate the entries they want to keep. For example, if the user specifies to filter the  `Schedule`s in the schedule tab by their `Date` field, they will (have to) specify the date of the entries they want to keep, e.g. if they are looking for entries that have the date "12-11-2021", they will specify to `filter` `Date`s with "12-11-2021". Let us refer to this ""12-11-2021" as the `keyword(s)`. 
+When the user enters the `filter` command, they will have to specify the field that they want to filter by, along with keywords to indicate the entries they want to keep. For example, if the user specifies to filter the  `Schedule`s in the schedule tab by their `Date` field, they will (have to) specify the date of the entries they want to keep, e.g. if they are looking for entries that have the date "12-11-2021", they will specify to `filter` `Date`s with "12-11-2021". Let us refer to this "12-11-2021" as the `keyword(s)`. 
 
 As such, each `Predicate` is meant to apply a filter to a particular field of a specific `data type`, and keep only the entries that have the field matching the `keyword(s)` specified by the user. After the user has specified the field and keyword(s) to filter by, a corresponding `Predicate` will be passed as an argument into the `Model#updateFiltered<data type>List()` methods for the corresponding `data type`, which in turn makes use of the built-in `setPredicate(Predicate)` method of the javafx `FilteredList<data type>` class, which is the wrapper class for the `ObservableList<data type>` which all the data types use to store all their entries. This method filters the list based on the predicate supplied, and the resulting filtered list with only the entries that the user wants is displayed to the user.
 
@@ -318,7 +318,7 @@ Given that `tags` is a field in the `model`s, the user can also apply the aforem
 
 #### Implementation
 
-The data on the Schedule tab is contained in an `ObservableList<Schedule>`. As such, I will be referring to the indivdual entries in the Schedule as `schedule`s.
+The data on the Schedule tab is contained in an `ObservableList<Schedule>`. As such, I will be referring to the individual entries in the Schedule as `schedule`s.
 
 To allow the user to add recurring `schedule`s, the `AddScheduleCommand` created by the `AddScheduleCommandParser` indicates if the `schedule` to add is recurring or not by the `recurrType` field.  The various `recurrType`s are "N" for no recurrence, "D" for daily recurrence, "W" for monthly recurrence  and "Y" for yearly recurrence. If the user has specified that it is a recurring event (i.e. `recurrType` is not "N"), then they would have also (been required to) specify an end date that the recurrence stops.
 
@@ -623,7 +623,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Contacts (tab):** a tab where a list of the user’s contacts are displayed
 * **Details (tab):** a tab where details of a single contact are displayed
 * **Schedule (tab):** a tab where the user’s events are displayed
-  * **Event:** a task that is tied to a timeline, for example lessons, deadlines or meetings. (As on the back-end the `Schedule` class is used to represent these events, this DeveloperGuide uses `Schedule` instead to refer to entries in the Schedule tab)
+  * **Event:** a task that is tied to a timeline, for example lessons, deadlines or meetings. (As on the back-end the `Schedule` class is used to represent these events, this Developer Guide uses `Schedule` instead to refer to entries in the Schedule tab)
 * **Todos (tab):** a tab where the user’s todos are displayed
   * **Todo (task):** a task that does not have a time element bound to it
 
