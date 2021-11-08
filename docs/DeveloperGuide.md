@@ -151,7 +151,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103-T14-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png"/>
 
@@ -159,6 +159,10 @@ The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
+
+The `ScheduleStorage` component,
+* helps with the importing of the ics calendar. Application will take in ics Components, which will then be converted into Schedule model in this application.
+* adds schedules from ics component into `Schedule` in this application.
 
 ### Common classes
 
@@ -287,21 +291,19 @@ Some examples are: `AddressContainsKeywordsPredicate`, `EmailContainsKeywordsPre
 #### Design Considerations
 Since the architecture follows a Model-view-controller design pattern, we have `FilteredList<Person>` wrapping an `ObservableList<Person>` which is used to store in-memory data of `Person` objects. Our Ui constantly listens for changes triggered by `FilterCommand#execute` which updates the `FilteredList<Person>` with a new predicate which then reflects displays the list of filtered persons on the Ui. This design provides a clean way for us to filter data using `Predicate`s.
 
-
-
-### Adding Events //TODO
+### Adding Events
 
 #### Implementation
 
 The proposed feature of scheduling is parsed by `AddScheduleCommandParser`, and executed by the `AddScheduleCommand`, where it will add the new Event into the list of Events in the users schedule. While adding a new `Event` into the `Schedule`, it will help to check if the given `Event` clashes with the Events which are already in the `Schedule`. 
 
-On top of that, `Schedule` will all be arranged in chronological order with the aid of the `Comparator<Schedule>` which is declared in `UniqueScheduleList`.
+On top of that, `Schedule` will all be arranged based on the date and then time order (from earliest to the latest) with the aid of the `Comparator<Schedule>` which is declared in `UniqueScheduleList`.
 
 #### Design Considerations
 
 **Aspect: How add schedule executes:**
 * **Alternative 1 (current choice) Add Schedule into one UnqiueScheduleList**
-    * Pros: All the schedules are added into one list, which makes it easier to navigate. It also makes the code look cleaner and more understandable. This is also consistent with the other data classes which also use an underlying list implementation.
+    * Pros: All the unique schedules are added into one list, which makes it easier to navigate. It also makes the code look cleaner and more understandable. This is also consistent with the other data classes which also use an underlying list implementation.
     * Cons: Any iteration will always be O(n) since sorting and checking if there are clashes in `Schedule` happens in this `UniqueScheduleList`
 * **Alternative 2 use HashMap<Date, ScheduleList>**
     * Pros: Operation does not need to take O(n) time when it comes to checking if the `Event` clashes, since we only check if there are clashes on that particular given date.
@@ -309,60 +311,63 @@ On top of that, `Schedule` will all be arranged in chronological order with the 
 
 &nbsp;
 
-### Finding and Editing existing Events //TODO
+### Finding and Editing existing Events
 
 #### Implementation
 
 The proposed feature of finding and editing existing `Events` is parsed by `FindScheduleCommandParser` and `EditScheduleCommandParser` respectively. Once parsed, those command will be executed by the `FindScheduleCommand` and `EditScheduleCommand` respectively. 
 
-For `FindScheduleCommand` a `Predicate` takes in keyword that are given by the user. Then it will search through the `UniqueScheduleList`, checking if there are any `Events` which have those keywords in the description. Once done, it will return a `List` of all the `Events` which have the same keywords as the one given by the user to be shown on the Ui.
+For `FindScheduleCommand` a `Predicate<Schedule>` takes in keyword that are given by the user. Then it will then set a `Predicate<Schedule>` in the `FilteredList<Schedule>` which are located in the `ModelManager`. The `FilteredList<Schedule>` will then filtered those `Event`s which satisfies the `Predicate<Schedule>`. Once done, it will return a `FilteredList<Schedule>` of all the `Events` which have the same keywords as the one given by the user which will be shown on the Ui.
 
-For `EditScheduleCommand` the user will need to input the index of the `Event` to be edited, along with specifying the fields which the user would like to edit and the new information to edit to. Once completed, the old `Event` will be replaced with the new `Event` with the updated information.
+For `EditScheduleCommand` the user will need to input the index of the `Event` to be edited, along by specifying the fields which the user would like to edit, and the new information to edit to. Once completed, the old `Event` will be replaced with the new `Event` with the updated information.
 
+Since `Schedule` is immutable in the current implementation, the `EditScheduleCommand` will not edit the `Schedule`. Instead, a new `Schedule` will be created keeping all the attributes the same, and changing the respective attributes which the user would like to change.
 
-
-### Adding Tags to Events //TODO
+### Adding Tags to Events
 
 Tags can be added to new or existing events in the schedule so as to categorise different `Events` and allow the user to easily `Fitler` out `Events`  with the same tags.
 
-**How tagging is implemented:**
+**Aspect: How tagging is implemented:**
 
  * In each `Event`, there is a `List<Tag>` which carries all the `Tag`s which the user has added for the `Event`. All the `Tags` which are present in this `List<Tag>` will be displayed in the user interface. 
 
+### Filtering Events
 
+The implementation for filtering `Event`s is similar to finding an `Event`. The command is first parsed by the `FilterScheduleCommandParser` and then executed by the `FilterScheduleCommand`. The parser will utilise a `Predicate<Schedule>` to filter the `FilteredList<Schedule>` which is located in `ModelManager` based on any attribute and keywords which the user specifiesd. The `Predicate<Schedule>` takes in a keyword of the respective attribute, and only the `Event`s which satisfy the `Predicate<Schedule>` will be displayed to the user in the UI.
 
-### Filtering Events //TODO
-
-The implementation for filtering  `Event`s is similar to finding an `Event`. The command is first parsed by the `FilterScheduleCommandParser` and then executed by the `FilterScheduleCommand`. The parser will utilise a `Predicate` to filter the `UniqueScheduleList` based on any attribute which the user specifies. The `Predicate` takes in a keyword of the respective attribute, and only the `Event`s which satisfy the `Predicate` will be displayed to the user.
-
-**Aspect on how filtering is done**
+**Aspect: How filtering is done**
 `UniqueScheduleList` is used to keep store in-memory data which wraps an `ObservableList<Schedule>`. It is then fed to the Ui to display the filtered `Event` to the user. This design provides a clean way for us to filter data using Predicate.
 
+### Adding Recurring Events
 
+Adding recurring `Event`s allows user to add `Event`s, such that this `Event` will recur until the given date which it will stop. User is able to choose to recur daily, weekly or yearly.
 
-### Adding Recurring Events //TODO
+If there are no clashes (including all the recurring Events), new `Event`s will be added until the specified recur date in a specified weekly, yealy or monthly basis, otherwise none will be added.
 
-Adding recurring `Event`s allows user to add events the recur daily, weekly or yearly. 
+**Aspect: How recurring of Event is done**
 
-If there are no clashes, new `Events` will be added until the specified recur date based on the rules (weekly, yealy or monthly), otherwise none will be added.
+This is done by implementing another attribute in the `AddScheduleCommand`, which is the recurring end date. If the recurring date is present, then `Event` is a recurring `Event` otherwise it is not. Another attribute called `recurType` will determine if this `Event` recurs daily (D), weekly (W) or yearly (Y).
 
-**Aspect on how recurring of Event is done**
+`Event` will recur until it reaches the recur date in the `AddScheduleCommand`.
 
-This is done implementing another attribute for the `Event`, which is the recurring date. If the recurring date is present, then `Event` is a recurring `Event` otherwise it need not recur. Another attribute called `recurType` will determine if it recurs daily (D), weekly (W) or yearly (Y). `Event` will recur until it reaches the recur date.
+### \[Proposed\] Viewing only past or future Events
 
+In the event when user only want to look at he past `Event`s, user should be able to do so using the command line such as `showpast`. This command line will help to feed in a `Predicate<Schedule>` to the `FilteredList<Schedule>` located in the `ModelManager`. Past `Event`s will pass the `Predicate<Schedule>` will then be displayed in the UI, otherwise it will not be shown. 
 
+For future `Event`s, procedure is similar to past `Event`s, just that the `Predicate<Schedule>` passed in is different. 
 
-### Viewing only past or future Events //TODO
+`Predicate<Schedule>` for `showpast`: `Schedule#getTaskDateTimeTo() < LocalDateTime#now()`
+`Predicate<Schedule>` for `showupcoming`: `Schedule#getTaskDateTimeTo() > LocalDateTime#now()`
 
-In the event when user only want to look at he past Events, user will be able to do so using the command line `showpast`. This command line helps to retrieve only those Events which have already in the past (comparing to today's date). 
+### \[Proposed\] To delete multiple Events using one command line
 
-For future Events, user is able to key in the command line `showupcoming`. This command line will help user to filter out and display those Events which are upcoming. All dates here are compared to the current date.
+While users may be overwhelmed by the number of past or future `Event`s and would like to delete multiple `Event`s at ease.
 
-**Aspect on how viewing only past Events is done**
+* Possible implementation #1:
+`delete all` command, which deletes all the `Event`s that are present in the current schedule.
 
-Both `showpast` and `showupcoming` is done by passing down a `Predicate` into a function which is available in `Model`. This function `Model#updateFilteredScheduleList()` will then filter out and show all the events which satisfies the `Predicate` given. In the event when `Predicate` is not satisfied by the Event, the Event will not be displayed.
-
-
+* Possible implementation #2:
+`delete 1 2 5 2 12 4` command, where users are able to key in multiple indexes which are tied to the `Event`s and delete them in one command line.
 
 ### Marking Todos as Done
 

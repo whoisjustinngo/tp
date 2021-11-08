@@ -345,7 +345,7 @@ Deleting contact details will be implemented in future versions. For now, you ca
 
 The Schedule tab shows all of the user's events in chronological order.
 
-> :exclamation:Note: By default, the Schedule tab will **ONLY** show upcoming events. The user can use the `list` command to show all events, future and past.
+> :exclamation:Note: By default, the Schedule tab will **ONLY** show upcoming events. The user can use the `list` command to show all events, which includes past and future Events.
 
 ### Viewing all events: `list`
 
@@ -396,11 +396,25 @@ Examples:
  * Editing the tag of event 1: `edit 1 t/important`
  * Editing the description and date of event 2: `edit 2 d/meeting date/18-05-2022`
 
+### Finding events: `find`
+
+Finds the schedule according to the description of the schedule.
+
+Format: `find [KEYWORDS]`
+
+* [KEYOWORDS] field is compulsory
+
+Examples:
+
+ * Filtering by tags: `filter lesson`
+
 ### Filtering events: `filter`
 
 Filters the schedule according to the specified keywords and attributes.
 
 Format: `filter [d/TASK DESCRIPTION] [date/DATE] [fr/TIME FROM] [to/TIME TO] [date/DATE] [t/TAGS]`
+
+* Fields are optional depending on which field the user would like to filter.
 
 Examples:
 
