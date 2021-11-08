@@ -287,18 +287,9 @@ show feedback to user.
 
 #### Implementation
 
-<<<<<<< HEAD
-The data on the Schedule, Contacts and Todos tabs can be filtered. The underlying implmentation of the `filter` commands on each of these tabs are the same, and involves `Predicate`s that looks for entries that match the keyword(s) specified by the user. 
+The data on the Schedule, Contacts and Todos tabs can be filtered. The underlying implementation of the `filter` commands on each of these tabs are the same, and involves `Predicate`s that looks for entries that match the keyword(s) specified by the user. 
 
 Let us refer to `Schedule`, `Person` and `Todo` as `data types`. Each `data type` has certain fields which it encapsulates in its model, for example, the `Person` model has the fields `Name`, `Relationship`, `Email` etc. Each field will have a corresponding `Predicate` that specifically "checks" those fields. For example, the `Name` field in the `Person` model will have the `NameContainsKeywordsPredicate`, the `isDone` field in the `Todo` model has the `TodoIsDonePredicate` and `TodoIsNotDonePredicate`. All these `Predicate`s implement Java's own `Predicate<data type>` interface.
-=======
-To allow the user to filter based on any attributes of a `Person`, a `Predicate` class is created
-for each attribute. The `ModelManager` manages all data, which allows us to easily filter `Person`s based
-on their attributes by passing in the corresponding `Predicate`. 
-
-A `Predicate` takes in a keyword, which is then used to filter the models.
-Some examples are: `AddressContainsKeywordsPredicate`, `EmailContainsKeywordsPredicate`, ... etc.
->>>>>>> e92bd01978cbdfed2d5e37ded9751a8f4ed7f1cc
 
 When the user enters the `filter` command, they will have to specify the field that they want to filter by, along with keywords to indicate the entries they want to keep. For example, if the user specifies to filter the  `Schedule`s in the schedule tab by their `Date` field, they will (have to) specify the date of the entries they want to keep, e.g. if they are looking for entries that have the date "12-11-2021", they will specify to `filter` `Date`s with "12-11-2021". Let us refer to this ""12-11-2021" as the `keyword(s)`. 
 
@@ -308,19 +299,7 @@ As such, each `Predicate` is meant to apply a filter to a particular field of a 
 
 #### Design Considerations
 
-<<<<<<< HEAD
 Since the architecture follows a Model-view-controller design pattern, `FilteredList<data type>` wraps around an `ObservableList<data type>`, the latter of which is used to store in-memory data of `data type` objects. On the front-end, our Ui constantly listens for changes triggered by `FilterCommand#execute` which updates the `FilteredList<data type>` after filtering based on the specified `Predicate`, which then reflects the newly filtered information on the Ui to the user. This design provides a clean way for us to filter data.
-=======
-**Aspect: How add schedule executes:**
-* **Alternative 1 (current choice) Add Schedule into one UniqueScheduleList**
-    * Pros: All the unique schedules are added into one list, which makes it easier to navigate. It also makes the code look cleaner and more understandable. This is also consistent with the other data classes which also use an underlying list implementation.
-    * Cons: Any iteration will always be O(n) since sorting and checking if there are clashes in `Schedule` happens in this `UniqueScheduleList`
-* **Alternative 2 use HashMap<Date, ScheduleList>**
-    * Pros: Operation does not need to take O(n) time when it comes to checking if the `Event` clashes, since we only check if there are clashes on that particular given date.
-    * Cons: Decreases overall code consistency.
->>>>>>> e92bd01978cbdfed2d5e37ded9751a8f4ed7f1cc
-
-
 
 ### Adding Tags to Entries
 
@@ -328,11 +307,7 @@ Since the architecture follows a Model-view-controller design pattern, `Filtered
 
 Tags can be added to the entries on the Schedule, Contacts and Todos tabs.
 
-<<<<<<< HEAD
 The information shown on these tabs are from `ObservableList<>`s that hold `Schedule`, `Person` and `Todo` objects respectively. Let us refer to these different objects as `data type`s. Each of these has a model that encapsulates information for multiple fields. For example, the `Person` model has the fields `Name`, `Relationship`, `Email` etc. that holds the information for each `Person` entry. In addition to these fields, each of these models also has a field called `tags` that tracks the tags that have been applied to that entry. 
-=======
-For `FindScheduleCommand` a `Predicate<Schedule>` takes in keywords that are given by the user. Then it will then set a `Predicate<Schedule>` in the `FilteredList<Schedule>` which are located in the `ModelManager`. The `FilteredList<Schedule>` will then filtered those `Event`s which satisfies the `Predicate<Schedule>`. Once done, it will return a `FilteredList<Schedule>` of all the `Events` which have the same keywords as the one given by the user which will be shown on the Ui.
->>>>>>> e92bd01978cbdfed2d5e37ded9751a8f4ed7f1cc
 
 `tags` is implemented as a `HashSet<Tag>`, where `Tag` is a class that specifies a tag. Each `Tag` object has a `tagName` which identifies it; two tags are considered to be the same when they have the same `tagName`. The use of a `HashSet<Tag>` not only allows an entry to have multiple tags, but also guarantees that no duplicate tags can be applied to an entry. 
 
@@ -348,22 +323,11 @@ The data on the Schedule tab is contained in an `ObservableList<Schedule>`. As s
 
 To allow the user to add recurring `schedule`s, the `AddScheduleCommand` created by the `AddScheduleCommandParser` indicates if the `schedule` to add is recurring or not by the `recurrType` field.  The various `recurrType`s are "N" for no recurrence, "D" for daily recurrence, "W" for monthly recurrence  and "Y" for yearly recurrence. If the user has specified that it is a recurring event (i.e. `recurrType` is not "N"), then they would have also (been required to) specify an end date that the recurrence stops.
 
-<<<<<<< HEAD
 The `Schedule` specified will only be added if the `Schedule` does not clash with any other existing `Schedule`s. This is true for recurring `Schedule`s as well. What happens when the `AddScheduleCommand#execute()` is called is that a temporary list containing all `schedule`s to be added is generated. For example if some `Schedule` the recurs weekly is specified with an end date 4 weeks into the future, and the specified date is a Tuesday, and the time that is specified is from 1500 to 1600, then the temporary list generated will contain 4 `Schedule`s, each on consecutive Tuesdays from 1500 to 1600. This temporary list is then compared to the current schedule to check if there are any clashes. If there are no clashes, the command will execute normally and all requested `Schedule`s will be added. If there are clashes, then **no `Schedule`s will be added**, not even those that do not clash.
-=======
-The implementation for filtering `Event`s is similar to finding an `Event`. The command is first parsed by the `FilterScheduleCommandParser` and then executed by the `FilterScheduleCommand`. The parser will utilise a `Predicate<Schedule>` to filter the `FilteredList<Schedule>` which is located in `ModelManager` based on any attribute and keywords which the user specified. The `Predicate<Schedule>` takes in a keyword of the respective attribute, and only the `Event`s which satisfy the `Predicate<Schedule>` will be displayed to the user in the UI.
->>>>>>> e92bd01978cbdfed2d5e37ded9751a8f4ed7f1cc
-
-
 
 ### Marking Todos as Done
 
-<<<<<<< HEAD
 #### Implementation
-=======
-If there are no clashes (including all the recurring Events), new `Event`s will be added until the specified recur date in a specified weekly, yearly or monthly basis, otherwise none will be added.
->>>>>>> e92bd01978cbdfed2d5e37ded9751a8f4ed7f1cc
-
 Marking a `Todo` as done is implemented as a `DoneTodoCommand`, which is similar in many ways with an `EditTodoCommand`. This similarity lies in the fact that both commands alter an attribute of the `Todo` model: the `EditTodoCommand` alters the description attribute of the `Todo`, while the `DoneTodoCommand` alters the `isDone` attribute of the `Todo`.
 
 Since `Todos` are guaranteed to be immutable in the current implementation of the `Todo` model, the `DoneTodoCommand` applied to a `Todo` will not edit the `Todo`. Instead, a new `Todo` will be created with the same `description` but with the `isDone` attribute toggled to `true`.
@@ -371,19 +335,12 @@ Since `Todos` are guaranteed to be immutable in the current implementation of th
 #### Design Considerations
 
 **Aspect: How mark as done executes:**
-
-<<<<<<< HEAD
 * **Alternative 1 (current choice):** Replaces the current `Todo` with a new instance of `Todo`.
     * Pros: Consistent with the current implementation of the commands for editing a model, and thus increases consistency across the entire codebase.
     * Cons: May take up more computational resources since a new `Todo` is created every time it is marked as done. Nevertheless, the impact of this implementation on memory space is expected to be negligible, given that Java's garbage collection mechanism will automatically remove the de-referenced Todo.
 * **Alternative 2:** Edits the current instance of `Todo`.
     * Pros: Might be faster and less wasteful, since there is no need to create a new `Todo` instance.
     * Cons: Decreased consistency across the codebase, and no longer guarantees that `Todo`s are immutable.
-=======
-In the event when user only want to look at the past `Event`s, user should be able to do so using the command line such as `showpast`. This command line will help to feed in a `Predicate<Schedule>` to the `FilteredList<Schedule>` located in the `ModelManager`. Past `Event`s will pass the `Predicate<Schedule>` will then be displayed in the UI, otherwise it will not be shown. 
->>>>>>> e92bd01978cbdfed2d5e37ded9751a8f4ed7f1cc
-
-
 
 ### \[Proposed\] Toggling Between Viewing Past and Future Entries in the Schedule Tab
 
